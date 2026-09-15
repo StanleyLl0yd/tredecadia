@@ -40,7 +40,7 @@ def has_evidence(profile: dict, kind: str, url_prefix: str) -> bool:
 def main() -> None:
     assert LOC_DATA["schemaVersion"] == 1
     assert LOC_SCHEMA["properties"]["schemaVersion"]["const"] == 1
-    assert LOC_DATA["specVersion"] == MONTH_DATA["specVersion"] == "0.3.0-draft"
+    assert LOC_DATA["specVersion"] == MONTH_DATA["specVersion"] == "1.0.0-rc.1"
     assert LOC_DATA["status"] == "draft"
     assert LOC_SCHEMA["$schema"] == "https://json-schema.org/draft/2020-12/schema"
 
@@ -114,8 +114,8 @@ def main() -> None:
         "YA": "야", "KA": "카", "ZU": "주",
     }
 
-    # Draft 0.3 now has several independently reviewed profiles while keeping
-    # all of them explicitly non-stable until the stable Tredecadia release.
+    # The v1 release candidate has several independently reviewed profiles
+    # while keeping all of them explicitly non-stable until final v1.0.0.
     assert sum(profile["review"]["status"] == "reviewed" for profile in profiles) >= 3
     assert all(profile["review"]["status"] != "stable" for profile in profiles)
 

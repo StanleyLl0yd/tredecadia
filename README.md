@@ -2,7 +2,7 @@
 
 Tredecadia is an open 13 × 28 perennial calendar standard with equal months, stable weekdays, a continuous mathematical year coordinate, and internationally neutral month names.
 
-> **Status:** pre-1.0, Draft 0.3. The Tredecadia Era, civil conversion, pronunciation, Short-4 recognition, signed-year accessibility, and localization-profile framework are defined. Three non-Latin localization profiles have independent review evidence; final release-candidate review remains open.
+> **Status: `1.0.0-rc.1` release candidate.** M0–M2 design/review work is complete. The v1 compatibility surface is frozen for release-candidate testing; reviewed localization profiles remain non-stable until final `v1.0.0` acceptance.
 
 ## Core model
 
@@ -79,13 +79,13 @@ Canonical months and localized aliases are intentionally separate machine regist
 
 Localization profiles progress through `candidate` → `reviewed` → `stable`; generated mappings cannot skip independent review.
 
-Draft 0.3 has three **reviewed, non-stable** profiles:
+`1.0.0-rc.1` contains three **reviewed, non-stable** profiles:
 
 - Russian Cyrillic (`ru-Cyrl`) — reviewed against independent Russian practical-transcription and orthographic references; `ми/ни` palatalization is explicitly documented as a localization approximation;
 - Japanese Katakana (`ja-Kana`) — reviewed against Japan's official foreign-word orthographic guidance;
 - Korean Hangul (`ko-Hang`) — reviewed against Korea's official IPA-to-Hangul foreign-word rules.
 
-No localization profile is stable yet; stable status is reserved for an explicitly accepted stable Tredecadia release.
+No localization profile is stable in the RC. Stable status is reserved for profiles explicitly accepted into the final `v1.0.0` release.
 
 ## Specification
 
@@ -95,6 +95,7 @@ No localization profile is stable yet; stable status is reserved for an explicit
 - [`specification/date-notation.md`](specification/date-notation.md) — canonical date representation and accessible human presentation.
 - [`specification/localization.md`](specification/localization.md) — localization semantics.
 - [`specification/localization-profiles.md`](specification/localization-profiles.md) — profile methods, maturity, evidence, and promotion.
+- [`specification/compatibility.md`](specification/compatibility.md) — v1 compatibility boundary and versioning rules.
 
 Machine-readable data lives in [`registry/`](registry/); verification vectors and executable checks live in [`tests/`](tests/). Design rationale is intentionally separated from normative text in [`rationale/`](rationale/).
 
@@ -138,6 +139,12 @@ $ python reference/python/tredecadia.py to-gregorian 00000-EQ
 
 The reference code supports negative and zero astronomical Gregorian years, negative and zero Tredecadia years, `EQ`, conditional `ED`, strict canonical ASCII Tredecadia parsing, human display-year formatting, and both conversion directions. CI cross-checks it against the published vectors and the independent calendar-arithmetic oracle. See [`reference/python/README.md`](reference/python/README.md).
 
+## Release-candidate verification
+
+The RC CI validates the published JSON Schemas with a Draft 2020-12 implementation, checks local links and duplicated canonical tables, freezes compatibility-critical constants, exhaustively cross-checks calendar conversion windows, and proves that the release bundle is byte-for-byte reproducible.
+
+`tools/build_release.py` creates a deterministic `tredecadia-1.0.0-rc.1.tar.gz` together with `SHA256SUMS`. The archive version is taken from `CITATION.cff`, and its file list is recorded in an embedded `RELEASE-MANIFEST.json`.
+
 ## Licensing
 
 Documentation, specifications, machine-readable registries, and test vectors are licensed under **CC BY 4.0**. Source code, scripts, and CI/workflow code are licensed under the **MIT License** unless a file states otherwise. See [`LICENSE.md`](LICENSE.md).
@@ -146,4 +153,4 @@ The licenses do not grant trademark rights in the Tredecadia name or branding.
 
 ## Versioning
 
-The repository currently tracks a pre-1.0 draft. Once the normative text, localization profiles, registry, conversion semantics, test vectors, and compatibility rules have been independently verified, the first stable release will be tagged `v1.0.0`.
+This repository is at **`1.0.0-rc.1`**. The compatibility-critical v1 surface is frozen for RC testing, but incompatible corrections remain possible before final `v1.0.0` if the RC uncovers a genuine correctness or interoperability defect.

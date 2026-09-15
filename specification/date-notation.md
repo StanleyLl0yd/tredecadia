@@ -1,6 +1,6 @@
 # Tredecadia Date Notation
 
-Status: **Draft 0.3**
+Status: **1.0.0-rc.1**
 
 ## 1. Era
 

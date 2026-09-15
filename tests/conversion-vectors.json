@@ -1,5 +1,5 @@
 {
-  "specVersion": "0.3.0-draft",
+  "specVersion": "1.0.0-rc.1",
   "profile": "tredecadia-civil",
   "epoch": {"gregorianAstronomical": {"year": -9999, "month": 3, "day": 20}, "tredecadia": "00000-EQ"},
   "yearCoordinateExamples": [

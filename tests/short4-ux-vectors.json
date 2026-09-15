@@ -1,5 +1,5 @@
 {
-  "specVersion": "0.3.0-draft",
+  "specVersion": "1.0.0-rc.1",
   "policyVersion": 1,
   "preferredConversationalForm": "short4",
   "exactMatch": {

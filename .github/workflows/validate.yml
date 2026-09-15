@@ -16,6 +16,12 @@ jobs:
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.13"
+      - name: Install pinned test dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements-test.txt
+      - name: Validate published JSON Schemas
+        run: python tests/validate_schemas.py
+      - name: Validate repository-local links
+        run: python tests/validate_links.py
       - name: Validate canonical registry and naming invariants
         run: python tests/validate_registry.py
       - name: Validate localization profiles
@@ -26,6 +32,10 @@ jobs:
         run: python tests/validate_accessibility.py
       - name: Validate calendar conversion semantics
         run: python tests/validate_conversion.py
+      - name: Validate v1 RC compatibility freeze
+        run: python tests/validate_rc_freeze.py
+      - name: Validate deterministic release bundle
+        run: python tests/validate_release_build.py
       - name: Validate documentation consistency
         run: python tests/validate_docs.py
       - name: Check version consistency
