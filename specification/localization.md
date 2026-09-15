@@ -19,8 +19,9 @@ A profile SHOULD document material approximations when its language or script ca
 Draft 0.3 currently includes:
 
 - `ru-Cyrl` — Russian Cyrillic — **candidate**;
-- `ja-Kana` — Japanese Katakana — **reviewed** against the Japanese Agency for Cultural Affairs `外来語の表記` guidance; not stable.
+- `ja-Kana` — Japanese Katakana — **reviewed** against the Japanese Agency for Cultural Affairs `外来語の表記` guidance; not stable;
+- `ko-Hang` — Korean Hangul — **reviewed** against the National Institute of Korean Language `외래어 표기법` IPA-to-Hangul rules; not stable.
 
-The Japanese review is standards-based and does not claim a separate native-speaker usability review. Its evidence is recorded in `registry/localizations.json` and `rationale/localization-ja-kana.md`.
+The Japanese and Korean reviews are standards-based. Neither claims a separate native-speaker usability review. Evidence is recorded in `registry/localizations.json` and the corresponding rationale files.
 
 Within each profile every registered Full, Short-6, and Short-4 alias MUST map back to exactly one canonical month. Character-by-character reversibility to Latin is not required.
