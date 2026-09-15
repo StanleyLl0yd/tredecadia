@@ -43,6 +43,8 @@ Intercalary days are not regular month/day values. Their canonical machine forms
 - `YYYY-ED` — Earth Day, present only in a Tredecadia leap year;
 - `YYYY-EQ` — Equinox / New Year Day, present every Tredecadia year.
 
+The year component identifies the Tredecadia year **being completed**. Therefore `Y-EQ` is the final day associated with year `Y`; the immediately following regular date is `(Y+1)-01-01`. In a leap year, `Y-ED` immediately precedes `Y-EQ` and is associated with the same year `Y`.
+
 `YYYY` follows the same positive, at-least-four-digit rule as regular dates.
 
 Examples:
