@@ -78,6 +78,48 @@
         {"month": 13, "full": "ニムタズナ", "short6": "ニムタ", "short4": "ニム"}
       ],
       "notes": "Standards-reviewed Katakana display transcription. Japanese realization of canonical /u/ and /z/ remains an expected language-specific approximation; no native-speaker review is claimed by this evidence."
+    },
+    {
+      "id": "ko-Hang",
+      "languageTag": "ko",
+      "script": "Hang",
+      "direction": "ltr",
+      "role": "display-alias",
+      "method": "phonemic-transcription",
+      "caseTransform": "none",
+      "reverseMapping": "unique-within-profile",
+      "review": {
+        "status": "reviewed",
+        "evidence": [
+          {
+            "kind": "standards-reference",
+            "citation": "National Institute of Korean Language — 외래어 표기법, Ministry of Culture Notice No. 2017-14: IPA-to-Hangul table and semivowel [j] rule",
+            "url": "https://www.korean.go.kr/kornorms/m/m_regltn.do?regltn_code=0003"
+          }
+        ]
+      },
+      "syllableMap": {
+        "MA": "마", "MI": "미", "MU": "무",
+        "NA": "나", "NI": "니", "NU": "누",
+        "SA": "사", "SU": "수", "TA": "타",
+        "YA": "야", "KA": "카", "ZU": "주"
+      },
+      "aliases": [
+        {"month": 1, "full": "마사누미카", "short6": "마사누", "short4": "마사"},
+        {"month": 2, "full": "타수주누무", "short6": "타수주", "short4": "타수"},
+        {"month": 3, "full": "나주마사누", "short6": "나주마", "short4": "나주"},
+        {"month": 4, "full": "미카수마니", "short6": "미카수", "short4": "미카"},
+        {"month": 5, "full": "야니무주누", "short6": "야니무", "short4": "야니"},
+        {"month": 6, "full": "주미타나수", "short6": "주미타", "short4": "주미"},
+        {"month": 7, "full": "무야사누미", "short6": "무야사", "short4": "무야"},
+        {"month": 8, "full": "수니주사카", "short6": "수니주", "short4": "수니"},
+        {"month": 9, "full": "누마나무타", "short6": "누마나", "short4": "누마"},
+        {"month": 10, "full": "카주누수야", "short6": "카주누", "short4": "카주"},
+        {"month": 11, "full": "야나주마사", "short6": "야나주", "short4": "야나"},
+        {"month": 12, "full": "사누미카주", "short6": "사누미", "short4": "사누"},
+        {"month": 13, "full": "니무타주나", "short6": "니무타", "short4": "니무"}
+      ],
+      "notes": "Standards-reviewed Hangul display transcription derived from the official IPA-to-Hangul table. Korean ㅈ is the prescribed foreign-word representation of source /z/ before a vowel and remains a localization approximation of canonical ZU /zu/."
     }
   ]
 }
