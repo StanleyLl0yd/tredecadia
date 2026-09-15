@@ -1,0 +1,109 @@
+name: Publish release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - release/publish.json
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+      - name: Install pinned test dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements-test.txt
+      - name: Validate release metadata
+        run: python tests/validate_release_metadata.py
+      - name: Re-run release conformance gates
+        run: |
+          set -euo pipefail
+          for test in \
+            tests/validate_schemas.py \
+            tests/validate_links.py \
+            tests/validate_registry.py \
+            tests/validate_localizations.py \
+            tests/validate_short4_ux.py \
+            tests/validate_accessibility.py \
+            tests/validate_conversion.py \
+            tests/validate_rc_freeze.py \
+            tests/validate_release_build.py \
+            tests/validate_docs.py \
+            tests/validate_versions.py \
+            tests/validate_reference.py
+          do
+            python "$test"
+          done
+      - name: Build deterministic release assets
+        run: python tools/build_release.py --output-dir dist
+      - name: Publish tag and GitHub prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          VERSION="$(python -c 'import json; print(json.load(open("release/publish.json"))["version"])')"
+          TAG="$(python -c 'import json; print(json.load(open("release/publish.json"))["tag"])')"
+          NOTES="$(python -c 'import json; print(json.load(open("release/publish.json"))["notes"])')"
+          PRERELEASE="$(python -c 'import json; print(str(json.load(open("release/publish.json"))["prerelease"]).lower())')"
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; refusing to overwrite it." >&2
+            exit 1
+          fi
+          if git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null 2>&1; then
+            echo "Tag $TAG already exists; refusing to move or overwrite it." >&2
+            exit 1
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$TAG" "$GITHUB_SHA" -m "Tredecadia $VERSION"
+          git push origin "refs/tags/$TAG"
+
+          args=(
+            release create "$TAG"
+            "dist/tredecadia-$VERSION.tar.gz"
+            "dist/SHA256SUMS"
+            --verify-tag
+            --title "Tredecadia $VERSION"
+            --notes-file "$NOTES"
+          )
+          if [ "$PRERELEASE" = "true" ]; then
+            args+=(--prerelease --latest=false)
+          fi
+          gh "${args[@]}"
+      - name: Verify published release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="$(python -c 'import json; print(json.load(open("release/publish.json"))["tag"])')"
+          VERSION="$(python -c 'import json; print(json.load(open("release/publish.json"))["version"])')"
+          PRERELEASE="$(python -c 'import json; print(str(json.load(open("release/publish.json"))["prerelease"]).lower())')"
+
+          PEELED="$(git ls-remote origin "refs/tags/$TAG^{}" | awk '{print $1}')"
+          test "$PEELED" = "$GITHUB_SHA"
+
+          gh release view "$TAG" --json tagName,isPrerelease,assets > /tmp/release.json
+          python - <<'PY'
+          import json
+          meta=json.load(open('release/publish.json'))
+          release=json.load(open('/tmp/release.json'))
+          assert release['tagName']==meta['tag']
+          assert release['isPrerelease'] is meta['prerelease']
+          names=sorted(asset['name'] for asset in release['assets'])
+          assert names==['SHA256SUMS', f"tredecadia-{meta['version']}.tar.gz"], names
+          PY
+
+          mkdir -p /tmp/release-assets
+          gh release download "$TAG" -D /tmp/release-assets -p "tredecadia-$VERSION.tar.gz" -p "SHA256SUMS"
+          cmp "dist/tredecadia-$VERSION.tar.gz" "/tmp/release-assets/tredecadia-$VERSION.tar.gz"
+          cmp "dist/SHA256SUMS" "/tmp/release-assets/SHA256SUMS"
