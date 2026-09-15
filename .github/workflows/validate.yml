@@ -22,3 +22,5 @@ jobs:
         run: python tests/validate_conversion.py
       - name: Validate documentation consistency
         run: python tests/validate_docs.py
+      - name: Check version consistency
+        run: python tests/validate_versions.py
