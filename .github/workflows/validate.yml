@@ -20,3 +20,5 @@ jobs:
         run: python tests/validate_registry.py
       - name: Validate calendar conversion semantics
         run: python tests/validate_conversion.py
+      - name: Validate documentation consistency
+        run: python tests/validate_docs.py
