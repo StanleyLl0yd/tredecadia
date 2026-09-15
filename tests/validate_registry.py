@@ -68,7 +68,8 @@ def main() -> None:
     assert pronunciation == {
         "identity": "ordered-segmental-syllables",
         "stressIdentityCritical": False,
-        "citationStress": "initial",
+        "citationProminence": "weak-initial",
+        "abbreviationsInheritCitationProminence": True,
         "syllableIpa": SYLLABLE_IPA,
     }
 
@@ -98,6 +99,15 @@ def main() -> None:
 
         segmental = ".".join(SYLLABLE_IPA[syllable] for syllable in syllables)
         assert month["citationIpa"] == f"ˈ{segmental}"
+        assert month["citationIpa"].startswith("ˈ" + SYLLABLE_IPA[syllables[0]])
+
+        # Full, Short-6 and Short-4 all inherit the same first syllable and
+        # therefore the same reference prominence location.
+        short6_segmental = ".".join(SYLLABLE_IPA[syllable] for syllable in syllables[:3])
+        short4_segmental = ".".join(SYLLABLE_IPA[syllable] for syllable in syllables[:2])
+        assert f"ˈ{short6_segmental}".startswith("ˈ" + SYLLABLE_IPA[syllables[0]])
+        assert f"ˈ{short4_segmental}".startswith("ˈ" + SYLLABLE_IPA[syllables[0]])
+
         assert "ipa" not in month
         assert month["localizations"].get("ru")
 
