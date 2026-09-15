@@ -29,4 +29,5 @@ Before promotion, verify all 13 Full, Short-6, and Short-4 aliases, confirm uniq
 Draft 0.3 profile status:
 
 - `ru-Cyrl`: `candidate`;
-- `ja-Kana`: `reviewed` using an independent Japanese government orthographic standards reference; not stable.
+- `ja-Kana`: `reviewed` using an independent Japanese government orthographic standards reference; not stable;
+- `ko-Hang`: `reviewed` using the Korean National Institute's official IPA-to-Hangul foreign-word rules; not stable.
