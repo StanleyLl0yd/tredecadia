@@ -7,7 +7,8 @@
   "pronunciation": {
     "identity": "ordered-segmental-syllables",
     "stressIdentityCritical": false,
-    "citationStress": "initial",
+    "citationProminence": "weak-initial",
+    "abbreviationsInheritCitationProminence": true,
     "syllableIpa": {
       "MA": "ma", "MI": "mi", "MU": "mu",
       "NA": "na", "NI": "ni", "NU": "nu",
