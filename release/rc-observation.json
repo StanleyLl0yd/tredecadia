@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "sourceRc": {
+    "version": "1.0.0-rc.1",
+    "tag": "v1.0.0-rc.1",
+    "commit": "937d8d681fcce6095d6a4d196783136b908c1be5",
+    "publishedAt": "2026-09-15T20:21:58Z",
+    "archiveSha256": "018a804f518b3cbff402e91f5aba7d7aba05361f6bf4b01de593c8ac17a0abdf"
+  },
+  "window": {
+    "status": "open",
+    "minimumDays": 14,
+    "notBefore": "2026-09-29T20:21:58Z",
+    "completedAt": null
+  },
+  "classifications": [
+    "compatibility-critical-defect",
+    "compatible-correction",
+    "editorial-issue",
+    "non-blocking-future-work"
+  ],
+  "reports": [
+    {
+      "id": "obs-001",
+      "area": "documentation-localization",
+      "summary": "Localized README editions left BCE/CE and some English technical prose insufficiently explained in the reader's language.",
+      "classification": "editorial-issue",
+      "status": "resolved",
+      "compatibilityCritical": false,
+      "evidence": [
+        "PR #34",
+        "merge ecf776d8404d7edf9cbaf6858193963fc248cf9c",
+        "main CI run #84"
+      ]
+    },
+    {
+      "id": "obs-002",
+      "area": "documentation-deployment",
+      "summary": "The repository did not have GitHub Pages enabled, so the first deployment attempt could not configure a Pages site.",
+      "classification": "compatible-correction",
+      "status": "open",
+      "compatibilityCritical": false,
+      "evidence": [
+        "PR #35",
+        "Pages run 35026608479",
+        "PR #36",
+        "release/pages-deployment.md"
+      ]
+    }
+  ],
+  "postRcChangeGroups": [
+    {
+      "prs": [30, 31, 32],
+      "area": "release-engineering",
+      "classification": "compatible-correction",
+      "summary": "Added stable-promotion, immutable-identity, and atomic-transition guards without changing the frozen calendar identity."
+    },
+    {
+      "prs": [33, 34],
+      "area": "documentation-localization",
+      "classification": "editorial-issue",
+      "summary": "Added and polished natural-language README editions; canonical machine identity remains unchanged."
+    },
+    {
+      "prs": [35, 36],
+      "area": "documentation-deployment",
+      "classification": "compatible-correction",
+      "summary": "Added a Pages deployment path and then gated it pending the repository's one-time Pages setting."
+    }
+  ],
+  "summary": {
+    "compatibilityCriticalDefectsFound": 0,
+    "compatibilityCriticalDefectsOpen": 0,
+    "openReports": 1,
+    "stableDecision": "pending"
+  }
+}
