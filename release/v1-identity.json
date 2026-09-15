@@ -1,0 +1,94 @@
+{
+  "baselineVersion": 1,
+  "sourceTag": "v1.0.0-rc.1",
+  "sourceCommit": "937d8d681fcce6095d6a4d196783136b908c1be5",
+  "schemaVersions": {
+    "calendar": 1,
+    "months": 3,
+    "localizations": 1
+  },
+  "calendar": {
+    "profile": "tredecadia-civil",
+    "era": {
+      "name": "Tredecadia Era",
+      "symbol": "TE",
+      "yearNumbering": "all-integers",
+      "yearZero": true,
+      "canonicalMinimumDigits": 5
+    },
+    "regularGrid": {
+      "monthsPerYear": 13,
+      "daysPerMonth": 28,
+      "regularDaysPerYear": 364,
+      "weeksPerMonth": 4,
+      "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    },
+    "epoch": {
+      "tredecadia": "00000-EQ",
+      "gregorianAstronomical": {"year": -9999, "month": 3, "day": 20}
+    },
+    "civilAnchor": {
+      "equinoxDay": {"gregorianYearFormula": "Y-9999", "month": 3, "day": 20, "opensYear": true},
+      "regularYearStart": {"gregorianYearFormula": "Y-9999", "month": 3, "day": 21},
+      "earthDay": {"gregorianYearFormula": "Y-9998", "month": 3, "day": 19, "leapOnly": true, "closesYear": true}
+    },
+    "leapRule": {"kind": "proleptic-gregorian-astronomical-year", "gregorianYearFormula": "Y-9998"},
+    "intercalary": [
+      {"code": "EQ", "name": "Equinox / New Year Day", "position": "start", "leapOnly": false, "hasMonth": false, "hasWeekday": false},
+      {"code": "ED", "name": "Earth Day", "position": "end", "leapOnly": true, "hasMonth": false, "hasWeekday": false}
+    ]
+  },
+  "dateGrammar": {
+    "minimumYearMagnitudeDigits": 5,
+    "asciiDigitsOnly": true,
+    "negativeSign": "-",
+    "leadingPlusAllowed": false,
+    "negativeZeroAllowed": false,
+    "redundantPaddingAllowed": false,
+    "regularMonthRange": [1, 13],
+    "regularDayRange": [1, 28],
+    "intercalaryTokens": ["EQ", "ED"],
+    "intercalaryTokensCaseSensitive": true
+  },
+  "pronunciation": {
+    "identity": "ordered-segmental-syllables",
+    "stressIdentityCritical": false,
+    "citationProminence": "weak-initial",
+    "abbreviationsInheritCitationProminence": true,
+    "syllableIpa": {
+      "MA": "ma", "MI": "mi", "MU": "mu",
+      "NA": "na", "NI": "ni", "NU": "nu",
+      "SA": "sa", "SU": "su", "TA": "ta",
+      "YA": "ja", "KA": "ka", "ZU": "zu"
+    }
+  },
+  "months": [
+    {"number": 1, "canonical": "Masanumika", "syllables": ["MA", "SA", "NU", "MI", "KA"], "short6": "Masanu", "short4": "Masa"},
+    {"number": 2, "canonical": "Tasuzunumu", "syllables": ["TA", "SU", "ZU", "NU", "MU"], "short6": "Tasuzu", "short4": "Tasu"},
+    {"number": 3, "canonical": "Nazumasanu", "syllables": ["NA", "ZU", "MA", "SA", "NU"], "short6": "Nazuma", "short4": "Nazu"},
+    {"number": 4, "canonical": "Mikasumani", "syllables": ["MI", "KA", "SU", "MA", "NI"], "short6": "Mikasu", "short4": "Mika"},
+    {"number": 5, "canonical": "Yanimuzunu", "syllables": ["YA", "NI", "MU", "ZU", "NU"], "short6": "Yanimu", "short4": "Yani"},
+    {"number": 6, "canonical": "Zumitanasu", "syllables": ["ZU", "MI", "TA", "NA", "SU"], "short6": "Zumita", "short4": "Zumi"},
+    {"number": 7, "canonical": "Muyasanumi", "syllables": ["MU", "YA", "SA", "NU", "MI"], "short6": "Muyasa", "short4": "Muya"},
+    {"number": 8, "canonical": "Sunizusaka", "syllables": ["SU", "NI", "ZU", "SA", "KA"], "short6": "Sunizu", "short4": "Suni"},
+    {"number": 9, "canonical": "Numanamuta", "syllables": ["NU", "MA", "NA", "MU", "TA"], "short6": "Numana", "short4": "Numa"},
+    {"number": 10, "canonical": "Kazunusuya", "syllables": ["KA", "ZU", "NU", "SU", "YA"], "short6": "Kazunu", "short4": "Kazu"},
+    {"number": 11, "canonical": "Yanazumasa", "syllables": ["YA", "NA", "ZU", "MA", "SA"], "short6": "Yanazu", "short4": "Yana"},
+    {"number": 12, "canonical": "Sanumikazu", "syllables": ["SA", "NU", "MI", "KA", "ZU"], "short6": "Sanumi", "short4": "Sanu"},
+    {"number": 13, "canonical": "Nimutazuna", "syllables": ["NI", "MU", "TA", "ZU", "NA"], "short6": "Nimuta", "short4": "Nimu"}
+  ],
+  "localizationMaps": {
+    "ru-Cyrl": {
+      "MA": "ма", "MI": "ми", "MU": "му", "NA": "на", "NI": "ни", "NU": "ну",
+      "SA": "са", "SU": "су", "TA": "та", "YA": "я", "KA": "ка", "ZU": "зу"
+    },
+    "ja-Kana": {
+      "MA": "マ", "MI": "ミ", "MU": "ム", "NA": "ナ", "NI": "ニ", "NU": "ヌ",
+      "SA": "サ", "SU": "ス", "TA": "タ", "YA": "ヤ", "KA": "カ", "ZU": "ズ"
+    },
+    "ko-Hang": {
+      "MA": "마", "MI": "미", "MU": "무", "NA": "나", "NI": "니", "NU": "누",
+      "SA": "사", "SU": "수", "TA": "타", "YA": "야", "KA": "카", "ZU": "주"
+    }
+  }
+}

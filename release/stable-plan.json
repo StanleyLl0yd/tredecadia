@@ -1,0 +1,32 @@
+{
+  "planVersion": 1,
+  "identityBaseline": "release/v1-identity.json",
+  "sourceRc": {
+    "version": "1.0.0-rc.1",
+    "tag": "v1.0.0-rc.1",
+    "commit": "937d8d681fcce6095d6a4d196783136b908c1be5",
+    "archiveSha256": "018a804f518b3cbff402e91f5aba7d7aba05361f6bf4b01de593c8ac17a0abdf"
+  },
+  "targetVersion": "1.0.0",
+  "observation": {
+    "status": "open",
+    "stableDecision": "pending",
+    "evidence": []
+  },
+  "registryPromotion": [
+    {"path": "registry/calendar.json", "currentStatus": "draft", "targetStatus": "stable"},
+    {"path": "registry/months.json", "currentStatus": "draft", "targetStatus": "stable"},
+    {"path": "registry/localizations.json", "currentStatus": "draft", "targetStatus": "stable"}
+  ],
+  "localizationProfiles": [
+    {"id": "ru-Cyrl", "currentStatus": "reviewed", "stableDecision": "pending", "targetStatus": "stable"},
+    {"id": "ja-Kana", "currentStatus": "reviewed", "stableDecision": "pending", "targetStatus": "stable"},
+    {"id": "ko-Hang", "currentStatus": "reviewed", "stableDecision": "pending", "targetStatus": "stable"}
+  ],
+  "stableReleaseNotes": "release/notes/1.0.0.md",
+  "archivePlan": "release/archive-plan.md",
+  "publication": {
+    "targetTag": "v1.0.0",
+    "allowed": false
+  }
+}
