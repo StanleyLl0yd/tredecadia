@@ -1,12 +1,15 @@
 {
   "$schema": "./calendar.schema.json",
   "schemaVersion": 1,
-  "specVersion": "0.1.0-draft",
+  "specVersion": "0.2.0-draft",
   "status": "draft",
-  "profile": "fixed-march-equinoctial-m1-proposal",
-  "yearDomain": {
-    "minimum": 1,
-    "yearZero": false
+  "profile": "tredecadia-civil",
+  "era": {
+    "name": "Tredecadia Era",
+    "symbol": "TE",
+    "yearNumbering": "all-integers",
+    "yearZero": true,
+    "canonicalMinimumDigits": 5
   },
   "regularGrid": {
     "monthsPerYear": 13,
@@ -16,20 +19,17 @@
     "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
   },
   "epoch": {
-    "tredecadia": "0001-01-01",
-    "gregorian": "0001-03-21"
+    "tredecadia": "00000-EQ",
+    "gregorianAstronomical": {"year": -9999, "month": 3, "day": 20}
   },
   "civilAnchor": {
-    "yearStart": {"gregorianYearOffset": 0, "month": 3, "day": 21},
-    "earthDay": {"gregorianYearOffset": 1, "month": 3, "day": 19, "leapOnly": true},
-    "equinoxDay": {"gregorianYearOffset": 1, "month": 3, "day": 20}
+    "equinoxDay": {"gregorianYearFormula": "Y-9999", "month": 3, "day": 20, "opensYear": true},
+    "regularYearStart": {"gregorianYearFormula": "Y-9999", "month": 3, "day": 21},
+    "earthDay": {"gregorianYearFormula": "Y-9998", "month": 3, "day": 19, "leapOnly": true, "closesYear": true}
   },
-  "leapRule": {
-    "kind": "proleptic-gregorian-year-offset",
-    "gregorianYearOffset": 1
-  },
+  "leapRule": {"kind": "proleptic-gregorian-astronomical-year", "gregorianYearFormula": "Y-9998"},
   "intercalary": [
-    {"code": "ED", "name": "Earth Day", "leapOnly": true, "hasMonth": false, "hasWeekday": false},
-    {"code": "EQ", "name": "Equinox / New Year Day", "leapOnly": false, "hasMonth": false, "hasWeekday": false}
+    {"code": "EQ", "name": "Equinox / New Year Day", "position": "start", "leapOnly": false, "hasMonth": false, "hasWeekday": false},
+    {"code": "ED", "name": "Earth Day", "position": "end", "leapOnly": true, "hasMonth": false, "hasWeekday": false}
   ]
 }

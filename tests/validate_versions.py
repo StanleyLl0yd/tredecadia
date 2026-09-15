@@ -1,35 +1,12 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
-"""Ensure draft version identifiers stay synchronized across published artifacts."""
-
-from __future__ import annotations
-
 import json
 from pathlib import Path
-
-ROOT = Path(__file__).resolve().parents[1]
-EXPECTED = "0.1.0-draft"
-
-
-def load(path: str) -> dict:
-    return json.loads((ROOT / path).read_text(encoding="utf-8"))
-
-
-def main() -> None:
-    artifacts = {
-        "registry/months.json": load("registry/months.json")["specVersion"],
-        "registry/calendar.json": load("registry/calendar.json")["specVersion"],
-        "tests/test-vectors.json": load("tests/test-vectors.json")["specVersion"],
-        "tests/conversion-vectors.json": load("tests/conversion-vectors.json")["specVersion"],
-    }
-
-    assert set(artifacts.values()) == {EXPECTED}, artifacts
-
-    citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
-    assert f'version: "{EXPECTED}"' in citation
-
-    print("Tredecadia version consistency: OK")
-
-
-if __name__ == "__main__":
-    main()
+ROOT=Path(__file__).resolve().parents[1]; EXPECTED='0.2.0-draft'
+def j(p): return json.loads((ROOT/p).read_text())
+def main():
+ vals=[j('registry/months.json')['specVersion'],j('registry/calendar.json')['specVersion'],j('tests/test-vectors.json')['specVersion'],j('tests/conversion-vectors.json')['specVersion']]; assert set(vals)=={EXPECTED}
+ assert f'version: "{EXPECTED}"' in (ROOT/'CITATION.cff').read_text()
+ for p in ['specification/calendar-standard.md','specification/conversion-standard.md','specification/date-notation.md','specification/month-naming-standard.md','specification/localization.md']: assert 'Draft 0.2' in (ROOT/p).read_text(),p
+ print('Tredecadia version consistency: OK')
+if __name__=='__main__': main()

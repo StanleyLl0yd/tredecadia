@@ -6,27 +6,28 @@ The project follows Semantic Versioning for stable public releases where practic
 
 ## [Unreleased]
 
+## 0.2.0-draft — 2026-09-15
+
 ### Added
 
-- M1 fixed March-equinoctial civil conversion proposal.
-- Machine-readable draft calendar profile and schema.
-- Deterministic leap predicate and epoch/year-number semantics.
-- Canonical `ED` / `EQ` conversion behavior.
-- Conversion vectors covering leap, ordinary, century, and 400-year boundaries.
-- Exhaustive executable round-trip checks across two complete 400-year cycles.
-- Cross-file documentation consistency checks for canonical month tables and M1 state.
-- Initial repository structure.
-- Draft calendar specification.
-- Draft month naming standard.
-- Machine-readable month registry and schema.
-- Verification test vectors.
-- Licensing and citation metadata.
+- Tredecadia Era (`TE`) with a real year `0` and one continuous integer year coordinate.
+- Mathematical era origin `00000-EQ` at the conventional March-equinoctial civil boundary associated with 10000 BCE.
+- Proleptic-Gregorian conversion using astronomical year numbering, including Gregorian year `0`.
+- `EQ` as the opening intercalary day of a Tredecadia year.
+- `ED` as the closing intercalary day of a leap Tredecadia year.
+- Machine-readable calendar profile and JSON Schema.
+- Conversion vectors covering negative Tredecadia years, epoch zero, the 1 BCE/1 CE boundary, modern dates, 2100, and 2400.
+- Exhaustive bidirectional conversion tests across two full 400-year cycles spanning astronomical Gregorian year `0`.
+- Documentation/table/license-scope and artifact-version consistency checks.
+- Signed, minimum-five-digit canonical year notation.
 
 ### Changed
 
+- Replaced the temporary Gregorian-number-preserving M1 epoch with the independent Tredecadia Era coordinate.
 - Naming balance metrics are represented as exact rational values in verification data and rationale.
 - Clarified the CC BY 4.0 scope for specifications, registries, and published test-vector data.
+- Updated and SHA-pinned current official GitHub Actions.
 
 ## 0.1.0-draft — 2026-09-15
 
-- First public draft of the Tredecadia standard.
+- First public draft of the Tredecadia standard and canonical month registry.

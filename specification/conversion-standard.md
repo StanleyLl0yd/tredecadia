@@ -1,140 +1,201 @@
 # Tredecadia–Gregorian Conversion Standard
 
-Status: **M1 proposal / Draft 0.1**
+Status: **Draft 0.2**
 
-This document defines the proposed normative mapping between Tredecadia civil dates and the proleptic Gregorian calendar. It implements the fixed March-equinoctial anchor discussed in issue #2.
+This document defines the Tredecadia civil conversion profile against the proleptic Gregorian calendar.
 
 The key words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY** are used in their ordinary standards-document sense.
 
-## 1. Scope and calendar model
+## 1. External Gregorian coordinate
 
-Conversion is defined against the **proleptic Gregorian calendar** using the usual Gregorian leap rule for all positive Gregorian year numbers.
+Conversion uses the **proleptic Gregorian calendar with astronomical year numbering**.
 
-Tredecadia v1 conversion uses positive year numbers beginning with year `1`. Year `0` and negative/BCE year notation are outside the v1 core profile.
+Astronomical Gregorian year numbering is an integer coordinate:
 
-The conversion epoch is:
+- year `1` = conventional `1 CE`;
+- year `0` = conventional `1 BCE`;
+- year `-1` = conventional `2 BCE`;
+- year `-9999` = conventional `10000 BCE`.
 
-`Gregorian 0001-03-21 ↔ Tredecadia 0001-01-01`
+The Gregorian leap rule is extended arithmetically to every integer astronomical year.
 
-A Tredecadia year number therefore matches the Gregorian year in which its regular month grid begins.
+Historical BCE/CE labels are explanatory only. Tredecadia itself does not use them.
 
-## 2. Fixed March-equinoctial anchor
+## 2. Tredecadia Era origin
 
-For every Tredecadia year `Y >= 1`:
+The Tredecadia Era (`TE`) has a real year `0`.
 
-- Tredecadia `Y-01-01` corresponds to Gregorian `Y-03-21`;
-- Tredecadia `Y-EQ` corresponds to Gregorian `(Y+1)-03-20`;
-- if `Y` is a Tredecadia leap year, `Y-ED` corresponds to Gregorian `(Y+1)-03-19`.
+Its mathematical origin is:
 
-`EQ` is a fixed civil **Equinox / New Year Day** associated with the March equinox. The standard does not claim that the astronomical equinox instant occurs on March 20 in every year, timezone, or location.
+`TE 00000-EQ`
 
-This fixed anchor is deliberate: conversion remains deterministic and requires no ephemeris, reference meridian, timezone, or astronomical model.
+The civil conversion profile maps that origin to:
 
-## 3. Gregorian leap predicate
+`proleptic Gregorian astronomical year -9999, March 20`
 
-A positive Gregorian year `G` is leap exactly when:
+or, in conventional historical terminology, the March-20 civil date in **10000 BCE**.
 
-- `G` is divisible by `4`; and
-- either `G` is not divisible by `100`, or `G` is divisible by `400`.
+This is a conventional mathematical origin. It MUST NOT be interpreted as a claim that an astronomical equinox instant occurred on that civil date under some uniquely correct ancient time scale, nor as the beginning of any human, cultural, agricultural, historical, or geological era.
+
+## 3. Year-coordinate relation
+
+For any Tredecadia integer year `Y`, define:
+
+`G = Y - 9999`
+
+Then astronomical Gregorian year `G` contains both:
+
+- `Y-EQ` on March 20;
+- `Y-01-01` on March 21.
 
 Equivalently:
 
-`gregorian_leap(G) = G mod 4 = 0 and (G mod 100 != 0 or G mod 400 = 0)`
-
-## 4. Tredecadia leap predicate
-
-Tredecadia year `Y` is leap exactly when Gregorian year `Y + 1` is leap:
-
-`tredecadia_leap(Y) = gregorian_leap(Y + 1)`
-
-Thus each 400-year Tredecadia cycle contains 97 leap years, matching the Gregorian 400-year cycle but shifted by one year number.
+`Y = G + 9999`
 
 Examples:
 
-- Tredecadia `2023` is leap because Gregorian `2024` is leap;
-- Tredecadia `2024` is ordinary because Gregorian `2025` is ordinary;
-- Tredecadia `2099` is ordinary because Gregorian `2100` is not leap;
-- Tredecadia `2399` is leap because Gregorian `2400` is leap.
+| Astronomical Gregorian G | Conventional label | Tredecadia Y |
+|---:|---|---:|
+| -9999 | 10000 BCE | 0 |
+| 0 | 1 BCE | 9999 |
+| 1 | 1 CE | 10000 |
+| 2026 | 2026 CE | 12025 |
 
-## 5. Regular-date conversion
+## 4. Fixed March-equinoctial civil anchor
 
-Let `Y-MM-DD` be a regular Tredecadia date, with `MM` in `01..13` and `DD` in `01..28`.
+For every Tredecadia year `Y`:
 
-Its zero-based regular-day offset is:
+- `Y-EQ` ↔ Gregorian astronomical `(Y - 9999)-03-20`;
+- `Y-01-01` ↔ Gregorian astronomical `(Y - 9999)-03-21`;
+- if `Y` is leap, `Y-ED` ↔ Gregorian astronomical `(Y - 9998)-03-19`;
+- `(Y+1)-EQ` ↔ Gregorian astronomical `(Y - 9998)-03-20`.
 
-`offset = (MM - 1) × 28 + (DD - 1)`
+`EQ` is therefore the first civil day associated with year `Y`.
 
-where `offset` is always in `0..363`.
+`ED`, when present, is the final civil day associated with year `Y`.
 
-The corresponding Gregorian date is obtained by adding `offset` civil days to Gregorian `Y-03-21`.
+The anchor is deliberately fixed and civil. Conversion requires no ephemeris, timezone, reference meridian, delta-T model, or observation of the actual March equinox instant.
 
-This mapping is one-to-one.
+## 5. Gregorian leap predicate
 
-## 6. Intercalary-date conversion
+For any integer astronomical Gregorian year `G`:
 
-For an ordinary Tredecadia year:
+`gregorian_leap(G) = divisible_by_4(G) and (not divisible_by_100(G) or divisible_by_400(G))`
 
-- offsets `0..363` are regular dates;
-- offset `364` is `Y-EQ`.
+Divisibility is mathematical divisibility and applies identically to positive, zero, and negative integer year numbers.
 
-For a leap Tredecadia year:
+Therefore astronomical Gregorian year `0` is leap because it is divisible by `400`.
 
-- offsets `0..363` are regular dates;
-- offset `364` is `Y-ED`;
-- offset `365` is `Y-EQ`.
+## 6. Tredecadia leap predicate
 
-`ED` and `EQ` are outside all regular months and have no Tredecadia weekday.
+Tredecadia year `Y` is leap exactly when astronomical Gregorian year `Y - 9998` is leap:
 
-The Gregorian weekday of their mapped civil date MUST NOT be imported into the Tredecadia weekday cycle.
+`tredecadia_leap(Y) = gregorian_leap(Y - 9998)`
 
-## 7. Gregorian-to-Tredecadia conversion
+This follows from the March boundary: the possible extra civil day occurs in March of the following Gregorian astronomical year.
 
-For a Gregorian date on or after `0001-03-21`:
+Every consecutive 400-year interval of Tredecadia contains 97 leap years.
 
-1. Let its Gregorian year be `G`.
-2. If the Gregorian date is on or after `G-03-21`, set Tredecadia year `Y = G`; otherwise set `Y = G - 1`.
-3. Compute the zero-based civil-day offset from Gregorian `Y-03-21`.
-4. If the offset is less than `364`, convert it to:
-   - `MM = floor(offset / 28) + 1`;
-   - `DD = (offset mod 28) + 1`.
-5. If the offset is `364`:
-   - return `Y-ED` when `Y` is leap;
-   - otherwise return `Y-EQ`.
-6. If the offset is `365`, `Y` MUST be leap and the result is `Y-EQ`.
+## 7. Tredecadia-to-Gregorian conversion
 
-No other offset can occur before the next Tredecadia year begins.
+### 7.1 Equinox / New Year Day
 
-## 8. Round-trip requirement
+For `Y-EQ`:
 
-For every valid date in the conversion domain:
+1. compute `G = Y - 9999`;
+2. return Gregorian astronomical `G-03-20`.
 
-- converting Tredecadia → Gregorian → Tredecadia MUST return the original Tredecadia date;
-- converting Gregorian → Tredecadia → Gregorian MUST return the original Gregorian date.
+### 7.2 Regular dates
 
-Implementations SHOULD verify this property across Gregorian leap, non-leap, century, and 400-year boundaries.
+For a regular Tredecadia date `Y-MM-DD`, with `MM` in `01..13` and `DD` in `01..28`:
 
-## 9. Weekday semantics
+1. compute `G = Y - 9999`;
+2. compute zero-based regular offset:
 
-Tredecadia weekdays are structural labels inside regular months; they are not inherited from Gregorian weekdays.
+   `offset = (MM - 1) × 28 + (DD - 1)`
 
-For every regular Tredecadia date, weekday is determined solely by its day number:
+3. add `offset` civil days to Gregorian astronomical `G-03-21`.
+
+The regular offset is always in `0..363`.
+
+### 7.3 Earth Day
+
+`Y-ED` is valid only when `tredecadia_leap(Y)` is true.
+
+For valid `Y-ED`:
+
+1. compute `G = Y - 9999`;
+2. return Gregorian astronomical `(G + 1)-03-19`.
+
+## 8. Gregorian-to-Tredecadia conversion
+
+Let the input be a proleptic Gregorian date with astronomical year `G`.
+
+### 8.1 Determine the Tredecadia year
+
+If the Gregorian month/day is on or after March 20:
+
+`Y = G + 9999`
+
+Otherwise:
+
+`Y = G + 9998`
+
+Let `S` be Gregorian astronomical `(Y - 9999)-03-20`, the `EQ` that opens year `Y`.
+
+Let `delta` be the number of civil days from `S` to the input date.
+
+### 8.2 Interpret the offset
+
+- if `delta = 0`, return `Y-EQ`;
+- if `1 ≤ delta ≤ 364`, set `regular_offset = delta - 1`, then:
+  - `MM = floor(regular_offset / 28) + 1`;
+  - `DD = (regular_offset mod 28) + 1`;
+- if `delta = 365`, `Y` MUST be leap and the result is `Y-ED`.
+
+No other `delta` can occur before the next Tredecadia year opens.
+
+## 9. Round-trip requirement
+
+For every valid date in the integer conversion domain:
+
+- Tredecadia → Gregorian → Tredecadia MUST return the original Tredecadia date;
+- Gregorian → Tredecadia → Gregorian MUST return the original Gregorian date.
+
+A conforming implementation SHOULD test this across:
+
+- negative Tredecadia years;
+- Tredecadia year `0`;
+- astronomical Gregorian year `0` (1 BCE);
+- the 1 BCE / 1 CE boundary;
+- Gregorian century exceptions;
+- Gregorian 400-year leap restorations;
+- expanded year numbers.
+
+## 10. Weekday semantics
+
+Tredecadia weekdays are structural labels inside regular months and are not inherited from Gregorian weekdays.
+
+For every regular Tredecadia date:
 
 `weekday_index = (DD - 1) mod 7`
 
 with index `0 = Monday` through `6 = Sunday`.
 
-Therefore every `01` is Monday and every `28` is Sunday regardless of the Gregorian weekday of the mapped civil date.
+Therefore every regular day `01` is Monday and every regular day `28` is Sunday.
 
-`ED` and `EQ` have no Tredecadia weekday.
+`EQ` and `ED` have no Tredecadia weekday.
 
-## 10. Conformance
+## 11. Conformance
 
-A conforming converter MUST:
+A conforming Tredecadia civil converter MUST:
 
-- use the fixed March 21 / March 20 civil anchor;
-- use the Gregorian leap predicate above;
-- derive Tredecadia leap status from Gregorian year `Y + 1`;
-- preserve ED/EQ as intercalary values rather than fabricate month/day numbers;
+- use the Tredecadia Era year coordinate with year `0`;
+- use the fixed March-20 `EQ` / March-21 regular-start anchor;
+- use astronomical Gregorian year numbering for external arithmetic;
+- use `Y = G + 9999` for the year-coordinate relation;
+- use `tredecadia_leap(Y) = gregorian_leap(Y - 9998)`;
+- preserve `EQ` and `ED` as intercalary values rather than fabricate regular month/day numbers;
 - satisfy the round-trip requirement.
 
-Astronomical-equinoctial calendars that move the year boundary according to an observed or calculated equinox are different calendar profiles and MUST NOT identify their dates as conforming Tredecadia v1 dates.
+A calendar whose year boundary moves according to a calculated or observed astronomical equinox is a different calendar profile and MUST NOT identify those dates as conforming Tredecadia civil dates.

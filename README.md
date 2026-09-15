@@ -1,35 +1,63 @@
 # Tredecadia
 
-Tredecadia is an open 13 × 28 perennial calendar standard with equal months, stable weekdays, and internationally neutral month names.
+Tredecadia is an open 13 × 28 perennial calendar standard with equal months, stable weekdays, a continuous mathematical year coordinate, and internationally neutral month names.
 
-> **Status:** pre-1.0 draft. M0 repository bootstrap is complete. M1 currently contains a review proposal for the fixed March-equinoctial civil conversion profile; it is not yet frozen as v1.0.
+> **Status:** pre-1.0, Draft 0.2. The Tredecadia Era and civil conversion model are defined, but the project is not yet a frozen v1.0 standard.
 
 ## Core model
 
-- 13 months × 28 days = 364 in-month days.
+- 13 months × 28 days = 364 regular in-month days.
 - Every month has exactly four complete weeks.
 - Day `01` of every month is Monday; day `28` is Sunday.
-- One year-end intercalary day sits outside the month/week cycle in an ordinary year.
-- A leap year has one additional intercalary day, also outside the week cycle.
+- **Equinox / New Year Day (`EQ`) opens each Tredecadia year** and is outside the month/week cycle.
+- A leap year has one additional intercalary **Earth Day (`ED`)** after month 13 day 28 and immediately before the next year's `EQ`.
 - The canonical month names are designed for international neutrality and high mutual distinguishability.
 
-## M1 civil conversion proposal
+Ordinary-year boundary:
 
-The current review proposal uses a deterministic fixed March anchor:
+`Y-EQ → Y-01-01 → … → Y-13-28 → (Y+1)-EQ`
 
-- Tredecadia `Y-01-01` ↔ Gregorian `Y-03-21`;
-- Tredecadia `Y-EQ` ↔ Gregorian `(Y+1)-03-20`;
-- when Tredecadia `Y` is leap, `Y-ED` ↔ Gregorian `(Y+1)-03-19`;
-- Tredecadia `Y` is leap exactly when Gregorian `Y+1` is leap.
+Leap-year boundary:
 
-This keeps Equinox / New Year Day associated with the March equinox without making civil conversion depend on an astronomical ephemeris or timezone. See issue #2 and the conversion standard for the full proposal.
+`Y-EQ → Y-01-01 → … → Y-13-28 → Y-ED → (Y+1)-EQ`
+
+## Tredecadia Era
+
+Tredecadia uses the **Tredecadia Era (TE)**, a single integer year coordinate with a real year `0`.
+
+The mathematical origin is:
+
+`TE 00000-EQ ↔ proleptic Gregorian astronomical year -9999, March 20`
+
+Astronomical Gregorian year `-9999` is conventionally described as **10000 BCE**. The epoch is not claimed to be the beginning of humanity, civilization, agriculture, the Holocene, or any historical process. It is only the mathematical origin of the Tredecadia year coordinate.
+
+Tredecadia does not use BCE/CE internally:
+
+```text
+…  -2  -1   0   1   2  …  9999  10000  …  12025 …
+```
+
+For the civil conversion profile, if `G` is the astronomical Gregorian year containing a Tredecadia year's `EQ` and `01-01`:
+
+`TE year = G + 9999`
+
+Examples:
+
+| External year | Astronomical G | Tredecadia year |
+|---|---:|---:|
+| 10000 BCE | -9999 | 0 |
+| 1 BCE | 0 | 9999 |
+| 1 CE | 1 | 10000 |
+| 2026 CE | 2026 | 12025 |
+
+The March-20 anchor is a deterministic **civil convention associated with the March equinox**. It is not a claim that the astronomical equinox instant occurs on March 20 in every year, location, or time scale.
 
 ## Specification
 
-- [`specification/calendar-standard.md`](specification/calendar-standard.md) — calendar structure.
-- [`specification/conversion-standard.md`](specification/conversion-standard.md) — M1 Gregorian conversion proposal.
+- [`specification/calendar-standard.md`](specification/calendar-standard.md) — calendar structure and Tredecadia Era.
+- [`specification/conversion-standard.md`](specification/conversion-standard.md) — proleptic-Gregorian civil conversion.
 - [`specification/month-naming-standard.md`](specification/month-naming-standard.md) — canonical month names, pronunciation, and abbreviations.
-- [`specification/date-notation.md`](specification/date-notation.md) — date representation.
+- [`specification/date-notation.md`](specification/date-notation.md) — canonical date representation.
 - [`specification/localization.md`](specification/localization.md) — localization rules.
 
 Machine-readable data lives in [`registry/`](registry/); verification vectors and executable checks live in [`tests/`](tests/). Design rationale is intentionally separated from normative text in [`rationale/`](rationale/).
@@ -52,6 +80,14 @@ Machine-readable data lives in [`registry/`](registry/); verification vectors an
 | 12 | Sanumikazu | Sanumi | Sanu |
 | 13 | Nimutazuna | Nimuta | Nimu |
 
+## Example
+
+Proleptic Gregorian `2026-09-15` maps to:
+
+`TE 12025-07-11`
+
+The Tredecadia weekday is determined by the regular-month day number, not by the weekday label of the corresponding Gregorian civil date.
+
 ## Licensing
 
 Documentation, specifications, machine-readable registries, and test vectors are licensed under **CC BY 4.0**. Source code, scripts, and CI/workflow code are licensed under the **MIT License** unless a file states otherwise. See [`LICENSE.md`](LICENSE.md).
@@ -60,4 +96,4 @@ The licenses do not grant trademark rights in the Tredecadia name or branding.
 
 ## Versioning
 
-The repository currently tracks a pre-1.0 draft. Once the normative text, registry, conversion semantics, test vectors, and compatibility rules have been independently verified, the first stable release will be tagged `v1.0.0`.
+The repository currently tracks a pre-1.0 draft. Once the normative text, localization profiles, registry, conversion semantics, test vectors, and compatibility rules have been independently verified, the first stable release will be tagged `v1.0.0`.

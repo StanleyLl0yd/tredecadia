@@ -1,174 +1,38 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
-"""Validate Tredecadia M1 conversion semantics and published vectors."""
-
 from __future__ import annotations
-
-import json
+import json,re
 from pathlib import Path
-
-from calendar_math import (
-    GregorianDate,
-    TredecadiaDate,
-    gregorian_is_leap,
-    gregorian_to_ordinal,
-    gregorian_to_tredecadia,
-    ordinal_to_gregorian,
-    tredecadia_is_leap,
-    tredecadia_to_gregorian,
-)
-
-ROOT = Path(__file__).resolve().parents[1]
-VECTORS = ROOT / "tests" / "conversion-vectors.json"
-CALENDAR = ROOT / "registry" / "calendar.json"
-CALENDAR_SCHEMA = ROOT / "registry" / "calendar.schema.json"
-
-
-def parse_gregorian(text: str) -> GregorianDate:
-    year, month, day = (int(part) for part in text.split("-"))
-    return GregorianDate(year, month, day)
-
-
-def parse_tredecadia(text: str) -> TredecadiaDate:
-    parts = text.split("-")
-    if len(parts) == 2:
-        return TredecadiaDate(int(parts[0]), special=parts[1])
-    if len(parts) == 3:
-        return TredecadiaDate(int(parts[0]), int(parts[1]), int(parts[2]))
-    raise ValueError(f"invalid Tredecadia vector: {text}")
-
-
-def assert_raises_value_error(fn, *args) -> None:
-    try:
-        fn(*args)
-    except ValueError:
-        return
-    raise AssertionError(f"expected ValueError from {fn.__name__}{args}")
-
-
-def validate_machine_profile() -> None:
-    profile = json.loads(CALENDAR.read_text(encoding="utf-8"))
-    schema = json.loads(CALENDAR_SCHEMA.read_text(encoding="utf-8"))
-    vectors = json.loads(VECTORS.read_text(encoding="utf-8"))
-
-    assert profile["schemaVersion"] == 1
-    assert profile["specVersion"] == "0.1.0-draft"
-    assert profile["status"] == "draft"
-    assert profile["profile"] == vectors["profile"] == "fixed-march-equinoctial-m1-proposal"
-    assert schema["$schema"] == "https://json-schema.org/draft/2020-12/schema"
-    assert schema["properties"]["schemaVersion"]["const"] == profile["schemaVersion"]
-
-    assert profile["yearDomain"] == {"minimum": 1, "yearZero": False}
-    assert profile["regularGrid"] == {
-        "monthsPerYear": 13,
-        "daysPerMonth": 28,
-        "regularDaysPerYear": 364,
-        "weeksPerMonth": 4,
-        "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-    }
-    assert profile["epoch"] == vectors["epoch"] == {
-        "tredecadia": "0001-01-01",
-        "gregorian": "0001-03-21",
-    }
-    assert profile["civilAnchor"] == {
-        "yearStart": {"gregorianYearOffset": 0, "month": 3, "day": 21},
-        "earthDay": {"gregorianYearOffset": 1, "month": 3, "day": 19, "leapOnly": True},
-        "equinoxDay": {"gregorianYearOffset": 1, "month": 3, "day": 20},
-    }
-    assert profile["leapRule"] == {
-        "kind": "proleptic-gregorian-year-offset",
-        "gregorianYearOffset": 1,
-    }
-    assert profile["intercalary"] == [
-        {"code": "ED", "name": "Earth Day", "leapOnly": True, "hasMonth": False, "hasWeekday": False},
-        {"code": "EQ", "name": "Equinox / New Year Day", "leapOnly": False, "hasMonth": False, "hasWeekday": False},
-    ]
-
-
-def validate_vectors() -> None:
-    vectors = json.loads(VECTORS.read_text(encoding="utf-8"))
-    assert vectors["profile"] == "fixed-march-equinoctial-m1-proposal"
-
-    epoch_g = parse_gregorian(vectors["epoch"]["gregorian"])
-    epoch_t = parse_tredecadia(vectors["epoch"]["tredecadia"])
-    assert epoch_g == GregorianDate(1, 3, 21)
-    assert epoch_t == TredecadiaDate(1, 1, 1)
-    assert tredecadia_to_gregorian(epoch_t) == epoch_g
-    assert gregorian_to_tredecadia(epoch_g) == epoch_t
-
-    for item in vectors["leapPredicates"]:
-        year = item["tredecadiaYear"]
-        reason_year = item["reasonGregorianYear"]
-        assert reason_year == year + 1
-        assert tredecadia_is_leap(year) is item["isLeap"]
-        assert tredecadia_is_leap(year) == gregorian_is_leap(reason_year)
-
-    for pair in vectors["pairs"]:
-        g = parse_gregorian(pair["gregorian"])
-        t = parse_tredecadia(pair["tredecadia"])
-        assert tredecadia_to_gregorian(t) == g, pair
-        assert gregorian_to_tredecadia(g) == t, pair
-        assert str(g) == pair["gregorian"]
-        assert t.canonical == pair["tredecadia"]
-
-
-def validate_cycles() -> None:
-    assert sum(tredecadia_is_leap(y) for y in range(1, 401)) == 97
-    assert sum(tredecadia_is_leap(y) for y in range(401, 801)) == 97
-
-    assert tredecadia_is_leap(1999)  # Gregorian 2000
-    assert not tredecadia_is_leap(2099)  # Gregorian 2100
-    assert not tredecadia_is_leap(2199)  # Gregorian 2200
-    assert not tredecadia_is_leap(2299)  # Gregorian 2300
-    assert tredecadia_is_leap(2399)  # Gregorian 2400
-
-
-def validate_round_trips() -> None:
-    # Exhaust two complete 400-year leap cycles, including every regular and
-    # intercalary Tredecadia date.
-    for year in range(1, 801):
-        for month in range(1, 14):
-            for day in range(1, 29):
-                t = TredecadiaDate(year, month, day)
-                assert gregorian_to_tredecadia(tredecadia_to_gregorian(t)) == t
-
-        eq = TredecadiaDate(year, special="EQ")
-        assert gregorian_to_tredecadia(tredecadia_to_gregorian(eq)) == eq
-
-        if tredecadia_is_leap(year):
-            ed = TredecadiaDate(year, special="ED")
-            assert gregorian_to_tredecadia(tredecadia_to_gregorian(ed)) == ed
-
-    # Also exhaust Gregorian civil dates over the same conversion interval.
-    start = gregorian_to_ordinal(1, 3, 21)
-    end = gregorian_to_ordinal(801, 3, 21)
-    for ordinal in range(start, end):
-        g = ordinal_to_gregorian(ordinal)
-        assert tredecadia_to_gregorian(gregorian_to_tredecadia(g)) == g
-
-
-def validate_boundaries() -> None:
-    assert_raises_value_error(TredecadiaDate, 2024, None, None, "ED")
-    assert_raises_value_error(gregorian_to_tredecadia, GregorianDate(1, 3, 20))
-
-    t = TredecadiaDate(10000, 1, 1)
-    assert tredecadia_to_gregorian(t) == GregorianDate(10000, 3, 21)
-    assert gregorian_to_tredecadia(GregorianDate(10000, 3, 21)) == t
-
-    for year in (1, 2023, 2024, 2099, 2399, 9999, 10000):
-        assert tredecadia_to_gregorian(TredecadiaDate(year, special="EQ")) == GregorianDate(year + 1, 3, 20)
-        if tredecadia_is_leap(year):
-            assert tredecadia_to_gregorian(TredecadiaDate(year, special="ED")) == GregorianDate(year + 1, 3, 19)
-
-
-def main() -> None:
-    validate_machine_profile()
-    validate_vectors()
-    validate_cycles()
-    validate_round_trips()
-    validate_boundaries()
-    print("Tredecadia conversion validation: OK")
-
-
-if __name__ == "__main__":
-    main()
+from calendar_math import *
+ROOT=Path(__file__).resolve().parents[1]; RX=re.compile(r'^(-?\d{5,})-(?:(\d{2})-(\d{2})|(ED|EQ))$')
+def gd(v): return GregorianDate(v['year'],v['month'],v['day'])
+def td(s):
+ m=RX.fullmatch(s)
+ if not m: raise ValueError(s)
+ y=int(m.group(1)); return TredecadiaDate(y,special=m.group(4)) if m.group(4) else TredecadiaDate(y,int(m.group(2)),int(m.group(3)))
+def raises(fn,*a):
+ try: fn(*a)
+ except ValueError: return
+ raise AssertionError
+def main():
+ p=json.loads((ROOT/'registry/calendar.json').read_text()); v=json.loads((ROOT/'tests/conversion-vectors.json').read_text()); s=json.loads((ROOT/'registry/calendar.schema.json').read_text())
+ assert p['specVersion']==v['specVersion']=='0.2.0-draft' and p['profile']==v['profile']=='tredecadia-civil' and p['era']['yearZero'] is True and p['era']['canonicalMinimumDigits']==5 and s['properties']['profile']['const']=='tredecadia-civil'
+ assert p['epoch']=={'tredecadia':'00000-EQ','gregorianAstronomical':{'year':-9999,'month':3,'day':20}}
+ assert tredecadia_to_gregorian(TredecadiaDate(0,special='EQ'))==GregorianDate(-9999,3,20)
+ for e in v['yearCoordinateExamples']: assert e['tredecadiaYear']==e['gregorianAstronomicalYear']+9999
+ for e in v['leapPredicates']: assert e['reasonGregorianAstronomicalYear']==e['tredecadiaYear']-9998 and tredecadia_is_leap(e['tredecadiaYear']) is e['isLeap']
+ for e in v['pairs']:
+  g=gd(e['gregorianAstronomical']); t=td(e['tredecadia']); assert tredecadia_to_gregorian(t)==g and gregorian_to_tredecadia(g)==t and t.canonical==e['tredecadia']
+ for start in (-800,-400,0,9600,10000,11600,12000): assert sum(tredecadia_is_leap(y) for y in range(start,start+400))==97
+ assert tredecadia_is_leap(9998) and not tredecadia_is_leap(9999) and not tredecadia_is_leap(12098) and tredecadia_is_leap(12398)
+ for y in range(9600,10400):
+  vals=[TredecadiaDate(y,special='EQ')]+[TredecadiaDate(y,m,d) for m in range(1,14) for d in range(1,29)]
+  if tredecadia_is_leap(y): vals.append(TredecadiaDate(y,special='ED'))
+  for t in vals: assert gregorian_to_tredecadia(tredecadia_to_gregorian(t))==t
+ for o in range(gregorian_to_ordinal(-399,3,20),gregorian_to_ordinal(401,3,20)):
+  g=ordinal_to_gregorian(o); assert tredecadia_to_gregorian(gregorian_to_tredecadia(g))==g
+ assert format_year(0)=='00000' and format_year(-1)=='-00001' and format_year(12025)=='12025'
+ raises(td,'0000-EQ'); raises(td,'+00001-EQ'); raises(TredecadiaDate,12023,None,None,'ED')
+ assert gregorian_to_tredecadia(GregorianDate(2026,9,15))==TredecadiaDate(12025,7,11)
+ print('Tredecadia Era/conversion validation: OK')
+if __name__=='__main__': main()

@@ -1,6 +1,6 @@
 # Roadmap
 
-Tredecadia is intentionally pre-1.0 until the remaining calendar-semantics gaps are resolved and the complete repository passes a final consistency review.
+Tredecadia is intentionally pre-1.0 until the localization/implementation review and a complete release-candidate consistency audit are finished.
 
 ## M0 — Repository bootstrap
 
@@ -11,24 +11,27 @@ Status: **complete**
 - encode naming/cycle invariants as executable checks;
 - establish licensing, citation, contribution, and changelog metadata.
 
-## M1 — Close normative calendar gaps
+## M1 — Era and civil calendar semantics
 
-Status: **in progress — fixed March-equinoctial profile implemented as a review proposal in issue #2**
+Status: **complete**
 
-- [x] specify a deterministic leap-year rule;
-- [x] define the epoch and year-number semantics;
-- [x] define Gregorian/proleptic-Gregorian conversion behavior;
-- [x] define canonical `ED` / `EQ` representation;
-- [x] add boundary, leap, century, and round-trip conversion checks;
-- [ ] approve the fixed March 21 / March 20 civil anchor as the normative v1 profile;
-- [ ] complete final M1 repository-wide consistency review and merge.
+- define the Tredecadia Era with a real year `0`;
+- fix the mathematical origin at the conventional March-equinoctial civil boundary of 10000 BCE;
+- define `EQ` as opening a year and `ED` as closing a leap year;
+- define the proleptic-Gregorian astronomical conversion coordinate;
+- define the exact leap rule;
+- publish machine-readable calendar profile/schema;
+- publish conversion vectors including epoch, BCE/CE, modern, century, and 400-year boundaries;
+- verify bidirectional conversion and negative/zero/expanded year arithmetic;
+- enforce cross-document and artifact-version consistency in CI.
 
 ## M2 — Internationalization and implementation review
 
-- review canonical pronunciation wording;
+- review canonical stress/pronunciation wording;
 - add independently reviewed localization profiles;
 - test compact month forms in realistic interfaces;
-- publish a small reference implementation after the normative conversion rules are stable.
+- publish a small reference implementation from the now-stable calendar arithmetic;
+- review accessibility and parsing behavior for five-digit/signed years.
 
 ## M3 — v1.0 release candidate
 
@@ -40,6 +43,6 @@ Status: **in progress — fixed March-equinoctial profile implemented as a revie
 ## M4 — v1.0 publication
 
 - tag `v1.0.0`;
-- publish the immutable release artifacts;
+- publish immutable release artifacts;
 - archive the release with a DOI-capable repository such as Zenodo;
-- publish the citation metadata for the stable version.
+- publish citation metadata for the stable version.

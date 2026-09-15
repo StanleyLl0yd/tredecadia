@@ -9,52 +9,100 @@ Tredecadia is designed around a small set of structural invariants:
 - every regular month has the same length;
 - every regular month has exactly four complete weeks;
 - the same day number always has the same weekday;
-- year-end adjustment does not disturb the weekly cycle;
+- intercalary adjustment does not disturb the weekly cycle;
 - month names remain distinguishable in full and commonly shortened forms;
 - the canonical naming system does not assign culture-specific semantic meanings to the months;
+- year numbering is one continuous mathematical coordinate;
 - civil conversion is deterministic and does not depend on location, timezone, or an astronomical ephemeris.
 
 ## Why 13 × 28
 
-Thirteen 28-day months produce exactly 364 regular days, or 52 complete seven-day weeks. This makes every regular month structurally identical and leaves one intercalary day in an ordinary 365-day year, plus one additional intercalary day in a 366-day leap year.
+Thirteen 28-day months produce exactly 364 regular days, or 52 complete seven-day weeks. This makes every regular month structurally identical.
 
-Keeping the intercalary day or days outside the week preserves the invariant that every month starts on Monday and ends on Sunday.
+`EQ` supplies the 365th civil day and opens every year. A leap year adds `ED` as the 366th civil day at the end of the year.
 
-## Civil year anchor
+Keeping both intercalary days outside the week preserves the invariant that every regular month starts on Monday and ends on Sunday.
 
-The M1 civil-calendar proposal anchors Tredecadia `Y-01-01` to Gregorian `Y-03-21`. The final Equinox / New Year Day then falls on Gregorian `(Y+1)-03-20`; in a leap Tredecadia year, Earth Day falls on `(Y+1)-03-19`.
+## Why EQ opens the year
 
-This choice keeps the named Equinox Day near the March equinox while remaining purely arithmetic. It deliberately does **not** make the calendar depend on the observed or calculated astronomical equinox instant.
+Calling the intercalary day both **Equinox Day** and **New Year Day** is semantically clearest when it belongs to the year being opened, not the year being closed.
 
-An astronomical rule was rejected for the civil core because it would require additional normative choices about time scale, reference meridian/timezone, astronomical model, precision, validity range, and future ephemeris updates. Those choices would make the same calendar date harder to reproduce independently.
+The boundary is therefore:
 
-A January-1 alignment would be simpler computationally, but would place Equinox Day at the end of December and weaken the intended meaning of the intercalary day name.
+`… → Y-13-28 → [Y-ED] → (Y+1)-EQ → (Y+1)-01-01`
 
-The fixed March anchor is therefore a compromise between semantic meaning and deterministic civil arithmetic.
+This also makes the mathematical era origin expressible directly as `00000-EQ`.
+
+## Why a mathematical epoch near 10000 BCE
+
+Tredecadia deliberately does not inherit a religious, dynastic, national, or political era origin.
+
+The chosen mathematical origin is the conventional March-equinoctial civil boundary associated with **10000 BCE**:
+
+`TE 00000-EQ ↔ proleptic Gregorian astronomical -9999-03-20`
+
+This choice has two practical properties:
+
+1. almost all conventionally documented human history lies on the positive side of the Tredecadia year axis;
+2. the calendar has a real year `0` and therefore needs no discontinuity such as `1 BCE → 1 CE`.
+
+The number is a coordinate choice, not a historical assertion. Tredecadia does **not** claim that year 0 marks the beginning of humanity, civilization, agriculture, settlement, the Holocene, or any other process.
+
+For the same reason the project does not label the era “Human Era” or attach semantic meaning to the elapsed year count.
+
+## Why astronomical Gregorian year numbering is used for conversion
+
+Historical BCE/CE notation has no year `0`, which makes arithmetic across the era boundary awkward.
+
+The conversion layer instead uses standard astronomical integer year numbering:
+
+- astronomical `1` = 1 CE;
+- astronomical `0` = 1 BCE;
+- astronomical `-1` = 2 BCE.
+
+The relation then becomes a simple affine coordinate transform:
+
+`Tredecadia year = astronomical Gregorian year + 9999`
+
+This convention is used only for conversion arithmetic. Tredecadia's own year coordinate remains independent.
+
+## Why the March anchor is fixed rather than observational
+
+The civil profile anchors `EQ` to March 20 and regular `01-01` to March 21 in the corresponding proleptic Gregorian astronomical year.
+
+This keeps the named Equinox Day associated with the March equinox while remaining purely arithmetic.
+
+An observational or calculated equinox rule would require additional normative choices about time scale, reference meridian or timezone, astronomical model, precision, validity range, and future ephemeris updates. At the remote era origin those issues are especially pronounced.
+
+Tredecadia therefore makes no claim that its conventional March-20 civil boundary is the historically or astronomically exact equinox date in 10000 BCE or in every other year.
 
 ## Leap alignment
 
-The span from Gregorian March 21 in year `Y` to March 21 in year `Y+1` contains 366 days exactly when Gregorian `Y+1` is leap. Consequently Tredecadia year `Y` is leap when Gregorian `Y+1` is leap.
+For Tredecadia year `Y`, the corresponding Gregorian astronomical start year is:
 
-The apparent one-year shift is not an extra calendar rule; it follows directly from choosing March 21 as the start of the Tredecadia year.
+`G = Y - 9999`
+
+The interval reaches the next March boundary through February of `G + 1`. Therefore the possible extra day is determined by whether `G + 1`, equivalently `Y - 9998`, is Gregorian-leap.
+
+The offset in the leap formula is a consequence of the March boundary, not an independent design choice.
 
 ## Separation of concerns
 
 The project deliberately separates:
 
-- calendar structure;
+- calendar structure and era;
 - month naming;
 - date notation;
 - localization;
 - Gregorian conversion semantics.
 
-This keeps the canonical month registry independent from conversion arithmetic while still allowing both layers to be verified together before v1.0.
+This keeps the canonical month registry independent from era/conversion arithmetic while allowing both layers to be verified together before v1.0.
 
 ## Non-goals
 
 The civil core does not attempt to define:
 
 - an observational or astronomical equinox calendar;
-- year `0` or BCE notation in v1;
+- a claim about the beginning of human history;
 - religious or civil adoption policy;
 - semantic themes for individual month names.

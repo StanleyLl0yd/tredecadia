@@ -1,41 +1,51 @@
 {
-  "specVersion": "0.1.0-draft",
-  "profile": "fixed-march-equinoctial-m1-proposal",
-  "epoch": {
-    "gregorian": "0001-03-21",
-    "tredecadia": "0001-01-01"
-  },
+  "specVersion": "0.2.0-draft",
+  "profile": "tredecadia-civil",
+  "epoch": {"gregorianAstronomical": {"year": -9999, "month": 3, "day": 20}, "tredecadia": "00000-EQ"},
+  "yearCoordinateExamples": [
+    {"gregorianAstronomicalYear": -9999, "historicalLabel": "10000 BCE", "tredecadiaYear": 0},
+    {"gregorianAstronomicalYear": 0, "historicalLabel": "1 BCE", "tredecadiaYear": 9999},
+    {"gregorianAstronomicalYear": 1, "historicalLabel": "1 CE", "tredecadiaYear": 10000},
+    {"gregorianAstronomicalYear": 2026, "historicalLabel": "2026 CE", "tredecadiaYear": 12025}
+  ],
   "leapPredicates": [
-    {"tredecadiaYear": 2023, "isLeap": true, "reasonGregorianYear": 2024},
-    {"tredecadiaYear": 2024, "isLeap": false, "reasonGregorianYear": 2025},
-    {"tredecadiaYear": 2099, "isLeap": false, "reasonGregorianYear": 2100},
-    {"tredecadiaYear": 2399, "isLeap": true, "reasonGregorianYear": 2400}
+    {"tredecadiaYear": 9998, "isLeap": true, "reasonGregorianAstronomicalYear": 0},
+    {"tredecadiaYear": 9999, "isLeap": false, "reasonGregorianAstronomicalYear": 1},
+    {"tredecadiaYear": 12022, "isLeap": true, "reasonGregorianAstronomicalYear": 2024},
+    {"tredecadiaYear": 12023, "isLeap": false, "reasonGregorianAstronomicalYear": 2025},
+    {"tredecadiaYear": 12098, "isLeap": false, "reasonGregorianAstronomicalYear": 2100},
+    {"tredecadiaYear": 12398, "isLeap": true, "reasonGregorianAstronomicalYear": 2400}
   ],
   "pairs": [
-    {"gregorian": "0001-03-21", "tredecadia": "0001-01-01"},
-    {"gregorian": "0002-03-19", "tredecadia": "0001-13-28"},
-    {"gregorian": "0002-03-20", "tredecadia": "0001-EQ"},
-
-    {"gregorian": "2023-03-21", "tredecadia": "2023-01-01"},
-    {"gregorian": "2023-04-17", "tredecadia": "2023-01-28"},
-    {"gregorian": "2023-04-18", "tredecadia": "2023-02-01"},
-    {"gregorian": "2024-02-29", "tredecadia": "2023-13-10"},
-    {"gregorian": "2024-03-18", "tredecadia": "2023-13-28"},
-    {"gregorian": "2024-03-19", "tredecadia": "2023-ED"},
-    {"gregorian": "2024-03-20", "tredecadia": "2023-EQ"},
-    {"gregorian": "2024-03-21", "tredecadia": "2024-01-01"},
-
-    {"gregorian": "2025-03-19", "tredecadia": "2024-13-28"},
-    {"gregorian": "2025-03-20", "tredecadia": "2024-EQ"},
-    {"gregorian": "2025-03-21", "tredecadia": "2025-01-01"},
-
-    {"gregorian": "2100-03-19", "tredecadia": "2099-13-28"},
-    {"gregorian": "2100-03-20", "tredecadia": "2099-EQ"},
-    {"gregorian": "2100-03-21", "tredecadia": "2100-01-01"},
-
-    {"gregorian": "2400-03-18", "tredecadia": "2399-13-28"},
-    {"gregorian": "2400-03-19", "tredecadia": "2399-ED"},
-    {"gregorian": "2400-03-20", "tredecadia": "2399-EQ"},
-    {"gregorian": "2400-03-21", "tredecadia": "2400-01-01"}
+    {"gregorianAstronomical": {"year": -10000, "month": 3, "day": 20}, "tredecadia": "-00001-EQ"},
+    {"gregorianAstronomical": {"year": -10000, "month": 3, "day": 21}, "tredecadia": "-00001-01-01"},
+    {"gregorianAstronomical": {"year": -9999, "month": 3, "day": 20}, "tredecadia": "00000-EQ"},
+    {"gregorianAstronomical": {"year": -9999, "month": 3, "day": 21}, "tredecadia": "00000-01-01"},
+    {"gregorianAstronomical": {"year": -9998, "month": 3, "day": 19}, "tredecadia": "00000-13-28"},
+    {"gregorianAstronomical": {"year": -9998, "month": 3, "day": 20}, "tredecadia": "00001-EQ"},
+    {"gregorianAstronomical": {"year": 0, "month": 3, "day": 18}, "tredecadia": "09998-13-28"},
+    {"gregorianAstronomical": {"year": 0, "month": 3, "day": 19}, "tredecadia": "09998-ED"},
+    {"gregorianAstronomical": {"year": 0, "month": 3, "day": 20}, "tredecadia": "09999-EQ"},
+    {"gregorianAstronomical": {"year": 0, "month": 3, "day": 21}, "tredecadia": "09999-01-01"},
+    {"gregorianAstronomical": {"year": 1, "month": 3, "day": 20}, "tredecadia": "10000-EQ"},
+    {"gregorianAstronomical": {"year": 1, "month": 3, "day": 21}, "tredecadia": "10000-01-01"},
+    {"gregorianAstronomical": {"year": 2023, "month": 3, "day": 20}, "tredecadia": "12022-EQ"},
+    {"gregorianAstronomical": {"year": 2023, "month": 3, "day": 21}, "tredecadia": "12022-01-01"},
+    {"gregorianAstronomical": {"year": 2023, "month": 4, "day": 17}, "tredecadia": "12022-01-28"},
+    {"gregorianAstronomical": {"year": 2023, "month": 4, "day": 18}, "tredecadia": "12022-02-01"},
+    {"gregorianAstronomical": {"year": 2024, "month": 2, "day": 29}, "tredecadia": "12022-13-10"},
+    {"gregorianAstronomical": {"year": 2024, "month": 3, "day": 18}, "tredecadia": "12022-13-28"},
+    {"gregorianAstronomical": {"year": 2024, "month": 3, "day": 19}, "tredecadia": "12022-ED"},
+    {"gregorianAstronomical": {"year": 2024, "month": 3, "day": 20}, "tredecadia": "12023-EQ"},
+    {"gregorianAstronomical": {"year": 2024, "month": 3, "day": 21}, "tredecadia": "12023-01-01"},
+    {"gregorianAstronomical": {"year": 2025, "month": 3, "day": 19}, "tredecadia": "12023-13-28"},
+    {"gregorianAstronomical": {"year": 2025, "month": 3, "day": 20}, "tredecadia": "12024-EQ"},
+    {"gregorianAstronomical": {"year": 2026, "month": 3, "day": 20}, "tredecadia": "12025-EQ"},
+    {"gregorianAstronomical": {"year": 2026, "month": 9, "day": 15}, "tredecadia": "12025-07-11"},
+    {"gregorianAstronomical": {"year": 2100, "month": 3, "day": 19}, "tredecadia": "12098-13-28"},
+    {"gregorianAstronomical": {"year": 2100, "month": 3, "day": 20}, "tredecadia": "12099-EQ"},
+    {"gregorianAstronomical": {"year": 2400, "month": 3, "day": 18}, "tredecadia": "12398-13-28"},
+    {"gregorianAstronomical": {"year": 2400, "month": 3, "day": 19}, "tredecadia": "12398-ED"},
+    {"gregorianAstronomical": {"year": 2400, "month": 3, "day": 20}, "tredecadia": "12399-EQ"}
   ]
 }
