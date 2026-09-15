@@ -20,6 +20,10 @@ jobs:
         run: python -m pip install --disable-pip-version-check -r requirements-test.txt
       - name: Validate release publication metadata
         run: python tests/validate_release_metadata.py
+      - name: Validate immutable v1 identity baseline
+        run: python tests/validate_v1_identity.py
+      - name: Validate M4 stable-promotion gate
+        run: python tests/validate_stable_plan.py
       - name: Validate published JSON Schemas
         run: python tests/validate_schemas.py
       - name: Validate repository-local links
