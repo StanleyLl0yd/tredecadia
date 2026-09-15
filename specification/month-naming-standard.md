@@ -95,6 +95,31 @@ Example:
 
 A localized realization with different natural prosody remains the same month as long as the canonical segmental sequence is preserved recognizably.
 
+### 5.1 Recognition and ambiguity
+
+An exact case-insensitive Short-4 value in a structured Tredecadia month/date context maps to exactly one canonical month and MAY be resolved directly.
+
+Short-4 is not intended to be a globally reserved natural-language vocabulary. A Short-4 token appearing in unrestricted prose MUST NOT be assumed to denote a Tredecadia month solely because its spelling matches a month abbreviation.
+
+Implementations that provide fuzzy text matching, autocorrection, or speech recognition MUST NOT silently transform one valid canonical Short-4 form into a different valid canonical Short-4 form.
+
+The character-distance-1 pairs are:
+
+- `Nazu` / `Kazu`;
+- `Yani` / `Yana`.
+
+At the canonical two-syllable level, the distance-1 pairs are:
+
+- `Nazu` / `Kazu`;
+- `Yani` / `Suni`;
+- `Yani` / `Yana`.
+
+When recognition leaves more than one of these valid forms plausible, an interactive implementation SHOULD request disambiguation or present the candidate months rather than guess.
+
+Voice interfaces SHOULD use surrounding month/date context and SHOULD treat the syllable-distance-1 pairs as known recognition neighbours. Machine storage SHOULD use the canonical month number or full canonical name after recognition rather than preserve a probabilistic recognition hypothesis as the month identifier.
+
+Assistive labels SHOULD make month semantics explicit when a visually compact Short-4 form appears without sufficient surrounding structure; for example, an implementation may expose the localized equivalent of “Masa, month 1” while displaying only `Masa`.
+
 ## 6. Stability
 
 After the first stable release, month number, canonical Latin name, ordered segmental syllable sequence, Short-6, and Short-4 are intended to be compatibility-critical.
@@ -107,4 +132,4 @@ The full-name syllable-frequency vector is `MA=5, MI=5, MU=5, NA=5, NI=4, NU=8, 
 
 Full-name balance SSD is exactly `323/12` (approximately `26.9166666666667`), with sum of squared syllable counts `379`. Short-6 balance SSD is exactly `41/4` (`10.25`); Short-4 balance SSD is exactly `11/3` (approximately `3.66666666666667`).
 
-The only Short-6 pair at Levenshtein distance 2 is `Yanimu` / `Yanazu`. The Short-4 pairs at distance 1 are `Nazu` / `Kazu` and `Yani` / `Yana`.
+The only Short-6 pair at Levenshtein distance 2 is `Yanimu` / `Yanazu`. The Short-4 pairs at character Levenshtein distance 1 are `Nazu` / `Kazu` and `Yani` / `Yana`. The Short-4 pairs at positional syllable Hamming distance 1 are `Nazu` / `Kazu`, `Yani` / `Suni`, and `Yani` / `Yana`.
