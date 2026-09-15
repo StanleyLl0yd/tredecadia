@@ -6,6 +6,12 @@ The project follows Semantic Versioning for stable public releases where practic
 
 ## [Unreleased]
 
+### Added
+
+- Dependency-free Python reference implementation for Tredecadia/Gregorian conversion.
+- Strict canonical Tredecadia parser and small conversion CLI.
+- Reference-implementation conformance tests against published vectors and the independent M1 arithmetic oracle.
+
 ## 0.2.0-draft — 2026-09-15
 
 ### Added
