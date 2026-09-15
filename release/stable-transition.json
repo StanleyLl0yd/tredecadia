@@ -68,11 +68,14 @@
     "registry/localizations.schema.json"
   ],
   "historicalSourceReferences": [
+    ".github/ISSUE_TEMPLATE/rc-feedback.yml",
     "rationale/release-candidate-audit.md",
+    "release/rc-observation.json",
     "release/v1-identity.json",
     "release/stable-plan.json",
     "release/notes/1.0.0-rc.1.md",
     "release/notes/1.0.0.md",
+    "tests/validate_rc_observation.py",
     "tests/validate_v1_identity.py",
     "tests/validate_stable_plan.py",
     "tests/validate_transition_manifest.py",
