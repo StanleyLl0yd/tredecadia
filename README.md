@@ -52,6 +52,14 @@ Examples:
 
 The March-20 anchor is a deterministic **civil convention associated with the March equinox**. It is not a claim that the astronomical equinox instant occurs on March 20 in every year, location, or time scale.
 
+## Date presentation
+
+Canonical interchange uses a strict ASCII form with a minimum five-digit year field, for example `12025-07-11`, `00000-EQ`, and `-00001-01-01`.
+
+Human-facing presentation may suppress leading zeroes and may use a typographic minus sign, for example `1 TE` or `−1 TE`. These are display forms, not alternate canonical identifiers.
+
+Accessible interfaces should expose the era, signed integer year, month/day identity, and named intercalary day semantically. `EQ` should be presented accessibly as **Equinox / New Year Day** and `ED` as **Earth Day**, rather than relying on the two-letter machine tokens alone.
+
 ## Month pronunciation
 
 Month identity is the ordered sequence of five canonical CV syllables. Stress is not identity-critical.
@@ -76,7 +84,7 @@ Localization profiles progress through `candidate` → `reviewed` → `stable`; 
 - [`specification/calendar-standard.md`](specification/calendar-standard.md) — calendar structure and Tredecadia Era.
 - [`specification/conversion-standard.md`](specification/conversion-standard.md) — proleptic-Gregorian civil conversion.
 - [`specification/month-naming-standard.md`](specification/month-naming-standard.md) — canonical month names, pronunciation, abbreviations, and Short-4 recognition.
-- [`specification/date-notation.md`](specification/date-notation.md) — canonical date representation.
+- [`specification/date-notation.md`](specification/date-notation.md) — canonical date representation and accessible human presentation.
 - [`specification/localization.md`](specification/localization.md) — localization semantics.
 - [`specification/localization-profiles.md`](specification/localization-profiles.md) — profile methods, maturity, evidence, and promotion.
 
@@ -120,7 +128,7 @@ $ python reference/python/tredecadia.py to-gregorian 00000-EQ
 -9999-03-20
 ```
 
-The reference code supports negative and zero astronomical Gregorian years, negative and zero Tredecadia years, `EQ`, conditional `ED`, strict canonical Tredecadia parsing, and both conversion directions. CI cross-checks it against the published vectors and the independent calendar-arithmetic oracle. See [`reference/python/README.md`](reference/python/README.md).
+The reference code supports negative and zero astronomical Gregorian years, negative and zero Tredecadia years, `EQ`, conditional `ED`, strict canonical ASCII Tredecadia parsing, human display-year formatting, and both conversion directions. CI cross-checks it against the published vectors and the independent calendar-arithmetic oracle. See [`reference/python/README.md`](reference/python/README.md).
 
 ## Licensing
 
