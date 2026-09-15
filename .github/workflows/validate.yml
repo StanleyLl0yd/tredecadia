@@ -24,3 +24,5 @@ jobs:
         run: python tests/validate_docs.py
       - name: Check version consistency
         run: python tests/validate_versions.py
+      - name: Cross-check Python reference implementation
+        run: python tests/validate_reference.py
