@@ -22,7 +22,12 @@ def sha256(path: Path) -> str:
 
 
 def main() -> None:
-    version = build_release.citation_version()
+    # The default branch legitimately evolves after a published tag while
+    # CITATION.cff still names the current public version. Determinism testing
+    # therefore uses a synthetic, unpublished version rather than generating a
+    # second archive that falsely claims the already-published RC identity.
+    version = f"{build_release.citation_version()}.ci-snapshot"
+    assert build_release.published_release(version) is None
 
     with tempfile.TemporaryDirectory() as first_dir, tempfile.TemporaryDirectory() as second_dir:
         first_archive, first_sums = build_release.build_bundle(Path(first_dir), version)

@@ -6,6 +6,26 @@ The project follows Semantic Versioning for stable public releases where practic
 
 ## [Unreleased]
 
+### Added
+
+- Executable M4 stable-promotion state machine, immutable v1 identity baseline, and atomic RC-to-stable transition manifest.
+- Machine-readable 14-day RC observation record and structured GitHub RC feedback form.
+- Nineteen natural-language README editions in addition to English, with CI checks for canonical facts and release-version synchronization.
+- Reviewed local-script month presentation in Russian, Japanese, and Korean README editions, while avoiding unreviewed script transliterations elsewhere.
+- GitHub Pages build/deployment workflow and CI-checked public navigation page; deployment remains manually gated until the repository's one-time Pages setting is enabled.
+- Immutable `release/published-releases.json` record for published tag/commit/archive identities.
+- Published-release source-lock checks in ordinary CI and the guarded release workflow.
+
+### Changed
+
+- Expanded and localized BCE/CE explanations and removed avoidable English prose fragments from non-English README editions.
+- Release-bundle reproducibility CI now uses an explicitly unpublished snapshot version when testing the evolving default branch.
+- Stable publication now reruns Pages, RC-observation, and published-release source-lock gates in addition to the existing conformance suite.
+
+### Fixed
+
+- Prevented a post-release source tree from creating a different archive under an already-published version name; historical published artifacts must be reproduced from their exact recorded source commit/tag.
+
 ## 1.0.0-rc.1 — 2026-09-15
 
 First v1 release candidate. The compatibility-critical calendar/month/date surface is frozen for RC testing; localization profiles remain reviewed but non-stable until final `v1.0.0` acceptance.
