@@ -4,7 +4,7 @@ Tredecadia is intentionally pre-1.0 until the remaining calendar-semantics gaps 
 
 ## M0 — Repository bootstrap
 
-Status: **in progress**
+Status: **complete**
 
 - publish draft specifications;
 - publish canonical month registry and schema;
