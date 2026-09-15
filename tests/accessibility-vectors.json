@@ -1,0 +1,56 @@
+{
+  "specVersion": "0.3.0-draft",
+  "policy": "signed-year-accessibility-v1",
+  "displayYears": [
+    {"year": 0, "canonical": "00000", "human": "0"},
+    {"year": 1, "canonical": "00001", "human": "1"},
+    {"year": 9999, "canonical": "09999", "human": "9999"},
+    {"year": 12025, "canonical": "12025", "human": "12025"},
+    {"year": -1, "canonical": "-00001", "human": "−1"},
+    {"year": -10000, "canonical": "-10000", "human": "−10000"}
+  ],
+  "semanticLabels": [
+    {
+      "canonical": "00000-EQ",
+      "year": 0,
+      "kind": "intercalary",
+      "name": "Equinox / New Year Day"
+    },
+    {
+      "canonical": "09998-ED",
+      "year": 9998,
+      "kind": "intercalary",
+      "name": "Earth Day"
+    },
+    {
+      "canonical": "12025-07-11",
+      "year": 12025,
+      "kind": "regular",
+      "month": 7,
+      "day": 11,
+      "monthName": "Muyasanumi"
+    },
+    {
+      "canonical": "-00001-01-01",
+      "year": -1,
+      "kind": "regular",
+      "month": 1,
+      "day": 1,
+      "monthName": "Masanumika"
+    }
+  ],
+  "mustRejectCanonicalParser": [
+    "0000-EQ",
+    "+00001-EQ",
+    "-00000-EQ",
+    "000001-EQ",
+    "-000001-EQ",
+    "−00001-EQ",
+    " 12025-07-11",
+    "12025-07-11 ",
+    "12025/07/11",
+    "12025-eq",
+    "١٢٠٢٥-07-11",
+    "１２０２５-07-11"
+  ]
+}
