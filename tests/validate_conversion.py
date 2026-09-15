@@ -18,7 +18,7 @@ def raises(fn,*a):
  raise AssertionError
 def main():
  p=json.loads((ROOT/'registry/calendar.json').read_text()); v=json.loads((ROOT/'tests/conversion-vectors.json').read_text()); s=json.loads((ROOT/'registry/calendar.schema.json').read_text())
- assert p['specVersion']==v['specVersion']=='0.2.0-draft' and p['profile']==v['profile']=='tredecadia-civil' and p['era']['yearZero'] is True and p['era']['canonicalMinimumDigits']==5 and s['properties']['profile']['const']=='tredecadia-civil'
+ assert p['specVersion']==v['specVersion']=='0.3.0-draft' and p['profile']==v['profile']=='tredecadia-civil' and p['era']['yearZero'] is True and p['era']['canonicalMinimumDigits']==5 and s['properties']['profile']['const']=='tredecadia-civil'
  assert p['epoch']=={'tredecadia':'00000-EQ','gregorianAstronomical':{'year':-9999,'month':3,'day':20}}
  assert tredecadia_to_gregorian(TredecadiaDate(0,special='EQ'))==GregorianDate(-9999,3,20)
  for e in v['yearCoordinateExamples']: assert e['tredecadiaYear']==e['gregorianAstronomicalYear']+9999
