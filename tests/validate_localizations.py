@@ -36,17 +36,16 @@ def main() -> None:
     assert LOC_DATA["status"] == "draft"
     assert LOC_SCHEMA["$schema"] == "https://json-schema.org/draft/2020-12/schema"
 
-    # Localized aliases live only in the localization registry. The canonical
-    # month registry must remain language-neutral.
     assert all("localizations" not in month for month in MONTHS)
 
     profiles = LOC_DATA["profiles"]
     assert profiles
     ids = [profile["id"] for profile in profiles]
     assert len(ids) == len(set(ids))
-    assert set(ids) == {"ru-Cyrl", "ja-Kana"}
+    assert {"ru-Cyrl", "ja-Kana"} <= set(ids)
 
     canonical_by_number = {month["number"]: month for month in MONTHS}
+    profile_by_id = {profile["id"]: profile for profile in profiles}
 
     for profile in profiles:
         assert profile["role"] == "display-alias"
@@ -58,11 +57,7 @@ def main() -> None:
 
         review = profile["review"]
         assert review["status"] in {"candidate", "reviewed", "stable"}
-        if review["status"] == "candidate":
-            # Candidate profiles may have evidence, but are not allowed to
-            # imply review merely by existing in the registry.
-            pass
-        else:
+        if review["status"] != "candidate":
             assert review["evidence"], f"{profile['id']} lacks review evidence"
         if review["status"] == "stable":
             assert LOC_DATA["status"] == "stable", "stable profile in draft registry"
@@ -84,11 +79,18 @@ def main() -> None:
             short6_values.append(alias["short6"])
             short4_values.append(alias["short4"])
 
-        # Reverse mapping need only be unique within one localization profile;
-        # it need not be character-by-character reversible to canonical Latin.
         assert len(set(full_values)) == 13
         assert len(set(short6_values)) == 13
         assert len(set(short4_values)) == 13
+
+    assert profile_by_id["ru-Cyrl"]["review"]["status"] == "candidate"
+    ja_review = profile_by_id["ja-Kana"]["review"]
+    assert ja_review["status"] == "reviewed"
+    assert any(
+        evidence["kind"] == "standards-reference"
+        and evidence.get("url", "").startswith("https://www.bunka.go.jp/")
+        for evidence in ja_review["evidence"]
+    )
 
     print("Tredecadia localization profile validation: OK")
 

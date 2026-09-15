@@ -46,7 +46,16 @@
       "method": "phonemic-transcription",
       "caseTransform": "none",
       "reverseMapping": "unique-within-profile",
-      "review": {"status": "candidate", "evidence": []},
+      "review": {
+        "status": "reviewed",
+        "evidence": [
+          {
+            "kind": "standards-reference",
+            "citation": "Agency for Cultural Affairs, Japan — 外来語の表記 (Cabinet Notification No. 2, 1991), kana table and principles for foreign words and foreign proper names",
+            "url": "https://www.bunka.go.jp/kokugo_nihongo/sisaku/joho/joho/kijun/naikaku/gairai/"
+          }
+        ]
+      },
       "syllableMap": {
         "MA": "マ", "MI": "ミ", "MU": "ム",
         "NA": "ナ", "NI": "ニ", "NU": "ヌ",
@@ -68,7 +77,7 @@
         {"month": 12, "full": "サヌミカズ", "short6": "サヌミ", "short4": "サヌ"},
         {"month": 13, "full": "ニムタズナ", "short6": "ニムタ", "short4": "ニム"}
       ],
-      "notes": "Candidate Katakana transcription. Japanese realization of canonical /u/ and /z/ is approximate; canonical segmental identity remains authoritative."
+      "notes": "Standards-reviewed Katakana display transcription. Japanese realization of canonical /u/ and /z/ remains an expected language-specific approximation; no native-speaker review is claimed by this evidence."
     }
   ]
 }

@@ -17,7 +17,8 @@ The project follows Semantic Versioning for stable public releases where practic
 - Localization maturity model: `candidate`, `reviewed`, and `stable`.
 - Separate machine-readable localization registry and JSON Schema.
 - Candidate Russian Cyrillic (`ru-Cyrl`) and Japanese Katakana (`ja-Kana`) profiles.
-- Executable localization derivation, uniqueness, reverse-mapping, and maturity checks.
+- Standards-based Japanese Katakana review using Japan's official `外来語の表記` guidance, with approximation notes retained.
+- Executable localization derivation, uniqueness, reverse-mapping, maturity, and review-evidence checks.
 - Pronunciation rationale and localization adaptation guidance.
 - Dependency-free Python reference implementation for Tredecadia/Gregorian conversion.
 - Strict canonical Tredecadia parser and small conversion CLI.
@@ -29,6 +30,7 @@ The project follows Semantic Versioning for stable public releases where practic
 - Clarified that stress placement/strength is not identity-critical and may adapt in localized speech.
 - Clarified that Short-4 is deterministic only in an established month/date context and must not silently fuzzy-autocorrect between valid month forms.
 - Advanced the canonical month-registry schema to version 3 and moved language-specific display aliases out of `months.json` into `localizations.json`.
+- Promoted `ja-Kana` from `candidate` to `reviewed`; it remains non-stable and does not claim separate native-speaker usability review.
 
 ## 0.2.0-draft — 2026-09-15
 

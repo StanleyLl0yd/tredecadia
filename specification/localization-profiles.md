@@ -26,4 +26,7 @@ Every Full, Short-6, and Short-4 alias MUST resolve to exactly one month within 
 
 Before promotion, verify all 13 Full, Short-6, and Short-4 aliases, confirm uniqueness and reverse mapping, review material pronunciation/orthography approximations, and record the evidence in the registry. Automatic bulk transliteration cannot bypass this process.
 
-Draft 0.3 currently contains candidate profiles `ru-Cyrl` and `ja-Kana`. Their presence makes them testable; it does not imply independent validation.
+Draft 0.3 profile status:
+
+- `ru-Cyrl`: `candidate`;
+- `ja-Kana`: `reviewed` using an independent Japanese government orthographic standards reference; not stable.

@@ -69,7 +69,7 @@ Canonical months and localized aliases are intentionally separate machine regist
 - `registry/months.json` contains language-neutral canonical identity;
 - `registry/localizations.json` contains language/script display aliases.
 
-Localization profiles progress through `candidate` → `reviewed` → `stable`. Generated mappings cannot skip independent review. Draft 0.3 currently contains candidate Russian Cyrillic (`ru-Cyrl`) and Japanese Katakana (`ja-Kana`) profiles; neither is yet presented as stable.
+Localization profiles progress through `candidate` → `reviewed` → `stable`; generated mappings cannot skip independent review. Draft 0.3 currently has Russian Cyrillic (`ru-Cyrl`) as a candidate and Japanese Katakana (`ja-Kana`) as standards-reviewed against Japan's official foreign-word orthographic guidance. Neither profile is stable yet.
 
 ## Specification
 

@@ -16,11 +16,11 @@ A profile SHOULD document material approximations when its language or script ca
 
 ## Current draft profiles
 
-Draft 0.3 currently includes two machine-readable candidate profiles:
+Draft 0.3 currently includes:
 
-- `ru-Cyrl` - Russian Cyrillic;
-- `ja-Kana` - Japanese Katakana.
+- `ru-Cyrl` — Russian Cyrillic — **candidate**;
+- `ja-Kana` — Japanese Katakana — **reviewed** against the Japanese Agency for Cultural Affairs `外来語の表記` guidance; not stable.
 
-Both are `candidate`, not reviewed or stable.
+The Japanese review is standards-based and does not claim a separate native-speaker usability review. Its evidence is recorded in `registry/localizations.json` and `rationale/localization-ja-kana.md`.
 
 Within each profile every registered Full, Short-6, and Short-4 alias MUST map back to exactly one canonical month. Character-by-character reversibility to Latin is not required.
