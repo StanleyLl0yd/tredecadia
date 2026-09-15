@@ -13,7 +13,11 @@ The project follows Semantic Versioning for stable public releases where practic
 - Explicit conversational role for Short-4 and pronunciation conformance examples.
 - Short-4 conversational/UX review, machine-readable recognition-policy vectors, and executable close-pair checks.
 - Conservative fuzzy/voice recognition guidance for `Nazu/Kazu`, `Yani/Yana`, and the syllable-close `Yani/Suni` pair.
-- Machine-readable pronunciation policy in the month registry and schema version 2.
+- Machine-readable pronunciation policy in the month registry.
+- Localization maturity model: `candidate`, `reviewed`, and `stable`.
+- Separate machine-readable localization registry and JSON Schema.
+- Candidate Russian Cyrillic (`ru-Cyrl`) and Japanese Katakana (`ja-Kana`) profiles.
+- Executable localization derivation, uniqueness, reverse-mapping, and maturity checks.
 - Pronunciation rationale and localization adaptation guidance.
 - Dependency-free Python reference implementation for Tredecadia/Gregorian conversion.
 - Strict canonical Tredecadia parser and small conversion CLI.
@@ -24,6 +28,7 @@ The project follows Semantic Versioning for stable public releases where practic
 - Renamed the ambiguous month-registry `ipa` field to `citationIpa` in Draft 0.3.
 - Clarified that stress placement/strength is not identity-critical and may adapt in localized speech.
 - Clarified that Short-4 is deterministic only in an established month/date context and must not silently fuzzy-autocorrect between valid month forms.
+- Advanced the canonical month-registry schema to version 3 and moved language-specific display aliases out of `months.json` into `localizations.json`.
 
 ## 0.2.0-draft — 2026-09-15
 
