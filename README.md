@@ -2,7 +2,7 @@
 
 Tredecadia is an open 13 × 28 perennial calendar standard with equal months, stable weekdays, a continuous mathematical year coordinate, and internationally neutral month names.
 
-> **Status:** pre-1.0, Draft 0.3. The Tredecadia Era, civil conversion, pronunciation, Short-4 recognition policy, and localization-profile framework are defined; independent localization review and final release-candidate review remain open.
+> **Status:** pre-1.0, Draft 0.3. The Tredecadia Era, civil conversion, pronunciation, Short-4 recognition, signed-year accessibility, and localization-profile framework are defined. Three non-Latin localization profiles have independent review evidence; final release-candidate review remains open.
 
 ## Core model
 
@@ -77,7 +77,15 @@ Canonical months and localized aliases are intentionally separate machine regist
 - `registry/months.json` contains language-neutral canonical identity;
 - `registry/localizations.json` contains language/script display aliases.
 
-Localization profiles progress through `candidate` → `reviewed` → `stable`; generated mappings cannot skip independent review. Draft 0.3 currently has Russian Cyrillic (`ru-Cyrl`) as a candidate, Japanese Katakana (`ja-Kana`) as standards-reviewed against Japan's official foreign-word orthographic guidance, and Korean Hangul (`ko-Hang`) as standards-reviewed against Korea's official IPA-to-Hangul foreign-word rules. No localization profile is stable yet.
+Localization profiles progress through `candidate` → `reviewed` → `stable`; generated mappings cannot skip independent review.
+
+Draft 0.3 has three **reviewed, non-stable** profiles:
+
+- Russian Cyrillic (`ru-Cyrl`) — reviewed against independent Russian practical-transcription and orthographic references; `ми/ни` palatalization is explicitly documented as a localization approximation;
+- Japanese Katakana (`ja-Kana`) — reviewed against Japan's official foreign-word orthographic guidance;
+- Korean Hangul (`ko-Hang`) — reviewed against Korea's official IPA-to-Hangul foreign-word rules.
+
+No localization profile is stable yet; stable status is reserved for an explicitly accepted stable Tredecadia release.
 
 ## Specification
 
