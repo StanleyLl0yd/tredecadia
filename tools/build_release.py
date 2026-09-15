@@ -17,6 +17,26 @@ ROOT = Path(__file__).resolve().parents[1]
 
 INCLUDE_FILES = (
     "README.md",
+    "README.languages.md",
+    "README.ru.md",
+    "README.es.md",
+    "README.pt-BR.md",
+    "README.fr.md",
+    "README.de.md",
+    "README.it.md",
+    "README.tr.md",
+    "README.pl.md",
+    "README.uk.md",
+    "README.zh-CN.md",
+    "README.zh-TW.md",
+    "README.ja.md",
+    "README.ko.md",
+    "README.ar.md",
+    "README.fa.md",
+    "README.hi.md",
+    "README.bn.md",
+    "README.id.md",
+    "README.vi.md",
     "CHANGELOG.md",
     "CITATION.cff",
     "LICENSE.md",
@@ -99,7 +119,6 @@ def build_bundle(output_dir: Path, version: str) -> tuple[Path, Path]:
         tar.addfile(tar_info(manifest_name, len(manifest_bytes)), io.BytesIO(manifest_bytes))
 
     with archive_path.open("wb") as output:
-        # Empty embedded gzip filename and mtime=0 make the gzip wrapper stable.
         with gzip.GzipFile(filename="", mode="wb", fileobj=output, mtime=0, compresslevel=9) as gz:
             gz.write(raw_tar.getvalue())
 

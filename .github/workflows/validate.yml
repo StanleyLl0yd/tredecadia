@@ -26,6 +26,8 @@ jobs:
         run: python tests/validate_stable_plan.py
       - name: Validate atomic stable-transition manifest
         run: python tests/validate_transition_manifest.py
+      - name: Validate multilingual READMEs
+        run: python tests/validate_readme_locales.py
       - name: Validate published JSON Schemas
         run: python tests/validate_schemas.py
       - name: Validate repository-local links
