@@ -1,0 +1,35 @@
+{
+  "$schema": "./calendar.schema.json",
+  "schemaVersion": 1,
+  "specVersion": "0.1.0-draft",
+  "status": "draft",
+  "profile": "fixed-march-equinoctial-m1-proposal",
+  "yearDomain": {
+    "minimum": 1,
+    "yearZero": false
+  },
+  "regularGrid": {
+    "monthsPerYear": 13,
+    "daysPerMonth": 28,
+    "regularDaysPerYear": 364,
+    "weeksPerMonth": 4,
+    "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+  },
+  "epoch": {
+    "tredecadia": "0001-01-01",
+    "gregorian": "0001-03-21"
+  },
+  "civilAnchor": {
+    "yearStart": {"gregorianYearOffset": 0, "month": 3, "day": 21},
+    "earthDay": {"gregorianYearOffset": 1, "month": 3, "day": 19, "leapOnly": true},
+    "equinoxDay": {"gregorianYearOffset": 1, "month": 3, "day": 20}
+  },
+  "leapRule": {
+    "kind": "proleptic-gregorian-year-offset",
+    "gregorianYearOffset": 1
+  },
+  "intercalary": [
+    {"code": "ED", "name": "Earth Day", "leapOnly": true, "hasMonth": false, "hasWeekday": false},
+    {"code": "EQ", "name": "Equinox / New Year Day", "leapOnly": false, "hasMonth": false, "hasWeekday": false}
+  ]
+}
