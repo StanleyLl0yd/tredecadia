@@ -63,16 +63,11 @@ jobs:
             exit 1
           fi
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git tag -a "$TAG" "$GITHUB_SHA" -m "Tredecadia $VERSION"
-          git push origin "refs/tags/$TAG"
-
           args=(
             release create "$TAG"
             "dist/tredecadia-$VERSION.tar.gz"
             "dist/SHA256SUMS"
-            --verify-tag
+            --target "$GITHUB_SHA"
             --title "Tredecadia $VERSION"
             --notes-file "$NOTES"
           )
@@ -87,10 +82,11 @@ jobs:
           set -euo pipefail
           TAG="$(python -c 'import json; print(json.load(open("release/publish.json"))["tag"])')"
           VERSION="$(python -c 'import json; print(json.load(open("release/publish.json"))["version"])')"
-          PRERELEASE="$(python -c 'import json; print(str(json.load(open("release/publish.json"))["prerelease"]).lower())')"
 
+          DIRECT="$(git ls-remote origin "refs/tags/$TAG" | awk '{print $1}')"
           PEELED="$(git ls-remote origin "refs/tags/$TAG^{}" | awk '{print $1}')"
-          test "$PEELED" = "$GITHUB_SHA"
+          TARGET="${PEELED:-$DIRECT}"
+          test "$TARGET" = "$GITHUB_SHA"
 
           gh release view "$TAG" --json tagName,isPrerelease,assets > /tmp/release.json
           python - <<'PY'
