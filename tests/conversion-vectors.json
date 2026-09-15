@@ -1,4 +1,5 @@
 {
+  "specVersion": "0.1.0-draft",
   "profile": "fixed-march-equinoctial-m1-proposal",
   "epoch": {
     "gregorian": "0001-03-21",
