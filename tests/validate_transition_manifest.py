@@ -35,7 +35,17 @@ EXPECTED_SPECS = {
     "specification/localization-profiles.md",
     "specification/compatibility.md",
 }
-EXPECTED_PUBLIC_DOCS = {"README.md", "ROADMAP.md", "CONTRIBUTING.md", "docs/index.md", "CHANGELOG.md"}
+LOCALIZED_READMES = {
+    "README.ru.md", "README.es.md", "README.pt-BR.md", "README.fr.md",
+    "README.de.md", "README.it.md", "README.tr.md", "README.pl.md",
+    "README.uk.md", "README.zh-CN.md", "README.zh-TW.md", "README.ja.md",
+    "README.ko.md", "README.ar.md", "README.fa.md", "README.hi.md",
+    "README.bn.md", "README.id.md", "README.vi.md",
+}
+EXPECTED_PUBLIC_DOCS = {
+    "README.md", "ROADMAP.md", "CONTRIBUTING.md", "docs/index.md", "CHANGELOG.md",
+    *LOCALIZED_READMES,
+}
 EXPECTED_SCHEMAS = {
     "registry/calendar.schema.json",
     "registry/months.schema.json",
@@ -83,9 +93,11 @@ def source_reference_paths(source: str) -> set[str]:
 
 
 def validate_manifest_shape(manifest: dict) -> None:
+    source = manifest["sourceVersion"]
+    target = manifest["targetVersion"]
     assert manifest["manifestVersion"] == 1
-    assert manifest["sourceVersion"] == "1.0.0-rc.1"
-    assert manifest["targetVersion"] == "1.0.0"
+    assert source == "1.0.0-rc.1"
+    assert target == "1.0.0"
 
     atomic = manifest["atomicCandidateCommit"]
     assert atomic["requireSingleCommit"] is True
@@ -108,7 +120,13 @@ def validate_manifest_shape(manifest: dict) -> None:
     assert manifest["postPublication"]["archivePlan"] == "release/archive-plan.md"
     assert manifest["postPublication"]["doiMetadataMayFollow"] is True
 
-    for path in all_atomic_paths(manifest) | set(manifest["unchangedSchemaContracts"]) | set(manifest["historicalSourceReferences"]) | {MANIFEST_PATH, pre["stablePlan"], pre["identityBaseline"], manifest["postPublication"]["archivePlan"]}:
+    required = (
+        all_atomic_paths(manifest)
+        | set(manifest["unchangedSchemaContracts"])
+        | set(manifest["historicalSourceReferences"])
+        | {MANIFEST_PATH, pre["stablePlan"], pre["identityBaseline"], manifest["postPublication"]["archivePlan"]}
+    )
+    for path in required:
         assert (ROOT / path).is_file(), path
 
 
