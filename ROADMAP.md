@@ -13,11 +13,15 @@ Status: **complete**
 
 ## M1 — Close normative calendar gaps
 
-- choose and specify the leap-year determination rule;
-- define the epoch and year-number semantics;
-- define normative Gregorian/ISO-calendar conversion behavior;
-- finalize representation of intercalary days;
-- add conversion test vectors, including boundary and leap cases.
+Status: **in progress — fixed March-equinoctial profile implemented as a review proposal in issue #2**
+
+- [x] specify a deterministic leap-year rule;
+- [x] define the epoch and year-number semantics;
+- [x] define Gregorian/proleptic-Gregorian conversion behavior;
+- [x] define canonical `ED` / `EQ` representation;
+- [x] add boundary, leap, century, and round-trip conversion checks;
+- [ ] approve the fixed March 21 / March 20 civil anchor as the normative v1 profile;
+- [ ] complete final M1 repository-wide consistency review and merge.
 
 ## M2 — Internationalization and implementation review
 
