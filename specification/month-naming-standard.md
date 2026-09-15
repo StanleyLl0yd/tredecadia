@@ -24,9 +24,11 @@ The canonical segmental values are:
 
 The **ordered segmental syllable sequence** is the normative pronunciation identity of a canonical month name.
 
-Primary-stress placement is **not identity-critical**. A spoken form MUST NOT be treated as a different month solely because a speaker or language places prominence on a different syllable.
+Stress placement is **not identity-critical**. A spoken form MUST NOT be treated as a different month solely because a speaker or language realizes prominence differently.
 
-The registry and this specification nevertheless provide one deterministic **citation pronunciation** for teaching, dictionaries, synthesized speech, and cross-language reference. The Tredecadia citation pronunciation places primary stress on the first syllable.
+Tredecadia nevertheless defines one reproducible **citation pronunciation** for teaching, dictionaries, synthesized speech, and cross-language reference. Its reference prosody uses **weak initial prominence on the first syllable**.
+
+The intended effect is light/non-emphatic prominence, not a strongly stressed lexical accent. The IPA primary-stress mark in citation forms records the reference **location** of prominence; it MUST NOT be interpreted as requiring unusually strong stress.
 
 Thus the canonical segmental form of `Masanumika` is:
 
@@ -36,11 +38,11 @@ and its reference citation realization is shown as:
 
 `[ˈma.sa.nu.mi.ka]`
 
-The slash form represents the broad segmental/phonemic sequence. The bracketed citation form includes the reference stress placement. It is not a claim that every localized natural pronunciation must use initial stress or identical phonetic allophones.
+The slash form represents the broad segmental sequence. The bracketed citation form adds the reference prominence location. It is not a claim that every localized natural pronunciation must use identical stress strength, rhythm, pitch, or allophones.
 
 ### 2.1 Local spoken adaptation
 
-A localized spoken realization MAY adapt stress, rhythm, and predictable allophony to the target language, provided that:
+A localized spoken realization MAY adapt stress, rhythm, pitch accent, and predictable allophony to the target language, provided that:
 
 - the five syllables remain in canonical order;
 - no canonical syllable is deliberately added, deleted, or reordered;
@@ -75,19 +77,29 @@ Canonical names use ASCII Latin letters. Display spelling uses initial capital p
 
 `Y` always corresponds to canonical /j/ in `YA`; `Z` corresponds to canonical /z/ in `ZU`. Local script profiles may use the closest conventional representation available to the target language.
 
-## 5. Abbreviations
+## 5. Abbreviations and conversational forms
 
 **Short-6** is the first three complete syllables. **Short-4** is the first two complete syllables. Both sets are unique across all 13 months.
 
 Five-letter truncation is non-standard because it cuts a CV syllable boundary.
 
-The same pronunciation policy applies to abbreviations: their ordered segmental syllables identify them; initial stress is the reference citation realization, not an identity requirement.
+Short-4 is the preferred **conversational compact form** when context already makes clear that a Tredecadia month is being named. Short-6 remains the safer written/display abbreviation where more redundancy is useful.
+
+Full, Short-6, and Short-4 forms all inherit the same weak initial citation prominence because they share the same first syllable. Shortening therefore never moves the reference prominence.
+
+Example:
+
+- full: `Masanumika` → `[ˈma.sa.nu.mi.ka]`;
+- Short-6: `Masanu` → `[ˈma.sa.nu]`;
+- Short-4: `Masa` → `[ˈma.sa]`.
+
+A localized realization with different natural prosody remains the same month as long as the canonical segmental sequence is preserved recognizably.
 
 ## 6. Stability
 
 After the first stable release, month number, canonical Latin name, ordered segmental syllable sequence, Short-6, and Short-4 are intended to be compatibility-critical.
 
-Reference stress policy and localized phonetic realization may be clarified in compatible revisions provided that they do not redefine the canonical segmental sequence.
+Reference prominence policy and localized phonetic realization may be clarified in compatible revisions provided that they do not redefine the canonical segmental sequence.
 
 ## 7. Design record (non-normative)
 
