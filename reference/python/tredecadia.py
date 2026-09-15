@@ -16,8 +16,8 @@ from dataclasses import dataclass
 
 TE_GREGORIAN_YEAR_OFFSET = 9999
 _GREGORIAN_MONTH_LENGTHS = (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
-_TE_RE = re.compile(r"^(-?\d{5,})-(?:(\d{2})-(\d{2})|(EQ|ED))$")
-_GREGORIAN_RE = re.compile(r"^(-?\d+)-(\d{2})-(\d{2})$")
+_TE_RE = re.compile(r"^(-?[0-9]{5,})-(?:([0-9]{2})-([0-9]{2})|(EQ|ED))$")
+_GREGORIAN_RE = re.compile(r"^(-?[0-9]+)-([0-9]{2})-([0-9]{2})$")
 
 
 class TredecadiaError(ValueError):
@@ -28,6 +28,19 @@ def format_year(year: int) -> str:
     """Return the canonical Tredecadia year field."""
     magnitude = f"{abs(year):05d}"
     return f"-{magnitude}" if year < 0 else magnitude
+
+
+def format_display_year(year: int, *, typographic_minus: bool = True) -> str:
+    """Return an unpadded human-facing Tredecadia year coordinate.
+
+    This is presentation only and is intentionally not accepted by the strict
+    canonical parser as an alternate machine serialization.
+    """
+    magnitude = str(abs(year))
+    if year >= 0:
+        return magnitude
+    sign = "−" if typographic_minus else "-"
+    return f"{sign}{magnitude}"
 
 
 def format_gregorian_year(year: int) -> str:
@@ -78,8 +91,6 @@ def _gregorian_ordinal(year: int, month: int, day: int) -> int:
 
 
 def _gregorian_from_ordinal(ordinal: int) -> GregorianDate:
-    # A Gregorian 400-year cycle contains exactly 146097 days. Locate the
-    # cycle first, then binary-search only the 400 candidate year starts.
     cycle = ordinal // 146097
     lo = cycle * 400 + 1
     hi = lo + 399
@@ -159,11 +170,11 @@ class TredecadiaDate:
 
 
 def parse_tredecadia(text: str) -> TredecadiaDate:
-    """Parse only canonical Tredecadia date notation.
+    """Parse only canonical ASCII Tredecadia date notation.
 
     This intentionally rejects a leading plus sign, negative zero, fewer than
-    five year digits, and redundant leading zeroes beyond the five-digit
-    minimum.
+    five year digits, redundant leading zeroes, non-ASCII digits, Unicode
+    minus signs, presentation whitespace, and alternate separators.
     """
     match = _TE_RE.fullmatch(text)
     if match is None:
@@ -181,7 +192,7 @@ def parse_tredecadia(text: str) -> TredecadiaDate:
 
 
 def parse_gregorian(text: str) -> GregorianDate:
-    """Parse an astronomical proleptic-Gregorian reference date.
+    """Parse an astronomical proleptic-Gregorian ASCII reference date.
 
     The external Gregorian notation is intentionally permissive about year
     width; the year is an integer coordinate. A leading plus sign is rejected.
