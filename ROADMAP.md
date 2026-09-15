@@ -27,11 +27,16 @@ Status: **complete**
 
 ## M2 — Internationalization and implementation review
 
-- review canonical stress/pronunciation wording;
-- add independently reviewed localization profiles;
-- test compact month forms in realistic interfaces;
-- publish a small reference implementation from the now-stable calendar arithmetic;
-- review accessibility and parsing behavior for five-digit/signed years.
+Status: **in progress**
+
+Tracked separately as issues #4, #5, and #6.
+
+- [ ] review canonical stress/pronunciation wording (#4);
+- [ ] add independently reviewed localization profiles (#6);
+- [ ] test compact month forms in realistic interfaces;
+- [x] implement a dependency-free Python reference converter (#5, implementation in review);
+- [x] cross-check the reference implementation against the independent M1 oracle and published vectors (#5, implementation in review);
+- [ ] review accessibility and parsing behavior for five-digit/signed years.
 
 ## M3 — v1.0 release candidate
 
