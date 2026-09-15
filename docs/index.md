@@ -11,6 +11,8 @@ Tredecadia has thirteen equal 28-day months, four complete Monday–Sunday weeks
 
 > **Release candidate `1.0.0-rc.1`.** Normative source files remain the repository specifications and machine-readable registries; this page is a navigational summary, not a second copy of the standard.
 
+[Read the project introduction in 20 languages](https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md) · [Published `v1.0.0-rc.1`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
+
 ## Calendar at a glance
 
 - 13 regular months × 28 days = 364 regular days.
@@ -18,7 +20,7 @@ Tredecadia has thirteen equal 28-day months, four complete Monday–Sunday weeks
 - `EQ` — **Equinox / New Year Day** — opens each year outside the month/week cycle.
 - In a leap year, `ED` — **Earth Day** — follows month 13 day 28 and precedes the next year's `EQ`.
 - Tredecadia Era (`TE`) is one integer year axis with a real year `0`.
-- `TE 00000-EQ` is conventionally anchored to astronomical proleptic-Gregorian `-9999-03-20` (10000 BCE in historical notation).
+- `TE 00000-EQ` is conventionally anchored to astronomical proleptic-Gregorian `-9999-03-20` (**10000 BCE — Before Common Era —** in historical notation).
 
 Ordinary boundary:
 
