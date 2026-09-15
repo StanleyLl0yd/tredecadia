@@ -35,7 +35,7 @@ EXPECTED_SPECS = {
     "specification/localization-profiles.md",
     "specification/compatibility.md",
 }
-EXPECTED_PUBLIC_DOCS = {"README.md", "ROADMAP.md", "docs/index.md", "CHANGELOG.md"}
+EXPECTED_PUBLIC_DOCS = {"README.md", "ROADMAP.md", "CONTRIBUTING.md", "docs/index.md", "CHANGELOG.md"}
 EXPECTED_SCHEMAS = {
     "registry/calendar.schema.json",
     "registry/months.schema.json",
@@ -154,8 +154,6 @@ def validate_current_stage(manifest: dict) -> None:
         for path in atomic["publicVersionDocuments"]:
             assert source in (ROOT / path).read_text(encoding="utf-8"), path
         assert "DRAFT — NOT AUTHORIZED FOR PUBLICATION" in notes
-        # Groundwork must not accidentally authorize stable publication while
-        # the repository is still at the RC version.
         assert stable_plan["publication"]["allowed"] is False
     else:
         assert stable_plan["publication"]["allowed"] is manifest["preconditions"]["publicationAllowed"] is True
@@ -173,7 +171,6 @@ def validate_current_stage(manifest: dict) -> None:
             assert target in (ROOT / path).read_text(encoding="utf-8"), path
         assert "DRAFT — NOT AUTHORIZED FOR PUBLICATION" not in notes
 
-    # RC baseline/history remains a source-version record in either stage.
     baseline = load(manifest["preconditions"]["identityBaseline"])
     assert baseline["sourceTag"] == f"v{source}"
     assert baseline["sourceCommit"] == "937d8d681fcce6095d6a4d196783136b908c1be5"

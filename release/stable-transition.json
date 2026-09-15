@@ -38,6 +38,7 @@
     "publicVersionDocuments": [
       "README.md",
       "ROADMAP.md",
+      "CONTRIBUTING.md",
       "docs/index.md",
       "CHANGELOG.md"
     ]
@@ -55,6 +56,7 @@
     "release/notes/1.0.0.md",
     "tests/validate_v1_identity.py",
     "tests/validate_stable_plan.py",
+    "tests/validate_transition_manifest.py",
     "tests/validate_versions.py"
   ],
   "stableProfileMaturitySource": "release/stable-plan.json",
