@@ -10,10 +10,12 @@ import hashlib
 import io
 import json
 import re
+import subprocess
 import tarfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+PUBLISHED_RELEASES = ROOT / "release" / "published-releases.json"
 
 INCLUDE_FILES = (
     "README.md",
@@ -77,6 +79,59 @@ def validate_version(version: str) -> None:
         raise ValueError(f"unsafe release version: {version!r}")
 
 
+def published_release(version: str) -> dict | None:
+    if not PUBLISHED_RELEASES.is_file():
+        return None
+    data = json.loads(PUBLISHED_RELEASES.read_text(encoding="utf-8"))
+    for entry in data["releases"]:
+        if entry["version"] == version:
+            return entry
+    return None
+
+
+def git_head() -> str | None:
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        return None
+    head = result.stdout.strip()
+    return head if re.fullmatch(r"[0-9a-f]{40}", head) else None
+
+
+def assert_source_lock(version: str) -> None:
+    """Refuse to rebuild a published version from a different source commit.
+
+    Published artifacts are immutable. After a tag is released, the default
+    branch may legitimately gain documentation and tooling changes while its
+    citation version still names the current public release. Reusing that
+    version string for a new archive would create a second, different artifact
+    with the same release identity, so known published versions are buildable
+    only from their recorded source commit.
+    """
+    entry = published_release(version)
+    if entry is None:
+        return
+
+    head = git_head()
+    if head is None:
+        raise RuntimeError(
+            f"{version} is already published; source commit cannot be verified. "
+            f"Check out {entry['tag']} ({entry['commit']}) in a Git repository to reproduce it."
+        )
+    if head != entry["commit"]:
+        raise RuntimeError(
+            f"{version} is already published from {entry['commit']}; current HEAD is {head}. "
+            f"Check out {entry['tag']} to reproduce the published archive instead of creating "
+            "a different archive with the same version."
+        )
+
+
 def tar_info(name: str, size: int) -> tarfile.TarInfo:
     info = tarfile.TarInfo(name=name)
     info.size = size
@@ -89,8 +144,10 @@ def tar_info(name: str, size: int) -> tarfile.TarInfo:
     return info
 
 
-def build_bundle(output_dir: Path, version: str) -> tuple[Path, Path]:
+def build_bundle(output_dir: Path, version: str, *, enforce_source_lock: bool = True) -> tuple[Path, Path]:
     validate_version(version)
+    if enforce_source_lock:
+        assert_source_lock(version)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     root_name = f"tredecadia-{version}"
