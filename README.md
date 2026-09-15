@@ -88,6 +88,20 @@ Proleptic Gregorian `2026-09-15` maps to:
 
 The Tredecadia weekday is determined by the regular-month day number, not by the weekday label of the corresponding Gregorian civil date.
 
+## Python reference implementation
+
+A dependency-free reference converter is available at [`reference/python/tredecadia.py`](reference/python/tredecadia.py). It is executable documentation and a conformance aid; the specification and registries remain normative.
+
+```console
+$ python reference/python/tredecadia.py from-gregorian 2026-09-15
+12025-07-11
+
+$ python reference/python/tredecadia.py to-gregorian 00000-EQ
+-9999-03-20
+```
+
+The reference code supports negative and zero astronomical Gregorian years, negative and zero Tredecadia years, `EQ`, conditional `ED`, strict canonical Tredecadia parsing, and both conversion directions. CI cross-checks it against the published vectors and the independent calendar-arithmetic oracle. See [`reference/python/README.md`](reference/python/README.md).
+
 ## Licensing
 
 Documentation, specifications, machine-readable registries, and test vectors are licensed under **CC BY 4.0**. Source code, scripts, and CI/workflow code are licensed under the **MIT License** unless a file states otherwise. See [`LICENSE.md`](LICENSE.md).
