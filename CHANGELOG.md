@@ -20,6 +20,9 @@ The project follows Semantic Versioning for stable public releases where practic
 - Standards-based Japanese Katakana review using Japan's official `外来語の表記` guidance, with approximation notes retained.
 - Standards-based Korean Hangul (`ko-Hang`) profile derived from Korea's official IPA-to-Hangul foreign-word rules.
 - Executable localization derivation, uniqueness, reverse-mapping, maturity, and review-evidence checks.
+- Signed-year accessibility/presentation policy separating strict machine syntax from human display.
+- Machine-readable accessibility vectors for padded, signed, intercalary, and semantic date cases.
+- Reference display-year helper and strict rejection checks for Unicode minus signs, localized digits, alternate separators, and presentation whitespace.
 - Pronunciation rationale and localization adaptation guidance.
 - Dependency-free Python reference implementation for Tredecadia/Gregorian conversion.
 - Strict canonical Tredecadia parser and small conversion CLI.
@@ -33,6 +36,7 @@ The project follows Semantic Versioning for stable public releases where practic
 - Advanced the canonical month-registry schema to version 3 and moved language-specific display aliases out of `months.json` into `localizations.json`.
 - Promoted `ja-Kana` from `candidate` to `reviewed`; it remains non-stable and does not claim separate native-speaker usability review.
 - Added `ko-Hang` directly as `reviewed` because its complete Tredecadia syllable map is derivable from the official Korean IPA transcription table; it remains non-stable.
+- Tightened the reference parsers to ASCII digits explicitly at machine/reference CLI boundaries.
 
 ## 0.2.0-draft — 2026-09-15
 
