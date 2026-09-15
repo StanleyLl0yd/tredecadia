@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = ROOT / ".github" / "workflows" / "pages.yml"
 INDEX = ROOT / "docs" / "index.md"
 CONFIG = ROOT / "docs" / "_config.yml"
+DEPLOYMENT_NOTE = ROOT / "release" / "pages-deployment.md"
 
 EXPECTED_ACTIONS = {
     "actions/checkout": "3d3c42e5aac5ba805825da76410c181273ba90b1",  # v7.0.1
@@ -24,6 +25,7 @@ def main() -> None:
     workflow = WORKFLOW.read_text(encoding="utf-8")
     index = INDEX.read_text(encoding="utf-8")
     config = CONFIG.read_text(encoding="utf-8")
+    deployment_note = DEPLOYMENT_NOTE.read_text(encoding="utf-8")
 
     for action, sha in EXPECTED_ACTIONS.items():
         needle = f"{action}@{sha}"
@@ -32,12 +34,24 @@ def main() -> None:
     for permission in ("contents: read", "pages: write", "id-token: write"):
         assert permission in workflow, f"missing Pages permission: {permission}"
 
-    assert "branches: [main]" in workflow
+    # Pages is not enabled through GITHUB_TOKEN. Until the one-time repository
+    # setting exists, deployment must remain explicit rather than creating red
+    # runs on every docs push.
     assert "workflow_dispatch:" in workflow
+    assert "pages_enabled:" in workflow
+    assert "if: ${{ inputs.pages_enabled }}" in workflow
+    assert "\n  push:\n" not in workflow
+
     assert "environment:" in workflow and "name: github-pages" in workflow
     assert "source: ./docs" in workflow
     assert "destination: ./_site" in workflow
     assert "path: ./_site" in workflow
+
+    assert "Settings" in deployment_note
+    assert "Pages" in deployment_note
+    assert "GitHub Actions" in deployment_note
+    assert "35026608479" in deployment_note
+    assert "external-enable-required" in deployment_note
 
     # The website is a navigation layer, never a second normative source.
     assert "navigational summary, not a second copy of the standard" in index
