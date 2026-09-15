@@ -28,6 +28,8 @@ jobs:
         run: python tests/validate_transition_manifest.py
       - name: Validate multilingual READMEs
         run: python tests/validate_readme_locales.py
+      - name: Validate Pages deployment contract
+        run: python tests/validate_pages.py
       - name: Validate published JSON Schemas
         run: python tests/validate_schemas.py
       - name: Validate repository-local links
