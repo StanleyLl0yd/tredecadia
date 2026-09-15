@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/StanleyLl0yd/tredecadia/raw/main/registry/calendar.schema.json",
+  "title": "Tredecadia calendar profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "specVersion", "status", "profile", "yearDomain", "regularGrid", "epoch", "civilAnchor", "leapRule", "intercalary"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schemaVersion": {"const": 1},
+    "specVersion": {"type": "string", "minLength": 1},
+    "status": {"enum": ["draft", "stable"]},
+    "profile": {"type": "string", "minLength": 1},
+    "yearDomain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimum", "yearZero"],
+      "properties": {
+        "minimum": {"const": 1},
+        "yearZero": {"const": false}
+      }
+    },
+    "regularGrid": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["monthsPerYear", "daysPerMonth", "regularDaysPerYear", "weeksPerMonth", "weekdays"],
+      "properties": {
+        "monthsPerYear": {"const": 13},
+        "daysPerMonth": {"const": 28},
+        "regularDaysPerYear": {"const": 364},
+        "weeksPerMonth": {"const": 4},
+        "weekdays": {
+          "const": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        }
+      }
+    },
+    "epoch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tredecadia", "gregorian"],
+      "properties": {
+        "tredecadia": {"const": "0001-01-01"},
+        "gregorian": {"const": "0001-03-21"}
+      }
+    },
+    "civilAnchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["yearStart", "earthDay", "equinoxDay"],
+      "properties": {
+        "yearStart": {"$ref": "#/$defs/yearStart"},
+        "earthDay": {"$ref": "#/$defs/earthDay"},
+        "equinoxDay": {"$ref": "#/$defs/equinoxDay"}
+      }
+    },
+    "leapRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "gregorianYearOffset"],
+      "properties": {
+        "kind": {"const": "proleptic-gregorian-year-offset"},
+        "gregorianYearOffset": {"const": 1}
+      }
+    },
+    "intercalary": {
+      "const": [
+        {"code": "ED", "name": "Earth Day", "leapOnly": true, "hasMonth": false, "hasWeekday": false},
+        {"code": "EQ", "name": "Equinox / New Year Day", "leapOnly": false, "hasMonth": false, "hasWeekday": false}
+      ]
+    }
+  },
+  "$defs": {
+    "yearStart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gregorianYearOffset", "month", "day"],
+      "properties": {
+        "gregorianYearOffset": {"const": 0},
+        "month": {"const": 3},
+        "day": {"const": 21}
+      }
+    },
+    "earthDay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gregorianYearOffset", "month", "day", "leapOnly"],
+      "properties": {
+        "gregorianYearOffset": {"const": 1},
+        "month": {"const": 3},
+        "day": {"const": 19},
+        "leapOnly": {"const": true}
+      }
+    },
+    "equinoxDay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gregorianYearOffset", "month", "day"],
+      "properties": {
+        "gregorianYearOffset": {"const": 1},
+        "month": {"const": 3},
+        "day": {"const": 20}
+      }
+    }
+  }
+}
