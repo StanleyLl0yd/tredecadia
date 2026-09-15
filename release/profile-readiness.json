@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Evidence packet for explicit v1.0.0 localization-profile decisions; this file does not itself promote any profile.",
+  "requiredChecks": [
+    "independent-review-evidence-recorded",
+    "all-13-full-aliases-derived",
+    "all-short6-aliases-derived",
+    "all-short4-aliases-derived",
+    "aliases-unique-within-profile",
+    "reverse-mapping-verified",
+    "material-approximations-documented"
+  ],
+  "profiles": [
+    {
+      "id": "ru-Cyrl",
+      "currentStatus": "reviewed",
+      "decision": "pending",
+      "readiness": "eligible-for-explicit-stable-decision",
+      "checks": {
+        "independent-review-evidence-recorded": true,
+        "all-13-full-aliases-derived": true,
+        "all-short6-aliases-derived": true,
+        "all-short4-aliases-derived": true,
+        "aliases-unique-within-profile": true,
+        "reverse-mapping-verified": true,
+        "material-approximations-documented": true
+      },
+      "nativeSpeakerUsabilityStudyClaimed": false,
+      "knownApproximation": "Russian ми/ни normally palatalize the preceding consonant; this is a documented localization approximation of canonical MI/NI rather than a change to canonical identity.",
+      "evidence": [
+        "registry/localizations.json#ru-Cyrl",
+        "rationale/localization-ru-cyrl.md",
+        "tests/validate_localizations.py"
+      ]
+    },
+    {
+      "id": "ja-Kana",
+      "currentStatus": "reviewed",
+      "decision": "pending",
+      "readiness": "eligible-for-explicit-stable-decision",
+      "checks": {
+        "independent-review-evidence-recorded": true,
+        "all-13-full-aliases-derived": true,
+        "all-short6-aliases-derived": true,
+        "all-short4-aliases-derived": true,
+        "aliases-unique-within-profile": true,
+        "reverse-mapping-verified": true,
+        "material-approximations-documented": true
+      },
+      "nativeSpeakerUsabilityStudyClaimed": false,
+      "knownApproximation": "Japanese vowel realization and ZU/ズ allophony are language-specific approximations; canonical Tredecadia segmental identity remains unchanged.",
+      "evidence": [
+        "registry/localizations.json#ja-Kana",
+        "rationale/localization-ja-kana.md",
+        "tests/validate_localizations.py"
+      ]
+    },
+    {
+      "id": "ko-Hang",
+      "currentStatus": "reviewed",
+      "decision": "pending",
+      "readiness": "eligible-for-explicit-stable-decision",
+      "checks": {
+        "independent-review-evidence-recorded": true,
+        "all-13-full-aliases-derived": true,
+        "all-short6-aliases-derived": true,
+        "all-short4-aliases-derived": true,
+        "aliases-unique-within-profile": true,
+        "reverse-mapping-verified": true,
+        "material-approximations-documented": true
+      },
+      "nativeSpeakerUsabilityStudyClaimed": false,
+      "knownApproximation": "Official Korean foreign-word rules represent source /z/ before a vowel with ㅈ, so canonical ZU /zu/ is displayed as 주 without redefining canonical /z/.",
+      "evidence": [
+        "registry/localizations.json#ko-Hang",
+        "rationale/localization-ko-hang.md",
+        "tests/validate_localizations.py"
+      ]
+    }
+  ]
+}
