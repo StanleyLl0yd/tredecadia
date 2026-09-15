@@ -12,6 +12,7 @@ def main():
   j('tests/test-vectors.json')['specVersion'],
   j('tests/conversion-vectors.json')['specVersion'],
   j('tests/short4-ux-vectors.json')['specVersion'],
+  j('tests/accessibility-vectors.json')['specVersion'],
  ]; assert set(vals)=={EXPECTED}
  assert f'version: "{EXPECTED}"' in (ROOT/'CITATION.cff').read_text()
  for p in ['specification/calendar-standard.md','specification/conversion-standard.md','specification/date-notation.md','specification/month-naming-standard.md','specification/localization.md','specification/localization-profiles.md']: assert 'Draft 0.3' in (ROOT/p).read_text(),p

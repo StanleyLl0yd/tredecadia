@@ -41,6 +41,7 @@ $ python reference/python/tredecadia.py to-gregorian 00000-EQ
 from tredecadia import (
     GregorianDate,
     TredecadiaDate,
+    format_display_year,
     from_gregorian,
     parse_tredecadia,
     to_gregorian,
@@ -51,13 +52,16 @@ assert te.canonical == "12025-07-11"
 
 civil = to_gregorian(parse_tredecadia("00000-EQ"))
 assert (civil.year, civil.month, civil.day) == (-9999, 3, 20)
+
+assert format_display_year(-1) == "−1"
 ```
 
 The main public functions are:
 
 - `gregorian_is_leap(year)`;
 - `tredecadia_is_leap(year)`;
-- `format_year(year)`;
+- `format_year(year)` — canonical minimum-five-digit machine year field;
+- `format_display_year(year)` — unpadded human-facing year coordinate;
 - `parse_tredecadia(text)`;
 - `parse_gregorian(text)`;
 - `to_gregorian(date)`;
@@ -67,15 +71,21 @@ The main public functions are:
 
 ## Canonical parsing
 
-`parse_tredecadia()` is intentionally strict. It rejects, among other things:
+`parse_tredecadia()` is intentionally strict and ASCII-only. It rejects, among other things:
 
 - fewer than five year digits (`0001-EQ`);
 - a leading plus sign (`+00001-EQ`);
 - negative zero (`-00000-EQ`);
 - redundant leading zeroes (`000001-EQ`);
+- Unicode minus in place of ASCII `-`;
+- localized or full-width digits;
+- surrounding whitespace or alternate separators;
+- lower-case `eq` / `ed`;
 - month `00` or `14`;
 - regular day `00` or `29`;
 - `ED` in an ordinary Tredecadia year.
+
+Human display such as `1 TE` or `−1 TE` is presentation, not alternate canonical machine syntax. Applications that accept friendly input should normalize it before storage or interchange.
 
 ## Verification
 
@@ -83,6 +93,9 @@ The main public functions are:
 
 1. the published conversion vectors;
 2. the independent calendar-arithmetic test oracle in `tests/calendar_math.py`;
-3. round-trip properties over large ranges crossing year `0` and the Gregorian astronomical `0` boundary.
+3. round-trip properties over large ranges crossing year `0` and the Gregorian astronomical `0` boundary;
+4. strict ASCII parsing and human-display formatting rules.
+
+`tests/validate_accessibility.py` separately checks the published signed-year presentation/accessibility vectors.
 
 The implementation is licensed under the MIT License.

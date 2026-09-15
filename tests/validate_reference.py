@@ -45,8 +45,6 @@ def validate_published_vectors() -> None:
 
 
 def validate_against_oracle() -> None:
-    # Four independent windows exercise negative TE years, the era origin,
-    # the Gregorian astronomical year-zero boundary, and the modern era.
     windows = [(-200, 200), (200, 600), (9600, 10400), (11800, 12200)]
 
     for start, stop in windows:
@@ -68,8 +66,6 @@ def validate_against_oracle() -> None:
                     assert ref_tuple(rg) == oracle_tuple(og)
                     assert ref.from_gregorian(rg) == rt
 
-    # Independently sweep civil days across the astronomical Gregorian 0
-    # transition and the present century.
     civil_windows = [(-50, 50), (1950, 2050)]
     for start_year, stop_year in civil_windows:
         start = oracle.gregorian_to_ordinal(start_year, 1, 1)
@@ -101,6 +97,12 @@ def validate_parsing() -> None:
         "-00000-EQ",
         "000001-EQ",
         "-000001-EQ",
+        "−00001-EQ",
+        " 12025-07-11",
+        "12025-07-11 ",
+        "12025/07/11",
+        "١٢٠٢٥-07-11",
+        "１２０２５-07-11",
         "12025-00-01",
         "12025-14-01",
         "12025-01-00",
@@ -118,6 +120,30 @@ def validate_parsing() -> None:
 
     assert ref.parse_gregorian("0-03-20") == ref.GregorianDate(0, 3, 20)
     assert ref.parse_gregorian("-9999-03-20") == ref.GregorianDate(-9999, 3, 20)
+
+    # Reference Gregorian input is also ASCII, avoiding digit-script
+    # confusables at the CLI boundary.
+    for value in ("٢٠٢٦-09-15", "２０２６-09-15", "−9999-03-20"):
+        try:
+            ref.parse_gregorian(value)
+        except ref.TredecadiaError:
+            pass
+        else:
+            raise AssertionError(f"Gregorian reference parser accepted non-ASCII input: {value}")
+
+
+def validate_display_years() -> None:
+    assert ref.format_display_year(0) == "0"
+    assert ref.format_display_year(1) == "1"
+    assert ref.format_display_year(12025) == "12025"
+    assert ref.format_display_year(-1) == "−1"
+    assert ref.format_display_year(-10000) == "−10000"
+    assert ref.format_display_year(-1, typographic_minus=False) == "-1"
+
+    # Display forms intentionally differ from canonical storage for padded or
+    # negative small-magnitude years.
+    assert ref.format_year(1) == "00001"
+    assert ref.format_year(-1) == "-00001"
 
 
 def validate_cli() -> None:
@@ -141,6 +167,7 @@ def main() -> None:
     validate_published_vectors()
     validate_against_oracle()
     validate_parsing()
+    validate_display_years()
     validate_cli()
     print("Tredecadia Python reference implementation: OK")
 
