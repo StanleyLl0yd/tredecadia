@@ -36,6 +36,39 @@
         {"month": 13, "full": "Нимутазуна", "short6": "Нимута", "short4": "Ниму"}
       ],
       "notes": "Candidate Russian Cyrillic display transcription. Prosody may adapt naturally; canonical Latin identity is unchanged."
+    },
+    {
+      "id": "ja-Kana",
+      "languageTag": "ja",
+      "script": "Kana",
+      "direction": "ltr",
+      "role": "display-alias",
+      "method": "phonemic-transcription",
+      "caseTransform": "none",
+      "reverseMapping": "unique-within-profile",
+      "review": {"status": "candidate", "evidence": []},
+      "syllableMap": {
+        "MA": "マ", "MI": "ミ", "MU": "ム",
+        "NA": "ナ", "NI": "ニ", "NU": "ヌ",
+        "SA": "サ", "SU": "ス", "TA": "タ",
+        "YA": "ヤ", "KA": "カ", "ZU": "ズ"
+      },
+      "aliases": [
+        {"month": 1, "full": "マサヌミカ", "short6": "マサヌ", "short4": "マサ"},
+        {"month": 2, "full": "タスズヌム", "short6": "タスズ", "short4": "タス"},
+        {"month": 3, "full": "ナズマサヌ", "short6": "ナズマ", "short4": "ナズ"},
+        {"month": 4, "full": "ミカスマニ", "short6": "ミカス", "short4": "ミカ"},
+        {"month": 5, "full": "ヤニムズヌ", "short6": "ヤニム", "short4": "ヤニ"},
+        {"month": 6, "full": "ズミタナス", "short6": "ズミタ", "short4": "ズミ"},
+        {"month": 7, "full": "ムヤサヌミ", "short6": "ムヤサ", "short4": "ムヤ"},
+        {"month": 8, "full": "スニズサカ", "short6": "スニズ", "short4": "スニ"},
+        {"month": 9, "full": "ヌマナムタ", "short6": "ヌマナ", "short4": "ヌマ"},
+        {"month": 10, "full": "カズヌスヤ", "short6": "カズヌ", "short4": "カズ"},
+        {"month": 11, "full": "ヤナズマサ", "short6": "ヤナズ", "short4": "ヤナ"},
+        {"month": 12, "full": "サヌミカズ", "short6": "サヌミ", "short4": "サヌ"},
+        {"month": 13, "full": "ニムタズナ", "short6": "ニムタ", "short4": "ニム"}
+      ],
+      "notes": "Candidate Katakana transcription. Japanese realization of canonical /u/ and /z/ is approximate; canonical segmental identity remains authoritative."
     }
   ]
 }
