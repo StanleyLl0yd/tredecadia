@@ -11,6 +11,8 @@ The project follows Semantic Versioning for stable public releases where practic
 - Draft 0.3 pronunciation model separating segmental month identity from citation prosody.
 - Weak initial citation prominence shared by Full, Short-6, and Short-4 forms.
 - Explicit conversational role for Short-4 and pronunciation conformance examples.
+- Short-4 conversational/UX review, machine-readable recognition-policy vectors, and executable close-pair checks.
+- Conservative fuzzy/voice recognition guidance for `Nazu/Kazu`, `Yani/Yana`, and the syllable-close `Yani/Suni` pair.
 - Machine-readable pronunciation policy in the month registry and schema version 2.
 - Pronunciation rationale and localization adaptation guidance.
 - Dependency-free Python reference implementation for Tredecadia/Gregorian conversion.
@@ -21,6 +23,7 @@ The project follows Semantic Versioning for stable public releases where practic
 
 - Renamed the ambiguous month-registry `ipa` field to `citationIpa` in Draft 0.3.
 - Clarified that stress placement/strength is not identity-critical and may adapt in localized speech.
+- Clarified that Short-4 is deterministic only in an established month/date context and must not silently fuzzy-autocorrect between valid month forms.
 
 ## 0.2.0-draft — 2026-09-15
 

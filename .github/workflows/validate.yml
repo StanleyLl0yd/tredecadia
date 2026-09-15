@@ -18,6 +18,8 @@ jobs:
           python-version: "3.13"
       - name: Validate registry and naming invariants
         run: python tests/validate_registry.py
+      - name: Validate Short-4 conversational and UX invariants
+        run: python tests/validate_short4_ux.py
       - name: Validate calendar conversion semantics
         run: python tests/validate_conversion.py
       - name: Validate documentation consistency
