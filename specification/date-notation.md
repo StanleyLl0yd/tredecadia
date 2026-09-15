@@ -26,7 +26,7 @@ For negative years, a leading ASCII minus sign is followed by at least five digi
 - year `-10000` → `-10000`;
 - year `-100000` → `-100000`.
 
-A leading plus sign is not canonical.
+A leading plus sign is not canonical. Negative zero (`-00000`) is not canonical. Leading zeroes are used only to reach the five-digit minimum; additional redundant leading zeroes are not canonical. Thus year `1` is `00001`, not `000001`.
 
 ## 3. Regular dates
 
