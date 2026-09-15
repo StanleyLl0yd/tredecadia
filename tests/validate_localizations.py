@@ -29,6 +29,14 @@ def derive(profile: dict, syllables: list[str]) -> str:
     return apply_case(raw, profile["caseTransform"])
 
 
+def has_standards_evidence(profile: dict, url_prefix: str) -> bool:
+    return any(
+        evidence["kind"] == "standards-reference"
+        and evidence.get("url", "").startswith(url_prefix)
+        for evidence in profile["review"]["evidence"]
+    )
+
+
 def main() -> None:
     assert LOC_DATA["schemaVersion"] == 1
     assert LOC_SCHEMA["properties"]["schemaVersion"]["const"] == 1
@@ -42,7 +50,7 @@ def main() -> None:
     assert profiles
     ids = [profile["id"] for profile in profiles]
     assert len(ids) == len(set(ids))
-    assert {"ru-Cyrl", "ja-Kana"} <= set(ids)
+    assert {"ru-Cyrl", "ja-Kana", "ko-Hang"} <= set(ids)
 
     canonical_by_number = {month["number"]: month for month in MONTHS}
     profile_by_id = {profile["id"]: profile for profile in profiles}
@@ -84,13 +92,20 @@ def main() -> None:
         assert len(set(short4_values)) == 13
 
     assert profile_by_id["ru-Cyrl"]["review"]["status"] == "candidate"
-    ja_review = profile_by_id["ja-Kana"]["review"]
-    assert ja_review["status"] == "reviewed"
-    assert any(
-        evidence["kind"] == "standards-reference"
-        and evidence.get("url", "").startswith("https://www.bunka.go.jp/")
-        for evidence in ja_review["evidence"]
-    )
+
+    ja = profile_by_id["ja-Kana"]
+    assert ja["review"]["status"] == "reviewed"
+    assert has_standards_evidence(ja, "https://www.bunka.go.jp/")
+
+    ko = profile_by_id["ko-Hang"]
+    assert ko["review"]["status"] == "reviewed"
+    assert has_standards_evidence(ko, "https://www.korean.go.kr/")
+    assert ko["syllableMap"] == {
+        "MA": "마", "MI": "미", "MU": "무",
+        "NA": "나", "NI": "니", "NU": "누",
+        "SA": "사", "SU": "수", "TA": "타",
+        "YA": "야", "KA": "카", "ZU": "주",
+    }
 
     print("Tredecadia localization profile validation: OK")
 

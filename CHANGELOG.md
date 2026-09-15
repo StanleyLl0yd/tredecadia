@@ -18,6 +18,7 @@ The project follows Semantic Versioning for stable public releases where practic
 - Separate machine-readable localization registry and JSON Schema.
 - Candidate Russian Cyrillic (`ru-Cyrl`) and Japanese Katakana (`ja-Kana`) profiles.
 - Standards-based Japanese Katakana review using Japan's official `外来語の表記` guidance, with approximation notes retained.
+- Standards-based Korean Hangul (`ko-Hang`) profile derived from Korea's official IPA-to-Hangul foreign-word rules.
 - Executable localization derivation, uniqueness, reverse-mapping, maturity, and review-evidence checks.
 - Pronunciation rationale and localization adaptation guidance.
 - Dependency-free Python reference implementation for Tredecadia/Gregorian conversion.
@@ -31,6 +32,7 @@ The project follows Semantic Versioning for stable public releases where practic
 - Clarified that Short-4 is deterministic only in an established month/date context and must not silently fuzzy-autocorrect between valid month forms.
 - Advanced the canonical month-registry schema to version 3 and moved language-specific display aliases out of `months.json` into `localizations.json`.
 - Promoted `ja-Kana` from `candidate` to `reviewed`; it remains non-stable and does not claim separate native-speaker usability review.
+- Added `ko-Hang` directly as `reviewed` because its complete Tredecadia syllable map is derivable from the official Korean IPA transcription table; it remains non-stable.
 
 ## 0.2.0-draft — 2026-09-15
 

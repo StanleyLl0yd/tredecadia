@@ -29,7 +29,7 @@ Status: **complete**
 
 Status: **in progress**
 
-Active localization review is tracked in issues #6 and #17. Completed M2 framework work includes #4, #5, #8, #9, #10, #13, and #14.
+Active localization review is tracked in issues #6 and #19. Completed M2 framework/review work includes #4, #5, #8, #9, #10, #13, #14, and #17.
 
 - [x] define pronunciation identity versus citation realization (#4, merged in #11);
 - [x] choose weak initial reference prominence and make it abbreviation-stable (#4, #10, merged in #11);
@@ -38,8 +38,9 @@ Active localization review is tracked in issues #6 and #17. Completed M2 framewo
 - [x] define conservative Short-4 fuzzy/voice recognition behavior (#13, merged in #15);
 - [x] define localization profile maturity/evidence rules and separated registry (#14, merged in #16);
 - [x] add machine-testable Russian Cyrillic and Japanese Katakana profiles (#14, merged in #16);
-- [ ] add independently reviewed localization profiles (#6);
-- [ ] promote Japanese Katakana from candidate to standards-reviewed (#17, implementation in review);
+- [x] promote Japanese Katakana to standards-reviewed (#17, merged in #18);
+- [ ] add additional independently reviewed localization profiles (#6);
+- [ ] add standards-reviewed Korean Hangul profile (#19, implementation in review);
 - [x] implement a dependency-free Python reference converter (#5, merged in #7);
 - [x] cross-check the reference implementation against the independent M1 oracle and published vectors (#5, merged in #7);
 - [ ] review accessibility and parsing behavior for five-digit/signed years.
