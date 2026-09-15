@@ -9,12 +9,14 @@ permissions:
   contents: read
 
 jobs:
-  registry:
+  standard:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-      - name: Validate registry and invariants
+      - name: Validate registry and naming invariants
         run: python tests/validate_registry.py
+      - name: Validate calendar conversion semantics
+        run: python tests/validate_conversion.py
