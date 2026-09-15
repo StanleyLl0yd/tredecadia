@@ -7,7 +7,7 @@
   "required": ["schemaVersion", "specVersion", "status", "syllableInventory", "pronunciation", "months"],
   "properties": {
     "$schema": {"type": "string"},
-    "schemaVersion": {"const": 2},
+    "schemaVersion": {"const": 3},
     "specVersion": {"type": "string", "minLength": 1},
     "status": {"enum": ["draft", "stable"]},
     "syllableInventory": {
@@ -42,7 +42,7 @@
     "month": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["number", "canonical", "syllables", "citationIpa", "short6", "short4", "localizations"],
+      "required": ["number", "canonical", "syllables", "citationIpa", "short6", "short4"],
       "properties": {
         "number": {"type": "integer", "minimum": 1, "maximum": 13},
         "canonical": {"type": "string", "pattern": "^[A-Z][a-z]{9}$"},
@@ -55,11 +55,7 @@
         },
         "citationIpa": {"type": "string", "pattern": "^ˈ[^ˈ]+$"},
         "short6": {"type": "string", "pattern": "^[A-Z][a-z]{5}$"},
-        "short4": {"type": "string", "pattern": "^[A-Z][a-z]{3}$"},
-        "localizations": {
-          "type": "object",
-          "additionalProperties": {"type": "string", "minLength": 1}
-        }
+        "short4": {"type": "string", "pattern": "^[A-Z][a-z]{3}$"}
       }
     }
   }
