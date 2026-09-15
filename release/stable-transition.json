@@ -1,0 +1,67 @@
+{
+  "manifestVersion": 1,
+  "sourceVersion": "1.0.0-rc.1",
+  "targetVersion": "1.0.0",
+  "preconditions": {
+    "stablePlan": "release/stable-plan.json",
+    "publicationAllowed": true,
+    "identityBaseline": "release/v1-identity.json"
+  },
+  "atomicCandidateCommit": {
+    "requireSingleCommit": true,
+    "publicationTrigger": "release/publish.json",
+    "citation": "CITATION.cff",
+    "stableReleaseNotes": "release/notes/1.0.0.md",
+    "versionedJson": [
+      "registry/calendar.json",
+      "registry/months.json",
+      "registry/localizations.json",
+      "tests/test-vectors.json",
+      "tests/conversion-vectors.json",
+      "tests/short4-ux-vectors.json",
+      "tests/accessibility-vectors.json"
+    ],
+    "registryStatus": [
+      "registry/calendar.json",
+      "registry/months.json",
+      "registry/localizations.json"
+    ],
+    "specificationStatusHeaders": [
+      "specification/calendar-standard.md",
+      "specification/conversion-standard.md",
+      "specification/date-notation.md",
+      "specification/month-naming-standard.md",
+      "specification/localization.md",
+      "specification/localization-profiles.md",
+      "specification/compatibility.md"
+    ],
+    "publicVersionDocuments": [
+      "README.md",
+      "ROADMAP.md",
+      "CONTRIBUTING.md",
+      "docs/index.md",
+      "CHANGELOG.md"
+    ]
+  },
+  "unchangedSchemaContracts": [
+    "registry/calendar.schema.json",
+    "registry/months.schema.json",
+    "registry/localizations.schema.json"
+  ],
+  "historicalSourceReferences": [
+    "rationale/release-candidate-audit.md",
+    "release/v1-identity.json",
+    "release/stable-plan.json",
+    "release/notes/1.0.0-rc.1.md",
+    "release/notes/1.0.0.md",
+    "tests/validate_v1_identity.py",
+    "tests/validate_stable_plan.py",
+    "tests/validate_transition_manifest.py",
+    "tests/validate_versions.py"
+  ],
+  "stableProfileMaturitySource": "release/stable-plan.json",
+  "postPublication": {
+    "archivePlan": "release/archive-plan.md",
+    "doiMetadataMayFollow": true
+  }
+}

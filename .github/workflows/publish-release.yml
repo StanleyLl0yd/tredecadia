@@ -29,6 +29,7 @@ jobs:
           for test in \
             tests/validate_v1_identity.py \
             tests/validate_stable_plan.py \
+            tests/validate_transition_manifest.py \
             tests/validate_schemas.py \
             tests/validate_links.py \
             tests/validate_registry.py \
