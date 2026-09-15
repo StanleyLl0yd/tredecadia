@@ -4,6 +4,7 @@ from __future__ import annotations
 import json,re
 from pathlib import Path
 from calendar_math import *
+from release_state import citation_version
 ROOT=Path(__file__).resolve().parents[1]; RX=re.compile(r'^(-?\d{5,})-(?:(\d{2})-(\d{2})|(ED|EQ))$')
 def gd(v): return GregorianDate(v['year'],v['month'],v['day'])
 def td(s):
@@ -17,8 +18,8 @@ def raises(fn,*a):
  except ValueError: return
  raise AssertionError
 def main():
- p=json.loads((ROOT/'registry/calendar.json').read_text()); v=json.loads((ROOT/'tests/conversion-vectors.json').read_text()); s=json.loads((ROOT/'registry/calendar.schema.json').read_text())
- assert p['specVersion']==v['specVersion']=='1.0.0-rc.1' and p['profile']==v['profile']=='tredecadia-civil' and p['era']['yearZero'] is True and p['era']['canonicalMinimumDigits']==5 and s['properties']['profile']['const']=='tredecadia-civil'
+ p=json.loads((ROOT/'registry/calendar.json').read_text()); v=json.loads((ROOT/'tests/conversion-vectors.json').read_text()); s=json.loads((ROOT/'registry/calendar.schema.json').read_text()); version=citation_version()
+ assert p['specVersion']==v['specVersion']==version and p['profile']==v['profile']=='tredecadia-civil' and p['era']['yearZero'] is True and p['era']['canonicalMinimumDigits']==5 and s['properties']['profile']['const']=='tredecadia-civil'
  assert p['epoch']=={'tredecadia':'00000-EQ','gregorianAstronomical':{'year':-9999,'month':3,'day':20}}
  assert tredecadia_to_gregorian(TredecadiaDate(0,special='EQ'))==GregorianDate(-9999,3,20)
  for e in v['yearCoordinateExamples']: assert e['tredecadiaYear']==e['gregorianAstronomicalYear']+9999

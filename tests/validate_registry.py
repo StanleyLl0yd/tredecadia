@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """Validate the Tredecadia canonical month registry and naming invariants."""
 
 from __future__ import annotations
@@ -7,6 +8,8 @@ import json
 from collections import Counter
 from fractions import Fraction
 from pathlib import Path
+
+from release_state import citation_version, expected_registry_status
 
 ROOT = Path(__file__).resolve().parents[1]
 INVENTORY = ["MA", "MI", "MU", "NA", "NI", "NU", "SA", "SU", "TA", "YA", "KA", "ZU"]
@@ -56,11 +59,12 @@ def main() -> None:
     schema = json.loads((ROOT / "registry/months.schema.json").read_text(encoding="utf-8"))
     vectors = json.loads((ROOT / "tests/test-vectors.json").read_text(encoding="utf-8"))
     months = data["months"]
+    version = citation_version()
 
     assert data["schemaVersion"] == 3
     assert schema["properties"]["schemaVersion"]["const"] == 3
-    assert data["status"] == "draft"
-    assert data["specVersion"] == vectors["specVersion"] == "1.0.0-rc.1"
+    assert data["status"] == expected_registry_status(version)
+    assert data["specVersion"] == vectors["specVersion"] == version
     assert schema["$schema"] == "https://json-schema.org/draft/2020-12/schema"
     assert data["syllableInventory"] == INVENTORY
 
@@ -80,10 +84,7 @@ def main() -> None:
     short4 = [month["short4"] for month in months]
     assert len(set(canonicals)) == len(set(short6)) == len(set(short4)) == 13
 
-    required_keys = {
-        "number", "canonical", "syllables", "citationIpa",
-        "short6", "short4",
-    }
+    required_keys = {"number", "canonical", "syllables", "citationIpa", "short6", "short4"}
     for month in months:
         assert set(month) == required_keys
         syllables = month["syllables"]

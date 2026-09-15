@@ -92,11 +92,11 @@ def main() -> None:
         },
     }
 
-    # Reviewed localization identities and maps are frozen for the RC. They
-    # remain non-stable until the final v1 release action.
+    # Localization maps are part of the frozen v1 identity. Maturity may only
+    # advance from reviewed to stable during an explicitly gated stable release.
     profiles = {profile["id"]: profile for profile in localizations["profiles"]}
     assert set(profiles) == {"ru-Cyrl", "ja-Kana", "ko-Hang"}
-    assert all(profile["review"]["status"] == "reviewed" for profile in profiles.values())
+    assert all(profile["review"]["status"] in {"reviewed", "stable"} for profile in profiles.values())
     assert profiles["ru-Cyrl"]["syllableMap"] == {
         "MA": "ма", "MI": "ми", "MU": "му", "NA": "на", "NI": "ни", "NU": "ну",
         "SA": "са", "SU": "су", "TA": "та", "YA": "я", "KA": "ка", "ZU": "зу",
