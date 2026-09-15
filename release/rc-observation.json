@@ -46,6 +46,19 @@
         "PR #36",
         "release/pages-deployment.md"
       ]
+    },
+    {
+      "id": "obs-003",
+      "area": "release-packaging",
+      "summary": "Post-RC main could build a different archive under the already-published 1.0.0-rc.1 filename because the public version remained rc.1 while source documentation evolved.",
+      "classification": "compatible-correction",
+      "status": "resolved",
+      "compatibilityCritical": false,
+      "evidence": [
+        "PR #38",
+        "release/published-releases.json",
+        "tests/validate_published_releases.py"
+      ]
     }
   ],
   "postRcChangeGroups": [
@@ -66,6 +79,12 @@
       "area": "documentation-deployment",
       "classification": "compatible-correction",
       "summary": "Added a Pages deployment path and then gated it pending the repository's one-time Pages setting."
+    },
+    {
+      "prs": [37, 38],
+      "area": "rc-governance-and-release-integrity",
+      "classification": "compatible-correction",
+      "summary": "Made the observation window executable and locked already-published release identities to their exact source commits."
     }
   ],
   "summary": {
