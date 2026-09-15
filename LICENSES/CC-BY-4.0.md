@@ -1,6 +1,8 @@
 # Creative Commons Attribution 4.0 International
 
-Tredecadia documentation and specifications use the Creative Commons Attribution 4.0 International license (CC BY 4.0), unless a file states otherwise.
+Tredecadia documentation, specifications, machine-readable registries, and published test vectors use the Creative Commons Attribution 4.0 International license (CC BY 4.0), unless a file states otherwise.
+
+Source code, scripts, and CI/workflow code are licensed separately under the MIT License as described in [`../LICENSE.md`](../LICENSE.md).
 
 Canonical license page:
 

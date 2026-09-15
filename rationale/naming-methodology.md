@@ -34,8 +34,8 @@ The search used a lazy cutting-plane process: semantic clearance focused on name
 
 ## Balance record
 
-For the selected 13 names, the 65-syllable frequency vector has sum of squared counts `379`, corresponding to SSD `26.916666666666664` around the uniform 12-syllable mean.
+For the selected 13 names, the 65-syllable frequency vector has sum of squared counts `379`. The exact full-name SSD around the uniform 12-syllable mean is `323/12` (approximately `26.9166666666667`).
 
-The Short-6 SSD is `10.25`; the Short-4 SSD is `3.6666666666666665`.
+The exact Short-6 SSD is `41/4` (`10.25`); the exact Short-4 SSD is `11/3` (approximately `3.66666666666667`).
 
 The canonical cyclic order was then chosen to separate the closest shortened forms while keeping adjacent full and shortened names maximally distinct by positional Hamming distance.

@@ -1,6 +1,6 @@
 # Tredecadia Localization
 
-Status: **Draft 0.1**
+Status: **Draft 0.2**
 
 Localization must preserve the identity of each canonical month while allowing natural presentation in local writing systems.
 
@@ -16,7 +16,7 @@ A localization should preserve:
 
 ## Russian Cyrillic profile
 
-Draft 0.1 registers the following Russian display forms:
+Draft 0.2 registers the following Russian display forms:
 
 | # | Canonical | Russian |
 |---:|---|---|

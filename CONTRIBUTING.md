@@ -20,8 +20,10 @@ Please distinguish between:
 
 Canonical month names, their order, syllable structure, and abbreviations should not be changed casually. A proposal to change them should identify a concrete interoperability, safety, or substantial international-language problem and include evidence.
 
+Calendar-conversion changes are also cross-cutting: a change to the epoch, leap rule, intercalary representation, or civil anchor must update the corresponding specification, conversion vectors, executable validation, rationale, and public summary in the same pull request.
+
 ## Pull requests
 
-Keep pull requests focused. When changing machine-readable registry data, update the corresponding specification and test vectors in the same pull request.
+Keep pull requests focused. When changing machine-readable registry data, update the corresponding specification and test vectors in the same pull request. When changing duplicated canonical tables in documentation, keep them synchronized with `registry/months.json`; CI checks this automatically.
 
 Until `v1.0.0`, incompatible draft changes are possible. After `v1.0.0`, compatibility rules will be stricter.

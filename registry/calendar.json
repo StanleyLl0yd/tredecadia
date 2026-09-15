@@ -1,0 +1,35 @@
+{
+  "$schema": "./calendar.schema.json",
+  "schemaVersion": 1,
+  "specVersion": "0.2.0-draft",
+  "status": "draft",
+  "profile": "tredecadia-civil",
+  "era": {
+    "name": "Tredecadia Era",
+    "symbol": "TE",
+    "yearNumbering": "all-integers",
+    "yearZero": true,
+    "canonicalMinimumDigits": 5
+  },
+  "regularGrid": {
+    "monthsPerYear": 13,
+    "daysPerMonth": 28,
+    "regularDaysPerYear": 364,
+    "weeksPerMonth": 4,
+    "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+  },
+  "epoch": {
+    "tredecadia": "00000-EQ",
+    "gregorianAstronomical": {"year": -9999, "month": 3, "day": 20}
+  },
+  "civilAnchor": {
+    "equinoxDay": {"gregorianYearFormula": "Y-9999", "month": 3, "day": 20, "opensYear": true},
+    "regularYearStart": {"gregorianYearFormula": "Y-9999", "month": 3, "day": 21},
+    "earthDay": {"gregorianYearFormula": "Y-9998", "month": 3, "day": 19, "leapOnly": true, "closesYear": true}
+  },
+  "leapRule": {"kind": "proleptic-gregorian-astronomical-year", "gregorianYearFormula": "Y-9998"},
+  "intercalary": [
+    {"code": "EQ", "name": "Equinox / New Year Day", "position": "start", "leapOnly": false, "hasMonth": false, "hasWeekday": false},
+    {"code": "ED", "name": "Earth Day", "position": "end", "leapOnly": true, "hasMonth": false, "hasWeekday": false}
+  ]
+}

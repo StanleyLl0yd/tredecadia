@@ -1,22 +1,34 @@
 # Tredecadia Calendar Standard
 
-Status: **Draft 0.1**
+Status: **Draft 0.2**
 
-This document defines the structural calendar model. Month naming is specified separately in [`month-naming-standard.md`](month-naming-standard.md).
+This document defines the structural calendar model and the Tredecadia Era. Month naming is specified separately in [`month-naming-standard.md`](month-naming-standard.md); civil conversion is specified in [`conversion-standard.md`](conversion-standard.md).
 
 The key words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY** are used in their ordinary standards-document sense.
 
 ## 1. Year structure
 
-A Tredecadia year contains 13 regular months. Each regular month contains exactly 28 days.
+A Tredecadia year contains:
 
-Therefore the regular month grid contains exactly 364 days:
+1. one Equinox / New Year Day (`EQ`) at the start of the year;
+2. 13 regular months of exactly 28 days each;
+3. in leap years only, one Earth Day (`ED`) after month 13 day 28.
+
+The regular month grid therefore contains exactly 364 days:
 
 `13 × 28 = 364`
 
-An ordinary year contains one additional intercalary day after month 13 day 28. A leap year contains two intercalary days after month 13 day 28.
+An ordinary Tredecadia year contains 365 civil days in total. A leap Tredecadia year contains 366 civil days in total.
 
-Intercalary days are outside all regular months and outside the seven-day week cycle.
+Both `EQ` and `ED` are outside all regular months and outside the seven-day week cycle.
+
+Ordinary-year sequence:
+
+`Y-EQ → Y-01-01 → … → Y-13-28 → (Y+1)-EQ`
+
+Leap-year sequence:
+
+`Y-EQ → Y-01-01 → … → Y-13-28 → Y-ED → (Y+1)-EQ`
 
 ## 2. Week structure
 
@@ -47,25 +59,27 @@ Because intercalary days are outside the week, month 01 day 01 is Monday every y
 
 ## 3. Intercalary days
 
-### 3.1 Equinox / New Year Day
+### 3.1 Equinox / New Year Day (`EQ`)
 
-The final intercalary day of every year is the Equinox / New Year Day. It follows month 13 day 28 and immediately precedes month 01 day 01 of the following year.
+`Y-EQ` is the first civil day associated with Tredecadia year `Y`.
 
-It has no weekday and no month/day number.
-
-### 3.2 Earth Day
-
-A leap year adds Earth Day immediately before the Equinox / New Year Day.
+It immediately precedes `Y-01-01`.
 
 It has no weekday and no month/day number.
 
-The leap-year sequence is therefore:
+Under the Tredecadia civil conversion profile, `Y-EQ` maps to March 20 of astronomical Gregorian year `Y - 9999`.
 
-`13-28 → Earth Day → Equinox / New Year Day → next year 01-01`
+`Equinox` is a conventional civil designation associated with the **March equinox**. The standard does not assert that the astronomical equinox instant occurs on that civil date in every year, timezone, location, or astronomical time scale.
 
-The ordinary-year sequence is:
+### 3.2 Earth Day (`ED`)
 
-`13-28 → Equinox / New Year Day → next year 01-01`
+A leap Tredecadia year adds `Y-ED` immediately after `Y-13-28` and immediately before `(Y+1)-EQ`.
+
+It is therefore the final civil day associated with leap year `Y`.
+
+It has no weekday and no month/day number.
+
+Under the Tredecadia civil conversion profile, `Y-ED` maps to March 19 of astronomical Gregorian year `Y - 9998`.
 
 ## 4. Month numbering
 
@@ -81,26 +95,67 @@ No regular month may contain a day `00`, `29`, `30`, or `31`.
 
 Intercalary days MUST NOT be represented as fabricated dates inside month 13 or month 01.
 
-## 6. Leap-year determination
+## 6. Tredecadia Era
 
-The structural model supports ordinary and leap years, but the rule that determines which year numbers are leap years is not yet normative in Draft 0.1.
+The canonical era is the **Tredecadia Era**, abbreviated `TE`.
 
-Until a leap rule is adopted, implementations MUST treat leap-year determination as an external parameter rather than infer a rule from this draft.
+Tredecadia years form one continuous integer coordinate:
 
-## 7. Year numbering and epoch
+`…, -2, -1, 0, 1, 2, …`
 
-Draft 0.1 does not yet define a mandatory epoch or conversion rule between Tredecadia year numbers and Gregorian/ISO calendar years.
+Year `0` exists. Tredecadia does not require a BCE/CE-style change of era or reversal of counting direction.
 
-A future revision will define conversion semantics separately from the invariant 13 × 28 structure.
+The mathematical era origin is:
+
+`TE 00000-EQ`
+
+For civil conversion this is identified with proleptic Gregorian astronomical date:
+
+`year -9999, March 20`
+
+Astronomical Gregorian year `-9999` corresponds to the conventional historical label **10000 BCE**.
+
+The era origin MUST NOT be interpreted as a claim about the beginning of humanity, civilization, agriculture, the Holocene, or any other historical or geological process. It is solely the mathematical origin chosen for the Tredecadia year coordinate.
+
+Years before the origin use negative Tredecadia year numbers and remain on the same coordinate.
+
+## 7. Leap-year determination
+
+The civil profile uses the proleptic Gregorian leap pattern with astronomical Gregorian year numbering.
+
+For Tredecadia year `Y`, define:
+
+`G = Y - 9999`
+
+where `G` is the astronomical Gregorian year containing `Y-EQ` and `Y-01-01`.
+
+Tredecadia year `Y` is leap exactly when astronomical Gregorian year `G + 1`, equivalently `Y - 9998`, is leap:
+
+`tredecadia_leap(Y) = gregorian_leap(Y - 9998)`
+
+The Gregorian leap predicate is true when the year number is divisible by `4`, except that a year divisible by `100` is not leap unless it is also divisible by `400`. The same arithmetic predicate applies to zero and negative astronomical Gregorian year numbers.
+
+Every 400 consecutive Tredecadia years therefore contain exactly 97 leap years.
+
+Examples:
+
+- `TE 09998` is leap because astronomical Gregorian year `0` is leap;
+- `TE 09999` is ordinary because astronomical Gregorian year `1` is ordinary;
+- `TE 12022` is leap because Gregorian `2024` is leap;
+- `TE 12098` is ordinary because Gregorian `2100` is ordinary;
+- `TE 12398` is leap because Gregorian `2400` is leap.
 
 ## 8. Invariants
 
 A conforming implementation of the structural model MUST preserve all of the following:
 
+- one `EQ` opening every Tredecadia year;
 - 13 regular months per year;
 - 28 days per regular month;
 - 364 regular in-month days;
 - four complete seven-day weeks per month;
 - Monday on every month day 01;
 - Sunday on every month day 28;
-- all intercalary days outside both months and weekdays.
+- all intercalary days outside both months and weekdays;
+- one additional `ED` exactly in Tredecadia leap years;
+- a continuous integer year coordinate with year `0`.

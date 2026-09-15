@@ -1,9 +1,22 @@
 {
   "$schema": "./months.schema.json",
   "schemaVersion": 1,
-  "specVersion": "0.1.0-draft",
+  "specVersion": "0.2.0-draft",
   "status": "draft",
-  "syllableInventory": ["MA", "MI", "MU", "NA", "NI", "NU", "SA", "SU", "TA", "YA", "KA", "ZU"],
+  "syllableInventory": [
+    "MA",
+    "MI",
+    "MU",
+    "NA",
+    "NI",
+    "NU",
+    "SA",
+    "SU",
+    "TA",
+    "YA",
+    "KA",
+    "ZU"
+  ],
   "months": [
     {"number": 1, "canonical": "Masanumika", "syllables": ["MA", "SA", "NU", "MI", "KA"], "ipa": "ˈma.sa.nu.mi.ka", "short6": "Masanu", "short4": "Masa", "localizations": {"ru": "Масанумика"}},
     {"number": 2, "canonical": "Tasuzunumu", "syllables": ["TA", "SU", "ZU", "NU", "MU"], "ipa": "ˈta.su.zu.nu.mu", "short6": "Tasuzu", "short4": "Tasu", "localizations": {"ru": "Тасузунуму"}},

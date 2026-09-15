@@ -1,13 +1,6 @@
 {
-  "specVersion": "0.1.0-draft",
-  "calendar": {
-    "monthsPerYear": 13,
-    "daysPerMonth": 28,
-    "regularDaysPerYear": 364,
-    "weeksPerMonth": 4,
-    "firstWeekday": "Monday",
-    "lastWeekday": "Sunday"
-  },
+  "specVersion": "0.2.0-draft",
+  "calendar": {"monthsPerYear": 13, "daysPerMonth": 28, "regularDaysPerYear": 364, "weeksPerMonth": 4, "firstWeekday": "Monday", "lastWeekday": "Sunday"},
   "naming": {
     "fullFrequencyVector": {"MA": 5, "MI": 5, "MU": 5, "NA": 5, "NI": 4, "NU": 8, "SA": 6, "SU": 5, "TA": 4, "YA": 4, "KA": 5, "ZU": 9},
     "fullSumSquaredCounts": 379,
@@ -22,10 +15,6 @@
     "minimumAdjacentShort6SyllableHamming": 3,
     "minimumAdjacentShort4SyllableHamming": 2,
     "maximumAdjacentSharedSyllables": 2,
-    "closePairCyclicDistances": {
-      "Yanimu/Yanazu": 6,
-      "Nazu/Kazu": 6,
-      "Yani/Yana": 6
-    }
+    "closePairCyclicDistances": {"Yanimu/Yanazu": 6, "Nazu/Kazu": 6, "Yani/Yana": 6}
   }
 }
