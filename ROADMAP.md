@@ -29,13 +29,15 @@ Status: **complete**
 
 Status: **in progress**
 
-Tracked separately as issues #4, #5, and #6.
+Tracked separately as issues #4, #5, #6, #8, #9, and #10.
 
-- [ ] review canonical stress/pronunciation wording (#4);
+- [x] define pronunciation identity versus citation realization (#4, implementation in review);
+- [x] choose weak initial reference prominence and make it abbreviation-stable (#4, #10, implementation in review);
+- [x] add pronunciation conformance examples for Full / Short-6 / Short-4 (#9, implementation in review);
 - [ ] add independently reviewed localization profiles (#6);
-- [ ] test compact month forms in realistic interfaces;
-- [x] implement a dependency-free Python reference converter (#5, implementation in review);
-- [x] cross-check the reference implementation against the independent M1 oracle and published vectors (#5, implementation in review);
+- [ ] test compact Short-4 forms in realistic conversational and UI contexts (#8);
+- [x] implement a dependency-free Python reference converter (#5, merged);
+- [x] cross-check the reference implementation against the independent M1 oracle and published vectors (#5, merged);
 - [ ] review accessibility and parsing behavior for five-digit/signed years.
 
 ## M3 — v1.0 release candidate
