@@ -2,7 +2,7 @@
 
 Tredecadia is an open 13 × 28 perennial calendar standard with equal months, stable weekdays, a continuous mathematical year coordinate, and internationally neutral month names.
 
-> **Status:** pre-1.0, Draft 0.3. The Tredecadia Era and civil conversion model are defined; pronunciation policy is now specified, while localization and final release-candidate review remain open.
+> **Status:** pre-1.0, Draft 0.3. The Tredecadia Era, civil conversion, pronunciation, Short-4 recognition policy, and localization-profile framework are defined; independent localization review and final release-candidate review remain open.
 
 ## Core model
 
@@ -58,17 +58,27 @@ Month identity is the ordered sequence of five canonical CV syllables. Stress is
 
 Tredecadia's reference/citation pronunciation uses **weak initial prominence on the first syllable**. Full, Short-6, and Short-4 forms keep that same reference-prominence location, so shortening never moves the citation stress.
 
-Short-4 is the preferred conversational compact form when the month context is already clear; Short-6 remains the safer written/display abbreviation where more redundancy helps.
+Short-4 is the preferred conversational compact form when the month context is already clear; Short-6 remains the safer written/display abbreviation where more redundancy helps. Fuzzy or low-confidence recognition must not silently turn one valid Short-4 month into another.
 
 Localized speech may adapt stress, rhythm, and predictable allophony to the target language while preserving the recognizable canonical segmental sequence.
+
+## Localization profiles
+
+Canonical months and localized aliases are intentionally separate machine registries:
+
+- `registry/months.json` contains language-neutral canonical identity;
+- `registry/localizations.json` contains language/script display aliases.
+
+Localization profiles progress through `candidate` → `reviewed` → `stable`. Generated mappings cannot skip independent review. Draft 0.3 currently contains candidate Russian Cyrillic (`ru-Cyrl`) and Japanese Katakana (`ja-Kana`) profiles; neither is yet presented as stable.
 
 ## Specification
 
 - [`specification/calendar-standard.md`](specification/calendar-standard.md) — calendar structure and Tredecadia Era.
 - [`specification/conversion-standard.md`](specification/conversion-standard.md) — proleptic-Gregorian civil conversion.
-- [`specification/month-naming-standard.md`](specification/month-naming-standard.md) — canonical month names, pronunciation, and abbreviations.
+- [`specification/month-naming-standard.md`](specification/month-naming-standard.md) — canonical month names, pronunciation, abbreviations, and Short-4 recognition.
 - [`specification/date-notation.md`](specification/date-notation.md) — canonical date representation.
-- [`specification/localization.md`](specification/localization.md) — localization rules.
+- [`specification/localization.md`](specification/localization.md) — localization semantics.
+- [`specification/localization-profiles.md`](specification/localization-profiles.md) — profile methods, maturity, evidence, and promotion.
 
 Machine-readable data lives in [`registry/`](registry/); verification vectors and executable checks live in [`tests/`](tests/). Design rationale is intentionally separated from normative text in [`rationale/`](rationale/).
 
