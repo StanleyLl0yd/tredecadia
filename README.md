@@ -145,7 +145,7 @@ The reference code supports negative and zero astronomical Gregorian years, nega
 
 ## Release-candidate verification
 
-The RC CI validates the published JSON Schemas with a Draft 2020-12 implementation, checks local links and duplicated canonical tables, freezes compatibility-critical constants, exhaustively cross-checks calendar conversion windows, and proves that the release bundle is byte-for-byte reproducible.
+The RC CI validates the published JSON Schemas with a Draft 2020-12 implementation, checks local links and duplicated canonical tables, freezes compatibility-critical constants, exhaustively cross-checks calendar conversion windows, and proves that release bundles are byte-for-byte deterministic for a fixed source tree.
 
 The published prerelease tag points to commit `937d8d681fcce6095d6a4d196783136b908c1be5`. The guarded publication workflow reran the complete release conformance suite, built the deterministic archive, published it with `SHA256SUMS`, downloaded both assets again, and byte-compared them with the local build.
 
@@ -153,7 +153,7 @@ Published archive SHA-256:
 
 `018a804f518b3cbff402e91f5aba7d7aba05361f6bf4b01de593c8ac17a0abdf`
 
-`tools/build_release.py` reproduces `tredecadia-1.0.0-rc.1.tar.gz`; the archive embeds `RELEASE-MANIFEST.json` listing the included source files.
+To reproduce the **published** `tredecadia-1.0.0-rc.1.tar.gz`, check out the published tag `v1.0.0-rc.1` and run the release builder from that exact source tree. The default branch intentionally contains post-RC documentation and release-engineering changes and must not create a different archive under the already-published RC version. `release/published-releases.json` records the immutable source commit and digest, and current tooling enforces that source lock.
 
 ## Licensing
 
