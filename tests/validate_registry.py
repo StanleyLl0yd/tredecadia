@@ -60,7 +60,7 @@ def main() -> None:
     assert data["schemaVersion"] == 3
     assert schema["properties"]["schemaVersion"]["const"] == 3
     assert data["status"] == "draft"
-    assert data["specVersion"] == vectors["specVersion"] == "0.3.0-draft"
+    assert data["specVersion"] == vectors["specVersion"] == "1.0.0-rc.1"
     assert schema["$schema"] == "https://json-schema.org/draft/2020-12/schema"
     assert data["syllableInventory"] == INVENTORY
 

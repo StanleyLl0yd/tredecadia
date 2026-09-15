@@ -1,6 +1,6 @@
 # Roadmap
 
-Tredecadia is intentionally pre-1.0 until the release-candidate audit and final publication gates are complete.
+Tredecadia is in its first v1 release-candidate cycle. Final `v1.0.0` publication follows only after the RC receives a clean final audit and no compatibility-critical defect is found.
 
 ## M0 — Repository bootstrap
 
@@ -29,7 +29,7 @@ Status: **complete**
 
 Status: **complete**
 
-All M2 issues are closed. Draft 0.3 now includes pronunciation, conversational Short-4, accessibility, a reference converter, a localization review framework, and three independently reviewed non-Latin display profiles.
+All M2 issues are closed. The v1 RC includes pronunciation, conversational Short-4, accessibility, a reference converter, a localization review framework, and three independently reviewed non-Latin display profiles.
 
 - [x] define pronunciation identity versus citation realization (#4, merged in #11);
 - [x] choose weak initial reference prominence and make it abbreviation-stable (#4, #10, merged in #11);
@@ -47,23 +47,26 @@ All M2 issues are closed. Draft 0.3 now includes pronunciation, conversational S
 
 ## M3 — v1.0 release candidate
 
-Status: **in progress — tracked in #25 / PR #26**
+Status: **final validation — `1.0.0-rc.1`, tracked in #25 / PR #26**
 
-- [x] begin repository-wide specification/registry/test inventory;
-- [x] define the v1 compatibility-critical surface;
-- [x] add an executable RC freeze gate for canonical calendar/month/localization identity;
-- [x] add real Draft 2020-12 JSON Schema validation;
-- [x] add repository-local Markdown/schema link validation;
-- [ ] audit external review-evidence references;
-- [ ] audit all version/schema relationships and transition Draft 0.3 to `1.0.0-rc.1`;
-- [ ] prepare deterministic release artifacts and checksums;
-- [ ] finalize public documentation / GitHub Pages structure;
-- [ ] run final clean CI on the RC commit;
-- [ ] tag `v1.0.0-rc.1` only after every #25 gate is complete.
+- [x] inventory normative specifications and machine-readable artifacts;
+- [x] define and executable-check the v1 compatibility-critical surface;
+- [x] validate all published registries with a real Draft 2020-12 JSON Schema validator;
+- [x] validate repository-local Markdown links and registry `$schema` paths;
+- [x] recheck external localization review-evidence references;
+- [x] audit canonical parser/confusable edge cases;
+- [x] audit schema-version relationships;
+- [x] transition every published artifact/specification version to `1.0.0-rc.1` without changing schema versions unnecessarily;
+- [x] implement deterministic release artifacts and SHA-256 checksums;
+- [x] prepare the public documentation / GitHub Pages structure;
+- [ ] run clean CI on the exact final RC commit and again after merge to `main`;
+- [ ] tag and publish `v1.0.0-rc.1` only after those exact-commit checks succeed.
 
 ## M4 — v1.0 publication
 
+- evaluate RC feedback and reopen M3 only for genuine correctness/interoperability defects;
 - promote explicitly accepted reviewed localization profiles to `stable`;
+- change draft registry status to stable where appropriate;
 - tag `v1.0.0`;
 - publish immutable release artifacts;
 - archive the release with a DOI-capable repository such as Zenodo;

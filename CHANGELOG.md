@@ -6,9 +6,13 @@ The project follows Semantic Versioning for stable public releases where practic
 
 ## [Unreleased]
 
+## 1.0.0-rc.1 — 2026-09-15
+
+First v1 release candidate. The compatibility-critical calendar/month/date surface is frozen for RC testing; localization profiles remain reviewed but non-stable until final `v1.0.0` acceptance.
+
 ### Added
 
-- Draft 0.3 pronunciation model separating segmental month identity from citation prosody.
+- Pronunciation model separating segmental month identity from citation prosody.
 - Weak initial citation prominence shared by Full, Short-6, and Short-4 forms.
 - Explicit conversational role for Short-4 and pronunciation conformance examples.
 - Short-4 conversational/UX review, machine-readable recognition-policy vectors, and executable close-pair checks.
@@ -23,21 +27,26 @@ The project follows Semantic Versioning for stable public releases where practic
 - Signed-year accessibility/presentation policy separating strict machine syntax from human display.
 - Machine-readable accessibility vectors for padded, signed, intercalary, and semantic date cases.
 - Reference display-year helper and strict rejection checks for Unicode minus signs, localized digits, alternate separators, and presentation whitespace.
-- Pronunciation rationale and localization adaptation guidance.
 - Dependency-free Python reference implementation for Tredecadia/Gregorian conversion.
 - Strict canonical Tredecadia parser and small conversion CLI.
 - Reference-implementation conformance tests against published vectors and the independent M1 arithmetic oracle.
+- Normative v1 compatibility policy and executable RC freeze checks.
+- Draft 2020-12 JSON Schema validation using a pinned standards implementation.
+- Repository-local Markdown and `$schema` link validation.
+- Release-candidate evidence audit record for reviewed localization references.
+- Deterministic release-bundle builder with embedded manifest and SHA-256 checksum output.
+- Byte-for-byte release reproducibility test in CI.
+- GitHub Pages documentation source under `docs/`, with canonical data still sourced from registries/specifications.
 
 ### Changed
 
-- Renamed the ambiguous month-registry `ipa` field to `citationIpa` in Draft 0.3.
+- Renamed the ambiguous month-registry `ipa` field to `citationIpa` before the v1 freeze.
 - Clarified that stress placement/strength is not identity-critical and may adapt in localized speech.
 - Clarified that Short-4 is deterministic only in an established month/date context and must not silently fuzzy-autocorrect between valid month forms.
 - Advanced the canonical month-registry schema to version 3 and moved language-specific display aliases out of `months.json` into `localizations.json`.
-- Promoted `ja-Kana` from `candidate` to `reviewed`; it remains non-stable and does not claim separate native-speaker usability review.
-- Added `ko-Hang` directly as `reviewed` because its complete Tredecadia syllable map is derivable from the official Korean IPA transcription table; it remains non-stable.
-- Promoted `ru-Cyrl` from `candidate` to `reviewed`; its predictable Russian palatalization of `MI/NI` is recorded instead of being treated as canonical Tredecadia pronunciation.
-- Tightened the reference parsers to ASCII digits explicitly at machine/reference CLI boundaries.
+- Promoted `ja-Kana`, `ko-Hang`, and `ru-Cyrl` to `reviewed`; all remain non-stable during the RC.
+- Tightened reference parsers to ASCII digits explicitly at machine/reference CLI boundaries.
+- Transitioned public specification/artifact version identifiers from `0.3.0-draft` to `1.0.0-rc.1` while retaining schema versions `calendar=1`, `months=3`, and `localizations=1`.
 
 ## 0.2.0-draft — 2026-09-15
 

@@ -36,8 +36,6 @@ def validate_display_years() -> None:
         else:
             assert ref.format_display_year(year, typographic_minus=False) == str(year)
 
-        # Human display is not an alternate machine year field except where
-        # the integer already naturally has at least five digits.
         if item["human"] != item["canonical"]:
             probe = f"{item['human']}-EQ"
             assert_rejected(probe)
@@ -64,11 +62,9 @@ def validate_rejections() -> None:
     for value in VECTORS["mustRejectCanonicalParser"]:
         assert_rejected(value)
 
-    # Canonical syntax is ASCII-only. Explicitly guard the most likely
-    # visually confusable classes.
-    assert_rejected("−00001-01-01")  # U+2212 minus sign
-    assert_rejected("١٢٠٢٥-07-11")  # Arabic-Indic digits
-    assert_rejected("１２０２５-07-11")  # full-width digits
+    assert_rejected("−00001-01-01")
+    assert_rejected("١٢٠٢٥-07-11")
+    assert_rejected("１２０２５-07-11")
 
 
 def validate_documentation() -> None:
@@ -91,7 +87,7 @@ def validate_documentation() -> None:
 
 
 def main() -> None:
-    assert VECTORS["specVersion"] == "0.3.0-draft"
+    assert VECTORS["specVersion"] == "1.0.0-rc.1"
     assert VECTORS["policy"] == "signed-year-accessibility-v1"
     validate_display_years()
     validate_semantic_labels()

@@ -1,6 +1,6 @@
 # v1 Release-Candidate Audit Record
 
-Status: **M3 working record**  
+Status: **`1.0.0-rc.1` final validation record**  
 Audit started: **2026-09-15**  
 Tracking issue: `#25`
 
@@ -10,11 +10,11 @@ This document is non-normative. It records what was checked while preparing the 
 
 At M3 entry:
 
-- M0 repository bootstrap is complete;
-- M1 era/calendar/conversion semantics are complete;
-- M2 pronunciation, Short-4 UX, accessibility, reference implementation, localization framework, and reviewed localization-profile work are complete;
-- all M2 issues are closed;
-- no compatibility-critical month-name search is reopened.
+- M0 repository bootstrap was complete;
+- M1 era/calendar/conversion semantics were complete;
+- M2 pronunciation, Short-4 UX, accessibility, reference implementation, localization framework, and reviewed localization-profile work were complete;
+- all M2 issues were closed;
+- no compatibility-critical month-name search was reopened.
 
 ## Normative specification inventory
 
@@ -43,7 +43,7 @@ Published conformance/decision vectors:
 - `tests/short4-ux-vectors.json`;
 - `tests/accessibility-vectors.json`.
 
-Executable conformance aids include the independent calendar arithmetic oracle, registry/localization/UX/accessibility checks, and `reference/python/tredecadia.py`.
+Executable conformance aids include the independent calendar arithmetic oracle, registry/localization/UX/accessibility checks, RC freeze checks, and `reference/python/tredecadia.py`.
 
 ## Compatibility freeze
 
@@ -62,6 +62,20 @@ M3 adds:
 - actual instance validation for all three published registries.
 
 Project-specific semantic assertions remain in place because JSON Schema alone cannot express every cross-file or mathematical invariant.
+
+## Version and schema relationship audit
+
+The RC specification version is `1.0.0-rc.1` across all registries, published vector sets, normative specification status headers, citation metadata, and public documentation.
+
+Schema versions intentionally remain:
+
+- calendar registry schema: `1`;
+- canonical month registry schema: `3`;
+- localization registry schema: `1`.
+
+A release-version change does not by itself require a schema-version bump. No schema contract changed during the Draft 0.3 → RC version transition.
+
+Registry `status` remains `draft` during the RC. Localization profiles remain `reviewed`, not `stable`. Those states change only as part of the explicit final `v1.0.0` release decision.
 
 ## Repository-local link audit
 
@@ -115,9 +129,19 @@ M2/M3 canonical parsing checks cover:
 - conditional validity of `ED`;
 - strict round-trip conversion across wide positive/negative ranges.
 
+## Deterministic release packaging
+
+`tools/build_release.py` builds `tredecadia-1.0.0-rc.1.tar.gz`, embeds a deterministic `RELEASE-MANIFEST.json`, and emits `SHA256SUMS`.
+
+CI builds the bundle twice in independent temporary directories and requires byte-for-byte identical archives and checksum files. Tar ownership/timestamps and the gzip timestamp/filename fields are normalized.
+
+## Public documentation
+
+GitHub Pages source lives under `docs/`. It is intentionally a navigational/public summary rather than a duplicate normative specification. The canonical source remains `specification/` plus the machine-readable registries. CI checks the duplicated month table on the Pages page against `registry/months.json`.
+
 ## Localization RC state
 
-The three reviewed profiles are intentionally still `reviewed`, not `stable`, during release-candidate preparation:
+The three reviewed profiles are intentionally still `reviewed`, not `stable`, during `1.0.0-rc.1`:
 
 - `ru-Cyrl`;
 - `ja-Kana`;
@@ -129,9 +153,11 @@ Final promotion to `stable` is reserved for the final `v1.0.0` release action. T
 
 Before tagging `v1.0.0-rc.1`:
 
-- complete version/schema relationship audit;
-- transition published artifact version identifiers from Draft 0.3 to the RC identifier in one atomic change;
-- build and reproduce deterministic release artifacts/checksums;
-- finalize the public documentation/Pages structure;
 - run the complete CI suite on the exact RC commit;
-- update issue `#25` with the final audit result.
+- merge that exact reviewed state to `main`;
+- require clean post-merge CI on `main`;
+- verify the tag target equals the clean main commit;
+- publish the RC tag/release and deterministic bundle/checksum artifacts;
+- close issue `#25` with the final audit result.
+
+No compatibility-critical defect was found during the M3 audit. The hardening work exposed missing validation coverage and release engineering gaps rather than semantic inconsistencies.

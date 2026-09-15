@@ -9,7 +9,7 @@ title: Tredecadia
 
 Tredecadia has thirteen equal 28-day months, four complete Monday–Sunday weeks per month, an independent mathematical year coordinate, and internationally neutral canonical month names.
 
-> Pre-1.0 release-candidate work is in progress. Normative source files remain in the repository specifications and machine-readable registries.
+> **Release candidate `1.0.0-rc.1`.** Normative source files remain the repository specifications and machine-readable registries; this page is a navigational summary, not a second copy of the standard.
 
 ## Calendar at a glance
 
@@ -58,17 +58,17 @@ Canonical machine syntax is strict ASCII. Human-facing interfaces may display un
 
 ## Localization
 
-The canonical Latin identifiers are language-neutral. Draft 0.3 has independently reviewed, non-stable display profiles for:
+Release candidate `1.0.0-rc.1` has independently reviewed, non-stable display profiles for:
 
 - Russian Cyrillic (`ru-Cyrl`);
 - Japanese Katakana (`ja-Kana`);
 - Korean Hangul (`ko-Hang`).
 
-Localized spellings are aliases and never change canonical month numbers, Latin names, syllables, Short-6, or Short-4 identifiers.
+Localized spellings are aliases and never change canonical month numbers, Latin names, syllables, Short-6, or Short-4 identifiers. Final `stable` promotion is reserved for `v1.0.0`.
 
 ## Standard and data
 
-The GitHub repository is the canonical source during pre-1.0 development:
+The GitHub repository is the canonical source:
 
 - [Calendar Standard](https://github.com/StanleyLl0yd/tredecadia/blob/main/specification/calendar-standard.md)
 - [Conversion Standard](https://github.com/StanleyLl0yd/tredecadia/blob/main/specification/conversion-standard.md)

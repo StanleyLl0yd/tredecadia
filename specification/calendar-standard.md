@@ -1,6 +1,6 @@
 # Tredecadia Calendar Standard
 
-Status: **Draft 0.3**
+Status: **1.0.0-rc.1**
 
 This document defines the structural calendar model and the Tredecadia Era. Month naming is specified separately in [`month-naming-standard.md`](month-naming-standard.md); civil conversion is specified in [`conversion-standard.md`](conversion-standard.md).
 

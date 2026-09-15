@@ -1,6 +1,6 @@
 # Tredecadia Localization
 
-Status: **Draft 0.3**
+Status: **1.0.0-rc.1**
 
 Localized spellings are display aliases. They do not replace canonical month numbers, Latin names, syllable sequences, Short-6, or Short-4 forms.
 
@@ -14,9 +14,9 @@ Canonical segmental syllables remain identity-critical. Citation pronunciation u
 
 A profile SHOULD document material approximations when its language or script cannot reproduce a canonical sound exactly. Those approximations do not change canonical Tredecadia pronunciation identity.
 
-## Current draft profiles
+## Current release-candidate profiles
 
-Draft 0.3 currently includes three independently reviewed, non-stable display profiles:
+Tredecadia `1.0.0-rc.1` includes three independently reviewed, non-stable display profiles:
 
 - `ru-Cyrl` — Russian Cyrillic — **reviewed** against Russian practical-transcription and orthographic references; `MI/NI` palatalization is explicitly documented as a Russian adaptation;
 - `ja-Kana` — Japanese Katakana — **reviewed** against the Japanese Agency for Cultural Affairs `外来語の表記` guidance;
@@ -24,6 +24,6 @@ Draft 0.3 currently includes three independently reviewed, non-stable display pr
 
 These reviews are evidence-based script/orthography reviews. They do not claim a separate usability study with a panel of native speakers. Evidence and approximation notes are recorded in `registry/localizations.json` and the corresponding rationale files.
 
-No profile is `stable` while Tredecadia and the localization registry remain pre-1.0/draft.
+No profile is `stable` in `1.0.0-rc.1`; final stable promotion is reserved for an explicitly accepted `v1.0.0` release.
 
 Within each profile every registered Full, Short-6, and Short-4 alias MUST map back to exactly one canonical month. Character-by-character reversibility to Latin is not required.

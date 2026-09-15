@@ -38,7 +38,7 @@ def normalize_pairs(pairs: list[tuple[str, str]]) -> list[list[str]]:
 
 
 def main() -> None:
-    assert POLICY["specVersion"] == "0.3.0-draft"
+    assert POLICY["specVersion"] == "1.0.0-rc.1"
     assert POLICY["policyVersion"] == 1
     assert POLICY["preferredConversationalForm"] == "short4"
 
@@ -50,7 +50,6 @@ def main() -> None:
     by_short = {m["short4"]: m for m in MONTHS}
     for month in MONTHS:
         assert month["short4"] == "".join(month["syllables"][:2]).lower().capitalize()
-        # Full, Short-6, and Short-4 necessarily inherit the first canonical syllable.
         assert month["canonical"].lower().startswith(month["short4"].lower())
         assert month["short6"].lower().startswith(month["short4"].lower())
         assert month["citationIpa"].startswith("ˈ")
@@ -68,7 +67,6 @@ def main() -> None:
     assert normalize_pairs(lev1) == expected["characterLevenshtein1"]
     assert normalize_pairs(syllable1) == expected["syllableHamming1"]
 
-    # Every declared pair must consist of valid canonical Short-4 forms.
     for group in expected.values():
         for a, b in group:
             assert a in by_short and b in by_short and a != b

@@ -1,6 +1,6 @@
 # Tredecadia Localization Profiles
 
-Status: **Draft 0.3**
+Status: **1.0.0-rc.1**
 
 Canonical month identity is language-neutral and lives in `registry/months.json`. Localized display aliases live separately in `registry/localizations.json` and never replace canonical month numbers, Latin names, syllable sequences, Short-6, or Short-4 forms.
 
@@ -28,10 +28,10 @@ Before promotion, verify all 13 Full, Short-6, and Short-4 aliases, confirm uniq
 
 Evidence may establish a profile at `reviewed` without claiming that it has undergone a separate native-speaker usability study. Where that distinction matters, the profile notes and rationale MUST say so explicitly.
 
-Draft 0.3 profile status:
+`1.0.0-rc.1` profile status:
 
 - `ru-Cyrl`: `reviewed` using independent Russian practical-transcription and orthographic references; the predictable palatalization in `ми/ни` is explicitly documented;
 - `ja-Kana`: `reviewed` using an independent Japanese government orthographic standards reference;
 - `ko-Hang`: `reviewed` using the Korean National Institute's official IPA-to-Hangul foreign-word rules.
 
-All three remain non-stable until an explicit stable Tredecadia release adopts them.
+All three remain non-stable throughout the release-candidate phase. Promotion to `stable` is a deliberate final `v1.0.0` release action.

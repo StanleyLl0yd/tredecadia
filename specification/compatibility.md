@@ -1,6 +1,6 @@
 # Tredecadia Compatibility Policy
 
-Status: **Draft 0.3 — v1 release-candidate policy**
+Status: **1.0.0-rc.1 — v1 release-candidate policy**
 
 This document defines which Tredecadia properties are intended to become compatibility-critical at the first stable `v1.0.0` release.
 
@@ -100,7 +100,7 @@ At the stable v1 release, profiles explicitly promoted to `stable` become stable
 - adding a new reviewed/stable language or script profile is compatible and does not change canonical month identity;
 - localization MUST NOT change month numbers, canonical Latin names, canonical syllables, or canonical abbreviations.
 
-The `1.0.0-rc.1` preparation phase keeps profiles at `reviewed`; final promotion to `stable` is a `v1.0.0` release action.
+The `1.0.0-rc.1` phase keeps profiles at `reviewed`; final promotion to `stable` is a `v1.0.0` release action.
 
 ## 8. Versioning classes
 
