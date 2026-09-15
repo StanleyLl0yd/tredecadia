@@ -15,6 +15,12 @@ VECTORS = ROOT / "tests" / "test-vectors.json"
 
 INVENTORY = ["MA", "MI", "MU", "NA", "NI", "NU", "SA", "SU", "TA", "YA", "KA", "ZU"]
 BANNED_BIGRAMS = {("MA", "ZU"), ("ZU", "NI"), ("ZU", "MU"), ("NU", "ZU"), ("ZU", "SU"), ("ZU", "YA")}
+IPA = {
+    "MA": "ma", "MI": "mi", "MU": "mu",
+    "NA": "na", "NI": "ni", "NU": "nu",
+    "SA": "sa", "SU": "su", "TA": "ta",
+    "YA": "ja", "KA": "ka", "ZU": "zu",
+}
 
 
 def hamming(a: list[str], b: list[str]) -> int:
@@ -37,20 +43,34 @@ def ssd(counts: Counter[str], positions: int) -> Fraction:
     return sum((Fraction(counts[s]) - mean) ** 2 for s in INVENTORY)
 
 
+def fraction_from_json(value: object) -> Fraction:
+    assert isinstance(value, dict)
+    assert set(value) == {"numerator", "denominator"}
+    numerator = value["numerator"]
+    denominator = value["denominator"]
+    assert isinstance(numerator, int) and not isinstance(numerator, bool)
+    assert isinstance(denominator, int) and not isinstance(denominator, bool)
+    assert denominator > 0
+    return Fraction(numerator, denominator)
+
+
 def cyclic_distance(i: int, j: int, n: int = 13) -> int:
     d = abs(i - j)
     return min(d, n - d)
 
 
-def assert_float(value: float, expected: Fraction) -> None:
-    assert abs(value - float(expected)) < 1e-12, (value, float(expected))
-
-
 def main() -> None:
     data = json.loads(REGISTRY.read_text(encoding="utf-8"))
-    json.loads(SCHEMA.read_text(encoding="utf-8"))  # Syntax check for the published schema.
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     vectors = json.loads(VECTORS.read_text(encoding="utf-8"))
     months = data["months"]
+
+    # Cross-file/version integrity and basic published-schema sanity.
+    assert data["schemaVersion"] == 1
+    assert data["status"] == "draft"
+    assert data["specVersion"] == vectors["specVersion"] == "0.1.0-draft"
+    assert schema["$schema"] == "https://json-schema.org/draft/2020-12/schema"
+    assert schema["properties"]["schemaVersion"]["const"] == data["schemaVersion"]
 
     calendar = vectors["calendar"]
     assert calendar == {
@@ -73,7 +93,9 @@ def main() -> None:
     assert len(set(short6)) == 13
     assert len(set(short4)) == 13
 
+    required_month_keys = {"number", "canonical", "syllables", "ipa", "short6", "short4", "localizations"}
     for month in months:
+        assert set(month) == required_month_keys
         syllables = month["syllables"]
         assert len(syllables) == 5
         assert len(set(syllables)) == 5
@@ -84,13 +106,17 @@ def main() -> None:
         canonical = "".join(syllables).lower().capitalize()
         expected6 = "".join(syllables[:3]).lower().capitalize()
         expected4 = "".join(syllables[:2]).lower().capitalize()
+        expected_ipa = "ˈ" + ".".join(IPA[s] for s in syllables)
         assert month["canonical"] == canonical
         assert month["short6"] == expected6
         assert month["short4"] == expected4
+        assert month["ipa"] == expected_ipa
         assert len(canonical) == 10
         assert len(expected6) == 6
         assert len(expected4) == 4
+        assert isinstance(month["localizations"], dict)
         assert month["localizations"].get("ru")
+        assert all(isinstance(k, str) and isinstance(v, str) and v for k, v in month["localizations"].items())
 
     # Pairwise positional distinguishability.
     for i in range(13):
@@ -105,12 +131,9 @@ def main() -> None:
 
     assert dict(full_counts) == naming["fullFrequencyVector"]
     assert sum(v * v for v in full_counts.values()) == naming["fullSumSquaredCounts"] == 379
-    assert ssd(full_counts, 5) == Fraction(323, 12)
-    assert ssd(short6_counts, 3) == Fraction(41, 4)
-    assert ssd(short4_counts, 2) == Fraction(11, 3)
-    assert_float(naming["fullSsd"], Fraction(323, 12))
-    assert_float(naming["short6Ssd"], Fraction(41, 4))
-    assert_float(naming["short4Ssd"], Fraction(11, 3))
+    assert ssd(full_counts, 5) == fraction_from_json(naming["fullSsd"]) == Fraction(323, 12)
+    assert ssd(short6_counts, 3) == fraction_from_json(naming["short6Ssd"]) == Fraction(41, 4)
+    assert ssd(short4_counts, 2) == fraction_from_json(naming["short4Ssd"]) == Fraction(11, 3)
 
     d2_6: list[list[str]] = []
     d1_4: list[list[str]] = []
