@@ -48,6 +48,6 @@ After the first stable release, month number, canonical Latin name, syllable seq
 
 The full-name syllable-frequency vector is `MA=5, MI=5, MU=5, NA=5, NI=4, NU=8, SA=6, SU=5, TA=4, YA=4, KA=5, ZU=9`.
 
-Full-name balance SSD is `26.916666666666664` (sum of squared counts `379`). Short-6 balance SSD is `10.25`; Short-4 balance SSD is `3.6666666666666665`.
+Full-name balance SSD is exactly `323/12` (approximately `26.9166666666667`), with sum of squared syllable counts `379`. Short-6 balance SSD is exactly `41/4` (`10.25`); Short-4 balance SSD is exactly `11/3` (approximately `3.66666666666667`).
 
 The only Short-6 pair at Levenshtein distance 2 is `Yanimu` / `Yanazu`. The Short-4 pairs at distance 1 are `Nazu` / `Kazu` and `Yani` / `Yana`.
