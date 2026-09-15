@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use Tredecadia in research or software, please cite this repository or the corresponding stable release."
+title: "Tredecadia"
+type: software
+authors:
+  - family-names: "Lloyd"
+    given-names: "Stanley"
+repository-code: "https://github.com/StanleyLl0yd/tredecadia"
+url: "https://github.com/StanleyLl0yd/tredecadia"
+version: "0.1.0-draft"
+date-released: "2026-09-15"

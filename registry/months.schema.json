@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/StanleyLl0yd/tredecadia/raw/main/registry/months.schema.json",
+  "title": "Tredecadia month registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "specVersion", "status", "syllableInventory", "months"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schemaVersion": {"const": 1},
+    "specVersion": {"type": "string", "minLength": 1},
+    "status": {"enum": ["draft", "stable"]},
+    "syllableInventory": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "uniqueItems": true,
+      "items": {"enum": ["MA", "MI", "MU", "NA", "NI", "NU", "SA", "SU", "TA", "YA", "KA", "ZU"]}
+    },
+    "months": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": {"$ref": "#/$defs/month"}
+    }
+  },
+  "$defs": {
+    "month": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["number", "canonical", "syllables", "ipa", "short6", "short4", "localizations"],
+      "properties": {
+        "number": {"type": "integer", "minimum": 1, "maximum": 13},
+        "canonical": {"type": "string", "pattern": "^[A-Z][a-z]{9}$"},
+        "syllables": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": {"enum": ["MA", "MI", "MU", "NA", "NI", "NU", "SA", "SU", "TA", "YA", "KA", "ZU"]}
+        },
+        "ipa": {"type": "string", "minLength": 5},
+        "short6": {"type": "string", "pattern": "^[A-Z][a-z]{5}$"},
+        "short4": {"type": "string", "pattern": "^[A-Z][a-z]{3}$"},
+        "localizations": {
+          "type": "object",
+          "additionalProperties": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}
