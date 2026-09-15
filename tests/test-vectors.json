@@ -11,9 +11,9 @@
   "naming": {
     "fullFrequencyVector": {"MA": 5, "MI": 5, "MU": 5, "NA": 5, "NI": 4, "NU": 8, "SA": 6, "SU": 5, "TA": 4, "YA": 4, "KA": 5, "ZU": 9},
     "fullSumSquaredCounts": 379,
-    "fullSsd": 26.916666666666664,
-    "short6Ssd": 10.25,
-    "short4Ssd": 3.6666666666666665,
+    "fullSsd": {"numerator": 323, "denominator": 12},
+    "short6Ssd": {"numerator": 41, "denominator": 4},
+    "short4Ssd": {"numerator": 11, "denominator": 3},
     "short6LevenshteinDistance2Pairs": [["Yanimu", "Yanazu"]],
     "short4LevenshteinDistance1Pairs": [["Nazu", "Kazu"], ["Yani", "Yana"]]
   },
