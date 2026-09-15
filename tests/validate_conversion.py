@@ -9,7 +9,9 @@ def gd(v): return GregorianDate(v['year'],v['month'],v['day'])
 def td(s):
  m=RX.fullmatch(s)
  if not m: raise ValueError(s)
- y=int(m.group(1)); return TredecadiaDate(y,special=m.group(4)) if m.group(4) else TredecadiaDate(y,int(m.group(2)),int(m.group(3)))
+ y=int(m.group(1))
+ if format_year(y)!=m.group(1): raise ValueError(s)
+ return TredecadiaDate(y,special=m.group(4)) if m.group(4) else TredecadiaDate(y,int(m.group(2)),int(m.group(3)))
 def raises(fn,*a):
  try: fn(*a)
  except ValueError: return
@@ -32,7 +34,8 @@ def main():
  for o in range(gregorian_to_ordinal(-399,3,20),gregorian_to_ordinal(401,3,20)):
   g=ordinal_to_gregorian(o); assert tredecadia_to_gregorian(gregorian_to_tredecadia(g))==g
  assert format_year(0)=='00000' and format_year(-1)=='-00001' and format_year(12025)=='12025'
- raises(td,'0000-EQ'); raises(td,'+00001-EQ'); raises(TredecadiaDate,12023,None,None,'ED')
+ for bad in ('0000-EQ','+00001-EQ','-00000-EQ','000001-EQ','-000001-EQ'): raises(td,bad)
+ raises(TredecadiaDate,12023,None,None,'ED')
  assert gregorian_to_tredecadia(GregorianDate(2026,9,15))==TredecadiaDate(12025,7,11)
  print('Tredecadia Era/conversion validation: OK')
 if __name__=='__main__': main()
