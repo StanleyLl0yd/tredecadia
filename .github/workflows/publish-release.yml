@@ -27,6 +27,8 @@ jobs:
         run: |
           set -euo pipefail
           for test in \
+            tests/validate_v1_identity.py \
+            tests/validate_stable_plan.py \
             tests/validate_schemas.py \
             tests/validate_links.py \
             tests/validate_registry.py \
@@ -44,7 +46,7 @@ jobs:
           done
       - name: Build deterministic release assets
         run: python tools/build_release.py --output-dir dist
-      - name: Publish tag and GitHub prerelease
+      - name: Publish tag and GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

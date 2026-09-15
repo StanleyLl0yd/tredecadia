@@ -7,6 +7,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from release_state import citation_version
+
 ROOT = Path(__file__).resolve().parents[1]
 MONTHS = json.loads((ROOT / "registry/months.json").read_text(encoding="utf-8"))["months"]
 POLICY = json.loads((ROOT / "tests/short4-ux-vectors.json").read_text(encoding="utf-8"))
@@ -38,7 +40,7 @@ def normalize_pairs(pairs: list[tuple[str, str]]) -> list[list[str]]:
 
 
 def main() -> None:
-    assert POLICY["specVersion"] == "1.0.0-rc.1"
+    assert POLICY["specVersion"] == citation_version()
     assert POLICY["policyVersion"] == 1
     assert POLICY["preferredConversationalForm"] == "short4"
 

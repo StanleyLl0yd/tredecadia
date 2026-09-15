@@ -1,5 +1,5 @@
 {
-  "planVersion": 1,
+  "planVersion": 2,
   "identityBaseline": "release/v1-identity.json",
   "sourceRc": {
     "version": "1.0.0-rc.1",
@@ -18,10 +18,15 @@
     {"path": "registry/months.json", "currentStatus": "draft", "targetStatus": "stable"},
     {"path": "registry/localizations.json", "currentStatus": "draft", "targetStatus": "stable"}
   ],
+  "profileDecisionPolicy": {
+    "publicationRequiresNoPending": true,
+    "acceptedStatus": "stable",
+    "rejectedStatus": "reviewed"
+  },
   "localizationProfiles": [
-    {"id": "ru-Cyrl", "currentStatus": "reviewed", "stableDecision": "pending", "targetStatus": "stable"},
-    {"id": "ja-Kana", "currentStatus": "reviewed", "stableDecision": "pending", "targetStatus": "stable"},
-    {"id": "ko-Hang", "currentStatus": "reviewed", "stableDecision": "pending", "targetStatus": "stable"}
+    {"id": "ru-Cyrl", "currentStatus": "reviewed", "stableDecision": "pending", "evidence": []},
+    {"id": "ja-Kana", "currentStatus": "reviewed", "stableDecision": "pending", "evidence": []},
+    {"id": "ko-Hang", "currentStatus": "reviewed", "stableDecision": "pending", "evidence": []}
   ],
   "stableReleaseNotes": "release/notes/1.0.0.md",
   "archivePlan": "release/archive-plan.md",

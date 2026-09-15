@@ -7,6 +7,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from release_state import citation_version, expected_registry_status, is_prerelease
+
 ROOT = Path(__file__).resolve().parents[1]
 MONTH_DATA = json.loads((ROOT / "registry/months.json").read_text(encoding="utf-8"))
 LOC_DATA = json.loads((ROOT / "registry/localizations.json").read_text(encoding="utf-8"))
@@ -38,10 +40,11 @@ def has_evidence(profile: dict, kind: str, url_prefix: str) -> bool:
 
 
 def main() -> None:
+    version = citation_version()
     assert LOC_DATA["schemaVersion"] == 1
     assert LOC_SCHEMA["properties"]["schemaVersion"]["const"] == 1
-    assert LOC_DATA["specVersion"] == MONTH_DATA["specVersion"] == "1.0.0-rc.1"
-    assert LOC_DATA["status"] == "draft"
+    assert LOC_DATA["specVersion"] == MONTH_DATA["specVersion"] == version
+    assert LOC_DATA["status"] == expected_registry_status(version)
     assert LOC_SCHEMA["$schema"] == "https://json-schema.org/draft/2020-12/schema"
 
     assert all("localizations" not in month for month in MONTHS)
@@ -77,7 +80,6 @@ def main() -> None:
         full_values: list[str] = []
         short6_values: list[str] = []
         short4_values: list[str] = []
-
         for alias in aliases:
             month = canonical_by_number[alias["month"]]
             assert alias["full"] == derive(profile, month["syllables"])
@@ -92,7 +94,7 @@ def main() -> None:
         assert len(set(short4_values)) == 13
 
     ru = profile_by_id["ru-Cyrl"]
-    assert ru["review"]["status"] == "reviewed"
+    assert ru["review"]["status"] in {"reviewed", "stable"}
     assert has_evidence(ru, "expert-review", "https://old.bigenc.ru/")
     assert has_evidence(ru, "orthographic-reference", "https://gramota.ru/")
     assert ru["syllableMap"]["MI"] == "ми"
@@ -101,11 +103,11 @@ def main() -> None:
     assert "palatal" in ru["notes"].lower()
 
     ja = profile_by_id["ja-Kana"]
-    assert ja["review"]["status"] == "reviewed"
+    assert ja["review"]["status"] in {"reviewed", "stable"}
     assert has_evidence(ja, "standards-reference", "https://www.bunka.go.jp/")
 
     ko = profile_by_id["ko-Hang"]
-    assert ko["review"]["status"] == "reviewed"
+    assert ko["review"]["status"] in {"reviewed", "stable"}
     assert has_evidence(ko, "standards-reference", "https://www.korean.go.kr/")
     assert ko["syllableMap"] == {
         "MA": "마", "MI": "미", "MU": "무",
@@ -114,10 +116,12 @@ def main() -> None:
         "YA": "야", "KA": "카", "ZU": "주",
     }
 
-    # The v1 release candidate has several independently reviewed profiles
-    # while keeping all of them explicitly non-stable until final v1.0.0.
-    assert sum(profile["review"]["status"] == "reviewed" for profile in profiles) >= 3
-    assert all(profile["review"]["status"] != "stable" for profile in profiles)
+    # Prereleases deliberately keep reviewed profiles non-stable. At a stable
+    # release, exact accepted/rejected maturity is enforced by stable-plan CI.
+    if is_prerelease(version):
+        assert all(profile["review"]["status"] == "reviewed" for profile in profiles)
+    else:
+        assert all(profile["review"]["status"] in {"reviewed", "stable"} for profile in profiles)
 
     print("Tredecadia localization profile validation: OK")
 

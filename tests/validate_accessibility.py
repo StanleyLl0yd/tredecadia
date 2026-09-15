@@ -8,6 +8,8 @@ import json
 import sys
 from pathlib import Path
 
+from release_state import citation_version
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "reference" / "python"))
 
@@ -37,15 +39,13 @@ def validate_display_years() -> None:
             assert ref.format_display_year(year, typographic_minus=False) == str(year)
 
         if item["human"] != item["canonical"]:
-            probe = f"{item['human']}-EQ"
-            assert_rejected(probe)
+            assert_rejected(f"{item['human']}-EQ")
 
 
 def validate_semantic_labels() -> None:
     for item in VECTORS["semanticLabels"]:
         value = ref.parse_tredecadia(item["canonical"])
         assert value.year == item["year"]
-
         if item["kind"] == "intercalary":
             assert value.special in {"EQ", "ED"}
             expanded = {"EQ": "Equinox / New Year Day", "ED": "Earth Day"}[value.special]
@@ -61,7 +61,6 @@ def validate_semantic_labels() -> None:
 def validate_rejections() -> None:
     for value in VECTORS["mustRejectCanonicalParser"]:
         assert_rejected(value)
-
     assert_rejected("−00001-01-01")
     assert_rejected("١٢٠٢٥-07-11")
     assert_rejected("１２０２５-07-11")
@@ -70,24 +69,21 @@ def validate_rejections() -> None:
 def validate_documentation() -> None:
     notation = (ROOT / "specification/date-notation.md").read_text(encoding="utf-8")
     rationale = (ROOT / "rationale/accessibility-years.md").read_text(encoding="utf-8")
-
-    required = [
+    for phrase in (
         "ASCII decimal digits",
         "Unicode MINUS SIGN",
         "Accessible semantic labels",
         "Equinox / New Year Day",
         "Earth Day",
         "forgiving human-input layer",
-    ]
-    for phrase in required:
+    ):
         assert phrase in notation, phrase
-
     for phrase in ("Machine syntax and human presentation", "Negative Tredecadia years", "Strict parsing boundary"):
         assert phrase in rationale, phrase
 
 
 def main() -> None:
-    assert VECTORS["specVersion"] == "1.0.0-rc.1"
+    assert VECTORS["specVersion"] == citation_version()
     assert VECTORS["policy"] == "signed-year-accessibility-v1"
     validate_display_years()
     validate_semantic_labels()

@@ -23,7 +23,6 @@ def sha256(path: Path) -> str:
 
 def main() -> None:
     version = build_release.citation_version()
-    assert version == "1.0.0-rc.1"
 
     with tempfile.TemporaryDirectory() as first_dir, tempfile.TemporaryDirectory() as second_dir:
         first_archive, first_sums = build_release.build_bundle(Path(first_dir), version)
