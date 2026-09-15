@@ -26,8 +26,12 @@ Every Full, Short-6, and Short-4 alias MUST resolve to exactly one month within 
 
 Before promotion, verify all 13 Full, Short-6, and Short-4 aliases, confirm uniqueness and reverse mapping, review material pronunciation/orthography approximations, and record the evidence in the registry. Automatic bulk transliteration cannot bypass this process.
 
+Evidence may establish a profile at `reviewed` without claiming that it has undergone a separate native-speaker usability study. Where that distinction matters, the profile notes and rationale MUST say so explicitly.
+
 Draft 0.3 profile status:
 
-- `ru-Cyrl`: `candidate`;
-- `ja-Kana`: `reviewed` using an independent Japanese government orthographic standards reference; not stable;
-- `ko-Hang`: `reviewed` using the Korean National Institute's official IPA-to-Hangul foreign-word rules; not stable.
+- `ru-Cyrl`: `reviewed` using independent Russian practical-transcription and orthographic references; the predictable palatalization in `ми/ни` is explicitly documented;
+- `ja-Kana`: `reviewed` using an independent Japanese government orthographic standards reference;
+- `ko-Hang`: `reviewed` using the Korean National Institute's official IPA-to-Hangul foreign-word rules.
+
+All three remain non-stable until an explicit stable Tredecadia release adopts them.

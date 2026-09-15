@@ -13,7 +13,26 @@
       "method": "phonemic-transcription",
       "caseTransform": "capitalize-first-codepoint",
       "reverseMapping": "unique-within-profile",
-      "review": {"status": "candidate", "evidence": []},
+      "review": {
+        "status": "reviewed",
+        "evidence": [
+          {
+            "kind": "expert-review",
+            "citation": "Большая российская энциклопедия — «Транскрипция»: practical transcription transfers foreign names/terms through the target-language alphabet and may map phonemes directly when no source spelling is relevant",
+            "url": "https://old.bigenc.ru/linguistics/text/4199684"
+          },
+          {
+            "kind": "orthographic-reference",
+            "citation": "Грамота.ру / Правила русской орфографии — §2 «Буквы а — я, у — ю»: я represents [j]+[a] at word start and after vowels",
+            "url": "https://gramota.ru/biblioteka/spravochniki/pravila-russkoy-orfografii-i-punktuatsii/bukvy-a-ya-u-yu"
+          },
+          {
+            "kind": "orthographic-reference",
+            "citation": "Грамота.ру / Правила русской орфографии — §11 «Буквы и — ы»: и represents /i/ while also marking softness of a preceding paired consonant",
+            "url": "https://gramota.ru/biblioteka/spravochniki/pravila-russkoy-orfografii-i-punktuatsii/bukvy-i-y"
+          }
+        ]
+      },
       "syllableMap": {
         "MA": "ма", "MI": "ми", "MU": "му",
         "NA": "на", "NI": "ни", "NU": "ну",
@@ -35,7 +54,7 @@
         {"month": 12, "full": "Санумиказу", "short6": "Сануми", "short4": "Сану"},
         {"month": 13, "full": "Нимутазуна", "short6": "Нимута", "short4": "Ниму"}
       ],
-      "notes": "Candidate Russian Cyrillic display transcription. Prosody may adapt naturally; canonical Latin identity is unchanged."
+      "notes": "References-reviewed Russian Cyrillic practical transcription. MI/NI written ми/ни normally palatalize the preceding Russian consonant (/mʲi, nʲi/); this is an explicit language-specific approximation of broad canonical /mi, ni/, not a change to Tredecadia identity. YA maps naturally to я for /ja/ after vowels or at word start."
     },
     {
       "id": "ja-Kana",
