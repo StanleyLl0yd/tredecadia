@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/StanleyLl0yd/tredecadia/raw/main/registry/localizations.schema.json",
+  "title": "Tredecadia localization profiles",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "specVersion", "status", "profiles"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schemaVersion": {"const": 1},
+    "specVersion": {"type": "string", "minLength": 1},
+    "status": {"enum": ["draft", "stable"]},
+    "profiles": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/profile"}
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "citation"],
+      "properties": {
+        "kind": {"enum": ["native-speaker-review", "expert-review", "orthographic-reference", "standards-reference", "project-review"]},
+        "citation": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "minLength": 1},
+        "reviewer": {"type": "string", "minLength": 1},
+        "date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"}
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evidence"],
+      "properties": {
+        "status": {"enum": ["candidate", "reviewed", "stable"]},
+        "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"enum": ["reviewed", "stable"]}}},
+          "then": {"properties": {"evidence": {"minItems": 1}}}
+        }
+      ]
+    },
+    "alias": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["month", "full", "short6", "short4"],
+      "properties": {
+        "month": {"type": "integer", "minimum": 1, "maximum": 13},
+        "full": {"type": "string", "minLength": 1},
+        "short6": {"type": "string", "minLength": 1},
+        "short4": {"type": "string", "minLength": 1}
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "languageTag", "script", "direction", "role", "method", "caseTransform", "reverseMapping", "review", "syllableMap", "aliases"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Za-z0-9-]+$"},
+        "languageTag": {"type": "string", "minLength": 2},
+        "script": {"type": "string", "pattern": "^[A-Z][a-z]{3}$"},
+        "direction": {"enum": ["ltr", "rtl"]},
+        "role": {"const": "display-alias"},
+        "method": {"enum": ["transliteration", "phonemic-transcription", "orthographic-adaptation"]},
+        "caseTransform": {"enum": ["none", "capitalize-first-codepoint"]},
+        "reverseMapping": {"const": "unique-within-profile"},
+        "review": {"$ref": "#/$defs/review"},
+        "syllableMap": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["MA", "MI", "MU", "NA", "NI", "NU", "SA", "SU", "TA", "YA", "KA", "ZU"],
+          "properties": {
+            "MA": {"type": "string", "minLength": 1}, "MI": {"type": "string", "minLength": 1}, "MU": {"type": "string", "minLength": 1},
+            "NA": {"type": "string", "minLength": 1}, "NI": {"type": "string", "minLength": 1}, "NU": {"type": "string", "minLength": 1},
+            "SA": {"type": "string", "minLength": 1}, "SU": {"type": "string", "minLength": 1}, "TA": {"type": "string", "minLength": 1},
+            "YA": {"type": "string", "minLength": 1}, "KA": {"type": "string", "minLength": 1}, "ZU": {"type": "string", "minLength": 1}
+          }
+        },
+        "aliases": {"type": "array", "minItems": 13, "maxItems": 13, "items": {"$ref": "#/$defs/alias"}},
+        "notes": {"type": "string"}
+      }
+    }
+  }
+}
