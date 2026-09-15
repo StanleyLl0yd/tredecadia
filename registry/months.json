@@ -1,7 +1,7 @@
 {
   "$schema": "./months.schema.json",
   "schemaVersion": 3,
-  "specVersion": "0.3.0-draft",
+  "specVersion": "1.0.0-rc.1",
   "status": "draft",
   "syllableInventory": ["MA", "MI", "MU", "NA", "NI", "NU", "SA", "SU", "TA", "YA", "KA", "ZU"],
   "pronunciation": {
