@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import re
+import sys
 from dataclasses import dataclass
 
 TE_GREGORIAN_YEAR_OFFSET = 9999
@@ -77,7 +78,7 @@ def _gregorian_ordinal(year: int, month: int, day: int) -> int:
 
 
 def _gregorian_from_ordinal(ordinal: int) -> GregorianDate:
-    # A Gregorian 400-year cycle contains exactly 146097 days.  Locate the
+    # A Gregorian 400-year cycle contains exactly 146097 days. Locate the
     # cycle first, then binary-search only the 400 candidate year starts.
     cycle = ordinal // 146097
     lo = cycle * 400 + 1
@@ -244,8 +245,20 @@ def _build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def _normalize_cli_argv(argv: list[str]) -> list[str]:
+    """Let a negative-year date be used as a positional without explicit ``--``."""
+    if (
+        len(argv) == 2
+        and argv[0] in {"from-gregorian", "to-gregorian"}
+        and argv[1].startswith("-")
+    ):
+        return [argv[0], "--", argv[1]]
+    return argv
+
+
 def main(argv: list[str] | None = None) -> int:
-    args = _build_parser().parse_args(argv)
+    raw_argv = list(sys.argv[1:] if argv is None else argv)
+    args = _build_parser().parse_args(_normalize_cli_argv(raw_argv))
     try:
         if args.command == "from-gregorian":
             print(from_gregorian(parse_gregorian(args.date)).canonical)
