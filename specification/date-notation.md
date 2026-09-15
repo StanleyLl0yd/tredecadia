@@ -10,7 +10,7 @@ Tredecadia year numbering is one integer axis and includes year `0`. BCE/CE nota
 
 ## 2. Canonical year field
 
-The canonical year field contains at least five decimal digits of magnitude.
+The canonical year field contains at least five **ASCII decimal digits** of magnitude.
 
 For non-negative years, no sign is written:
 
@@ -20,13 +20,15 @@ For non-negative years, no sign is written:
 - year `12025` → `12025`;
 - year `100000` → `100000`.
 
-For negative years, a leading ASCII minus sign is followed by at least five digits of magnitude:
+For negative years, a leading ASCII hyphen-minus `-` is followed by at least five ASCII digits of magnitude:
 
 - year `-1` → `-00001`;
 - year `-10000` → `-10000`;
 - year `-100000` → `-100000`.
 
 A leading plus sign is not canonical. Negative zero (`-00000`) is not canonical. Leading zeroes are used only to reach the five-digit minimum; additional redundant leading zeroes are not canonical. Thus year `1` is `00001`, not `000001`.
+
+Canonical machine syntax MUST use ASCII digits `0` through `9` and ASCII `-`. A typographic Unicode minus sign, localized numeral set, grouping separator, or surrounding whitespace is not canonical machine input.
 
 ## 3. Regular dates
 
@@ -64,6 +66,8 @@ Examples:
 - `12025-EQ`;
 - `-00001-EQ`.
 
+`EQ` and `ED` are canonical machine tokens and are case-sensitive.
+
 `Y-EQ` is immediately followed by `Y-01-01`.
 
 In a leap year, `Y-13-28` is followed by `Y-ED`, then `(Y+1)-EQ`.
@@ -89,6 +93,46 @@ Short-4 is the preferred conversational compact form when context already makes 
 The `TE` era suffix MAY be omitted when the Tredecadia context is unambiguous.
 
 In prose where a four-letter month form could be confused with an unrelated ordinary word or name, Short-6 or the full canonical month name SHOULD be preferred.
+
+### 5.1 Human year display
+
+Human-facing presentation MAY suppress canonical leading zeroes. Thus canonical year `00001` may be shown as `1 TE`, while canonical `00000` may be shown as `0 TE`.
+
+For a negative year, human-facing typography MAY use Unicode MINUS SIGN `−` (U+2212), for example `−1 TE`, even though canonical machine syntax remains `-00001`.
+
+Human-friendly display forms are presentation only. They MUST NOT be accepted as alternate canonical identifiers unless an application explicitly performs normalization into the canonical form.
+
+Tredecadia negative years remain Tredecadia Era coordinates. They MUST NOT be relabeled BCE or CE.
+
+### 5.2 Accessible semantic labels
+
+Accessible interfaces SHOULD expose a date as semantic components instead of relying only on punctuation or abbreviations.
+
+For a regular date, the accessible representation SHOULD make available:
+
+- Tredecadia Era identity;
+- the signed integer year value;
+- canonical month identity or localized month alias;
+- day number.
+
+For an intercalary date, `EQ` and `ED` SHOULD be exposed by their names rather than only by the letter tokens:
+
+- `EQ` → **Equinox / New Year Day**;
+- `ED` → **Earth Day**.
+
+Examples of semantic readings in English are:
+
+- `12025-07-11` → “Tredecadia Era, year 12025, month Muyasanumi, day 11”;
+- `00000-EQ` → “Tredecadia Era, year 0, Equinox / New Year Day”;
+- `-00001-01-01` → “Tredecadia Era, year minus 1, month Masanumika, day 1”.
+
+The exact spoken wording MAY be localized. The sign, year value, month/intercalary identity, and day value MUST remain recoverable from the accessible representation.
+
+### 5.3 Forgiving input layers
+
+Applications MAY provide a forgiving human-input layer that accepts typographic minus signs, localized digits, omitted padding, or surrounding whitespace. Such input is outside canonical syntax.
+
+Before storage, comparison, interchange, or signing, a forgiving input layer SHOULD normalize to one canonical Tredecadia representation and SHOULD surface ambiguity rather than silently guessing.
 
 ## 6. Gregorian conversion
 
