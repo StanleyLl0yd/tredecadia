@@ -1,0 +1,40 @@
+{
+  "profile": "fixed-march-equinoctial-m1-proposal",
+  "epoch": {
+    "gregorian": "0001-03-21",
+    "tredecadia": "0001-01-01"
+  },
+  "leapPredicates": [
+    {"tredecadiaYear": 2023, "isLeap": true, "reasonGregorianYear": 2024},
+    {"tredecadiaYear": 2024, "isLeap": false, "reasonGregorianYear": 2025},
+    {"tredecadiaYear": 2099, "isLeap": false, "reasonGregorianYear": 2100},
+    {"tredecadiaYear": 2399, "isLeap": true, "reasonGregorianYear": 2400}
+  ],
+  "pairs": [
+    {"gregorian": "0001-03-21", "tredecadia": "0001-01-01"},
+    {"gregorian": "0002-03-19", "tredecadia": "0001-13-28"},
+    {"gregorian": "0002-03-20", "tredecadia": "0001-EQ"},
+
+    {"gregorian": "2023-03-21", "tredecadia": "2023-01-01"},
+    {"gregorian": "2023-04-17", "tredecadia": "2023-01-28"},
+    {"gregorian": "2023-04-18", "tredecadia": "2023-02-01"},
+    {"gregorian": "2024-02-29", "tredecadia": "2023-13-10"},
+    {"gregorian": "2024-03-18", "tredecadia": "2023-13-28"},
+    {"gregorian": "2024-03-19", "tredecadia": "2023-ED"},
+    {"gregorian": "2024-03-20", "tredecadia": "2023-EQ"},
+    {"gregorian": "2024-03-21", "tredecadia": "2024-01-01"},
+
+    {"gregorian": "2025-03-19", "tredecadia": "2024-13-28"},
+    {"gregorian": "2025-03-20", "tredecadia": "2024-EQ"},
+    {"gregorian": "2025-03-21", "tredecadia": "2025-01-01"},
+
+    {"gregorian": "2100-03-19", "tredecadia": "2099-13-28"},
+    {"gregorian": "2100-03-20", "tredecadia": "2099-EQ"},
+    {"gregorian": "2100-03-21", "tredecadia": "2100-01-01"},
+
+    {"gregorian": "2400-03-18", "tredecadia": "2399-13-28"},
+    {"gregorian": "2400-03-19", "tredecadia": "2399-ED"},
+    {"gregorian": "2400-03-20", "tredecadia": "2399-EQ"},
+    {"gregorian": "2400-03-21", "tredecadia": "2400-01-01"}
+  ]
+}
