@@ -10,6 +10,19 @@ Contributions are welcome, especially for:
 - accessibility and implementation feedback;
 - independent checks of the month-name design constraints.
 
+## RC feedback
+
+For findings against the published release candidate, use the **Tredecadia RC feedback** issue form. Reports may concern correctness, interoperability, localization, accessibility, packaging, the reference implementation, or documentation.
+
+Please report the concrete observation rather than trying to decide release severity yourself. During M4 every report is classified against the frozen v1 identity as one of:
+
+- **compatibility-critical defect** — an existing canonical identifier, valid date mapping, or other frozen v1 contract would need an incompatible correction; this requires another RC rather than a silent stable change;
+- **compatible correction** — a fix can be made without changing the frozen identity;
+- **editorial issue** — wording, translation, navigation, or explanatory material needs improvement without changing behavior;
+- **non-blocking future work** — useful work that does not need to delay v1.0.0.
+
+The machine-readable observation record is `release/rc-observation.json`. Stable publication remains blocked while the observation period is open or a release-blocking report remains unresolved.
+
 ## Before proposing a change
 
 Please distinguish between:
