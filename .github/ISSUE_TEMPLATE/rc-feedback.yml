@@ -1,0 +1,79 @@
+name: Tredecadia RC feedback
+description: Report a correctness, interoperability, localization, accessibility, packaging, or documentation issue found while reviewing v1.0.0-rc.1.
+title: "[RC feedback] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for testing Tredecadia `v1.0.0-rc.1`. Reports from the release-candidate observation period are classified before the stable `v1.0.0` decision.
+
+        Please describe what you observed rather than deciding whether it is release-blocking; maintainers will classify compatibility impact against the frozen v1 identity.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Calendar structure or date conversion
+        - Date syntax or parsing
+        - Month names or abbreviations
+        - Pronunciation or speech recognition
+        - Localization or writing system
+        - Accessibility or human presentation
+        - Schemas, registries, or test vectors
+        - Reference implementation
+        - Packaging or release artifacts
+        - Documentation or translation
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version tested
+      description: Prefer the exact tag, commit, or published archive when known.
+      value: v1.0.0-rc.1
+    validations:
+      required: true
+
+  - type: textarea
+    id: observation
+    attributes:
+      label: What happened?
+      description: Describe the result you observed and what you expected instead.
+      placeholder: Include concrete dates, names, commands, UI text, or data values when relevant.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: How can it be reproduced?
+      description: Give the smallest practical set of steps or inputs. If this is language feedback, include the exact wording and language/script.
+
+  - type: dropdown
+    id: identity-impact
+    attributes:
+      label: Does the issue appear to change an existing valid Tredecadia identifier or date mapping?
+      description: This is only reporter context; final compatibility classification is done during M4 review.
+      options:
+        - "No"
+        - "Yes"
+        - "Unsure"
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment or context
+      description: Optional. Include operating system, library/runtime, locale, timezone, assistive technology, or other context if it matters.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Confirmation
+      options:
+        - label: I checked that this report concerns Tredecadia v1.0.0-rc.1 or a post-RC documentation/tooling change.
+          required: true
