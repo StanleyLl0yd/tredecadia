@@ -2,7 +2,7 @@
 
 Tredecadia is an open 13 × 28 perennial calendar standard with equal months, stable weekdays, a continuous mathematical year coordinate, and internationally neutral month names.
 
-> **Status:** pre-1.0, Draft 0.2. The Tredecadia Era and civil conversion model are defined, but the project is not yet a frozen v1.0 standard.
+> **Status:** pre-1.0, Draft 0.3. The Tredecadia Era and civil conversion model are defined; pronunciation policy is now specified, while localization and final release-candidate review remain open.
 
 ## Core model
 
@@ -51,6 +51,16 @@ Examples:
 | 2026 CE | 2026 | 12025 |
 
 The March-20 anchor is a deterministic **civil convention associated with the March equinox**. It is not a claim that the astronomical equinox instant occurs on March 20 in every year, location, or time scale.
+
+## Month pronunciation
+
+Month identity is the ordered sequence of five canonical CV syllables. Stress is not identity-critical.
+
+Tredecadia's reference/citation pronunciation uses **weak initial prominence on the first syllable**. Full, Short-6, and Short-4 forms keep that same reference-prominence location, so shortening never moves the citation stress.
+
+Short-4 is the preferred conversational compact form when the month context is already clear; Short-6 remains the safer written/display abbreviation where more redundancy helps.
+
+Localized speech may adapt stress, rhythm, and predictable allophony to the target language while preserving the recognizable canonical segmental sequence.
 
 ## Specification
 
