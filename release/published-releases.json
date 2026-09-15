@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "releases": [
+    {
+      "version": "1.0.0-rc.1",
+      "tag": "v1.0.0-rc.1",
+      "commit": "937d8d681fcce6095d6a4d196783136b908c1be5",
+      "publishedAt": "2026-09-15T20:21:58Z",
+      "archive": "tredecadia-1.0.0-rc.1.tar.gz",
+      "archiveSha256": "018a804f518b3cbff402e91f5aba7d7aba05361f6bf4b01de593c8ac17a0abdf"
+    }
+  ]
+}
