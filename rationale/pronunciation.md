@@ -75,4 +75,4 @@ Draft 0.3 makes the distinction machine-readable:
 - `pronunciation.syllableIpa` records the canonical segmental inventory;
 - each month stores `citationIpa` rather than the ambiguous old field name `ipa`.
 
-The month-registry schema is advanced from schema version 1 to schema version 2 during the pre-1.0 period.
+The pronunciation model was introduced in month-registry schema version 2. Schema version 3 keeps the pronunciation model unchanged while moving language-specific display aliases into the separate localization registry.

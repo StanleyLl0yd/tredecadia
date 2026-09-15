@@ -29,15 +29,16 @@ Status: **complete**
 
 Status: **in progress**
 
-Active follow-up work is tracked primarily in issues #6, #8, #13, and #14. Completed M2 work remains documented in closed issues #4, #5, #9, and #10.
+Active localization work is tracked primarily in issues #6 and #14. Completed M2 work is documented in closed issues #4, #5, #8, #9, #10, and #13.
 
 - [x] define pronunciation identity versus citation realization (#4, merged in #11);
 - [x] choose weak initial reference prominence and make it abbreviation-stable (#4, #10, merged in #11);
 - [x] add pronunciation conformance examples for Full / Short-6 / Short-4 (#9, merged in #11);
+- [x] complete compact Short-4 conversational/UI review (#8, merged in #15);
+- [x] define conservative Short-4 fuzzy/voice recognition behavior (#13, merged in #15);
 - [ ] add independently reviewed localization profiles (#6);
-- [ ] define localization profile maturity/evidence rules (#14);
-- [ ] complete compact Short-4 conversational/UI review (#8);
-- [ ] define conservative Short-4 fuzzy/voice recognition behavior (#13);
+- [ ] define localization profile maturity/evidence rules and separated registry (#14, implementation in review);
+- [x] add machine-testable candidate Russian Cyrillic and Japanese Katakana profiles for review (#14, implementation in review);
 - [x] implement a dependency-free Python reference converter (#5, merged in #7);
 - [x] cross-check the reference implementation against the independent M1 oracle and published vectors (#5, merged in #7);
 - [ ] review accessibility and parsing behavior for five-digit/signed years.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the Tredecadia month registry and naming invariants."""
+"""Validate the Tredecadia canonical month registry and naming invariants."""
 
 from __future__ import annotations
 
@@ -57,8 +57,8 @@ def main() -> None:
     vectors = json.loads((ROOT / "tests/test-vectors.json").read_text(encoding="utf-8"))
     months = data["months"]
 
-    assert data["schemaVersion"] == 2
-    assert schema["properties"]["schemaVersion"]["const"] == 2
+    assert data["schemaVersion"] == 3
+    assert schema["properties"]["schemaVersion"]["const"] == 3
     assert data["status"] == "draft"
     assert data["specVersion"] == vectors["specVersion"] == "0.3.0-draft"
     assert schema["$schema"] == "https://json-schema.org/draft/2020-12/schema"
@@ -82,7 +82,7 @@ def main() -> None:
 
     required_keys = {
         "number", "canonical", "syllables", "citationIpa",
-        "short6", "short4", "localizations",
+        "short6", "short4",
     }
     for month in months:
         assert set(month) == required_keys
@@ -101,17 +101,14 @@ def main() -> None:
         assert month["citationIpa"] == f"ˈ{segmental}"
         assert month["citationIpa"].startswith("ˈ" + SYLLABLE_IPA[syllables[0]])
 
-        # Full, Short-6 and Short-4 all inherit the same first syllable and
-        # therefore the same reference prominence location.
         short6_segmental = ".".join(SYLLABLE_IPA[syllable] for syllable in syllables[:3])
         short4_segmental = ".".join(SYLLABLE_IPA[syllable] for syllable in syllables[:2])
         assert f"ˈ{short6_segmental}".startswith("ˈ" + SYLLABLE_IPA[syllables[0]])
         assert f"ˈ{short4_segmental}".startswith("ˈ" + SYLLABLE_IPA[syllables[0]])
 
         assert "ipa" not in month
-        assert month["localizations"].get("ru")
+        assert "localizations" not in month
 
-    # Pairwise positional distinguishability.
     for i in range(13):
         for j in range(i + 1, 13):
             assert hamming(months[i]["syllables"], months[j]["syllables"]) >= 4
@@ -165,7 +162,7 @@ def main() -> None:
         "Yani/Yana": cyclic_distance(index4["Yani"], index4["Yana"]),
     } == cycle["closePairCyclicDistances"]
 
-    print("Tredecadia registry/pronunciation validation: OK")
+    print("Tredecadia canonical month registry validation: OK")
 
 
 if __name__ == "__main__":
