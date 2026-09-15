@@ -86,11 +86,17 @@ def validate_gregorian(year: int, month: int, day: int) -> None:
         raise ValueError("invalid Gregorian day")
 
 
+def days_before_gregorian_year(year: int) -> int:
+    if year < 1:
+        raise ValueError("Gregorian conversion years must be positive")
+    y = year - 1
+    return 365 * y + y // 4 - y // 100 + y // 400
+
+
 def gregorian_to_ordinal(year: int, month: int, day: int) -> int:
     """Return a zero-based ordinal where Gregorian 0001-01-01 is 0."""
     validate_gregorian(year, month, day)
-    y = year - 1
-    result = 365 * y + y // 4 - y // 100 + y // 400
+    result = days_before_gregorian_year(year)
     for m in range(1, month):
         result += gregorian_month_length(year, m)
     return result + day - 1
@@ -100,16 +106,22 @@ def ordinal_to_gregorian(ordinal: int) -> GregorianDate:
     if ordinal < 0:
         raise ValueError("dates before Gregorian 0001-01-01 are outside the v1 domain")
 
-    cycle, remaining = divmod(ordinal, 146097)  # 400 Gregorian years
-    year = cycle * 400 + 1
+    cycle = ordinal // 146097  # 400 Gregorian years
+    low = cycle * 400 + 1
+    high = low + 399
 
-    while True:
-        year_length = 366 if gregorian_is_leap(year) else 365
-        if remaining < year_length:
-            break
-        remaining -= year_length
-        year += 1
+    # Find the unique Gregorian year whose first ordinal is <= ordinal and
+    # whose successor starts after ordinal. Binary search keeps conversion
+    # fast even for expanded year numbers.
+    while low < high:
+        mid = (low + high + 1) // 2
+        if days_before_gregorian_year(mid) <= ordinal:
+            low = mid
+        else:
+            high = mid - 1
 
+    year = low
+    remaining = ordinal - days_before_gregorian_year(year)
     month = 1
     while True:
         length = gregorian_month_length(year, month)
