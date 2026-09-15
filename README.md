@@ -2,7 +2,9 @@
 
 Tredecadia is an open 13 × 28 perennial calendar standard with equal months, stable weekdays, a continuous mathematical year coordinate, and internationally neutral month names.
 
-> **Status: `1.0.0-rc.1` release candidate.** M0–M2 design/review work is complete. The v1 compatibility surface is frozen for release-candidate testing; reviewed localization profiles remain non-stable until final `v1.0.0` acceptance.
+> **Status: `1.0.0-rc.1` release candidate — published.** M0–M3 are complete. The v1 compatibility surface is frozen for release-candidate testing; reviewed localization profiles remain non-stable until final `v1.0.0` acceptance.
+
+Published release: [`v1.0.0-rc.1`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
 
 ## Core model
 
@@ -143,7 +145,13 @@ The reference code supports negative and zero astronomical Gregorian years, nega
 
 The RC CI validates the published JSON Schemas with a Draft 2020-12 implementation, checks local links and duplicated canonical tables, freezes compatibility-critical constants, exhaustively cross-checks calendar conversion windows, and proves that the release bundle is byte-for-byte reproducible.
 
-`tools/build_release.py` creates a deterministic `tredecadia-1.0.0-rc.1.tar.gz` together with `SHA256SUMS`. The archive version is taken from `CITATION.cff`, and its file list is recorded in an embedded `RELEASE-MANIFEST.json`.
+The published prerelease tag points to commit `937d8d681fcce6095d6a4d196783136b908c1be5`. The guarded publication workflow reran the complete release conformance suite, built the deterministic archive, published it with `SHA256SUMS`, downloaded both assets again, and byte-compared them with the local build.
+
+Published archive SHA-256:
+
+`018a804f518b3cbff402e91f5aba7d7aba05361f6bf4b01de593c8ac17a0abdf`
+
+`tools/build_release.py` reproduces `tredecadia-1.0.0-rc.1.tar.gz`; the archive embeds `RELEASE-MANIFEST.json` listing the included source files.
 
 ## Licensing
 
@@ -153,4 +161,4 @@ The licenses do not grant trademark rights in the Tredecadia name or branding.
 
 ## Versioning
 
-This repository is at **`1.0.0-rc.1`**. The compatibility-critical v1 surface is frozen for RC testing, but incompatible corrections remain possible before final `v1.0.0` if the RC uncovers a genuine correctness or interoperability defect.
+The published public version is **`1.0.0-rc.1`**. The compatibility-critical v1 surface is frozen for RC testing, but incompatible corrections remain possible before final `v1.0.0` if public RC review uncovers a genuine correctness or interoperability defect.

@@ -1,6 +1,6 @@
 # Roadmap
 
-Tredecadia is in its first v1 release-candidate cycle. Final `v1.0.0` publication follows only after the RC receives a clean final audit and no compatibility-critical defect is found.
+Tredecadia has published its first v1 release candidate, `v1.0.0-rc.1`. Final `v1.0.0` publication follows only after the RC receives review time and no compatibility-critical defect is found.
 
 ## M0 — Repository bootstrap
 
@@ -47,7 +47,7 @@ All M2 issues are closed. The v1 RC includes pronunciation, conversational Short
 
 ## M3 — v1.0 release candidate
 
-Status: **final validation — `1.0.0-rc.1`, tracked in #25 / PR #26**
+Status: **complete — `v1.0.0-rc.1` published**
 
 - [x] inventory normative specifications and machine-readable artifacts;
 - [x] define and executable-check the v1 compatibility-critical surface;
@@ -59,15 +59,24 @@ Status: **final validation — `1.0.0-rc.1`, tracked in #25 / PR #26**
 - [x] transition every published artifact/specification version to `1.0.0-rc.1` without changing schema versions unnecessarily;
 - [x] implement deterministic release artifacts and SHA-256 checksums;
 - [x] prepare the public documentation / GitHub Pages structure;
-- [ ] run clean CI on the exact final RC commit and again after merge to `main`;
-- [ ] tag and publish `v1.0.0-rc.1` only after those exact-commit checks succeed.
+- [x] pass exact-RC branch CI (run #67), post-merge `main` CI (run #68), publication-gate CI (run #70), and release-target `main` CI (run #71);
+- [x] publish `v1.0.0-rc.1` from commit `937d8d681fcce6095d6a4d196783136b908c1be5` as a GitHub prerelease;
+- [x] attach and re-download/byte-verify the deterministic archive and `SHA256SUMS` in the publication workflow.
+
+The published archive SHA-256 is:
+
+`018a804f518b3cbff402e91f5aba7d7aba05361f6bf4b01de593c8ac17a0abdf`
 
 ## M4 — v1.0 publication
 
-- evaluate RC feedback and reopen M3 only for genuine correctness/interoperability defects;
-- promote explicitly accepted reviewed localization profiles to `stable`;
+Status: **not started — RC observation/review phase**
+
+- collect and evaluate RC feedback; reopen M3 only for genuine correctness/interoperability defects;
+- rerun the compatibility/conversion/localization audits before stable promotion;
+- explicitly decide whether each reviewed localization profile is accepted as `stable` for v1.0;
 - change draft registry status to stable where appropriate;
-- tag `v1.0.0`;
-- publish immutable release artifacts;
-- archive the release with a DOI-capable repository such as Zenodo;
-- publish citation metadata for the stable version.
+- transition version metadata from `1.0.0-rc.1` to `1.0.0` atomically;
+- tag `v1.0.0` only from a clean, fully verified `main` commit;
+- publish immutable release artifacts and checksums;
+- archive the stable release with a DOI-capable repository such as Zenodo;
+- publish final citation metadata for the stable version.
