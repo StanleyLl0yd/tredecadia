@@ -68,6 +68,7 @@ def all_atomic_paths(manifest: dict) -> set[str]:
         atomic["publicationTrigger"],
         atomic["citation"],
         atomic["stableReleaseNotes"],
+        atomic["profileDecisionRecord"],
         *atomic["versionedJson"],
         *atomic["registryStatus"],
         *atomic["specificationStatusHeaders"],
@@ -104,6 +105,7 @@ def validate_manifest_shape(manifest: dict) -> None:
     assert atomic["publicationTrigger"] == "release/publish.json"
     assert atomic["citation"] == "CITATION.cff"
     assert atomic["stableReleaseNotes"] == "release/notes/1.0.0.md"
+    assert atomic["profileDecisionRecord"] == "release/profile-readiness.json"
     assert set(atomic["versionedJson"]) == EXPECTED_VERSIONED_JSON
     assert set(atomic["registryStatus"]) == EXPECTED_REGISTRIES
     assert set(atomic["specificationStatusHeaders"]) == EXPECTED_SPECS
@@ -153,10 +155,15 @@ def validate_current_stage(manifest: dict) -> None:
     atomic = manifest["atomicCandidateCommit"]
     publish = load(atomic["publicationTrigger"])
     stable_plan = load(manifest["preconditions"]["stablePlan"])
+    profile_decisions = load(atomic["profileDecisionRecord"])
     notes = (ROOT / atomic["stableReleaseNotes"]).read_text(encoding="utf-8")
 
     for path in atomic["versionedJson"]:
         assert load(path)["specVersion"] == version, path
+
+    packet_decisions = {entry["id"]: entry["decision"] for entry in profile_decisions["profiles"]}
+    plan_decisions = {entry["id"]: entry["stableDecision"] for entry in stable_plan["localizationProfiles"]}
+    assert packet_decisions == plan_decisions
 
     if version == source:
         assert publish == {
@@ -171,6 +178,7 @@ def validate_current_stage(manifest: dict) -> None:
             assert f"Status: **{source}" in (ROOT / path).read_text(encoding="utf-8"), path
         for path in atomic["publicVersionDocuments"]:
             assert source in (ROOT / path).read_text(encoding="utf-8"), path
+        assert all(decision == "pending" for decision in packet_decisions.values())
         assert "DRAFT — NOT AUTHORIZED FOR PUBLICATION" in notes
         assert stable_plan["publication"]["allowed"] is False
     else:
@@ -187,6 +195,7 @@ def validate_current_stage(manifest: dict) -> None:
             assert f"Status: **{target}" in (ROOT / path).read_text(encoding="utf-8"), path
         for path in atomic["publicVersionDocuments"]:
             assert target in (ROOT / path).read_text(encoding="utf-8"), path
+        assert all(decision in {"accepted", "rejected"} for decision in packet_decisions.values())
         assert "DRAFT — NOT AUTHORIZED FOR PUBLICATION" not in notes
 
     baseline = load(manifest["preconditions"]["identityBaseline"])

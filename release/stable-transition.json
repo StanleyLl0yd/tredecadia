@@ -12,6 +12,7 @@
     "publicationTrigger": "release/publish.json",
     "citation": "CITATION.cff",
     "stableReleaseNotes": "release/notes/1.0.0.md",
+    "profileDecisionRecord": "release/profile-readiness.json",
     "versionedJson": [
       "registry/calendar.json",
       "registry/months.json",

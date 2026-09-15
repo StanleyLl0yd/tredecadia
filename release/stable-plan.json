@@ -25,9 +25,24 @@
     "rejectedStatus": "reviewed"
   },
   "localizationProfiles": [
-    {"id": "ru-Cyrl", "currentStatus": "reviewed", "stableDecision": "pending", "evidence": []},
-    {"id": "ja-Kana", "currentStatus": "reviewed", "stableDecision": "pending", "evidence": []},
-    {"id": "ko-Hang", "currentStatus": "reviewed", "stableDecision": "pending", "evidence": []}
+    {
+      "id": "ru-Cyrl",
+      "currentStatus": "reviewed",
+      "stableDecision": "pending",
+      "evidence": ["release/profile-readiness.json#ru-Cyrl", "rationale/localization-ru-cyrl.md"]
+    },
+    {
+      "id": "ja-Kana",
+      "currentStatus": "reviewed",
+      "stableDecision": "pending",
+      "evidence": ["release/profile-readiness.json#ja-Kana", "rationale/localization-ja-kana.md"]
+    },
+    {
+      "id": "ko-Hang",
+      "currentStatus": "reviewed",
+      "stableDecision": "pending",
+      "evidence": ["release/profile-readiness.json#ko-Hang", "rationale/localization-ko-hang.md"]
+    }
   ],
   "stableReleaseNotes": "release/notes/1.0.0.md",
   "archivePlan": "release/archive-plan.md",
