@@ -29,15 +29,15 @@ Status: **complete**
 
 Status: **in progress**
 
-Tracked separately as issues #4, #5, #6, #8, #9, and #10.
+Active follow-up work is tracked primarily in issues #6 and #8. Completed M2 work remains documented in closed issues #4, #5, #9, and #10.
 
-- [x] define pronunciation identity versus citation realization (#4, implementation in review);
-- [x] choose weak initial reference prominence and make it abbreviation-stable (#4, #10, implementation in review);
-- [x] add pronunciation conformance examples for Full / Short-6 / Short-4 (#9, implementation in review);
+- [x] define pronunciation identity versus citation realization (#4, merged in #11);
+- [x] choose weak initial reference prominence and make it abbreviation-stable (#4, #10, merged in #11);
+- [x] add pronunciation conformance examples for Full / Short-6 / Short-4 (#9, merged in #11);
 - [ ] add independently reviewed localization profiles (#6);
 - [ ] test compact Short-4 forms in realistic conversational and UI contexts (#8);
-- [x] implement a dependency-free Python reference converter (#5, merged);
-- [x] cross-check the reference implementation against the independent M1 oracle and published vectors (#5, merged);
+- [x] implement a dependency-free Python reference converter (#5, merged in #7);
+- [x] cross-check the reference implementation against the independent M1 oracle and published vectors (#5, merged in #7);
 - [ ] review accessibility and parsing behavior for five-digit/signed years.
 
 ## M3 — v1.0 release candidate
