@@ -1,6 +1,6 @@
 # Tredecadia Date Notation
 
-Status: **Draft 0.2**
+Status: **Draft 0.3**
 
 ## 1. Era
 
@@ -78,13 +78,17 @@ A canonical month name may replace the numeric month:
 
 `11 Muyasanumi 12025 TE`
 
-The Short-6 form may be used where context is clear:
+The Short-6 form is the safer written/display abbreviation where more redundancy is useful:
 
 `11 Muyasa 12025 TE`
 
+Short-4 is the preferred conversational compact form when context already makes clear that a Tredecadia month is being named:
+
+`11 Muya 12025 TE`
+
 The `TE` era suffix MAY be omitted when the Tredecadia context is unambiguous.
 
-Short-4 is intended for compact interfaces and should not be used when ambiguity with ordinary prose is likely.
+In prose where a four-letter month form could be confused with an unrelated ordinary word or name, Short-6 or the full canonical month name SHOULD be preferred.
 
 ## 6. Gregorian conversion
 

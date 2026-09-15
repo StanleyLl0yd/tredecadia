@@ -8,9 +8,19 @@ The project follows Semantic Versioning for stable public releases where practic
 
 ### Added
 
+- Draft 0.3 pronunciation model separating segmental month identity from citation prosody.
+- Weak initial citation prominence shared by Full, Short-6, and Short-4 forms.
+- Explicit conversational role for Short-4 and pronunciation conformance examples.
+- Machine-readable pronunciation policy in the month registry and schema version 2.
+- Pronunciation rationale and localization adaptation guidance.
 - Dependency-free Python reference implementation for Tredecadia/Gregorian conversion.
 - Strict canonical Tredecadia parser and small conversion CLI.
 - Reference-implementation conformance tests against published vectors and the independent M1 arithmetic oracle.
+
+### Changed
+
+- Renamed the ambiguous month-registry `ipa` field to `citationIpa` in Draft 0.3.
+- Clarified that stress placement/strength is not identity-critical and may adapt in localized speech.
 
 ## 0.2.0-draft — 2026-09-15
 
