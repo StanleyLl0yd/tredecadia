@@ -20,9 +20,11 @@ A localization MUST NOT silently redefine the canonical Latin spelling, month nu
 
 Tredecadia distinguishes canonical **segmental identity** from a **citation pronunciation**.
 
-The ordered CV syllables are identity-critical. Initial primary stress is only the common citation/reference realization.
+The ordered CV syllables are identity-critical. Tredecadia's citation pronunciation uses **weak initial prominence** on the first syllable, but stress placement or strength is not part of month identity.
 
-A localized spoken form MAY use the stress placement, rhythm, pitch-accent behavior, vowel reduction, and predictable allophony natural to the target language. A difference in stress placement alone MUST NOT create a different month identity.
+A localized spoken form MAY use the stress placement, rhythm, pitch-accent behavior, vowel reduction, and predictable allophony natural to the target language. A difference in stress placement or strength alone MUST NOT create a different month identity.
+
+Full, Short-6, and Short-4 forms inherit the same initial reference-prominence location because every abbreviation is a complete-syllable prefix of the full form. Localization SHOULD preserve that reference pattern when natural, but MAY adapt prosody when the target language strongly favors another realization.
 
 A localization profile SHOULD document systematic approximations when the target language lacks a canonical sound or contrast. Such approximations are properties of the localized profile, not changes to the canonical pronunciation inventory.
 
@@ -50,7 +52,7 @@ Draft 0.3 registers the following Russian display forms:
 
 The Russian display profile maps canonical `YA /ja/` to `Я/я` and `ZU /zu/` to `ЗУ/зу`.
 
-The Russian profile does not impose Tredecadia citation stress as a lexical requirement; ordinary Russian prosodic realization may adapt stress while preserving the recognizable segmental sequence.
+The Russian profile does not impose the citation prominence as a lexical requirement; ordinary Russian prosodic realization may adapt stress while preserving the recognizable segmental sequence.
 
 ## 4. Profile maturity
 
