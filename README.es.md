@@ -2,17 +2,17 @@
 
 [English](README.md) · **Español** · [Todos los idiomas](README.languages.md)
 
-Tredecadia es una propuesta abierta de calendario perpetuo de **13 meses de 28 días**. Todos los meses tienen exactamente cuatro semanas, una misma fecha siempre cae en el mismo día de la semana y los días que ajustan el año quedan fuera de los meses y de la semana de siete días.
+Tredecadia es una propuesta abierta de calendario perpetuo de **13 meses de 28 días**. Todos los meses tienen exactamente cuatro semanas, una misma fecha cae siempre en el mismo día de la semana y los días que ajustan el año quedan fuera de los meses y de la semana de siete días.
 
-> **Versión pública actual: `1.0.0-rc.1`.** Es una versión candidata: la superficie compatible con v1 ya está congelada, pero el proyecto seguirá en observación antes de publicar `v1.0.0`.
+> **Versión pública actual: `1.0.0-rc.1`.** Es una versión candidata previa a `v1.0.0`: la estructura compatible de v1 ya está congelada, pero la versión estable se publicará solo después del periodo de observación y revisión de esta candidata.
 
 ## Cómo funciona
 
 - 13 × 28 = 364 días ordinarios dentro de los meses.
 - Cada mes contiene cuatro semanas completas.
 - El día `01` siempre es lunes y el `28` siempre es domingo.
-- `EQ` — Día del Equinoccio / Año Nuevo — abre cada año y no pertenece a ningún mes ni a la semana.
-- En los años bisiestos aparece además `ED` — Día de la Tierra — después de `13-28` y antes del siguiente `EQ`.
+- `EQ` — **Día del Equinoccio / Año Nuevo** — abre cada año y no pertenece a ningún mes ni a la semana.
+- En los años bisiestos aparece además `ED` — **Día de la Tierra** — después de `13-28` y antes del siguiente `EQ`.
 
 Año ordinario:
 
@@ -24,19 +24,21 @@ Año bisiesto:
 
 ## Era Tredecadia
 
-Tredecadia usa una única línea numérica de años y dispone de un **año 0 real**. Dentro del propio calendario no hace falta dividir el tiempo en BCE/CE.
+Tredecadia usa una única línea numérica de años y dispone de un **año 0 real**. Dentro del propio calendario no hace falta dividir el tiempo en «antes de la era común» y «era común».
+
+Las siglas inglesas **BCE/CE** significan **Before Common Era / Common Era**, es decir, «antes de la era común / era común».
 
 El origen matemático es:
 
 `TE 00000-EQ ↔ año gregoriano astronómico -9999, 20 de marzo`
 
-Eso corresponde a lo que normalmente se denomina **10000 BCE**. No se afirma que sea el comienzo de la humanidad, de la civilización o de ningún proceso histórico: es simplemente el cero matemático de la escala de Tredecadia.
+En la notación histórica habitual esto corresponde a **10000 antes de la era común (`10000 BCE`)**. No se afirma que sea el comienzo de la humanidad, de la civilización ni de ningún proceso histórico: es simplemente el cero matemático de la escala de Tredecadia.
 
 Para la conversión civil:
 
 `año TE = año gregoriano astronómico + 9999`
 
-Por eso 2026 corresponde a **TE 12025**.
+Por eso, el año 2026 de la era común corresponde a **TE 12025**.
 
 ## Formato de fecha
 
@@ -44,11 +46,13 @@ El formato canónico de intercambio usa ASCII estricto y un campo de año de al 
 
 `12025-07-11` · `00000-EQ` · `-00001-01-01`
 
-Las interfaces para personas pueden omitir los ceros iniciales y usar un signo menos tipográfico. Son formas de presentación, no identificadores alternativos.
+Las interfaces para personas pueden omitir los ceros iniciales y usar un signo menos tipográfico en los años negativos. Son formas de presentación, no identificadores alternativos.
 
 ## Meses
 
-| # | Nombre | Short-6 | Short-4 |
+Los nombres de los meses son identificadores internacionales y se conservan en su grafía latina canónica.
+
+| # | Nombre completo | Forma de 3 sílabas (`Short-6`) | Forma de 2 sílabas (`Short-4`) |
 |---:|---|---|---|
 | 01 | Masanumika | Masanu | Masa |
 | 02 | Tasuzunumu | Tasuzu | Tasu |
@@ -64,13 +68,13 @@ Las interfaces para personas pueden omitir los ceros iniciales y usar un signo m
 | 12 | Sanumikazu | Sanumi | Sanu |
 | 13 | Nimutazuna | Nimuta | Nimu |
 
-En conversación se prefiere la forma de cuatro letras cuando el contexto ya deja claro que se habla de un mes. La pronunciación de referencia usa una **ligera prominencia en la primera sílaba**; el acento no forma parte de la identidad del nombre.
+En conversación se prefiere la forma de dos sílabas cuando el contexto ya deja claro que se habla de un mes. La pronunciación de referencia usa una **ligera prominencia en la primera sílaba**; el acento no forma parte de la identidad del nombre.
 
 ## Especificación y código
 
 El conversor de referencia en Python está en [`reference/python/tredecadia.py`](reference/python/tredecadia.py). La especificación normativa vive en [`specification/`](specification/) y los registros para máquinas en [`registry/`](registry/).
 
-Este README está redactado para sonar natural en español; es una introducción para lectores y no sustituye la especificación normativa.
+Este README está redactado para lectores hispanohablantes y no sustituye la especificación normativa.
 
 ## Licencias
 

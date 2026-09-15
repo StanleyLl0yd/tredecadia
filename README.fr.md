@@ -4,15 +4,15 @@
 
 Tredecadia est un projet ouvert de calendrier perpétuel fondé sur **13 mois de 28 jours**. Chaque mois compte exactement quatre semaines, une même date tombe toujours le même jour de la semaine et les jours d’ajustement de l’année sont placés hors des mois et hors du cycle hebdomadaire.
 
-> **Version publique actuelle : `1.0.0-rc.1`.** Il s’agit d’une release candidate : la surface de compatibilité de la v1 est déjà gelée, mais une période d’observation précède encore la publication de `v1.0.0`.
+> **Version publique actuelle : `1.0.0-rc.1`.** Il s’agit d’une version candidate avant la publication stable `v1.0.0`. La surface de compatibilité de la v1 est déjà gelée, mais une période d’observation et de vérification reste en cours.
 
 ## Principe
 
 - 13 × 28 = 364 jours réguliers dans les mois.
 - Chaque mois contient quatre semaines complètes.
 - Le `01` est toujours un lundi et le `28` un dimanche.
-- `EQ` — Jour de l’équinoxe / Nouvel An — ouvre chaque année et n’appartient ni à un mois ni à la semaine.
-- Les années bissextiles ajoutent `ED` — Jour de la Terre — après `13-28` et juste avant le `EQ` suivant.
+- `EQ` — **Jour de l’équinoxe / Nouvel An** — ouvre chaque année et n’appartient ni à un mois ni à la semaine.
+- Les années bissextiles ajoutent `ED` — **Jour de la Terre** — après `13-28` et juste avant le `EQ` suivant.
 
 Année ordinaire :
 
@@ -24,19 +24,21 @@ Année bissextile :
 
 ## Ère Tredecadia
 
-Tredecadia utilise une seule coordonnée entière pour les années, avec une **véritable année 0**. Le calendrier n’a donc pas besoin d’une séparation interne BCE/CE.
+Tredecadia utilise une seule coordonnée entière pour les années, avec une **véritable année 0**. Le calendrier n’a donc pas besoin de séparer son propre décompte en « avant l’ère commune » et « ère commune ».
+
+Les sigles anglais **BCE/CE** signifient **Before Common Era / Common Era**, c’est-à-dire « avant l’ère commune / ère commune ».
 
 Origine mathématique :
 
 `TE 00000-EQ ↔ année grégorienne astronomique -9999, 20 mars`
 
-Cela correspond à ce qu’on appelle habituellement **10000 BCE**. Ce point d’origine ne prétend marquer ni le début de l’humanité, ni celui de la civilisation, ni un événement historique particulier : c’est uniquement le zéro mathématique de l’échelle Tredecadia.
+Dans la notation historique usuelle, cela correspond à **10000 avant l’ère commune (`10000 BCE`)**. Ce point d’origine ne prétend marquer ni le début de l’humanité, ni celui de la civilisation, ni un événement historique particulier : c’est uniquement le zéro mathématique de l’échelle Tredecadia.
 
 Pour la conversion civile :
 
 `année TE = année grégorienne astronomique + 9999`
 
-Ainsi, 2026 correspond à **TE 12025**.
+Ainsi, l’année 2026 de l’ère commune correspond à **TE 12025**.
 
 ## Écriture des dates
 
@@ -44,11 +46,13 @@ Le format canonique d’échange est en ASCII strict, avec au moins cinq chiffre
 
 `12025-07-11` · `00000-EQ` · `-00001-01-01`
 
-Une interface humaine peut masquer les zéros initiaux et employer un vrai signe moins typographique. Il s’agit uniquement de présentation, pas d’un second format canonique.
+Une interface destinée aux personnes peut masquer les zéros initiaux et employer un vrai signe moins typographique. Il s’agit uniquement de présentation, pas d’un second format canonique.
 
 ## Mois
 
-| # | Nom | Short-6 | Short-4 |
+Les noms des mois sont des identifiants internationaux. En français, on conserve leur forme latine canonique.
+
+| # | Nom complet | Forme à 3 syllabes (`Short-6`) | Forme à 2 syllabes (`Short-4`) |
 |---:|---|---|---|
 | 01 | Masanumika | Masanu | Masa |
 | 02 | Tasuzunumu | Tasuzu | Tasu |
@@ -64,13 +68,13 @@ Une interface humaine peut masquer les zéros initiaux et employer un vrai signe
 | 12 | Sanumikazu | Sanumi | Sanu |
 | 13 | Nimutazuna | Nimuta | Nimu |
 
-À l’oral, la forme sur quatre lettres est privilégiée lorsque le contexte indique déjà qu’il s’agit d’un mois. La prononciation de référence donne **une légère proéminence à la première syllabe** ; l’accent n’est pas un élément distinctif du nom.
+À l’oral, la forme à deux syllabes est privilégiée lorsque le contexte indique déjà qu’il s’agit d’un mois. La prononciation de référence donne **une légère proéminence à la première syllabe** ; l’accent n’est pas un élément distinctif du nom.
 
 ## Spécification et code
 
-Le convertisseur Python de référence se trouve dans [`reference/python/tredecadia.py`](reference/python/tredecadia.py). Les textes normatifs sont dans [`specification/`](specification/) et les registres machine dans [`registry/`](registry/).
+Le convertisseur Python de référence se trouve dans [`reference/python/tredecadia.py`](reference/python/tredecadia.py). Les textes normatifs sont dans [`specification/`](specification/) et les registres lisibles par machine dans [`registry/`](registry/).
 
-Ce README a été rédigé pour être naturel en français ; il sert d’introduction et ne remplace pas la spécification normative.
+Ce README est une introduction rédigée pour des lecteurs francophones ; il ne remplace pas la spécification normative.
 
 ## Licences
 
