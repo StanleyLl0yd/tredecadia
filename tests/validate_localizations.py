@@ -29,9 +29,9 @@ def derive(profile: dict, syllables: list[str]) -> str:
     return apply_case(raw, profile["caseTransform"])
 
 
-def has_standards_evidence(profile: dict, url_prefix: str) -> bool:
+def has_evidence(profile: dict, kind: str, url_prefix: str) -> bool:
     return any(
-        evidence["kind"] == "standards-reference"
+        evidence["kind"] == kind
         and evidence.get("url", "").startswith(url_prefix)
         for evidence in profile["review"]["evidence"]
     )
@@ -50,7 +50,7 @@ def main() -> None:
     assert profiles
     ids = [profile["id"] for profile in profiles]
     assert len(ids) == len(set(ids))
-    assert {"ru-Cyrl", "ja-Kana", "ko-Hang"} <= set(ids)
+    assert set(ids) == {"ru-Cyrl", "ja-Kana", "ko-Hang"}
 
     canonical_by_number = {month["number"]: month for month in MONTHS}
     profile_by_id = {profile["id"]: profile for profile in profiles}
@@ -91,21 +91,33 @@ def main() -> None:
         assert len(set(short6_values)) == 13
         assert len(set(short4_values)) == 13
 
-    assert profile_by_id["ru-Cyrl"]["review"]["status"] == "candidate"
+    ru = profile_by_id["ru-Cyrl"]
+    assert ru["review"]["status"] == "reviewed"
+    assert has_evidence(ru, "expert-review", "https://old.bigenc.ru/")
+    assert has_evidence(ru, "orthographic-reference", "https://gramota.ru/")
+    assert ru["syllableMap"]["MI"] == "ми"
+    assert ru["syllableMap"]["NI"] == "ни"
+    assert ru["syllableMap"]["YA"] == "я"
+    assert "palatal" in ru["notes"].lower()
 
     ja = profile_by_id["ja-Kana"]
     assert ja["review"]["status"] == "reviewed"
-    assert has_standards_evidence(ja, "https://www.bunka.go.jp/")
+    assert has_evidence(ja, "standards-reference", "https://www.bunka.go.jp/")
 
     ko = profile_by_id["ko-Hang"]
     assert ko["review"]["status"] == "reviewed"
-    assert has_standards_evidence(ko, "https://www.korean.go.kr/")
+    assert has_evidence(ko, "standards-reference", "https://www.korean.go.kr/")
     assert ko["syllableMap"] == {
         "MA": "마", "MI": "미", "MU": "무",
         "NA": "나", "NI": "니", "NU": "누",
         "SA": "사", "SU": "수", "TA": "타",
         "YA": "야", "KA": "카", "ZU": "주",
     }
+
+    # Draft 0.3 now has several independently reviewed profiles while keeping
+    # all of them explicitly non-stable until the stable Tredecadia release.
+    assert sum(profile["review"]["status"] == "reviewed" for profile in profiles) >= 3
+    assert all(profile["review"]["status"] != "stable" for profile in profiles)
 
     print("Tredecadia localization profile validation: OK")
 
