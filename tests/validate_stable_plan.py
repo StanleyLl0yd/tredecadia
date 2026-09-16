@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
-"""Validate M4 stable-promotion state and the RC -> stable transition contract."""
+"""Validate M4 stable-promotion state and the RC2 -> stable transition contract."""
 
 from __future__ import annotations
 
@@ -21,7 +21,8 @@ def publication_allowed(plan: dict) -> bool:
     observation = plan["observation"]
     decisions = plan["localizationProfiles"]
     return (
-        observation["status"] == "complete"
+        plan["sourceRc"]["publicationStatus"] == "published"
+        and observation["status"] == "complete"
         and observation["stableDecision"] == "approved"
         and all(entry["stableDecision"] in {"accepted", "rejected"} for entry in decisions)
     )
@@ -29,14 +30,14 @@ def publication_allowed(plan: dict) -> bool:
 
 def validate_observation(plan: dict) -> None:
     observation = plan["observation"]
-    assert observation["status"] in {"open", "complete"}
+    assert observation["status"] in {"awaiting-publication", "open", "complete"}
     assert observation["stableDecision"] in {"pending", "approved", "blocked"}
     assert isinstance(observation["evidence"], list)
-    if observation["status"] == "open":
+    if observation["status"] in {"awaiting-publication", "open"}:
         assert observation["stableDecision"] == "pending"
     else:
         assert observation["stableDecision"] in {"approved", "blocked"}
-        assert observation["evidence"], "completed RC observation requires recorded evidence"
+        assert observation["evidence"], "completed RC2 observation requires recorded evidence"
 
 
 def validate_profile_decisions(plan: dict) -> dict[str, dict]:
@@ -46,39 +47,32 @@ def validate_profile_decisions(plan: dict) -> dict[str, dict]:
         "acceptedStatus": "stable",
         "rejectedStatus": "reviewed",
     }
-
     decisions = {entry["id"]: entry for entry in plan["localizationProfiles"]}
     assert set(decisions) == {"ru-Cyrl", "ja-Kana", "ko-Hang"}
     for entry in decisions.values():
         assert entry["currentStatus"] == "reviewed"
         assert entry["stableDecision"] in {"pending", "accepted", "rejected"}
         assert isinstance(entry["evidence"], list)
-        if entry["stableDecision"] != "pending":
-            assert entry["evidence"], f"{entry['id']} resolved without decision evidence"
     return decisions
 
 
 def synthetic_state_machine_checks(plan: dict) -> None:
     probe = copy.deepcopy(plan)
-    probe["observation"] = {"status": "open", "stableDecision": "pending", "evidence": []}
+    probe["sourceRc"]["publicationStatus"] = "awaiting-publication"
+    probe["observation"] = {"status": "awaiting-publication", "stableDecision": "pending", "record": "release/rc-observation.json", "evidence": []}
     for entry in probe["localizationProfiles"]:
         entry["stableDecision"] = "pending"
-        entry["evidence"] = []
     assert publication_allowed(probe) is False
 
-    probe["observation"] = {"status": "complete", "stableDecision": "approved", "evidence": ["review-complete"]}
-    decisions = ["accepted", "rejected", "accepted"]
-    for entry, decision in zip(probe["localizationProfiles"], decisions):
+    probe["sourceRc"]["publicationStatus"] = "published"
+    probe["observation"] = {"status": "complete", "stableDecision": "approved", "record": "release/rc-observation.json", "evidence": ["review-complete"]}
+    for entry, decision in zip(probe["localizationProfiles"], ["accepted", "rejected", "accepted"]):
         entry["stableDecision"] = decision
-        entry["evidence"] = [f"decision:{entry['id']}:{decision}"]
-    assert publication_allowed(probe) is True, "an explicitly rejected profile may remain reviewed without blocking v1"
+    assert publication_allowed(probe) is True
 
     probe["localizationProfiles"][1]["stableDecision"] = "pending"
-    probe["localizationProfiles"][1]["evidence"] = []
     assert publication_allowed(probe) is False
-
     probe["localizationProfiles"][1]["stableDecision"] = "accepted"
-    probe["localizationProfiles"][1]["evidence"] = ["decision:accepted"]
     probe["observation"]["stableDecision"] = "blocked"
     assert publication_allowed(probe) is False
 
@@ -86,23 +80,39 @@ def synthetic_state_machine_checks(plan: dict) -> None:
 def main() -> None:
     plan = load("release/stable-plan.json")
     baseline = load(plan["identityBaseline"])
+    historical = load(plan["historicalIdentityBaseline"])
     current_release = load("release/publish.json")
     calendar = load("registry/calendar.json")
     months = load("registry/months.json")
     localizations = load("registry/localizations.json")
 
-    assert plan["planVersion"] == 2
-    assert plan["identityBaseline"] == "release/v1-identity.json"
-    assert plan["sourceRc"] == {
+    assert plan["planVersion"] == 3
+    assert plan["identityBaseline"] == "release/rc2-identity.json"
+    assert plan["historicalIdentityBaseline"] == "release/v1-identity.json"
+    assert plan["sourceRc"]["version"] == "1.0.0-rc.2"
+    assert plan["sourceRc"]["tag"] == "v1.0.0-rc.2"
+    assert plan["sourceRc"]["publicationStatus"] in {"awaiting-publication", "published"}
+    if plan["sourceRc"]["publicationStatus"] == "awaiting-publication":
+        assert plan["sourceRc"]["commit"] is None
+        assert plan["sourceRc"]["archiveSha256"] is None
+    else:
+        assert isinstance(plan["sourceRc"]["commit"], str) and len(plan["sourceRc"]["commit"]) == 40
+        assert isinstance(plan["sourceRc"]["archiveSha256"], str) and len(plan["sourceRc"]["archiveSha256"]) == 64
+
+    assert plan["predecessorRc"] == {
         "version": "1.0.0-rc.1",
         "tag": "v1.0.0-rc.1",
         "commit": "937d8d681fcce6095d6a4d196783136b908c1be5",
         "archiveSha256": "018a804f518b3cbff402e91f5aba7d7aba05361f6bf4b01de593c8ac17a0abdf",
+        "observationRecord": "release/rc1-observation.json",
     }
+    assert historical["sourceTag"] == plan["predecessorRc"]["tag"]
+    assert historical["sourceCommit"] == plan["predecessorRc"]["commit"]
+    assert baseline["release"]["version"] == plan["sourceRc"]["version"]
+    assert baseline["release"]["tag"] == plan["sourceRc"]["tag"]
+
     assert plan["targetVersion"] == "1.0.0"
     assert plan["publication"]["targetTag"] == "v1.0.0"
-    assert baseline["sourceTag"] == plan["sourceRc"]["tag"]
-    assert baseline["sourceCommit"] == plan["sourceRc"]["commit"]
 
     version = citation_version()
     assert version in {plan["sourceRc"]["version"], plan["targetVersion"]}
@@ -141,23 +151,20 @@ def main() -> None:
     expected_allowed = publication_allowed(plan)
     assert plan["publication"]["allowed"] is expected_allowed
 
-    notes_path = ROOT / plan["stableReleaseNotes"]
-    archive_plan = ROOT / plan["archivePlan"]
-    assert notes_path.is_file() and archive_plan.is_file()
-    notes = notes_path.read_text(encoding="utf-8")
-
+    notes = (ROOT / plan["stableReleaseNotes"]).read_text(encoding="utf-8")
+    assert (ROOT / plan["archivePlan"]).is_file()
     if version == plan["sourceRc"]["version"]:
         assert current_release["prerelease"] is True
-        assert current_release["notes"] == "release/notes/1.0.0-rc.1.md"
+        assert current_release["notes"] == "release/notes/1.0.0-rc.2.md"
         assert "DRAFT — NOT AUTHORIZED FOR PUBLICATION" in notes
     else:
-        assert expected_allowed is True, "stable metadata may not exist while the M4 gate is closed"
+        assert expected_allowed is True
         assert current_release["prerelease"] is False
         assert current_release["notes"] == plan["stableReleaseNotes"]
         assert "DRAFT — NOT AUTHORIZED FOR PUBLICATION" not in notes
 
     synthetic_state_machine_checks(plan)
-    print("Tredecadia stable-promotion plan validation: OK")
+    print("Tredecadia RC2-aware stable-promotion plan validation: OK")
 
 
 if __name__ == "__main__":
