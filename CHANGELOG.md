@@ -8,23 +8,56 @@ The project follows Semantic Versioning for stable public releases where practic
 
 ### Added
 
-- Executable M4 stable-promotion state machine, immutable v1 identity baseline, and atomic RC-to-stable transition manifest.
-- Machine-readable 14-day RC observation record and structured GitHub RC feedback form.
+- Executable M4 stable-promotion state machine, immutable release identity records, and atomic RC-to-stable transition manifests.
+- Machine-readable RC observation records and structured GitHub RC feedback form.
 - Nineteen natural-language README editions in addition to English, with CI checks for canonical facts and release-version synchronization.
 - Reviewed local-script month presentation in Russian, Japanese, and Korean README editions, while avoiding unreviewed script transliterations elsewhere.
-- GitHub Pages build/deployment workflow and CI-checked public navigation page; deployment remains manually gated until the repository's one-time Pages setting is enabled.
+- GitHub Pages build/deployment workflow, CI-checked public navigation page, and verified live deployment.
 - Immutable `release/published-releases.json` record for published tag/commit/archive identities.
 - Published-release source-lock checks in ordinary CI and the guarded release workflow.
 
 ### Changed
 
 - Expanded and localized BCE/CE explanations and removed avoidable English prose fragments from non-English README editions.
-- Release-bundle reproducibility CI now uses an explicitly unpublished snapshot version when testing the evolving default branch.
-- Stable publication now reruns Pages, RC-observation, and published-release source-lock gates in addition to the existing conformance suite.
+- Release-bundle reproducibility CI uses an explicitly unpublished snapshot version when testing the evolving default branch.
+- Stable publication reruns Pages, RC-observation, and published-release source-lock gates in addition to the existing conformance suite.
 
 ### Fixed
 
 - Prevented a post-release source tree from creating a different archive under an already-published version name; historical published artifacts must be reproduced from their exact recorded source commit/tag.
+
+## 1.0.0-rc.2 — 2026-09-16
+
+Second v1 release candidate. RC2 makes one explicit compatibility-critical correction before stable `v1.0.0`: English weekday labels are replaced as canonical identity by seven internationally neutral weekday identifiers and names.
+
+### Added
+
+- Stable machine weekday identifiers `W1` through `W7`.
+- Canonical weekday names in order: `Mene`, `Noko`, `Kese`, `Zoyo`, `Sote`, `Yemo`, `Toze`.
+- Two-syllable weekday identity with a weekday-only `E/O` vowel space and weak initial citation prominence.
+- Exact structural/lexical candidate record and executable weekday-distance validation.
+- Explicit RC1 → RC2 compatibility-transition manifest proving that month identity, era/conversion, date grammar, intercalary semantics, and reviewed month-localization maps remain unchanged.
+- Dedicated RC2 identity candidate while preserving the published RC1 identity record as immutable history.
+- Archived RC1 observation record and a fresh RC2 observation gate that cannot begin until RC2 is actually published.
+
+### Changed
+
+- Calendar registry schema advances from version `1` to version `2`: `regularGrid.weekdays` is now seven structured canonical weekday records rather than seven English strings.
+- Regular month day `01` is now specified as `W1` / Mene and day `28` as `W7` / Toze; weekday positions remain the same seven-day structural cycle.
+- Compatibility policy now freezes weekday IDs, order, ASCII canonical names, and ordered two-syllable identities as part of stable v1 identity.
+- All public specification and conformance metadata advances from `1.0.0-rc.1` to `1.0.0-rc.2`; month schema remains `3` and localization schema remains `1`.
+- Stable-release planning now targets the published RC2 identity and requires a new minimum one-full-day RC2 observation period before `v1.0.0` can be approved.
+
+### Preserved
+
+- 13 × 28 regular grid and four seven-day weeks per month.
+- All 13 canonical month names, syllables, Short-6 and Short-4 forms.
+- `EQ` / `ED` placement and semantics.
+- Tredecadia Era, real year `0`, epoch, leap rule, and civil conversion formulas.
+- Canonical date grammar and month pronunciation policy.
+- Existing reviewed `ru-Cyrl`, `ja-Kana`, and `ko-Hang` month-localization mappings; RC2 does not invent unreviewed weekday aliases.
+
+The published `v1.0.0-rc.1` tag, source commit, release assets, and checksum remain immutable historical artifacts.
 
 ## 1.0.0-rc.1 — 2026-09-15
 
