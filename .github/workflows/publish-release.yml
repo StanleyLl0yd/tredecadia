@@ -32,6 +32,7 @@ jobs:
             tests/validate_stable_plan.py \
             tests/validate_profile_readiness.py \
             tests/validate_rc_observation.py \
+            tests/validate_stable_preflight.py \
             tests/validate_transition_manifest.py \
             tests/validate_readme_locales.py \
             tests/validate_pages.py \

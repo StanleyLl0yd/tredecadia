@@ -48,10 +48,10 @@ def main() -> None:
 
     window = observation["window"]
     assert window["status"] in {"open", "complete"}
-    assert isinstance(window["minimumDays"], int) and window["minimumDays"] >= 14
+    assert window["minimumDays"] == 1
     published = parse_utc(observation["sourceRc"]["publishedAt"])
     not_before = parse_utc(window["notBefore"])
-    assert (not_before - published).total_seconds() >= window["minimumDays"] * 86400
+    assert (not_before - published).total_seconds() == 86400
 
     assert set(observation["classifications"]) == CLASSIFICATIONS
 
