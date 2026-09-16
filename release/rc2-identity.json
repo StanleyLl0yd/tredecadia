@@ -3,7 +3,10 @@
   "release": {
     "version": "1.0.0-rc.2",
     "tag": "v1.0.0-rc.2",
-    "publicationStatus": "awaiting-publication"
+    "publicationStatus": "published",
+    "commit": "b816d613618d51515d910e0d3bdb9d2f211b6d22",
+    "publishedAt": "2026-09-16T09:44:59Z",
+    "archiveSha256": "23e40180098c656c88aa4ba27c6989ac053d9ce8b8029c9ce2e3b16946bf32ec"
   },
   "historicalPredecessor": "release/v1-identity.json",
   "schemaVersions": {
