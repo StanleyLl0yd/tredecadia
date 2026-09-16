@@ -1,6 +1,6 @@
 # Roadmap
 
-Tredecadia published `v1.0.0-rc.1` and subsequently identified one deliberate pre-stable compatibility correction: replace English weekday labels with internationally neutral canonical weekday identities. `v1.0.0-rc.2` carries that correction; final `v1.0.0` follows only after RC2 publication, a fresh observation period, and explicit stable decisions.
+Tredecadia has published two immutable v1 release candidates. `v1.0.0-rc.2` carries the deliberate pre-stable compatibility correction that replaces the English weekday labels used by RC1 with internationally neutral canonical weekday identities. Final `v1.0.0` follows only after the fresh RC2 observation window is explicitly completed and approved.
 
 ## M0 — Repository bootstrap
 
@@ -68,7 +68,7 @@ Historical RC1 archive SHA-256:
 
 ## M4 — RC2 correction and v1.0 publication
 
-Status: **in progress — `v1.0.0-rc.2` candidate / publication preparation**
+Status: **in progress — `v1.0.0-rc.2` published; fresh observation window open**
 
 ### RC2 compatibility correction
 
@@ -79,20 +79,25 @@ Status: **in progress — `v1.0.0-rc.2` candidate / publication preparation**
 - [x] preserve RC1 tag/source/archive/identity and observation records as immutable history;
 - [x] advance the calendar registry contract from schema `1` to schema `2` for structured weekday identity;
 - [x] update normative week identity to `W1 Mene, W2 Noko, W3 Kese, W4 Zoyo, W5 Sote, W6 Yemo, W7 Toze`;
-- [ ] complete repository-wide RC2 metadata/documentation/freeze migration and obtain clean exact-candidate CI;
-- [ ] publish immutable `v1.0.0-rc.2` assets and verify tag target plus re-downloaded assets;
-- [ ] record the exact published RC2 source commit and archive digest;
-- [ ] start a fresh minimum one-full-day RC2 observation window from the actual publication timestamp.
+- [x] complete the repository-wide RC2 metadata/documentation/freeze migration and pass exact PR CI (#45, Validate #140);
+- [x] publish immutable `v1.0.0-rc.2` from source commit `b816d613618d51515d910e0d3bdb9d2f211b6d22`;
+- [x] verify the remote tag target and re-download/byte-compare the published release assets;
+- [x] record RC2 publication at `2026-09-16T09:44:59Z` with archive SHA-256 `23e40180098c656c88aa4ba27c6989ac053d9ce8b8029c9ce2e3b16946bf32ec` (#46);
+- [x] open a fresh minimum one-full-day RC2 observation window; earliest permitted completion is `2026-09-17T09:44:59Z`;
+- [x] accept the reviewed month-localization profiles `ru-Cyrl`, `ja-Kana`, and `ko-Hang` for promotion in the future atomic stable commit (#47); RC2 registry status itself remains reviewed/draft until then.
 
 ### Stable v1.0 gate
 
-Only after RC2 observation is complete:
+Current machine-enforced blockers are the RC2 observation/approval gate and stable publication authorization. The time gate cannot be bypassed.
 
-- [ ] classify and resolve/defer RC2 feedback; publish another RC instead of mutating RC2 if a compatibility-critical defect is found;
-- [ ] explicitly decide whether each reviewed month-localization profile (`ru-Cyrl`, `ja-Kana`, `ko-Hang`) is accepted as `stable` for v1.0;
+Only after `2026-09-17T09:44:59Z`, and only if review remains clean:
+
+- [ ] classify and resolve/defer all RC2 feedback; publish another RC instead of mutating RC2 if a compatibility-critical defect is found;
+- [ ] explicitly complete the RC2 observation and record the overall stable decision as approved or blocked;
 - [ ] rerun the complete compatibility/conversion/localization/accessibility/schema/reference/release audit;
-- [ ] prove stable candidate identity equals the accepted RC2 identity;
-- [ ] change accepted registry/profile maturity to stable and atomically transition public version metadata from `1.0.0-rc.2` to `1.0.0`;
+- [ ] prove stable candidate identity equals the published RC2 identity;
+- [ ] promote the three accepted month-localization profiles and registries to stable in the atomic stable candidate;
+- [ ] atomically transition public version metadata from `1.0.0-rc.2` to `1.0.0`;
 - [ ] tag and publish `v1.0.0` only from a clean, fully verified `main` commit;
 - [ ] publish immutable stable release artifacts and checksums;
 - [ ] archive the stable release with a DOI-capable repository such as Zenodo and record final citation metadata.
