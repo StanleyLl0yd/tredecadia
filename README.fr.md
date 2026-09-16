@@ -4,15 +4,21 @@
 
 Tredecadia est un projet ouvert de calendrier perpétuel fondé sur **13 mois de 28 jours**. Chaque mois compte exactement quatre semaines, une même date tombe toujours le même jour de la semaine et les jours d’ajustement de l’année sont placés hors des mois et hors du cycle hebdomadaire.
 
-> **Version publique actuelle : `1.0.0-rc.1`.** Il s’agit d’une version candidate avant la publication stable `v1.0.0`. La surface de compatibilité de la v1 est déjà gelée, mais une période d’observation et de vérification reste en cours.
+> **Version publique actuelle : `1.0.0-rc.2`.** Cette deuxième version candidate introduit des noms canoniques de jours de semaine conçus pour être internationalement neutres. La version stable `v1.0.0` ne pourra être publiée qu’après une période d’observation propre à RC2 et une vérification finale.
 
 ## Principe
 
 - 13 × 28 = 364 jours réguliers dans les mois.
 - Chaque mois contient quatre semaines complètes.
-- Le `01` est toujours un lundi et le `28` un dimanche.
+- Le `01` est toujours **Mene (`W1`)** et le `28` **Toze (`W7`)**.
 - `EQ` — **Jour de l’équinoxe / Nouvel An** — ouvre chaque année et n’appartient ni à un mois ni à la semaine.
 - Les années bissextiles ajoutent `ED` — **Jour de la Terre** — après `13-28` et juste avant le `EQ` suivant.
+
+Cycle canonique de sept jours :
+
+`W1 Mene → W2 Noko → W3 Kese → W4 Zoyo → W5 Sote → W6 Yemo → W7 Toze`
+
+Ces noms sont des identifiants canoniques de Tredecadia, et non des traductions ni des renommages de lundi à dimanche. RC2 ne définit pas encore d’alias localisés révisés pour les jours de la semaine ; les formes latines canoniques sont donc conservées.
 
 Année ordinaire :
 
