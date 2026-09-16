@@ -27,9 +27,10 @@ EXPECTED_SPECS = {
 LOCALIZED_READMES = {
     "README.ru.md", "README.es.md", "README.pt-BR.md", "README.fr.md",
     "README.de.md", "README.it.md", "README.tr.md", "README.pl.md",
-    "README.uk.md", "README.zh-CN.md", "README.zh-TW.md", "README.ja.md",
-    "README.ko.md", "README.ar.md", "README.fa.md", "README.hi.md",
-    "README.bn.md", "README.id.md", "README.vi.md",
+    "README.uk.md", "README.ka.md", "README.hy.md", "README.zh-CN.md",
+    "README.zh-TW.md", "README.ja.md", "README.ko.md", "README.ar.md",
+    "README.fa.md", "README.hi.md", "README.bn.md", "README.id.md",
+    "README.vi.md",
 }
 EXPECTED_PUBLIC_DOCS = {"README.md", "ROADMAP.md", "CONTRIBUTING.md", "docs/index.md", "CHANGELOG.md", *LOCALIZED_READMES}
 EXPECTED_SCHEMAS = {"registry/calendar.schema.json", "registry/months.schema.json", "registry/localizations.schema.json"}
