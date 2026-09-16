@@ -1,0 +1,50 @@
+{
+  "candidateVersion": 1,
+  "targetRelease": "1.0.0-rc.2",
+  "normative": false,
+  "status": "selected-for-rc2-integration-review",
+  "design": {
+    "shape": "CVCV",
+    "consonants": ["M", "N", "S", "T", "Y", "K", "Z"],
+    "vowels": ["E", "O"],
+    "syllableInventory": ["ME", "MO", "NE", "NO", "SE", "SO", "TE", "TO", "YE", "YO", "KE", "KO", "ZE", "ZO"],
+    "allSyllablesUsedExactlyOnce": true,
+    "minimumMonthShort4Hamming": 3,
+    "minimumMonthShort4Levenshtein": 3,
+    "weekdayPairHammingProfile": {"2": 3, "3": 12, "4": 6},
+    "minimumAdjacentHamming": 3,
+    "adjacentHamming": [4, 4, 4, 3, 4, 4, 3]
+  },
+  "weekdays": [
+    {"id": "W1", "canonical": "Mene", "syllables": ["ME", "NE"], "citationIpa": "ˈme.ne"},
+    {"id": "W2", "canonical": "Noko", "syllables": ["NO", "KO"], "citationIpa": "ˈno.ko"},
+    {"id": "W3", "canonical": "Kese", "syllables": ["KE", "SE"], "citationIpa": "ˈke.se"},
+    {"id": "W4", "canonical": "Zoyo", "syllables": ["ZO", "YO"], "citationIpa": "ˈzo.jo"},
+    {"id": "W5", "canonical": "Sote", "syllables": ["SO", "TE"], "citationIpa": "ˈso.te"},
+    {"id": "W6", "canonical": "Yemo", "syllables": ["YE", "MO"], "citationIpa": "ˈje.mo"},
+    {"id": "W7", "canonical": "Toze", "syllables": ["TO", "ZE"], "citationIpa": "ˈto.ze"}
+  ],
+  "unavoidableDistance2Pairs": [
+    ["Mene", "Kese"],
+    ["Noko", "Zoyo"],
+    ["Sote", "Toze"]
+  ],
+  "semanticClearance": {
+    "policy": "BLOCK_SOFT_IGNORE",
+    "selectedForms": {
+      "Mene": "SOFT",
+      "Noko": "SOFT",
+      "Kese": "SOFT",
+      "Zoyo": "SOFT",
+      "Sote": "SOFT",
+      "Yemo": "IGNORE",
+      "Toze": "IGNORE"
+    },
+    "blockedExactForms": ["MONE", "MEZO", "NOYO", "SEKO", "SEMO", "ZOTE", "KEMO", "KENE", "KOTE", "SOYO"]
+  },
+  "compatibility": {
+    "publishedRc1Unchanged": true,
+    "requiresNewReleaseCandidate": true,
+    "expectedCalendarSchemaVersion": 2
+  }
+}
