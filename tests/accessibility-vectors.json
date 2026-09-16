@@ -1,5 +1,5 @@
 {
-  "specVersion": "1.0.0-rc.1",
+  "specVersion": "1.0.0-rc.2",
   "policy": "signed-year-accessibility-v1",
   "displayYears": [
     {"year": 0, "canonical": "00000", "human": "0"},
