@@ -2,17 +2,23 @@
 
 [English](README.md) · **Bahasa Indonesia** · [Semua bahasa](README.languages.md)
 
-Tredecadia adalah proyek terbuka untuk kalender abadi dengan **13 bulan, masing-masing 28 hari**. Setiap bulan tepat empat minggu, sehingga tanggal yang sama selalu jatuh pada hari yang sama dalam sepekan. Hari tambahan untuk menyesuaikan panjang tahun ditempatkan di luar bulan dan di luar siklus pekan tujuh hari.
+Tredecadia adalah proyek terbuka untuk kalender abadi dengan **13 bulan, masing-masing 28 hari**. Setiap bulan tepat empat minggu, sehingga tanggal yang sama selalu berada pada posisi yang sama dalam siklus pekan. Hari tambahan untuk menyesuaikan panjang tahun ditempatkan di luar bulan dan di luar siklus pekan tujuh hari.
 
-> **Versi publik saat ini: `1.0.0-rc.1`.** Ini adalah versi kandidat menuju rilis stabil `v1.0.0`. Batas kompatibilitas v1 sudah dibekukan, tetapi masih ada masa observasi dan verifikasi sebelum versi final diterbitkan.
+> **Versi publik saat ini: `1.0.0-rc.2`.** Kandidat kedua ini memperkenalkan nama hari pekan kanonik yang dirancang agar netral secara internasional. Rilis stabil `v1.0.0` hanya dapat diterbitkan setelah masa observasi khusus RC2 dan verifikasi akhir.
 
 ## Struktur dasar
 
 - 13 × 28 = 364 hari reguler di dalam bulan.
 - Setiap bulan terdiri dari tepat empat minggu penuh.
-- Tanggal `01` selalu Senin, dan `28` selalu Minggu.
+- Tanggal `01` selalu **Mene (`W1`)**, dan `28` selalu **Toze (`W7`)**.
 - `EQ` — **Hari Ekuinoks / Tahun Baru** — membuka setiap tahun dan tidak termasuk bulan maupun pekan.
 - Pada tahun kabisat, setelah `13-28` ada `ED` — **Hari Bumi** — sebelum `EQ` tahun berikutnya.
+
+Siklus tujuh hari kanonik:
+
+`W1 Mene → W2 Noko → W3 Kese → W4 Zoyo → W5 Sote → W6 Yemo → W7 Toze`
+
+Nama-nama ini adalah pengenal kanonik Tredecadia, bukan terjemahan atau penggantian nama Senin sampai Minggu. RC2 belum menetapkan alias hari pekan yang dilokalkan dan ditinjau, sehingga bentuk Latin kanonik digunakan.
 
 Tahun biasa:
 
