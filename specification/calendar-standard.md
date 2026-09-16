@@ -1,6 +1,6 @@
 # Tredecadia Calendar Standard
 
-Status: **1.0.0-rc.1**
+Status: **1.0.0-rc.2**
 
 This document defines the structural calendar model and the Tredecadia Era. Month naming is specified separately in [`month-naming-standard.md`](month-naming-standard.md); civil conversion is specified in [`conversion-standard.md`](conversion-standard.md).
 
@@ -32,30 +32,36 @@ Leap-year sequence:
 
 ## 2. Week structure
 
-The regular week contains seven days in the order:
+The regular week contains seven canonical weekday positions. Their machine identifiers and canonical human-readable names are:
 
-1. Monday
-2. Tuesday
-3. Wednesday
-4. Thursday
-5. Friday
-6. Saturday
-7. Sunday
+| Position | ID | Canonical name | Syllables | Citation IPA |
+|---:|---|---|---|---|
+| 1 | `W1` | **Mene** | `ME NE` | `/ˈme.ne/` |
+| 2 | `W2` | **Noko** | `NO KO` | `/ˈno.ko/` |
+| 3 | `W3` | **Kese** | `KE SE` | `/ˈke.se/` |
+| 4 | `W4` | **Zoyo** | `ZO YO` | `/ˈzo.jo/` |
+| 5 | `W5` | **Sote** | `SO TE` | `/ˈso.te/` |
+| 6 | `W6` | **Yemo** | `YE MO` | `/ˈje.mo/` |
+| 7 | `W7` | **Toze** | `TO ZE` | `/ˈto.ze/` |
+
+`W1` through `W7` are stable machine identifiers. The canonical names are ASCII Latin identifiers, not translations of Gregorian weekday names. The ordered two-syllable segmental identity of each canonical weekday name is compatibility-critical; stress is not identity-critical, and the reference pronunciation uses weak initial prominence.
 
 Every regular month contains exactly four complete weeks.
 
 Within every month:
 
-- day 01 is Monday;
-- day 07 is Sunday;
-- day 08 is Monday;
-- day 14 is Sunday;
-- day 15 is Monday;
-- day 21 is Sunday;
-- day 22 is Monday;
-- day 28 is Sunday.
+- day 01 is `W1` / Mene;
+- day 07 is `W7` / Toze;
+- day 08 is `W1` / Mene;
+- day 14 is `W7` / Toze;
+- day 15 is `W1` / Mene;
+- day 21 is `W7` / Toze;
+- day 22 is `W1` / Mene;
+- day 28 is `W7` / Toze.
 
-Because intercalary days are outside the week, month 01 day 01 is Monday every year.
+Because intercalary days are outside the week, month 01 day 01 is `W1` / Mene every year.
+
+Localization MAY provide reviewed display aliases for canonical weekdays, but MUST preserve the underlying `W1..W7` identities, order, and reverse mapping to the canonical names.
 
 ## 3. Intercalary days
 
@@ -154,8 +160,9 @@ A conforming implementation of the structural model MUST preserve all of the fol
 - 28 days per regular month;
 - 364 regular in-month days;
 - four complete seven-day weeks per month;
-- Monday on every month day 01;
-- Sunday on every month day 28;
+- `W1` / Mene on every month day 01;
+- `W7` / Toze on every month day 28;
+- canonical weekday order `W1..W7` = Mene, Noko, Kese, Zoyo, Sote, Yemo, Toze;
 - all intercalary days outside both months and weekdays;
 - one additional `ED` exactly in Tredecadia leap years;
 - a continuous integer year coordinate with year `0`.

@@ -13,56 +13,84 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 import build_release  # noqa: E402
 
+RC1 = {
+    "version": "1.0.0-rc.1",
+    "tag": "v1.0.0-rc.1",
+    "commit": "937d8d681fcce6095d6a4d196783136b908c1be5",
+    "publishedAt": "2026-09-15T20:21:58Z",
+    "archive": "tredecadia-1.0.0-rc.1.tar.gz",
+    "archiveSha256": "018a804f518b3cbff402e91f5aba7d7aba05361f6bf4b01de593c8ac17a0abdf",
+}
+
 
 def main() -> None:
     data = json.loads((ROOT / "release/published-releases.json").read_text(encoding="utf-8"))
     assert data["schemaVersion"] == 1
-    assert len(data["releases"]) == 1
-
-    rc = data["releases"][0]
-    assert rc == {
-        "version": "1.0.0-rc.1",
-        "tag": "v1.0.0-rc.1",
-        "commit": "937d8d681fcce6095d6a4d196783136b908c1be5",
-        "publishedAt": "2026-09-15T20:21:58Z",
-        "archive": "tredecadia-1.0.0-rc.1.tar.gz",
-        "archiveSha256": "018a804f518b3cbff402e91f5aba7d7aba05361f6bf4b01de593c8ac17a0abdf",
-    }
+    releases = data["releases"]
+    assert releases and releases[0] == RC1
+    assert len({entry["version"] for entry in releases}) == len(releases)
+    assert len({entry["tag"] for entry in releases}) == len(releases)
 
     plan = json.loads((ROOT / "release/stable-plan.json").read_text(encoding="utf-8"))
-    observation = json.loads((ROOT / "release/rc-observation.json").read_text(encoding="utf-8"))
-    assert plan["sourceRc"]["version"] == rc["version"]
-    assert plan["sourceRc"]["tag"] == rc["tag"]
-    assert plan["sourceRc"]["commit"] == rc["commit"]
-    assert plan["sourceRc"]["archiveSha256"] == rc["archiveSha256"]
-    assert observation["sourceRc"]["version"] == rc["version"]
-    assert observation["sourceRc"]["tag"] == rc["tag"]
-    assert observation["sourceRc"]["commit"] == rc["commit"]
-    assert observation["sourceRc"]["publishedAt"] == rc["publishedAt"]
-    assert observation["sourceRc"]["archiveSha256"] == rc["archiveSha256"]
+    active_observation = json.loads((ROOT / "release/rc-observation.json").read_text(encoding="utf-8"))
+    rc1_observation = json.loads((ROOT / "release/rc1-observation.json").read_text(encoding="utf-8"))
 
-    assert build_release.published_release(rc["version"]) == rc
+    predecessor = plan["predecessorRc"]
+    assert predecessor["version"] == RC1["version"]
+    assert predecessor["tag"] == RC1["tag"]
+    assert predecessor["commit"] == RC1["commit"]
+    assert predecessor["archiveSha256"] == RC1["archiveSha256"]
+    assert predecessor["observationRecord"] == "release/rc1-observation.json"
+    for key in ("version", "tag", "commit", "publishedAt", "archiveSha256"):
+        assert rc1_observation["sourceRc"][key] == RC1[key]
 
-    # On a post-RC default branch the source lock must reject rebuilding the
-    # already-published version under the same name. When this test is run at
-    # the historical release commit itself, the lock is expected to allow it.
-    head = build_release.git_head()
-    if head == rc["commit"]:
-        build_release.assert_source_lock(rc["version"])
+    rc2_entries = [entry for entry in releases if entry["version"] == "1.0.0-rc.2"]
+    assert len(rc2_entries) <= 1
+    if rc2_entries:
+        rc2 = rc2_entries[0]
+        assert rc2["tag"] == "v1.0.0-rc.2"
+        assert rc2["archive"] == "tredecadia-1.0.0-rc.2.tar.gz"
+        assert len(rc2["commit"]) == 40
+        assert len(rc2["archiveSha256"]) == 64
+        assert plan["sourceRc"]["publicationStatus"] == "published"
+        assert active_observation["sourceRc"]["publicationStatus"] == "published"
+        for key in ("version", "tag", "commit", "archiveSha256"):
+            assert plan["sourceRc"][key] == rc2[key]
+            assert active_observation["sourceRc"][key] == rc2[key]
+        assert active_observation["sourceRc"]["publishedAt"] == rc2["publishedAt"]
     else:
-        try:
-            build_release.assert_source_lock(rc["version"])
-        except RuntimeError as exc:
-            message = str(exc)
-            assert rc["tag"] in message
-            assert rc["commit"] in message
+        assert plan["sourceRc"] == {
+            "version": "1.0.0-rc.2",
+            "tag": "v1.0.0-rc.2",
+            "publicationStatus": "awaiting-publication",
+            "commit": None,
+            "archiveSha256": None,
+        }
+        assert active_observation["sourceRc"]["publicationStatus"] == "awaiting-publication"
+        assert active_observation["sourceRc"]["commit"] is None
+        assert active_observation["sourceRc"]["publishedAt"] is None
+        assert active_observation["sourceRc"]["archiveSha256"] is None
+
+    # Every ledger entry is immutable and recognized by the release builder.
+    head = build_release.git_head()
+    for release in releases:
+        assert build_release.published_release(release["version"]) == release
+        if head == release["commit"]:
+            build_release.assert_source_lock(release["version"])
         else:
-            raise AssertionError("published RC source lock accepted a different or unverifiable source tree")
+            try:
+                build_release.assert_source_lock(release["version"])
+            except RuntimeError as exc:
+                message = str(exc)
+                assert release["tag"] in message
+                assert release["commit"] in message
+            else:
+                raise AssertionError(f"published source lock accepted a different source tree for {release['version']}")
 
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    assert "check out the published tag" in readme
-    assert rc["tag"] in readme
-    assert rc["archiveSha256"] in readme
+    assert RC1["tag"] in readme
+    assert RC1["archiveSha256"] in readme
+    assert "v1.0.0-rc.2" in readme
 
     print("Tredecadia published release source-lock validation: OK")
 

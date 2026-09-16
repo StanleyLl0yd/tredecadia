@@ -1,15 +1,24 @@
 {
-  "planVersion": 2,
-  "identityBaseline": "release/v1-identity.json",
+  "planVersion": 3,
+  "identityBaseline": "release/rc2-identity.json",
+  "historicalIdentityBaseline": "release/v1-identity.json",
   "sourceRc": {
+    "version": "1.0.0-rc.2",
+    "tag": "v1.0.0-rc.2",
+    "publicationStatus": "awaiting-publication",
+    "commit": null,
+    "archiveSha256": null
+  },
+  "predecessorRc": {
     "version": "1.0.0-rc.1",
     "tag": "v1.0.0-rc.1",
     "commit": "937d8d681fcce6095d6a4d196783136b908c1be5",
-    "archiveSha256": "018a804f518b3cbff402e91f5aba7d7aba05361f6bf4b01de593c8ac17a0abdf"
+    "archiveSha256": "018a804f518b3cbff402e91f5aba7d7aba05361f6bf4b01de593c8ac17a0abdf",
+    "observationRecord": "release/rc1-observation.json"
   },
   "targetVersion": "1.0.0",
   "observation": {
-    "status": "open",
+    "status": "awaiting-publication",
     "stableDecision": "pending",
     "record": "release/rc-observation.json",
     "evidence": []

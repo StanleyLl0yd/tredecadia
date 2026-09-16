@@ -1,6 +1,6 @@
 # Tredecadia Month Naming Standard
 
-Status: **1.0.0-rc.1**
+Status: **1.0.0-rc.2**
 
 This document defines the canonical names, pronunciation model, and standard abbreviations of Tredecadia's 13 regular months.
 

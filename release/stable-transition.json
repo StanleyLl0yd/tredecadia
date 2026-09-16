@@ -1,11 +1,11 @@
 {
-  "manifestVersion": 1,
-  "sourceVersion": "1.0.0-rc.1",
+  "manifestVersion": 2,
+  "sourceVersion": "1.0.0-rc.2",
   "targetVersion": "1.0.0",
   "preconditions": {
     "stablePlan": "release/stable-plan.json",
     "publicationAllowed": true,
-    "identityBaseline": "release/v1-identity.json"
+    "identityBaseline": "release/rc2-identity.json"
   },
   "atomicCandidateCommit": {
     "requireSingleCommit": true,
@@ -70,23 +70,32 @@
   ],
   "historicalSourceReferences": [
     ".github/ISSUE_TEMPLATE/rc-feedback.yml",
-    "rationale/release-candidate-audit.md",
     "rationale/weekday-naming-methodology.md",
     "release/rc2-transition.json",
-    "release/published-releases.json",
+    "release/weekday-rc2-candidate.json",
+    "release/rc2-identity.json",
     "release/rc-observation.json",
-    "release/v1-identity.json",
+    "release/rc1-observation.json",
     "release/stable-plan.json",
-    "release/notes/1.0.0-rc.1.md",
-    "release/notes/1.0.0.md",
+    "release/notes/1.0.0-rc.2.md",
     "tests/validate_published_releases.py",
     "tests/validate_rc2_transition.py",
     "tests/validate_rc_observation.py",
     "tests/validate_stable_preflight.py",
     "tests/validate_v1_identity.py",
+    "tests/validate_weekday_candidate.py",
     "tests/validate_stable_plan.py",
     "tests/validate_transition_manifest.py",
     "tests/validate_versions.py"
+  ],
+  "historicalPredecessorReferences": [
+    ".github/ISSUE_TEMPLATE/rc-feedback.yml",
+    "rationale/release-candidate-audit.md",
+    "release/published-releases.json",
+    "release/rc1-observation.json",
+    "release/v1-identity.json",
+    "release/notes/1.0.0-rc.1.md",
+    "tests/validate_published_releases.py"
   ],
   "stableProfileMaturitySource": "release/stable-plan.json",
   "postPublication": {

@@ -1,7 +1,7 @@
 {
   "$schema": "./calendar.schema.json",
-  "schemaVersion": 1,
-  "specVersion": "1.0.0-rc.1",
+  "schemaVersion": 2,
+  "specVersion": "1.0.0-rc.2",
   "status": "draft",
   "profile": "tredecadia-civil",
   "era": {
@@ -16,7 +16,15 @@
     "daysPerMonth": 28,
     "regularDaysPerYear": 364,
     "weeksPerMonth": 4,
-    "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    "weekdays": [
+      {"id": "W1", "canonical": "Mene", "syllables": ["ME", "NE"], "citationIpa": "ˈme.ne"},
+      {"id": "W2", "canonical": "Noko", "syllables": ["NO", "KO"], "citationIpa": "ˈno.ko"},
+      {"id": "W3", "canonical": "Kese", "syllables": ["KE", "SE"], "citationIpa": "ˈke.se"},
+      {"id": "W4", "canonical": "Zoyo", "syllables": ["ZO", "YO"], "citationIpa": "ˈzo.jo"},
+      {"id": "W5", "canonical": "Sote", "syllables": ["SO", "TE"], "citationIpa": "ˈso.te"},
+      {"id": "W6", "canonical": "Yemo", "syllables": ["YE", "MO"], "citationIpa": "ˈje.mo"},
+      {"id": "W7", "canonical": "Toze", "syllables": ["TO", "ZE"], "citationIpa": "ˈto.ze"}
+    ]
   },
   "epoch": {
     "tredecadia": "00000-EQ",

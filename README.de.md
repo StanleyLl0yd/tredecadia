@@ -4,15 +4,21 @@
 
 Tredecadia ist ein offener Entwurf für einen immerwährenden Kalender mit **13 Monaten zu je 28 Tagen**. Jeder Monat besteht aus genau vier vollständigen Wochen, ein bestimmtes Monatsdatum fällt immer auf denselben Wochentag, und die zusätzlichen Ausgleichstage des Jahres liegen außerhalb von Monaten und Wochenzyklus.
 
-> **Aktuelle öffentliche Version: `1.0.0-rc.1`.** Diese Fassung ist ein Kandidat für die stabile Veröffentlichung `v1.0.0`. Die v1-Kompatibilitätsfläche ist bereits eingefroren; vor der endgültigen Veröffentlichung läuft noch eine Beobachtungs- und Prüfphase.
+> **Aktuelle öffentliche Version: `1.0.0-rc.2`.** Dieser zweite Veröffentlichungskandidat führt international neutrale kanonische Wochentagsnamen ein. Die stabile Version `v1.0.0` kann erst nach einer eigenen RC2-Beobachtungsphase und einer abschließenden Prüfung veröffentlicht werden.
 
 ## Grundidee
 
 - 13 × 28 = 364 reguläre Monatstage.
 - Jeder Monat hat genau vier volle Wochen.
-- Der `01` ist immer Montag, der `28` immer Sonntag.
+- Der `01` ist immer **Mene (`W1`)**, der `28` immer **Toze (`W7`)**.
 - `EQ` — **Tag der Tagundnachtgleiche / Neujahr** — eröffnet jedes Jahr und gehört weder zu einem Monat noch zur Woche.
 - In Schaltjahren kommt nach `13-28` zusätzlich `ED` — **Tag der Erde** — bevor das nächste `EQ` beginnt.
+
+Kanonischer Sieben-Tage-Zyklus:
+
+`W1 Mene → W2 Noko → W3 Kese → W4 Zoyo → W5 Sote → W6 Yemo → W7 Toze`
+
+Diese Namen sind kanonische Tredecadia-Identifikatoren, keine Übersetzungen oder Umbenennungen von Montag bis Sonntag. RC2 enthält noch keine geprüften lokalisierten Wochentags-Aliase; deshalb werden die kanonischen lateinischen Formen verwendet.
 
 Normales Jahr:
 

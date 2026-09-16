@@ -2,20 +2,21 @@
 
 **Read in:** English · [Русский](README.ru.md) · [Español](README.es.md) · [Português](README.pt-BR.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Italiano](README.it.md) · [Türkçe](README.tr.md) · [Polski](README.pl.md) · [Українська](README.uk.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [فارسی](README.fa.md) · [हिन्दी](README.hi.md) · [বাংলা](README.bn.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [All languages](README.languages.md)
 
-Tredecadia is an open 13 × 28 perennial calendar standard with equal months, stable weekdays, a continuous mathematical year coordinate, and internationally neutral month names.
+Tredecadia is an open 13 × 28 perennial calendar standard with equal months, stable weekdays, a continuous mathematical year coordinate, and internationally neutral month and weekday names.
 
-> **Status: `1.0.0-rc.1` release candidate — published.** M0–M3 are complete. The v1 compatibility surface is frozen for release-candidate testing; reviewed localization profiles remain non-stable until final `v1.0.0` acceptance.
+> **Status: `1.0.0-rc.2` release candidate.** M0–M3 are complete. RC2 makes one explicit pre-stable compatibility correction: the seven weekday positions now use canonical neutral identities `W1..W7` and names rather than English weekday names. Reviewed localization profiles remain non-stable until final `v1.0.0` acceptance.
 
-Published release: [`v1.0.0-rc.1`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
+Release target: [`v1.0.0-rc.2`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2)  
+Historical published RC: [`v1.0.0-rc.1`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
 
 ## Core model
 
 - 13 months × 28 days = 364 regular in-month days.
 - Every month has exactly four complete weeks.
-- Day `01` of every month is Monday; day `28` is Sunday.
+- Day `01` of every month is `W1` / **Mene**; day `28` is `W7` / **Toze**.
 - **Equinox / New Year Day (`EQ`) opens each Tredecadia year** and is outside the month/week cycle.
 - A leap year has one additional intercalary **Earth Day (`ED`)** after month 13 day 28 and immediately before the next year's `EQ`.
-- The canonical month names are designed for international neutrality and high mutual distinguishability.
+- The canonical month and weekday names are designed for international neutrality and high mutual distinguishability.
 
 Ordinary-year boundary:
 
@@ -24,6 +25,24 @@ Ordinary-year boundary:
 Leap-year boundary:
 
 `Y-EQ → Y-01-01 → … → Y-13-28 → Y-ED → (Y+1)-EQ`
+
+## Canonical weekdays
+
+Tredecadia weekday identity is structural and independent of Gregorian weekday labels.
+
+| Position | ID | Canonical name | Syllables | Citation IPA |
+|---:|---|---|---|---|
+| 1 | `W1` | Mene | `ME NE` | `/ˈme.ne/` |
+| 2 | `W2` | Noko | `NO KO` | `/ˈno.ko/` |
+| 3 | `W3` | Kese | `KE SE` | `/ˈke.se/` |
+| 4 | `W4` | Zoyo | `ZO YO` | `/ˈzo.jo/` |
+| 5 | `W5` | Sote | `SO TE` | `/ˈso.te/` |
+| 6 | `W6` | Yemo | `YE MO` | `/ˈje.mo/` |
+| 7 | `W7` | Toze | `TO ZE` | `/ˈto.ze/` |
+
+Every regular month repeats that order exactly four times. Machine IDs `W1..W7`, their order, the canonical ASCII names, and their ordered two-syllable identities are part of the intended stable v1 identity. Stress is not identity-critical; citation pronunciation uses weak initial prominence.
+
+RC1 used `Monday` through `Sunday` directly in the calendar registry. RC2 intentionally replaces that prerelease-only surface before stable v1.0.0. The published RC1 tag and assets remain immutable historical records.
 
 ## Tredecadia Era
 
@@ -62,7 +81,7 @@ Canonical interchange uses a strict ASCII form with a minimum five-digit year fi
 
 Human-facing presentation may suppress leading zeroes and may use a typographic minus sign, for example `1 TE` or `−1 TE`. These are display forms, not alternate canonical identifiers.
 
-Accessible interfaces should expose the era, signed integer year, month/day identity, and named intercalary day semantically. `EQ` should be presented accessibly as **Equinox / New Year Day** and `ED` as **Earth Day**, rather than relying on the two-letter machine tokens alone.
+Accessible interfaces should expose the era, signed integer year, month/day identity, weekday identity where relevant, and named intercalary day semantically. `EQ` should be presented accessibly as **Equinox / New Year Day** and `ED` as **Earth Day**, rather than relying on the two-letter machine tokens alone.
 
 ## Month pronunciation
 
@@ -76,25 +95,24 @@ Localized speech may adapt stress, rhythm, and predictable allophony to the targ
 
 ## Localization profiles
 
-Canonical months and localized aliases are intentionally separate machine registries:
-
-- `registry/months.json` contains language-neutral canonical identity;
-- `registry/localizations.json` contains language/script display aliases.
+Canonical identities and localized aliases are intentionally separate. `registry/months.json` contains language-neutral canonical month identity; `registry/localizations.json` currently contains reviewed month display aliases.
 
 Localization profiles progress through `candidate` → `reviewed` → `stable`; generated mappings cannot skip independent review.
 
-`1.0.0-rc.1` contains three **reviewed, non-stable** profiles:
+`1.0.0-rc.2` contains three **reviewed, non-stable month profiles**:
 
 - Russian Cyrillic (`ru-Cyrl`) — reviewed against independent Russian practical-transcription and orthographic references; `ми/ни` palatalization is explicitly documented as a localization approximation;
 - Japanese Katakana (`ja-Kana`) — reviewed against Japan's official foreign-word orthographic guidance;
 - Korean Hangul (`ko-Hang`) — reviewed against Korea's official IPA-to-Hangul foreign-word rules.
 
+These reviewed profiles do **not** automatically define weekday aliases: the RC2 weekday vowel inventory introduces `E/O`, so local-script weekday mappings require their own evidence/review rather than being inferred from the month profiles.
+
 No localization profile is stable in the RC. Stable status is reserved for profiles explicitly accepted into the final `v1.0.0` release.
 
 ## Specification
 
-- [`specification/calendar-standard.md`](specification/calendar-standard.md) — calendar structure and Tredecadia Era.
-- [`specification/conversion-standard.md`](specification/conversion-standard.md) — proleptic-Gregorian civil conversion.
+- [`specification/calendar-standard.md`](specification/calendar-standard.md) — calendar structure, canonical weekdays, and Tredecadia Era.
+- [`specification/conversion-standard.md`](specification/conversion-standard.md) — proleptic-Gregorian civil conversion and structural weekday indexing.
 - [`specification/month-naming-standard.md`](specification/month-naming-standard.md) — canonical month names, pronunciation, abbreviations, and Short-4 recognition.
 - [`specification/date-notation.md`](specification/date-notation.md) — canonical date representation and accessible human presentation.
 - [`specification/localization.md`](specification/localization.md) — localization semantics.
@@ -127,7 +145,7 @@ Proleptic Gregorian `2026-09-15` maps to:
 
 `TE 12025-07-11`
 
-The Tredecadia weekday is determined by the regular-month day number, not by the weekday label of the corresponding Gregorian civil date.
+Regular day 11 has weekday index `(11 - 1) mod 7 = 3`, therefore `W4` / **Zoyo**. This Tredecadia weekday is structural and does not inherit the Gregorian weekday label of the corresponding civil date.
 
 ## Python reference implementation
 
@@ -145,15 +163,15 @@ The reference code supports negative and zero astronomical Gregorian years, nega
 
 ## Release-candidate verification
 
-The RC CI validates the published JSON Schemas with a Draft 2020-12 implementation, checks local links and duplicated canonical tables, freezes compatibility-critical constants, exhaustively cross-checks calendar conversion windows, and proves that release bundles are byte-for-byte deterministic for a fixed source tree.
+RC CI validates the published JSON Schemas with a Draft 2020-12 implementation, checks local links and duplicated canonical tables, freezes compatibility-critical constants, exhaustively cross-checks calendar conversion windows, proves the RC1→RC2 difference is limited to the declared weekday/schema surface, and proves release bundles are byte-for-byte deterministic for a fixed source tree.
 
-The published prerelease tag points to commit `937d8d681fcce6095d6a4d196783136b908c1be5`. The guarded publication workflow reran the complete release conformance suite, built the deterministic archive, published it with `SHA256SUMS`, downloaded both assets again, and byte-compared them with the local build.
-
-Published archive SHA-256:
+The historical `v1.0.0-rc.1` prerelease points to commit `937d8d681fcce6095d6a4d196783136b908c1be5`; its published archive SHA-256 remains:
 
 `018a804f518b3cbff402e91f5aba7d7aba05361f6bf4b01de593c8ac17a0abdf`
 
-To reproduce the **published** `tredecadia-1.0.0-rc.1.tar.gz`, check out the published tag `v1.0.0-rc.1` and run the release builder from that exact source tree. The default branch intentionally contains post-RC documentation and release-engineering changes and must not create a different archive under the already-published RC version. `release/published-releases.json` records the immutable source commit and digest, and current tooling enforces that source lock.
+To reproduce that historical archive, check out `v1.0.0-rc.1` and run the release builder from that exact source tree. `release/published-releases.json` records immutable published source/digest metadata and current tooling enforces those source locks.
+
+RC2 is published as a new tag/release rather than overwriting RC1. Its guarded publication workflow reruns the full conformance suite, builds deterministic assets, refuses existing tags/releases, verifies the remote tag target, re-downloads both assets, and byte-compares them with the local build. After publication, the exact RC2 source commit/digest are recorded and a new one-full-day observation window begins from the actual publication timestamp.
 
 ## Licensing
 
@@ -163,4 +181,4 @@ The licenses do not grant trademark rights in the Tredecadia name or branding.
 
 ## Versioning
 
-The published public version is **`1.0.0-rc.1`**. The compatibility-critical v1 surface is frozen for RC testing, but incompatible corrections remain possible before final `v1.0.0` if public RC review uncovers a genuine correctness or interoperability defect.
+The current release candidate is **`1.0.0-rc.2`**. The compatibility-critical v1 surface is frozen for RC2 testing. Any further incompatible correction before stable v1.0.0 requires another explicitly versioned release candidate; published RC tags and artifacts are never rewritten.

@@ -1,6 +1,6 @@
 # Tredecadia Date Notation
 
-Status: **1.0.0-rc.1**
+Status: **1.0.0-rc.2**
 
 ## 1. Era
 
@@ -113,7 +113,8 @@ For a regular date, the accessible representation SHOULD make available:
 - Tredecadia Era identity;
 - the signed integer year value;
 - canonical month identity or localized month alias;
-- day number.
+- day number;
+- structural weekday identity (`W1..W7`) when the interface exposes a weekday.
 
 For an intercalary date, `EQ` and `ED` SHOULD be exposed by their names rather than only by the letter tokens:
 
@@ -122,11 +123,11 @@ For an intercalary date, `EQ` and `ED` SHOULD be exposed by their names rather t
 
 Examples of semantic readings in English are:
 
-- `12025-07-11` → “Tredecadia Era, year 12025, month Muyasanumi, day 11”;
+- `12025-07-11` → “Tredecadia Era, year 12025, month Muyasanumi, day 11, weekday Zoyo”;
 - `00000-EQ` → “Tredecadia Era, year 0, Equinox / New Year Day”;
-- `-00001-01-01` → “Tredecadia Era, year minus 1, month Masanumika, day 1”.
+- `-00001-01-01` → “Tredecadia Era, year minus 1, month Masanumika, day 1, weekday Mene”.
 
-The exact spoken wording MAY be localized. The sign, year value, month/intercalary identity, and day value MUST remain recoverable from the accessible representation.
+The exact spoken wording MAY be localized. The sign, year value, month/intercalary identity, day value, and any exposed weekday identity MUST remain recoverable from the accessible representation.
 
 ### 5.3 Forgiving input layers
 
@@ -144,4 +145,4 @@ For Tredecadia year `Y`:
 - `Y-01-01` ↔ astronomical Gregorian `(Y - 9999)-03-21`;
 - when `Y` is leap, `Y-ED` ↔ astronomical Gregorian `(Y - 9998)-03-19`.
 
-The corresponding Gregorian weekday does not determine the Tredecadia weekday. Regular Tredecadia weekdays follow the fixed 28-day month structure; `EQ` and `ED` have no Tredecadia weekday.
+The corresponding Gregorian weekday does not determine the Tredecadia weekday. Regular Tredecadia weekdays follow the fixed `W1..W7` 28-day month structure; `EQ` and `ED` have no Tredecadia weekday.
