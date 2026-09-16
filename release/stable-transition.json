@@ -71,6 +71,7 @@
   "historicalSourceReferences": [
     ".github/ISSUE_TEMPLATE/rc-feedback.yml",
     "rationale/release-candidate-audit.md",
+    "rationale/weekday-naming-methodology.md",
     "release/published-releases.json",
     "release/rc-observation.json",
     "release/v1-identity.json",
