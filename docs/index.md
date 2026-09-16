@@ -9,9 +9,11 @@ title: Tredecadia
 
 Tredecadia has thirteen equal 28-day months, four complete seven-day weeks per month, an independent mathematical year coordinate, and internationally neutral canonical month and weekday names.
 
-> **Release candidate `1.0.0-rc.2`.** Normative source files remain the repository specifications and machine-readable registries; this page is a navigational summary, not a second copy of the standard.
+> **Published release candidate `1.0.0-rc.2`; observation window open.** RC2 was published from commit `b816d613618d51515d910e0d3bdb9d2f211b6d22` at `2026-09-16T09:44:59Z`. Stable `v1.0.0` remains blocked until the fresh one-full-day RC2 observation is explicitly completed and approved no earlier than `2026-09-17T09:44:59Z`.
 
-[Read the project introduction in 20 languages](https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md) · [RC2 release](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2) · [Historical RC1](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
+This page is a navigational summary, not a second copy of the standard. Normative requirements remain in the repository specifications and machine-readable registries.
+
+[Read the project introduction in 20 languages](https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md) · [Published RC2](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2) · [Historical RC1](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
 
 ## Calendar at a glance
 
@@ -80,7 +82,19 @@ Release candidate `1.0.0-rc.2` has independently reviewed, non-stable **month** 
 - Japanese Katakana (`ja-Kana`);
 - Korean Hangul (`ko-Hang`).
 
-Localized month spellings are aliases and never change canonical month numbers, Latin names, syllables, Short-6, or Short-4 identifiers. RC2 does not infer weekday aliases from those profiles because the weekday `E/O` syllables require separate review. Final `stable` promotion is reserved for `v1.0.0`.
+All three reviewed month profiles have now been explicitly **accepted for promotion in the future atomic stable `v1.0.0` commit**. Their RC2 registry status remains `reviewed` while the RC2 observation gate is open; acceptance does not mutate the published RC2 identity or prematurely make the registry stable.
+
+Localized month spellings are aliases and never change canonical month numbers, Latin names, syllables, Short-6, or Short-4 identifiers. RC2 does not infer weekday aliases from those profiles because the weekday `E/O` syllables require separate review.
+
+## Published RC2 identity
+
+- tag: `v1.0.0-rc.2`
+- source commit: `b816d613618d51515d910e0d3bdb9d2f211b6d22`
+- published: `2026-09-16T09:44:59Z`
+- archive SHA-256: `23e40180098c656c88aa4ba27c6989ac053d9ce8b8029c9ce2e3b16946bf32ec`
+- earliest observation completion: `2026-09-17T09:44:59Z`
+
+The guarded publication workflow reran the full conformance suite, created the tag/release, verified the remote tag target, downloaded the published archive and checksum again, and byte-compared them with the locally generated deterministic assets.
 
 ## Standard and data
 

@@ -21,19 +21,28 @@ RC1 = {
     "archive": "tredecadia-1.0.0-rc.1.tar.gz",
     "archiveSha256": "018a804f518b3cbff402e91f5aba7d7aba05361f6bf4b01de593c8ac17a0abdf",
 }
+RC2 = {
+    "version": "1.0.0-rc.2",
+    "tag": "v1.0.0-rc.2",
+    "commit": "b816d613618d51515d910e0d3bdb9d2f211b6d22",
+    "publishedAt": "2026-09-16T09:44:59Z",
+    "archive": "tredecadia-1.0.0-rc.2.tar.gz",
+    "archiveSha256": "23e40180098c656c88aa4ba27c6989ac053d9ce8b8029c9ce2e3b16946bf32ec",
+}
 
 
 def main() -> None:
     data = json.loads((ROOT / "release/published-releases.json").read_text(encoding="utf-8"))
     assert data["schemaVersion"] == 1
     releases = data["releases"]
-    assert releases and releases[0] == RC1
-    assert len({entry["version"] for entry in releases}) == len(releases)
-    assert len({entry["tag"] for entry in releases}) == len(releases)
+    assert releases == [RC1, RC2]
+    assert len({entry["version"] for entry in releases}) == 2
+    assert len({entry["tag"] for entry in releases}) == 2
 
     plan = json.loads((ROOT / "release/stable-plan.json").read_text(encoding="utf-8"))
     active_observation = json.loads((ROOT / "release/rc-observation.json").read_text(encoding="utf-8"))
     rc1_observation = json.loads((ROOT / "release/rc1-observation.json").read_text(encoding="utf-8"))
+    rc2_identity = json.loads((ROOT / "release/rc2-identity.json").read_text(encoding="utf-8"))
 
     predecessor = plan["predecessorRc"]
     assert predecessor["version"] == RC1["version"]
@@ -44,32 +53,17 @@ def main() -> None:
     for key in ("version", "tag", "commit", "publishedAt", "archiveSha256"):
         assert rc1_observation["sourceRc"][key] == RC1[key]
 
-    rc2_entries = [entry for entry in releases if entry["version"] == "1.0.0-rc.2"]
-    assert len(rc2_entries) <= 1
-    if rc2_entries:
-        rc2 = rc2_entries[0]
-        assert rc2["tag"] == "v1.0.0-rc.2"
-        assert rc2["archive"] == "tredecadia-1.0.0-rc.2.tar.gz"
-        assert len(rc2["commit"]) == 40
-        assert len(rc2["archiveSha256"]) == 64
-        assert plan["sourceRc"]["publicationStatus"] == "published"
-        assert active_observation["sourceRc"]["publicationStatus"] == "published"
-        for key in ("version", "tag", "commit", "archiveSha256"):
-            assert plan["sourceRc"][key] == rc2[key]
-            assert active_observation["sourceRc"][key] == rc2[key]
-        assert active_observation["sourceRc"]["publishedAt"] == rc2["publishedAt"]
-    else:
-        assert plan["sourceRc"] == {
-            "version": "1.0.0-rc.2",
-            "tag": "v1.0.0-rc.2",
-            "publicationStatus": "awaiting-publication",
-            "commit": None,
-            "archiveSha256": None,
-        }
-        assert active_observation["sourceRc"]["publicationStatus"] == "awaiting-publication"
-        assert active_observation["sourceRc"]["commit"] is None
-        assert active_observation["sourceRc"]["publishedAt"] is None
-        assert active_observation["sourceRc"]["archiveSha256"] is None
+    assert plan["sourceRc"]["publicationStatus"] == "published"
+    assert active_observation["sourceRc"]["publicationStatus"] == "published"
+    for key in ("version", "tag", "commit", "archiveSha256"):
+        assert plan["sourceRc"][key] == RC2[key]
+        assert active_observation["sourceRc"][key] == RC2[key]
+    assert active_observation["sourceRc"]["publishedAt"] == RC2["publishedAt"]
+
+    identity_release = rc2_identity["release"]
+    assert identity_release["publicationStatus"] == "published"
+    for key in ("version", "tag", "commit", "publishedAt", "archiveSha256"):
+        assert identity_release[key] == RC2[key]
 
     # Every ledger entry is immutable and recognized by the release builder.
     head = build_release.git_head()
@@ -88,11 +82,14 @@ def main() -> None:
                 raise AssertionError(f"published source lock accepted a different source tree for {release['version']}")
 
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    assert RC1["tag"] in readme
-    assert RC1["archiveSha256"] in readme
-    assert "v1.0.0-rc.2" in readme
+    for release in releases:
+        assert release["tag"] in readme
+        assert release["commit"] in readme
+        assert release["archiveSha256"] in readme
+    assert RC2["publishedAt"] in readme
+    assert "2026-09-17T09:44:59Z" in readme
 
-    print("Tredecadia published release source-lock validation: OK")
+    print("Tredecadia published RC1/RC2 source-lock validation: OK")
 
 
 if __name__ == "__main__":
