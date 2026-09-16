@@ -29,7 +29,9 @@ def validate_localized_readme_coverage() -> None:
     bundled = {
         path
         for path in build_release.INCLUDE_FILES
-        if path.startswith("README.") and path.endswith(".md") and path != "README.languages.md"
+        if path.startswith("README.")
+        and path.endswith(".md")
+        and path not in {"README.md", "README.languages.md"}
     }
     assert indexed, "language index must expose localized README editions"
     assert bundled == indexed, (
