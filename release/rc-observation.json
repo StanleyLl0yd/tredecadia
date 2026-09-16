@@ -38,12 +38,15 @@
       "area": "documentation-deployment",
       "summary": "The repository did not have GitHub Pages enabled, so the first deployment attempt could not configure a Pages site.",
       "classification": "compatible-correction",
-      "status": "open",
+      "status": "resolved",
       "compatibilityCritical": false,
       "evidence": [
         "PR #35",
         "Pages run 35026608479",
         "PR #36",
+        "successful Pages run 35065725007",
+        "source commit a4c615a456a12a647417d029c474c286fa68ad3e",
+        "https://stanleyll0yd.github.io/tredecadia/",
         "release/pages-deployment.md"
       ]
     },
@@ -90,7 +93,7 @@
   "summary": {
     "compatibilityCriticalDefectsFound": 0,
     "compatibilityCriticalDefectsOpen": 0,
-    "openReports": 1,
+    "openReports": 0,
     "stableDecision": "pending"
   }
 }
