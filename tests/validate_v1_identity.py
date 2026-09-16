@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
-"""Validate immutable RC1 history and the current RC2 v1 identity candidate."""
+"""Validate immutable RC1 history and the published RC2 v1 identity candidate."""
 
 from __future__ import annotations
 
@@ -42,6 +42,7 @@ def assert_rejected(value: str) -> None:
 def main() -> None:
     rc1 = load("release/v1-identity.json")
     rc2 = load("release/rc2-identity.json")
+    published = load("release/published-releases.json")
     calendar = load("registry/calendar.json")
     months = load("registry/months.json")
     localizations = load("registry/localizations.json")
@@ -55,13 +56,22 @@ def main() -> None:
         "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
     ]
 
-    # RC2 changes only the explicitly reviewed weekday identity/schema surface.
+    # RC2 changes only the explicitly reviewed weekday identity/schema surface
+    # and is bound to its exact published source/archive identity.
     assert rc2["baselineVersion"] == 2
-    assert rc2["release"] == {
+    release = rc2["release"]
+    assert release == {
         "version": "1.0.0-rc.2",
         "tag": "v1.0.0-rc.2",
-        "publicationStatus": "awaiting-publication",
+        "publicationStatus": "published",
+        "commit": "b816d613618d51515d910e0d3bdb9d2f211b6d22",
+        "publishedAt": "2026-09-16T09:44:59Z",
+        "archiveSha256": "23e40180098c656c88aa4ba27c6989ac053d9ce8b8029c9ce2e3b16946bf32ec",
     }
+    rc2_ledger = next(entry for entry in published["releases"] if entry["version"] == release["version"])
+    for key in ("version", "tag", "commit", "publishedAt", "archiveSha256"):
+        assert rc2_ledger[key] == release[key]
+
     assert rc2["historicalPredecessor"] == "release/v1-identity.json"
     assert rc2["schemaVersions"] == {
         "calendar": calendar["schemaVersion"],
@@ -117,7 +127,7 @@ def main() -> None:
     ):
         assert_rejected(value)
 
-    print("Tredecadia RC1 history + RC2 v1 identity validation: OK")
+    print("Tredecadia RC1 history + published RC2 v1 identity validation: OK")
 
 
 if __name__ == "__main__":
