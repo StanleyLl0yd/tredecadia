@@ -30,27 +30,24 @@ def main() -> None:
     expected = {
         "rc-observation-open",
         "minimum-observation-time-not-reached",
-        "open-rc-reports",
         "pending-localization-decisions",
-        "pages-external-enablement-required",
         "stable-decision-not-approved",
         "publication-gate-closed",
     }
     assert set(blockers) == expected, blockers
-    assert blockers["open-rc-reports"] == "obs-002"
     assert blockers["pending-localization-decisions"] == "ja-Kana, ko-Hang, ru-Cyrl"
     assert "2026-09-16T20:21:58Z" in blockers["minimum-observation-time-not-reached"]
-    assert "GitHub Actions" in blockers["pages-external-enablement-required"]
 
     # After one full day, only the time blocker disappears. The observation
-    # still needs to be explicitly completed and the remaining gates resolved.
+    # still needs to be explicitly completed and the remaining decisions made.
     later = stable_preflight.evaluate(datetime(2026, 9, 17, 0, 0, 0, tzinfo=timezone.utc))
     later_codes = {entry["code"] for entry in later["blockers"]}
     assert "minimum-observation-time-not-reached" not in later_codes
     assert later["ready"] is False
     assert "rc-observation-open" in later_codes
     assert "pending-localization-decisions" in later_codes
-    assert "pages-external-enablement-required" in later_codes
+    assert "open-rc-reports" not in later_codes
+    assert "pages-external-enablement-required" not in later_codes
     assert "publication-gate-closed" in later_codes
 
     print("Tredecadia stable preflight validation: OK")

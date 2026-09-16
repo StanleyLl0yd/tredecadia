@@ -34,9 +34,8 @@ def main() -> None:
     for permission in ("contents: read", "pages: write", "id-token: write"):
         assert permission in workflow, f"missing Pages permission: {permission}"
 
-    # Pages is not enabled through GITHUB_TOKEN. Until the one-time repository
-    # setting exists, deployment must remain explicit rather than creating red
-    # runs on every docs push.
+    # Deployment remains explicit during the RC/stable transition even though
+    # the one-time repository Pages setting has now been enabled successfully.
     assert "workflow_dispatch:" in workflow
     assert "pages_enabled:" in workflow
     assert "if: ${{ inputs.pages_enabled }}" in workflow
@@ -47,11 +46,14 @@ def main() -> None:
     assert "destination: ./_site" in workflow
     assert "path: ./_site" in workflow
 
-    assert "Settings" in deployment_note
-    assert "Pages" in deployment_note
-    assert "GitHub Actions" in deployment_note
+    # Keep a durable record of both the original operational finding and the
+    # later successful deployment that closed it.
+    assert "Status: **live**" in deployment_note
     assert "35026608479" in deployment_note
-    assert "external-enable-required" in deployment_note
+    assert "35065725007" in deployment_note
+    assert "a4c615a456a12a647417d029c474c286fa68ad3e" in deployment_note
+    assert "https://stanleyll0yd.github.io/tredecadia/" in deployment_note
+    assert "external-enable-required" not in deployment_note
 
     # The website is a navigation layer, never a second normative source.
     assert "navigational summary, not a second copy of the standard" in index
