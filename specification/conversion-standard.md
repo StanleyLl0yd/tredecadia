@@ -1,6 +1,6 @@
 # Tredecadia–Gregorian Conversion Standard
 
-Status: **1.0.0-rc.1**
+Status: **1.0.0-rc.2**
 
 This document defines the Tredecadia civil conversion profile against the proleptic Gregorian calendar.
 
@@ -180,9 +180,9 @@ For every regular Tredecadia date:
 
 `weekday_index = (DD - 1) mod 7`
 
-with index `0 = Monday` through `6 = Sunday`.
+with index `0 = W1 / Mene` through `6 = W7 / Toze`.
 
-Therefore every regular day `01` is Monday and every regular day `28` is Sunday.
+Therefore every regular day `01` is `W1` / Mene and every regular day `28` is `W7` / Toze. The intermediate indexes are `W2` Noko, `W3` Kese, `W4` Zoyo, `W5` Sote, and `W6` Yemo.
 
 `EQ` and `ED` have no Tredecadia weekday.
 
@@ -196,6 +196,7 @@ A conforming Tredecadia civil converter MUST:
 - use `Y = G + 9999` for the year-coordinate relation;
 - use `tredecadia_leap(Y) = gregorian_leap(Y - 9998)`;
 - preserve `EQ` and `ED` as intercalary values rather than fabricate regular month/day numbers;
+- preserve the structural weekday index mapping `0..6 = W1..W7` for regular dates;
 - satisfy the round-trip requirement.
 
 A calendar whose year boundary moves according to a calculated or observed astronomical equinox is a different calendar profile and MUST NOT identify those dates as conforming Tredecadia civil dates.
