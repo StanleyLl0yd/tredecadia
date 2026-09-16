@@ -18,13 +18,13 @@ def main() -> None:
     calendar = load("registry/calendar.json")
     months = load("registry/months.json")
     localizations = load("registry/localizations.json")
+    rc1 = load("release/v1-identity.json")
+    rc2 = load("release/rc2-identity.json")
 
-    # Registry contract versions at the v1 RC freeze point.
-    assert calendar["schemaVersion"] == 1
+    assert calendar["schemaVersion"] == 2
     assert months["schemaVersion"] == 3
     assert localizations["schemaVersion"] == 1
 
-    # Calendar identity.
     assert calendar["profile"] == "tredecadia-civil"
     assert calendar["era"] == {
         "name": "Tredecadia Era",
@@ -33,13 +33,27 @@ def main() -> None:
         "yearZero": True,
         "canonicalMinimumDigits": 5,
     }
+    expected_weekdays = [
+        {"id": "W1", "canonical": "Mene", "syllables": ["ME", "NE"], "citationIpa": "ˈme.ne"},
+        {"id": "W2", "canonical": "Noko", "syllables": ["NO", "KO"], "citationIpa": "ˈno.ko"},
+        {"id": "W3", "canonical": "Kese", "syllables": ["KE", "SE"], "citationIpa": "ˈke.se"},
+        {"id": "W4", "canonical": "Zoyo", "syllables": ["ZO", "YO"], "citationIpa": "ˈzo.jo"},
+        {"id": "W5", "canonical": "Sote", "syllables": ["SO", "TE"], "citationIpa": "ˈso.te"},
+        {"id": "W6", "canonical": "Yemo", "syllables": ["YE", "MO"], "citationIpa": "ˈje.mo"},
+        {"id": "W7", "canonical": "Toze", "syllables": ["TO", "ZE"], "citationIpa": "ˈto.ze"},
+    ]
     assert calendar["regularGrid"] == {
         "monthsPerYear": 13,
         "daysPerMonth": 28,
         "regularDaysPerYear": 364,
         "weeksPerMonth": 4,
-        "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "weekdays": expected_weekdays,
     }
+    assert rc2["calendar"]["regularGrid"]["weekdays"] == expected_weekdays
+    assert rc1["calendar"]["regularGrid"]["weekdays"] == [
+        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+    ]
+
     assert calendar["epoch"] == {
         "tredecadia": "00000-EQ",
         "gregorianAstronomical": {"year": -9999, "month": 3, "day": 20},
@@ -58,7 +72,6 @@ def main() -> None:
         {"code": "ED", "name": "Earth Day", "position": "end", "leapOnly": True, "hasMonth": False, "hasWeekday": False},
     ]
 
-    # Canonical month identity and abbreviation surface.
     expected_months = [
         (1, "Masanumika", ("MA", "SA", "NU", "MI", "KA"), "Masanu", "Masa"),
         (2, "Tasuzunumu", ("TA", "SU", "ZU", "NU", "MU"), "Tasuzu", "Tasu"),
@@ -79,36 +92,17 @@ def main() -> None:
         for month in months["months"]
     ]
     assert actual_months == expected_months
+    assert rc2["months"] == rc1["months"]
 
     assert months["syllableInventory"] == ["MA", "MI", "MU", "NA", "NI", "NU", "SA", "SU", "TA", "YA", "KA", "ZU"]
-    assert months["pronunciation"] == {
-        "identity": "ordered-segmental-syllables",
-        "stressIdentityCritical": False,
-        "citationProminence": "weak-initial",
-        "abbreviationsInheritCitationProminence": True,
-        "syllableIpa": {
-            "MA": "ma", "MI": "mi", "MU": "mu", "NA": "na", "NI": "ni", "NU": "nu",
-            "SA": "sa", "SU": "su", "TA": "ta", "YA": "ja", "KA": "ka", "ZU": "zu",
-        },
-    }
+    assert months["pronunciation"] == rc2["pronunciation"] == rc1["pronunciation"]
 
-    # Localization maps are part of the frozen v1 identity. Maturity may only
-    # advance from reviewed to stable during an explicitly gated stable release.
     profiles = {profile["id"]: profile for profile in localizations["profiles"]}
     assert set(profiles) == {"ru-Cyrl", "ja-Kana", "ko-Hang"}
     assert all(profile["review"]["status"] in {"reviewed", "stable"} for profile in profiles.values())
-    assert profiles["ru-Cyrl"]["syllableMap"] == {
-        "MA": "ма", "MI": "ми", "MU": "му", "NA": "на", "NI": "ни", "NU": "ну",
-        "SA": "са", "SU": "су", "TA": "та", "YA": "я", "KA": "ка", "ZU": "зу",
-    }
-    assert profiles["ja-Kana"]["syllableMap"] == {
-        "MA": "マ", "MI": "ミ", "MU": "ム", "NA": "ナ", "NI": "ニ", "NU": "ヌ",
-        "SA": "サ", "SU": "ス", "TA": "タ", "YA": "ヤ", "KA": "カ", "ZU": "ズ",
-    }
-    assert profiles["ko-Hang"]["syllableMap"] == {
-        "MA": "마", "MI": "미", "MU": "무", "NA": "나", "NI": "니", "NU": "누",
-        "SA": "사", "SU": "수", "TA": "타", "YA": "야", "KA": "카", "ZU": "주",
-    }
+    for profile_id, mapping in rc2["localizationMaps"].items():
+        assert profiles[profile_id]["syllableMap"] == mapping
+    assert rc2["localizationMaps"] == rc1["localizationMaps"]
 
     compatibility = (ROOT / "specification/compatibility.md").read_text(encoding="utf-8")
     for phrase in (
@@ -116,13 +110,16 @@ def main() -> None:
         "00000-EQ",
         "canonical Short-6",
         "canonical Short-4",
+        "W1",
+        "Mene",
+        "Toze",
         "minimum five ASCII digits",
         "MUST NOT silently fuzzy-autocorrect",
         "new major version",
     ):
         assert phrase in compatibility, phrase
 
-    print("Tredecadia v1 release-candidate freeze validation: OK")
+    print("Tredecadia v1 RC2 compatibility freeze validation: OK")
 
 
 if __name__ == "__main__":
