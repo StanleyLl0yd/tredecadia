@@ -25,6 +25,8 @@ jobs:
           python-version: "3.13"
       - name: Install pinned test dependencies
         run: python -m pip install --disable-pip-version-check -r requirements-test.txt
+      - name: Validate repository security and housekeeping
+        run: python tests/validate_repo_security.py
       - name: Validate release publication metadata
         run: python tests/validate_release_metadata.py
       - name: Validate published release source locks
