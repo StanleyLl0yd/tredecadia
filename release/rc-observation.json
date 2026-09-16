@@ -22,7 +22,32 @@
     "non-blocking-future-work"
   ],
   "reports": [],
-  "postRcChangeGroups": [],
+  "postRcChangeGroups": [
+    {
+      "prs": [46, 48, 53],
+      "classification": "compatible-correction",
+      "area": "release-engineering-and-publication-record",
+      "summary": "Recorded the exact published RC2 source, timestamp, archive digest, live observation window, and post-publication change ledger; synchronized public release status and strengthened immutable RC1/RC2 source-lock validation without changing canonical RC2 identity."
+    },
+    {
+      "prs": [47],
+      "classification": "non-blocking-future-work",
+      "area": "localization-governance",
+      "summary": "Resolved future stable-promotion decisions for the reviewed ru-Cyrl, ja-Kana, and ko-Hang month profiles while leaving the published RC2 registries draft and leaving weekday aliases unreviewed."
+    },
+    {
+      "prs": [49, 50],
+      "classification": "non-blocking-future-work",
+      "area": "repository-security-and-housekeeping",
+      "summary": "Hardened repository automation, dependency/security maintenance, release concurrency, and branch housekeeping, then removed the final superseded branch; no calendar, registry, conversion, or RC2 release semantics changed."
+    },
+    {
+      "prs": [51, 52],
+      "classification": "editorial-issue",
+      "area": "documentation-and-localization",
+      "summary": "Audited all reader-facing localized month and weekday tables, added Georgian and Armenian introductions without inventing unreviewed aliases, corrected language-specific wording, and strengthened multilingual README validation; canonical names and published RC2 identity remained unchanged."
+    }
+  ],
   "summary": {
     "compatibilityCriticalDefectsFound": 0,
     "compatibilityCriticalDefectsOpen": 0,
