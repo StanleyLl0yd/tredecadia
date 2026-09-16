@@ -15,6 +15,8 @@ import stable_preflight  # noqa: E402
 
 
 def main() -> None:
+    # Deterministic point after RC2 publication but before the one-full-day
+    # minimum observation interval has elapsed.
     as_of = datetime(2026, 9, 16, 12, 0, 0, tzinfo=timezone.utc)
     result = stable_preflight.evaluate(as_of)
 
@@ -26,27 +28,32 @@ def main() -> None:
 
     blockers = {entry["code"]: entry["detail"] for entry in result["blockers"]}
     expected = {
-        "rc2-not-published",
+        "rc-observation-open",
+        "minimum-observation-time-not-reached",
         "pending-localization-decisions",
         "stable-decision-not-approved",
         "publication-gate-closed",
     }
     assert set(blockers) == expected, blockers
     assert blockers["pending-localization-decisions"] == "ja-Kana, ko-Hang, ru-Cyrl"
-    assert "v1.0.0-rc.2" in blockers["rc2-not-published"]
-    assert "minimum-observation-time-not-reached" not in blockers
-    assert "rc-observation-open" not in blockers
+    assert "2026-09-17T09:44:59Z" in blockers["minimum-observation-time-not-reached"]
+    assert "rc2-not-published" not in blockers
     assert "open-rc-reports" not in blockers
     assert "pages-external-enablement-required" not in blockers
 
-    # Wall-clock time cannot satisfy an observation that has not started.
-    much_later = stable_preflight.evaluate(datetime(2030, 1, 1, 0, 0, 0, tzinfo=timezone.utc))
-    later_codes = {entry["code"] for entry in much_later["blockers"]}
-    assert "rc2-not-published" in later_codes
+    # After one full day only the time blocker disappears. The observation
+    # still has to be explicitly completed and the profile/stable decisions
+    # still have to be made.
+    later = stable_preflight.evaluate(datetime(2026, 9, 17, 12, 0, 0, tzinfo=timezone.utc))
+    later_codes = {entry["code"] for entry in later["blockers"]}
     assert "minimum-observation-time-not-reached" not in later_codes
-    assert much_later["ready"] is False
+    assert "rc-observation-open" in later_codes
+    assert "pending-localization-decisions" in later_codes
+    assert "stable-decision-not-approved" in later_codes
+    assert "publication-gate-closed" in later_codes
+    assert later["ready"] is False
 
-    print("Tredecadia RC2 prepublication stable preflight validation: OK")
+    print("Tredecadia published RC2 stable preflight validation: OK")
 
 
 if __name__ == "__main__":
