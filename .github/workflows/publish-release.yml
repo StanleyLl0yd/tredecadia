@@ -29,6 +29,8 @@ jobs:
           for test in \
             tests/validate_published_releases.py \
             tests/validate_v1_identity.py \
+            tests/validate_weekday_candidate.py \
+            tests/validate_rc2_transition.py \
             tests/validate_stable_plan.py \
             tests/validate_profile_readiness.py \
             tests/validate_rc_observation.py \
