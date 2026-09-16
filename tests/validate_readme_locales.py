@@ -59,11 +59,14 @@ def main() -> None:
     root_readme = (ROOT / "README.md").read_text(encoding="utf-8")
     index = (ROOT / "README.languages.md").read_text(encoding="utf-8")
     months = json.loads((ROOT / "registry/months.json").read_text(encoding="utf-8"))["months"]
+    calendar = json.loads((ROOT / "registry/calendar.json").read_text(encoding="utf-8"))
+    weekdays = calendar["regularGrid"]["weekdays"]
     localization_registry = json.loads((ROOT / "registry/localizations.json").read_text(encoding="utf-8"))
     profiles = {profile["id"]: profile for profile in localization_registry["profiles"]}
 
     assert "README.languages.md" in root_readme
     assert "README.md" in index
+    assert [day["id"] for day in weekdays] == [f"W{i}" for i in range(1, 8)]
 
     for locale, path in LOCALES.items():
         file = ROOT / path
@@ -81,6 +84,13 @@ def main() -> None:
         assert "00000-EQ" in text, f"{path}: epoch example missing"
         assert "12025-07-11" in text, f"{path}: modern date example missing"
         assert "EQ" in text and "ED" in text, f"{path}: intercalary identifiers missing"
+
+        # Every localized introduction must expose the language-neutral RC2
+        # weekday identity. Localized weekday aliases remain a separate,
+        # unreviewed surface and must not replace these canonical forms.
+        for day in weekdays:
+            assert day["id"] in text, f"{path}: missing canonical weekday ID {day['id']}"
+            assert day["canonical"] in text, f"{path}: missing canonical weekday {day['canonical']}"
 
         # BCE/CE may remain as international abbreviations, but a localized
         # README must spell out what they mean rather than assuming the reader
@@ -100,8 +110,9 @@ def main() -> None:
                 assert value in text, f"{path}: missing canonical {field} {value}"
 
         # Where Tredecadia already has an independently reviewed local-script
-        # profile, the corresponding reader-facing README must actually use it
-        # instead of showing only the English/Latin spellings.
+        # month profile, the corresponding reader-facing README must actually
+        # use it instead of showing only the English/Latin spellings. These
+        # profiles do not imply any reviewed weekday alias.
         profile_id = REVIEWED_PROFILE_BY_LOCALE.get(locale)
         if profile_id is not None:
             profile = profiles[profile_id]
