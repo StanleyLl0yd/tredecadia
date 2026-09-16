@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import sys
 import tarfile
 import tempfile
@@ -21,6 +22,22 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def validate_localized_readme_coverage() -> None:
+    language_index = (ROOT / "README.languages.md").read_text(encoding="utf-8")
+    indexed = set(re.findall(r"\((README\.[A-Za-z0-9-]+\.md)\)", language_index))
+    indexed.discard("README.languages.md")
+    bundled = {
+        path
+        for path in build_release.INCLUDE_FILES
+        if path.startswith("README.") and path.endswith(".md") and path != "README.languages.md"
+    }
+    assert indexed, "language index must expose localized README editions"
+    assert bundled == indexed, (
+        f"release localized README set differs from README.languages.md: "
+        f"missing={sorted(indexed - bundled)}, extra={sorted(bundled - indexed)}"
+    )
+
+
 def main() -> None:
     # The default branch legitimately evolves after a published tag while
     # CITATION.cff still names the current public version. Determinism testing
@@ -28,6 +45,7 @@ def main() -> None:
     # second archive that falsely claims the already-published RC identity.
     version = f"{build_release.citation_version()}.ci-snapshot"
     assert build_release.published_release(version) is None
+    validate_localized_readme_coverage()
 
     with tempfile.TemporaryDirectory() as first_dir, tempfile.TemporaryDirectory() as second_dir:
         first_archive, first_sums = build_release.build_bundle(Path(first_dir), version)
