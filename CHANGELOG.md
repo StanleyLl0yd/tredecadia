@@ -10,7 +10,7 @@ The project follows Semantic Versioning for stable public releases where practic
 
 - Executable M4 stable-promotion state machine, immutable release identity records, and atomic RC-to-stable transition manifests.
 - Machine-readable RC observation records and structured GitHub RC feedback form.
-- Nineteen natural-language README editions in addition to English, with CI checks for canonical facts and release-version synchronization.
+- Localized natural-language README editions in addition to English, with CI checks for canonical facts and release-version synchronization.
 - Reviewed local-script month presentation in Russian, Japanese, and Korean README editions, while avoiding unreviewed script transliterations elsewhere.
 - GitHub Pages build/deployment workflow, CI-checked public navigation page, and verified live deployment.
 - Immutable `release/published-releases.json` record for published tag/commit/archive identities.
