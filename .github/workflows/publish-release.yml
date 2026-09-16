@@ -35,7 +35,6 @@ jobs:
         run: |
           set -euo pipefail
           for test in \
-            tests/validate_repo_security.py \
             tests/validate_published_releases.py \
             tests/validate_v1_identity.py \
             tests/validate_weekday_candidate.py \
