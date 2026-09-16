@@ -71,6 +71,7 @@ def main() -> None:
     assert 'select(.mergedAt != null)' in housekeeping
     assert 'gh api --method DELETE' in housekeeping
     assert "m4/rc2-weekdays" in housekeeping
+    assert "m4-pages-deployment" in housekeeping
 
     print("Tredecadia repository security/housekeeping validation: OK")
 
