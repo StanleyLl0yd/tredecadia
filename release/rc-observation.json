@@ -9,8 +9,8 @@
   },
   "window": {
     "status": "open",
-    "minimumDays": 14,
-    "notBefore": "2026-09-29T20:21:58Z",
+    "minimumDays": 1,
+    "notBefore": "2026-09-16T20:21:58Z",
     "completedAt": null
   },
   "classifications": [
