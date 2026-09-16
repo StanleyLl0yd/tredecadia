@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
-"""Validate the complete atomic RC -> stable metadata transition manifest."""
+"""Validate the complete atomic RC2 -> stable metadata transition manifest."""
 
 from __future__ import annotations
 
@@ -13,26 +13,15 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST_PATH = "release/stable-transition.json"
 
 EXPECTED_VERSIONED_JSON = {
-    "registry/calendar.json",
-    "registry/months.json",
-    "registry/localizations.json",
-    "tests/test-vectors.json",
-    "tests/conversion-vectors.json",
-    "tests/short4-ux-vectors.json",
-    "tests/accessibility-vectors.json",
+    "registry/calendar.json", "registry/months.json", "registry/localizations.json",
+    "tests/test-vectors.json", "tests/conversion-vectors.json",
+    "tests/short4-ux-vectors.json", "tests/accessibility-vectors.json",
 }
-EXPECTED_REGISTRIES = {
-    "registry/calendar.json",
-    "registry/months.json",
-    "registry/localizations.json",
-}
+EXPECTED_REGISTRIES = {"registry/calendar.json", "registry/months.json", "registry/localizations.json"}
 EXPECTED_SPECS = {
-    "specification/calendar-standard.md",
-    "specification/conversion-standard.md",
-    "specification/date-notation.md",
-    "specification/month-naming-standard.md",
-    "specification/localization.md",
-    "specification/localization-profiles.md",
+    "specification/calendar-standard.md", "specification/conversion-standard.md",
+    "specification/date-notation.md", "specification/month-naming-standard.md",
+    "specification/localization.md", "specification/localization-profiles.md",
     "specification/compatibility.md",
 }
 LOCALIZED_READMES = {
@@ -42,17 +31,10 @@ LOCALIZED_READMES = {
     "README.ko.md", "README.ar.md", "README.fa.md", "README.hi.md",
     "README.bn.md", "README.id.md", "README.vi.md",
 }
-EXPECTED_PUBLIC_DOCS = {
-    "README.md", "ROADMAP.md", "CONTRIBUTING.md", "docs/index.md", "CHANGELOG.md",
-    *LOCALIZED_READMES,
-}
-EXPECTED_SCHEMAS = {
-    "registry/calendar.schema.json",
-    "registry/months.schema.json",
-    "registry/localizations.schema.json",
-}
+EXPECTED_PUBLIC_DOCS = {"README.md", "ROADMAP.md", "CONTRIBUTING.md", "docs/index.md", "CHANGELOG.md", *LOCALIZED_READMES}
+EXPECTED_SCHEMAS = {"registry/calendar.schema.json", "registry/months.schema.json", "registry/localizations.schema.json"}
 SCHEMA_VERSIONS = {
-    "registry/calendar.schema.json": 1,
+    "registry/calendar.schema.json": 2,
     "registry/months.schema.json": 3,
     "registry/localizations.schema.json": 1,
 }
@@ -65,14 +47,8 @@ def load(path: str) -> dict:
 def all_atomic_paths(manifest: dict) -> set[str]:
     atomic = manifest["atomicCandidateCommit"]
     return {
-        atomic["publicationTrigger"],
-        atomic["citation"],
-        atomic["stableReleaseNotes"],
-        atomic["profileDecisionRecord"],
-        *atomic["versionedJson"],
-        *atomic["registryStatus"],
-        *atomic["specificationStatusHeaders"],
-        *atomic["publicVersionDocuments"],
+        atomic["publicationTrigger"], atomic["citation"], atomic["stableReleaseNotes"], atomic["profileDecisionRecord"],
+        *atomic["versionedJson"], *atomic["registryStatus"], *atomic["specificationStatusHeaders"], *atomic["publicVersionDocuments"],
     }
 
 
@@ -96,8 +72,8 @@ def source_reference_paths(source: str) -> set[str]:
 def validate_manifest_shape(manifest: dict) -> None:
     source = manifest["sourceVersion"]
     target = manifest["targetVersion"]
-    assert manifest["manifestVersion"] == 1
-    assert source == "1.0.0-rc.1"
+    assert manifest["manifestVersion"] == 2
+    assert source == "1.0.0-rc.2"
     assert target == "1.0.0"
 
     atomic = manifest["atomicCandidateCommit"]
@@ -116,7 +92,7 @@ def validate_manifest_shape(manifest: dict) -> None:
     assert pre == {
         "stablePlan": "release/stable-plan.json",
         "publicationAllowed": True,
-        "identityBaseline": "release/v1-identity.json",
+        "identityBaseline": "release/rc2-identity.json",
     }
     assert manifest["stableProfileMaturitySource"] == pre["stablePlan"]
     assert manifest["postPublication"]["archivePlan"] == "release/archive-plan.md"
@@ -126,6 +102,7 @@ def validate_manifest_shape(manifest: dict) -> None:
         all_atomic_paths(manifest)
         | set(manifest["unchangedSchemaContracts"])
         | set(manifest["historicalSourceReferences"])
+        | set(manifest["historicalPredecessorReferences"])
         | {MANIFEST_PATH, pre["stablePlan"], pre["identityBaseline"], manifest["postPublication"]["archivePlan"]}
     )
     for path in required:
@@ -141,8 +118,7 @@ def validate_schema_freeze(manifest: dict) -> None:
 def validate_source_reference_coverage(manifest: dict) -> None:
     source = manifest["sourceVersion"]
     allowed = all_atomic_paths(manifest) | set(manifest["historicalSourceReferences"]) | {MANIFEST_PATH}
-    actual = source_reference_paths(source)
-    unexpected = actual - allowed
+    unexpected = source_reference_paths(source) - allowed
     assert not unexpected, f"unclassified {source} references: {sorted(unexpected)}"
 
 
@@ -166,12 +142,7 @@ def validate_current_stage(manifest: dict) -> None:
     assert packet_decisions == plan_decisions
 
     if version == source:
-        assert publish == {
-            "version": source,
-            "tag": f"v{source}",
-            "prerelease": True,
-            "notes": f"release/notes/{source}.md",
-        }
+        assert publish == {"version": source, "tag": f"v{source}", "prerelease": True, "notes": f"release/notes/{source}.md"}
         for path in atomic["registryStatus"]:
             assert load(path)["status"] == "draft", path
         for path in atomic["specificationStatusHeaders"]:
@@ -183,12 +154,7 @@ def validate_current_stage(manifest: dict) -> None:
         assert stable_plan["publication"]["allowed"] is False
     else:
         assert stable_plan["publication"]["allowed"] is manifest["preconditions"]["publicationAllowed"] is True
-        assert publish == {
-            "version": target,
-            "tag": f"v{target}",
-            "prerelease": False,
-            "notes": atomic["stableReleaseNotes"],
-        }
+        assert publish == {"version": target, "tag": f"v{target}", "prerelease": False, "notes": atomic["stableReleaseNotes"]}
         for path in atomic["registryStatus"]:
             assert load(path)["status"] == "stable", path
         for path in atomic["specificationStatusHeaders"]:
@@ -199,9 +165,9 @@ def validate_current_stage(manifest: dict) -> None:
         assert "DRAFT — NOT AUTHORIZED FOR PUBLICATION" not in notes
 
     baseline = load(manifest["preconditions"]["identityBaseline"])
-    assert baseline["sourceTag"] == f"v{source}"
-    assert baseline["sourceCommit"] == "937d8d681fcce6095d6a4d196783136b908c1be5"
-    assert source in (ROOT / "rationale/release-candidate-audit.md").read_text(encoding="utf-8")
+    assert baseline["release"]["tag"] == f"v{source}"
+    assert baseline["schemaVersions"] == {"calendar": 2, "months": 3, "localizations": 1}
+    assert stable_plan["identityBaseline"] == manifest["preconditions"]["identityBaseline"]
 
 
 def main() -> None:
@@ -210,7 +176,7 @@ def main() -> None:
     validate_schema_freeze(manifest)
     validate_source_reference_coverage(manifest)
     validate_current_stage(manifest)
-    print("Tredecadia stable-transition manifest validation: OK")
+    print("Tredecadia RC2 stable-transition manifest validation: OK")
 
 
 if __name__ == "__main__":
