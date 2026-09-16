@@ -1,0 +1,97 @@
+{
+  "manifestVersion": 1,
+  "sourceRc": {
+    "version": "1.0.0-rc.1",
+    "tag": "v1.0.0-rc.1",
+    "commit": "937d8d681fcce6095d6a4d196783136b908c1be5",
+    "archiveSha256": "018a804f518b3cbff402e91f5aba7d7aba05361f6bf4b01de593c8ac17a0abdf"
+  },
+  "targetRc": {
+    "version": "1.0.0-rc.2",
+    "tag": "v1.0.0-rc.2",
+    "prerelease": true
+  },
+  "reason": "Replace English weekday display identity with internationally neutral canonical weekday identifiers and names before stable v1.0.0.",
+  "candidateRecord": "release/weekday-rc2-candidate.json",
+  "identityChange": {
+    "path": "calendar.regularGrid.weekdays",
+    "sourceNames": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "target": [
+      {"id": "W1", "name": "Mene"},
+      {"id": "W2", "name": "Noko"},
+      {"id": "W3", "name": "Kese"},
+      {"id": "W4", "name": "Zoyo"},
+      {"id": "W5", "name": "Sote"},
+      {"id": "W6", "name": "Yemo"},
+      {"id": "W7", "name": "Toze"}
+    ]
+  },
+  "schemaTransition": {
+    "calendar": {"from": 1, "to": 2},
+    "months": {"from": 3, "to": 3},
+    "localizations": {"from": 1, "to": 1}
+  },
+  "preservedIdentity": [
+    "13x28 regular grid",
+    "four seven-day weeks per month",
+    "weekday positions W1 through W7",
+    "all month numbers, names, syllables, Short-6 and Short-4 forms",
+    "EQ and ED placement and semantics",
+    "Tredecadia Era and year zero",
+    "epoch and civil conversion formulas",
+    "leap rule",
+    "canonical date grammar",
+    "month pronunciation identity",
+    "reviewed localization maps"
+  ],
+  "requiredNormativeFiles": [
+    "registry/calendar.json",
+    "registry/calendar.schema.json",
+    "specification/calendar-standard.md",
+    "specification/compatibility.md"
+  ],
+  "requiredFreezeAndReleaseFiles": [
+    "tests/validate_rc_freeze.py",
+    "tests/validate_v1_identity.py",
+    "release/stable-plan.json",
+    "release/stable-transition.json",
+    "release/rc-observation.json",
+    "release/publish.json",
+    "release/published-releases.json",
+    "CITATION.cff"
+  ],
+  "requiredPublicSurfaces": [
+    "README.md",
+    "README.ru.md",
+    "README.es.md",
+    "README.pt-BR.md",
+    "README.fr.md",
+    "README.de.md",
+    "README.it.md",
+    "README.tr.md",
+    "README.pl.md",
+    "README.uk.md",
+    "README.zh-CN.md",
+    "README.zh-TW.md",
+    "README.ja.md",
+    "README.ko.md",
+    "README.ar.md",
+    "README.fa.md",
+    "README.hi.md",
+    "README.bn.md",
+    "README.id.md",
+    "README.vi.md",
+    "ROADMAP.md",
+    "CONTRIBUTING.md",
+    "docs/index.md",
+    "CHANGELOG.md"
+  ],
+  "publicationSequence": [
+    "merge and verify the non-normative weekday candidate layer",
+    "apply the complete RC2 compatibility transition atomically",
+    "run the complete repository validation suite on the exact RC2 candidate",
+    "publish immutable v1.0.0-rc.2 assets and record their exact source commit and digest",
+    "start a new one-full-day RC2 observation record from the actual publication timestamp",
+    "only after RC2 observation and explicit localization decisions, prepare stable v1.0.0"
+  ]
+}

@@ -26,6 +26,8 @@ jobs:
         run: python tests/validate_v1_identity.py
       - name: Validate RC2 weekday candidate
         run: python tests/validate_weekday_candidate.py
+      - name: Validate planned RC2 weekday transition
+        run: python tests/validate_rc2_transition.py
       - name: Validate M4 stable-promotion gate
         run: python tests/validate_stable_plan.py
       - name: Validate localization stable-readiness packets
