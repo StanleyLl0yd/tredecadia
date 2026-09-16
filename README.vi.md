@@ -2,17 +2,23 @@
 
 [English](README.md) · **Tiếng Việt** · [Tất cả ngôn ngữ](README.languages.md)
 
-Tredecadia là một dự án mở về lịch vĩnh cửu gồm **13 tháng, mỗi tháng 28 ngày**. Mỗi tháng có đúng bốn tuần, nên cùng một ngày trong tháng luôn rơi vào cùng một thứ. Những ngày dùng để điều chỉnh độ dài năm được đặt ngoài tháng và ngoài chu kỳ tuần bảy ngày.
+Tredecadia là một dự án mở về lịch vĩnh cửu gồm **13 tháng, mỗi tháng 28 ngày**. Mỗi tháng có đúng bốn tuần, nên cùng một ngày trong tháng luôn nằm ở cùng một vị trí trong chu kỳ tuần. Những ngày dùng để điều chỉnh độ dài năm được đặt ngoài tháng và ngoài chu kỳ tuần bảy ngày.
 
-> **Phiên bản công khai hiện tại: `1.0.0-rc.1`.** Đây là phiên bản ứng viên cho bản ổn định `v1.0.0`. Phạm vi tương thích của v1 đã được đóng băng, nhưng vẫn còn giai đoạn quan sát và xác minh trước khi phát hành bản cuối.
+> **Phiên bản công khai hiện tại: `1.0.0-rc.2`.** Ứng viên thứ hai đưa vào các tên ngày trong tuần chuẩn được thiết kế với mục tiêu trung lập quốc tế. Bản ổn định `v1.0.0` chỉ có thể được phát hành sau giai đoạn quan sát riêng cho RC2 và lần xác minh cuối.
 
 ## Cấu trúc cơ bản
 
 - 13 × 28 = 364 ngày thông thường nằm trong các tháng.
 - Mỗi tháng gồm đúng bốn tuần trọn vẹn.
-- Ngày `01` luôn là thứ Hai, ngày `28` luôn là Chủ nhật.
+- Ngày `01` luôn là **Mene (`W1`)**, ngày `28` luôn là **Toze (`W7`)**.
 - `EQ` — **Ngày Xuân phân / Năm mới** — mở đầu mỗi năm và không thuộc tháng hay tuần nào.
 - Trong năm nhuận, sau `13-28` có thêm `ED` — **Ngày Trái Đất** — rồi mới đến `EQ` của năm tiếp theo.
+
+Chu kỳ bảy ngày chuẩn:
+
+`W1 Mene → W2 Noko → W3 Kese → W4 Zoyo → W5 Sote → W6 Yemo → W7 Toze`
+
+Các tên này là định danh chuẩn của Tredecadia, không phải bản dịch hay đổi tên của thứ Hai đến Chủ nhật. RC2 chưa định nghĩa các bí danh ngày trong tuần đã được thẩm định cho tiếng Việt, vì vậy dùng trực tiếp dạng Latinh chuẩn.
 
 Năm thường:
 
