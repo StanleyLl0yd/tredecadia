@@ -41,7 +41,7 @@ jobs:
             merged_count="$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$branch" --state closed --limit 100 --json mergedAt --jq '[.[] | select(.mergedAt != null)] | length')"
             superseded=false
             case "$branch" in
-              m4/rc2-weekdays) superseded=true ;;
+              m4/rc2-weekdays|m4-pages-deployment) superseded=true ;;
             esac
 
             if [ "$merged_count" -gt 0 ] || [ "$superseded" = true ]; then
