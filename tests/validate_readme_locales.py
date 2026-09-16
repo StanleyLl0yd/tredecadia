@@ -21,6 +21,8 @@ LOCALES = {
     "tr": "README.tr.md",
     "pl": "README.pl.md",
     "uk": "README.uk.md",
+    "ka": "README.ka.md",
+    "hy": "README.hy.md",
     "zh-CN": "README.zh-CN.md",
     "zh-TW": "README.zh-TW.md",
     "ja": "README.ja.md",
@@ -67,6 +69,7 @@ def main() -> None:
     assert "README.languages.md" in root_readme
     assert "README.md" in index
     assert [day["id"] for day in weekdays] == [f"W{i}" for i in range(1, 8)]
+    weekday_cycle = " → ".join(f"{day['id']} {day['canonical']}" for day in weekdays)
 
     for locale, path in LOCALES.items():
         file = ROOT / path
@@ -86,8 +89,10 @@ def main() -> None:
         assert "EQ" in text and "ED" in text, f"{path}: intercalary identifiers missing"
 
         # Every localized introduction must expose the language-neutral RC2
-        # weekday identity. Localized weekday aliases remain a separate,
-        # unreviewed surface and must not replace these canonical forms.
+        # weekday identity in exact W1..W7 order. Localized weekday aliases
+        # remain a separate, unreviewed surface and must not replace these
+        # canonical forms.
+        assert weekday_cycle in text, f"{path}: canonical weekday cycle missing or out of order"
         for day in weekdays:
             assert day["id"] in text, f"{path}: missing canonical weekday ID {day['id']}"
             assert day["canonical"] in text, f"{path}: missing canonical weekday {day['canonical']}"
@@ -102,12 +107,19 @@ def main() -> None:
         for phrase in UNLOCALIZED_PROSE:
             assert phrase not in lowered, f"{path}: untranslated English prose remains: {phrase!r}"
 
-        # Canonical Latin identifiers stay visible in every edition so a
-        # reader can map prose back to the normative registry.
+        # Require one numbered month-table row for every canonical month and
+        # require all three canonical identities on that same row. This also
+        # works for reviewed ru/ja/ko profiles, whose local aliases are shown
+        # before the canonical Latin forms in parentheses.
+        lines = text.splitlines()
         for month in months:
+            prefix = f"| {month['number']:02d} |"
+            rows = [line for line in lines if line.startswith(prefix)]
+            assert len(rows) == 1, f"{path}: expected exactly one table row for month {month['number']:02d}"
+            row = rows[0]
             for field in ("canonical", "short6", "short4"):
                 value = month[field]
-                assert value in text, f"{path}: missing canonical {field} {value}"
+                assert value in row, f"{path}: month {month['number']:02d} row missing canonical {field} {value}"
 
         # Where Tredecadia already has an independently reviewed local-script
         # month profile, the corresponding reader-facing README must actually
@@ -126,7 +138,7 @@ def main() -> None:
         assert path in index, f"README.languages.md does not link {path}"
 
     assert len(set(LOCALES.values())) == len(LOCALES)
-    assert len(LOCALES) == 19
+    assert len(LOCALES) == 21
     print("Tredecadia localized README validation: OK")
 
 

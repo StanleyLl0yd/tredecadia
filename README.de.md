@@ -18,7 +18,7 @@ Kanonischer Sieben-Tage-Zyklus:
 
 `W1 Mene → W2 Noko → W3 Kese → W4 Zoyo → W5 Sote → W6 Yemo → W7 Toze`
 
-Diese Namen sind kanonische Tredecadia-Identifikatoren, keine Übersetzungen oder Umbenennungen von Montag bis Sonntag. RC2 enthält noch keine geprüften lokalisierten Wochentags-Aliase; deshalb werden die kanonischen lateinischen Formen verwendet.
+Diese Namen sind kanonische Tredecadia-Identifikatoren, keine Übersetzungen oder Umbenennungen von Montag bis Sonntag. RC2 enthält noch keine geprüften lokalisierten Aliasnamen für Wochentage; deshalb werden die kanonischen lateinischen Formen verwendet.
 
 Normales Jahr:
 
