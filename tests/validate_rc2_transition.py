@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
-"""Validate the planned RC1 -> RC2 weekday compatibility transition before it is applied."""
+"""Validate the explicit RC1 -> RC2 weekday compatibility transition."""
 
 from __future__ import annotations
 
@@ -17,7 +17,8 @@ def load(path: str) -> dict:
 def main() -> None:
     manifest = load("release/rc2-transition.json")
     candidate = load(manifest["candidateRecord"])
-    baseline = load("release/v1-identity.json")
+    rc1 = load("release/v1-identity.json")
+    rc2 = load("release/rc2-identity.json")
     calendar = load("registry/calendar.json")
     calendar_schema = load("registry/calendar.schema.json")
     months = load("registry/months.json")
@@ -41,42 +42,43 @@ def main() -> None:
 
     source_names = manifest["identityChange"]["sourceNames"]
     assert source_names == ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    assert baseline["calendar"]["regularGrid"]["weekdays"] == source_names
-    assert calendar["regularGrid"]["weekdays"] == source_names
+    assert rc1["calendar"]["regularGrid"]["weekdays"] == source_names
 
     target = manifest["identityChange"]["target"]
     assert target == [{"id": item["id"], "name": item["canonical"]} for item in candidate["weekdays"]]
-    assert [item["id"] for item in target] == [f"W{i}" for i in range(1, 8)]
-    assert len({item["name"] for item in target}) == 7
+    current_weekdays = calendar["regularGrid"]["weekdays"]
+    assert [{"id": item["id"], "name": item["canonical"]} for item in current_weekdays] == target
+    assert current_weekdays == rc2["calendar"]["regularGrid"]["weekdays"]
 
     assert manifest["schemaTransition"] == {
         "calendar": {"from": 1, "to": 2},
         "months": {"from": 3, "to": 3},
         "localizations": {"from": 1, "to": 1},
     }
-    assert calendar["schemaVersion"] == 1
-    assert calendar_schema["properties"]["schemaVersion"]["const"] == 1
+    assert rc1["schemaVersions"] == {"calendar": 1, "months": 3, "localizations": 1}
+    assert calendar["schemaVersion"] == 2
+    assert calendar_schema["properties"]["schemaVersion"]["const"] == 2
     assert months["schemaVersion"] == 3
     assert localizations["schemaVersion"] == 1
 
-    assert stable_plan["sourceRc"]["version"] == "1.0.0-rc.1"
+    assert stable_plan["sourceRc"]["version"] == "1.0.0-rc.2"
+    assert stable_plan["predecessorRc"]["version"] == "1.0.0-rc.1"
     assert stable_plan["publication"]["allowed"] is False
-    assert observation["sourceRc"]["version"] == "1.0.0-rc.1"
+    assert observation["sourceRc"]["version"] == "1.0.0-rc.2"
     assert publish == {
-        "version": "1.0.0-rc.1",
-        "tag": "v1.0.0-rc.1",
+        "version": "1.0.0-rc.2",
+        "tag": "v1.0.0-rc.2",
         "prerelease": True,
-        "notes": "release/notes/1.0.0-rc.1.md",
+        "notes": "release/notes/1.0.0-rc.2.md",
     }
 
     required = (
         manifest["requiredNormativeFiles"]
         + manifest["requiredFreezeAndReleaseFiles"]
         + manifest["requiredPublicSurfaces"]
-        + [manifest["candidateRecord"]]
+        + [manifest["candidateRecord"], "release/rc2-identity.json", "release/rc1-observation.json"]
     )
-    assert len(required) == len(set(required)), "RC2 transition manifest contains duplicate file entries"
-    for path in required:
+    for path in set(required):
         assert (ROOT / path).is_file(), path
 
     preserved = set(manifest["preservedIdentity"])
@@ -89,10 +91,15 @@ def main() -> None:
     ):
         assert required_identity in preserved
 
+    assert rc2["months"] == rc1["months"]
+    assert rc2["dateGrammar"] == rc1["dateGrammar"]
+    assert rc2["pronunciation"] == rc1["pronunciation"]
+    assert rc2["localizationMaps"] == rc1["localizationMaps"]
+
     assert len(manifest["publicationSequence"]) == 6
     assert "one-full-day" in manifest["publicationSequence"][4]
 
-    print("Tredecadia planned RC2 weekday transition: OK")
+    print("Tredecadia applied RC1 -> RC2 weekday transition: OK")
 
 
 if __name__ == "__main__":
