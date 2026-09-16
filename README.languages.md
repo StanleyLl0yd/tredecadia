@@ -12,6 +12,8 @@ The English [`README.md`](README.md) is the canonical project README. The files 
 - [Türkçe](README.tr.md)
 - [Polski](README.pl.md)
 - [Українська](README.uk.md)
+- [ქართული](README.ka.md)
+- [Հայերեն](README.hy.md)
 - [简体中文](README.zh-CN.md)
 - [繁體中文](README.zh-TW.md)
 - [日本語](README.ja.md)
