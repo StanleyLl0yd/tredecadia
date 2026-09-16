@@ -149,7 +149,10 @@ def validate_current_stage(manifest: dict) -> None:
             assert f"Status: **{source}" in (ROOT / path).read_text(encoding="utf-8"), path
         for path in atomic["publicVersionDocuments"]:
             assert source in (ROOT / path).read_text(encoding="utf-8"), path
-        assert all(decision == "pending" for decision in packet_decisions.values())
+        # Profile decisions may be resolved while RC2 observation is still
+        # open. Resolution does not promote registry maturity or authorize
+        # stable publication; those remain gated by the observation decision.
+        assert all(decision in {"pending", "accepted", "rejected"} for decision in packet_decisions.values())
         assert "DRAFT — NOT AUTHORIZED FOR PUBLICATION" in notes
         assert stable_plan["publication"]["allowed"] is False
     else:
