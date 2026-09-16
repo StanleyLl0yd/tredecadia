@@ -7,16 +7,16 @@ title: Tredecadia
 
 **A 13 × 28 perennial calendar standard.**
 
-Tredecadia has thirteen equal 28-day months, four complete Monday–Sunday weeks per month, an independent mathematical year coordinate, and internationally neutral canonical month names.
+Tredecadia has thirteen equal 28-day months, four complete seven-day weeks per month, an independent mathematical year coordinate, and internationally neutral canonical month and weekday names.
 
-> **Release candidate `1.0.0-rc.1`.** Normative source files remain the repository specifications and machine-readable registries; this page is a navigational summary, not a second copy of the standard.
+> **Release candidate `1.0.0-rc.2`.** Normative source files remain the repository specifications and machine-readable registries; this page is a navigational summary, not a second copy of the standard.
 
-[Read the project introduction in 20 languages](https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md) · [Published `v1.0.0-rc.1`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
+[Read the project introduction in 20 languages](https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md) · [RC2 release](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2) · [Historical RC1](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
 
 ## Calendar at a glance
 
 - 13 regular months × 28 days = 364 regular days.
-- Every month starts Monday and ends Sunday.
+- Every month starts `W1` / **Mene** and ends `W7` / **Toze**.
 - `EQ` — **Equinox / New Year Day** — opens each year outside the month/week cycle.
 - In a leap year, `ED` — **Earth Day** — follows month 13 day 28 and precedes the next year's `EQ`.
 - Tredecadia Era (`TE`) is one integer year axis with a real year `0`.
@@ -29,6 +29,20 @@ Ordinary boundary:
 Leap boundary:
 
 `Y-EQ → Y-01-01 → … → Y-13-28 → Y-ED → (Y+1)-EQ`
+
+## Canonical weekdays
+
+| Position | ID | Name |
+|---:|---|---|
+| 1 | `W1` | Mene |
+| 2 | `W2` | Noko |
+| 3 | `W3` | Kese |
+| 4 | `W4` | Zoyo |
+| 5 | `W5` | Sote |
+| 6 | `W6` | Yemo |
+| 7 | `W7` | Toze |
+
+The weekday cycle is structural; it is not inherited from the Gregorian weekday label of a converted civil date. RC2 replaces the English weekday strings used by RC1 with these neutral canonical identities before stable v1.0.0.
 
 ## Canonical months
 
@@ -54,19 +68,19 @@ Short-4 is the preferred conversational compact form when the Tredecadia month c
 
 Gregorian `2026-09-15` maps to:
 
-**TE `12025-07-11` — day 11 of Muyasanumi.**
+**TE `12025-07-11` — day 11 of Muyasanumi, `W4` / Zoyo.**
 
 Canonical machine syntax is strict ASCII. Human-facing interfaces may display unpadded year values such as `1 TE` or a typographic negative value such as `−1 TE`; those are presentation forms, not alternate machine identifiers.
 
 ## Localization
 
-Release candidate `1.0.0-rc.1` has independently reviewed, non-stable display profiles for:
+Release candidate `1.0.0-rc.2` has independently reviewed, non-stable **month** display profiles for:
 
 - Russian Cyrillic (`ru-Cyrl`);
 - Japanese Katakana (`ja-Kana`);
 - Korean Hangul (`ko-Hang`).
 
-Localized spellings are aliases and never change canonical month numbers, Latin names, syllables, Short-6, or Short-4 identifiers. Final `stable` promotion is reserved for `v1.0.0`.
+Localized month spellings are aliases and never change canonical month numbers, Latin names, syllables, Short-6, or Short-4 identifiers. RC2 does not infer weekday aliases from those profiles because the weekday `E/O` syllables require separate review. Final `stable` promotion is reserved for `v1.0.0`.
 
 ## Standard and data
 
