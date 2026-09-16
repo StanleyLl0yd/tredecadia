@@ -11,6 +11,8 @@ Tredecadia has thirteen equal 28-day months, four complete seven-day weeks per m
 
 > **Published release candidate `1.0.0-rc.2`; observation window open.** RC2 was published from commit `b816d613618d51515d910e0d3bdb9d2f211b6d22` at `2026-09-16T09:44:59Z`. Stable `v1.0.0` remains blocked until the fresh one-full-day RC2 observation is explicitly completed and approved no earlier than `2026-09-17T09:44:59Z`.
 
+This page is a navigational summary, not a second copy of the standard. Normative requirements remain in the repository specifications and machine-readable registries.
+
 [Read the project introduction in 20 languages](https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md) · [Published RC2](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2) · [Historical RC1](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
 
 ## Calendar at a glance
