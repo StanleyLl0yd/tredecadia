@@ -56,6 +56,14 @@ def validate_profile_decisions(plan: dict) -> dict[str, dict]:
     return decisions
 
 
+def validate_stable_notes(notes: str) -> None:
+    assert "`v1.0.0-rc.2`" in notes, "stable notes must name RC2 as the direct baseline"
+    assert "`1.0.0-rc.2` → `1.0.0`" in notes, "stable notes must describe the RC2 -> stable version transition"
+    assert "`1.0.0-rc.1` → `1.0.0`" not in notes, "stable notes must not promote directly from RC1"
+    for weekday in ("W1 Mene", "W2 Noko", "W3 Kese", "W4 Zoyo", "W5 Sote", "W6 Yemo", "W7 Toze"):
+        assert weekday in notes, f"stable notes missing RC2 canonical weekday identity: {weekday}"
+
+
 def synthetic_state_machine_checks(plan: dict) -> None:
     probe = copy.deepcopy(plan)
     probe["sourceRc"]["publicationStatus"] = "awaiting-publication"
@@ -152,6 +160,7 @@ def main() -> None:
     assert plan["publication"]["allowed"] is expected_allowed
 
     notes = (ROOT / plan["stableReleaseNotes"]).read_text(encoding="utf-8")
+    validate_stable_notes(notes)
     assert (ROOT / plan["archivePlan"]).is_file()
     if version == plan["sourceRc"]["version"]:
         assert current_release["prerelease"] is True
