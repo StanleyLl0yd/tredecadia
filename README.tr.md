@@ -18,7 +18,7 @@ Kanonik yedi günlük döngü:
 
 `W1 Mene → W2 Noko → W3 Kese → W4 Zoyo → W5 Sote → W6 Yemo → W7 Toze`
 
-Bu adlar Tredecadia'nın kanonik kimlikleridir; pazartesiden pazara kadar olan Gregoryen adların çevirileri veya yeniden adlandırmaları değildir. RC2 henüz hafta günleri için incelenmiş yerelleştirilmiş takma adlar tanımlamaz; bu nedenle kanonik Latin biçimleri kullanılır.
+Bu adlar Tredecadia'nın kanonik tanımlayıcılarıdır; pazartesiden pazara kadar olan Gregoryen adların çevirileri veya yeniden adlandırmaları değildir. RC2 henüz hafta günleri için incelenmiş yerelleştirilmiş takma adlar tanımlamaz; bu nedenle kanonik Latin biçimleri kullanılır.
 
 Normal yıl:
 
@@ -52,11 +52,11 @@ Kanonik veri alışverişi biçimi yalnızca ASCII kullanır ve yıl alanı en a
 
 `12025-07-11` · `00000-EQ` · `-00001-01-01`
 
-İnsanlara yönelik arayüzlerde baştaki sıfırlar kaldırılabilir ve negatif yıllarda tipografik eksi işareti kullanılabilir. Bunlar yalnızca gösterim tercihidir; alternatif kanonik kimlikler değildir.
+İnsanlara yönelik arayüzlerde baştaki sıfırlar kaldırılabilir ve negatif yıllarda tipografik eksi işareti kullanılabilir. Bunlar yalnızca gösterim tercihidir; alternatif kanonik tanımlayıcılar değildir.
 
 ## Aylar
 
-Ay adları uluslararası kimliklerdir ve Türkçede kanonik Latin yazımı korunur.
+Ay adları uluslararası tanımlayıcılardır ve Türkçede kanonik Latin yazımı korunur.
 
 | # | Tam ad | 3 heceli kısa biçim (`Short-6`) | 2 heceli konuşma biçimi (`Short-4`) |
 |---:|---|---|---|

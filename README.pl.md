@@ -18,7 +18,7 @@ Kanoniczny cykl siedmiodniowy:
 
 `W1 Mene → W2 Noko → W3 Kese → W4 Zoyo → W5 Sote → W6 Yemo → W7 Toze`
 
-Te nazwy są kanonicznymi identyfikatorami Tredecadia, a nie tłumaczeniami ani zmianą nazw poniedziałku–niedzieli. RC2 nie definiuje jeszcze sprawdzonych lokalizowanych aliasów dni tygodnia, dlatego używane są kanoniczne formy łacińskie.
+Te nazwy są kanonicznymi identyfikatorami Tredecadia, a nie tłumaczeniami ani nowymi nazwami dni od poniedziałku do niedzieli. RC2 nie definiuje jeszcze sprawdzonych lokalizowanych aliasów dni tygodnia, dlatego używane są kanoniczne formy łacińskie.
 
 Rok zwykły:
 
