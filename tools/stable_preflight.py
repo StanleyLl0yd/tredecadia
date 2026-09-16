@@ -35,37 +35,39 @@ def evaluate(as_of: datetime) -> dict:
     pages_text = (ROOT / "release/pages-deployment.md").read_text(encoding="utf-8")
 
     blockers: list[dict] = []
-
+    source = observation["sourceRc"]
     window = observation["window"]
-    not_before = parse_utc(window["notBefore"])
-    if window["status"] != "complete":
+
+    if source["publicationStatus"] != "published":
         blockers.append({
-            "code": "rc-observation-open",
-            "detail": f"RC observation status is {window['status']}",
+            "code": "rc2-not-published",
+            "detail": f"{source['tag']} publication status is {source['publicationStatus']}",
         })
-    if as_of < not_before:
-        blockers.append({
-            "code": "minimum-observation-time-not-reached",
-            "detail": f"earliest completion is {window['notBefore']}",
-        })
+        assert window["status"] == "awaiting-publication"
+        assert window["notBefore"] is None
+    else:
+        not_before = parse_utc(window["notBefore"])
+        if window["status"] != "complete":
+            blockers.append({
+                "code": "rc-observation-open",
+                "detail": f"RC observation status is {window['status']}",
+            })
+        if as_of < not_before:
+            blockers.append({
+                "code": "minimum-observation-time-not-reached",
+                "detail": f"earliest completion is {window['notBefore']}",
+            })
 
     open_reports = [report["id"] for report in observation["reports"] if report["status"] == "open"]
     if open_reports:
-        blockers.append({
-            "code": "open-rc-reports",
-            "detail": ", ".join(open_reports),
-        })
+        blockers.append({"code": "open-rc-reports", "detail": ", ".join(open_reports)})
 
     critical_open = [
-        report["id"]
-        for report in observation["reports"]
+        report["id"] for report in observation["reports"]
         if report["compatibilityCritical"] and report["status"] == "open"
     ]
     if critical_open:
-        blockers.append({
-            "code": "open-compatibility-critical-defects",
-            "detail": ", ".join(critical_open),
-        })
+        blockers.append({"code": "open-compatibility-critical-defects", "detail": ", ".join(critical_open)})
 
     plan_profiles = {entry["id"]: entry for entry in plan["localizationProfiles"]}
     packet_profiles = {entry["id"]: entry for entry in profile_readiness["profiles"]}
@@ -75,10 +77,7 @@ def evaluate(as_of: datetime) -> dict:
         if plan_entry["stableDecision"] == "pending" or packet["decision"] == "pending":
             pending_profiles.append(profile_id)
     if pending_profiles:
-        blockers.append({
-            "code": "pending-localization-decisions",
-            "detail": ", ".join(pending_profiles),
-        })
+        blockers.append({"code": "pending-localization-decisions", "detail": ", ".join(pending_profiles)})
 
     if "Status: **external-enable-required**" in pages_text:
         blockers.append({
@@ -87,10 +86,7 @@ def evaluate(as_of: datetime) -> dict:
         })
 
     if plan["observation"]["stableDecision"] != "approved":
-        blockers.append({
-            "code": "stable-decision-not-approved",
-            "detail": plan["observation"]["stableDecision"],
-        })
+        blockers.append({"code": "stable-decision-not-approved", "detail": plan["observation"]["stableDecision"]})
 
     if plan["publication"]["allowed"] is not True:
         blockers.append({
@@ -100,7 +96,7 @@ def evaluate(as_of: datetime) -> dict:
 
     return {
         "asOf": as_of.isoformat().replace("+00:00", "Z"),
-        "sourceRc": observation["sourceRc"]["tag"],
+        "sourceRc": source["tag"],
         "target": plan["publication"]["targetTag"],
         "ready": len(blockers) == 0,
         "compatibilityCriticalDefectsFound": observation["summary"]["compatibilityCriticalDefectsFound"],
@@ -111,10 +107,7 @@ def evaluate(as_of: datetime) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--as-of",
-        help="UTC/offset-aware ISO timestamp for a reproducible preflight; defaults to current UTC time",
-    )
+    parser.add_argument("--as-of", help="UTC/offset-aware ISO timestamp for a reproducible preflight; defaults to current UTC time")
     parser.add_argument("--json", action="store_true", help="emit machine-readable JSON")
     args = parser.parse_args()
 
