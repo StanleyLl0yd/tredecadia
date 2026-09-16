@@ -43,6 +43,8 @@ def main() -> None:
         registry_entry = registry_entries[profile_id]
 
         assert packet["currentStatus"] == plan_entry["currentStatus"] == "reviewed"
+        # A decision authorizes what the future stable candidate should do; it
+        # does not mutate the RC2 registry before that atomic stable commit.
         assert registry_entry["review"]["status"] == "reviewed"
         assert packet["decision"] == plan_entry["stableDecision"]
         assert packet["decision"] in {"pending", "accepted", "rejected"}
@@ -60,6 +62,11 @@ def main() -> None:
         readiness_ref = f"release/profile-readiness.json#{profile_id}"
         assert readiness_ref in plan_entry["evidence"]
         assert any(item.startswith("rationale/localization-") for item in plan_entry["evidence"])
+
+        if packet["decision"] != "pending":
+            decision_evidence = packet.get("decisionEvidence")
+            assert isinstance(decision_evidence, list) and len(decision_evidence) >= 3
+            assert all(isinstance(item, str) and item.strip() for item in decision_evidence)
 
     # Stable publication still requires an explicit accept/reject decision for
     # every profile; mere readiness must never imply automatic promotion.
