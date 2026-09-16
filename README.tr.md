@@ -4,15 +4,21 @@
 
 Tredecadia, **28 günlük 13 aydan** oluşan açık bir sürekli takvim projesidir. Her ay tam dört haftadır; aynı ay günü her yıl aynı haftanın gününe denk gelir. Yılı güneş döngüsüyle uyumlu tutan ek günler ise ayların ve yedi günlük haftanın dışında yer alır.
 
-> **Güncel herkese açık sürüm: `1.0.0-rc.1`.** Bu sürüm, kararlı `v1.0.0` yayını için adaydır. v1 uyumluluk yüzeyi dondurulmuştur; ancak son sürümden önce gözlem ve doğrulama dönemi devam eder.
+> **Güncel herkese açık sürüm: `1.0.0-rc.2`.** Bu ikinci sürüm adayı, uluslararası açıdan tarafsız olacak şekilde tasarlanmış kanonik hafta günü adlarını getirir. Kararlı `v1.0.0`, yalnızca RC2'ye özgü gözlem döneminden ve son doğrulamadan sonra yayımlanabilir.
 
 ## Temel yapı
 
 - 13 × 28 = ayların içinde 364 normal gün.
 - Her ay tam dört haftadan oluşur.
-- Her ayın `01` günü pazartesi, `28` günü pazardır.
+- Her ayın `01` günü **Mene (`W1`)**, `28` günü **Toze (`W7`)** olur.
 - `EQ` — **Ekinoks / Yeni Yıl Günü** — yılı başlatır; hiçbir aya ve haftaya ait değildir.
 - Artık yıllarda `13-28` sonrasında ek olarak `ED` — **Dünya Günü** — gelir; ardından bir sonraki yılın `EQ` günü başlar.
+
+Kanonik yedi günlük döngü:
+
+`W1 Mene → W2 Noko → W3 Kese → W4 Zoyo → W5 Sote → W6 Yemo → W7 Toze`
+
+Bu adlar Tredecadia'nın kanonik kimlikleridir; pazartesiden pazara kadar olan Gregoryen adların çevirileri veya yeniden adlandırmaları değildir. RC2 henüz hafta günleri için incelenmiş yerelleştirilmiş takma adlar tanımlamaz; bu nedenle kanonik Latin biçimleri kullanılır.
 
 Normal yıl:
 
