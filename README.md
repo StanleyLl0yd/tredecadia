@@ -4,9 +4,9 @@
 
 Tredecadia is an open 13 × 28 perennial calendar standard with equal months, stable weekdays, a continuous mathematical year coordinate, and internationally neutral month and weekday names.
 
-> **Status: `1.0.0-rc.2` release candidate.** M0–M3 are complete. RC2 makes one explicit pre-stable compatibility correction: the seven weekday positions now use canonical neutral identities `W1..W7` and names rather than English weekday names. Reviewed localization profiles remain non-stable until final `v1.0.0` acceptance.
+> **Status: `1.0.0-rc.2` published; fresh RC2 observation window open.** RC2 makes one explicit pre-stable compatibility correction: the seven weekday positions now use canonical neutral identities `W1..W7` and names rather than English weekday names. Stable `v1.0.0` remains blocked until the RC2 observation is explicitly completed and approved no earlier than `2026-09-17T09:44:59Z`.
 
-Release target: [`v1.0.0-rc.2`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2)  
+Published release: [`v1.0.0-rc.2`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2)  
 Historical published RC: [`v1.0.0-rc.1`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
 
 ## Core model
@@ -105,9 +105,9 @@ Localization profiles progress through `candidate` → `reviewed` → `stable`; 
 - Japanese Katakana (`ja-Kana`) — reviewed against Japan's official foreign-word orthographic guidance;
 - Korean Hangul (`ko-Hang`) — reviewed against Korea's official IPA-to-Hangul foreign-word rules.
 
-These reviewed profiles do **not** automatically define weekday aliases: the RC2 weekday vowel inventory introduces `E/O`, so local-script weekday mappings require their own evidence/review rather than being inferred from the month profiles.
+All three reviewed month profiles have been explicitly **accepted for promotion in the future atomic stable `v1.0.0` commit**. They remain `reviewed` in the RC2 registry while the observation gate is open; the acceptance decision does not mutate the published RC2 identity and does not by itself authorize stable publication.
 
-No localization profile is stable in the RC. Stable status is reserved for profiles explicitly accepted into the final `v1.0.0` release.
+These reviewed profiles do **not** automatically define weekday aliases: the RC2 weekday vowel inventory introduces `E/O`, so local-script weekday mappings require their own evidence/review rather than being inferred from the month profiles.
 
 ## Specification
 
@@ -169,9 +169,18 @@ The historical `v1.0.0-rc.1` prerelease points to commit `937d8d681fcce6095d6a4d
 
 `018a804f518b3cbff402e91f5aba7d7aba05361f6bf4b01de593c8ac17a0abdf`
 
-To reproduce that historical archive, check out `v1.0.0-rc.1` and run the release builder from that exact source tree. `release/published-releases.json` records immutable published source/digest metadata and current tooling enforces those source locks.
+To reproduce that historical archive, check out `v1.0.0-rc.1` and run the release builder from that exact source tree.
 
-RC2 is published as a new tag/release rather than overwriting RC1. Its guarded publication workflow reruns the full conformance suite, builds deterministic assets, refuses existing tags/releases, verifies the remote tag target, re-downloads both assets, and byte-compares them with the local build. After publication, the exact RC2 source commit/digest are recorded and a new one-full-day observation window begins from the actual publication timestamp.
+Published RC2 identity:
+
+- source commit: `b816d613618d51515d910e0d3bdb9d2f211b6d22`;
+- published at: `2026-09-16T09:44:59Z`;
+- archive: `tredecadia-1.0.0-rc.2.tar.gz`;
+- archive SHA-256: `23e40180098c656c88aa4ba27c6989ac053d9ce8b8029c9ce2e3b16946bf32ec`.
+
+The guarded RC2 publication workflow reran the complete release conformance suite, built deterministic assets, refused pre-existing tags/releases, verified that the remote tag targets the exact source commit, downloaded the published archive and `SHA256SUMS` again, and byte-compared both with the locally generated assets. `release/published-releases.json` and `release/rc2-identity.json` now lock that source/archive identity.
+
+The fresh RC2 observation window began at the actual publication timestamp. Its minimum one-full-day interval ends at `2026-09-17T09:44:59Z`; elapsed time alone does not approve stable publication — the observation must then be explicitly completed and the overall stable decision recorded.
 
 ## Licensing
 
@@ -181,4 +190,4 @@ The licenses do not grant trademark rights in the Tredecadia name or branding.
 
 ## Versioning
 
-The current release candidate is **`1.0.0-rc.2`**. The compatibility-critical v1 surface is frozen for RC2 testing. Any further incompatible correction before stable v1.0.0 requires another explicitly versioned release candidate; published RC tags and artifacts are never rewritten.
+The current published release candidate is **`1.0.0-rc.2`**. The compatibility-critical v1 surface is frozen for RC2 testing. Any further incompatible correction before stable v1.0.0 requires another explicitly versioned release candidate; published RC tags and artifacts are never rewritten.
