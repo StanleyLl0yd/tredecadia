@@ -27,12 +27,15 @@ jobs:
           python-version: "3.13"
       - name: Install pinned test dependencies
         run: python -m pip install --disable-pip-version-check -r requirements-test.txt
+      - name: Validate repository security and housekeeping
+        run: python tests/validate_repo_security.py
       - name: Validate release metadata
         run: python tests/validate_release_metadata.py
       - name: Re-run release conformance gates
         run: |
           set -euo pipefail
           for test in \
+            tests/validate_repo_security.py \
             tests/validate_published_releases.py \
             tests/validate_v1_identity.py \
             tests/validate_weekday_candidate.py \
