@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "Evidence packet for explicit v1.0.0 localization-profile decisions; this file does not itself promote any profile.",
+  "purpose": "Evidence and explicit v1.0.0 decision record for localization profiles; acceptance authorizes promotion only in the future atomic stable release commit.",
   "requiredChecks": [
     "independent-review-evidence-recorded",
     "all-13-full-aliases-derived",
@@ -14,7 +14,7 @@
     {
       "id": "ru-Cyrl",
       "currentStatus": "reviewed",
-      "decision": "pending",
+      "decision": "accepted",
       "readiness": "eligible-for-explicit-stable-decision",
       "checks": {
         "independent-review-evidence-recorded": true,
@@ -31,12 +31,18 @@
         "registry/localizations.json#ru-Cyrl",
         "rationale/localization-ru-cyrl.md",
         "tests/validate_localizations.py"
+      ],
+      "decisionEvidence": [
+        "All seven required readiness checks are true.",
+        "The independent Russian practical-transcription and orthographic references support the recorded month syllable map.",
+        "The MI/NI palatalization tradeoff is explicitly documented rather than hidden.",
+        "Acceptance covers the reviewed month aliases only; RC2 weekday aliases remain a separate unreviewed surface."
       ]
     },
     {
       "id": "ja-Kana",
       "currentStatus": "reviewed",
-      "decision": "pending",
+      "decision": "accepted",
       "readiness": "eligible-for-explicit-stable-decision",
       "checks": {
         "independent-review-evidence-recorded": true,
@@ -53,12 +59,18 @@
         "registry/localizations.json#ja-Kana",
         "rationale/localization-ja-kana.md",
         "tests/validate_localizations.py"
+      ],
+      "decisionEvidence": [
+        "All seven required readiness checks are true.",
+        "Japan's official 外来語の表記 guidance is directly applicable to the reviewed month transcription method.",
+        "Expected Japanese vowel and ZU/ズ approximations are explicitly documented.",
+        "Acceptance covers the reviewed month aliases only; RC2 weekday aliases remain a separate unreviewed surface."
       ]
     },
     {
       "id": "ko-Hang",
       "currentStatus": "reviewed",
-      "decision": "pending",
+      "decision": "accepted",
       "readiness": "eligible-for-explicit-stable-decision",
       "checks": {
         "independent-review-evidence-recorded": true,
@@ -75,6 +87,12 @@
         "registry/localizations.json#ko-Hang",
         "rationale/localization-ko-hang.md",
         "tests/validate_localizations.py"
+      ],
+      "decisionEvidence": [
+        "All seven required readiness checks are true.",
+        "The National Institute of Korean Language foreign-word rules directly supply the consonant/vowel mappings used by the reviewed month profile.",
+        "The /z/ to ㅈ localization approximation is explicitly documented.",
+        "Acceptance covers the reviewed month aliases only; RC2 weekday aliases remain a separate unreviewed surface."
       ]
     }
   ]
