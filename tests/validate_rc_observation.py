@@ -97,9 +97,15 @@ def main() -> None:
     assert summary["openReports"] == open_reports
     assert summary["stableDecision"] in {"pending", "approved", "blocked"}
 
+    classified_prs: set[int] = set()
     for group in observation["postRcChangeGroups"]:
+        assert set(group) == {"prs", "classification", "area", "summary"}
         assert isinstance(group["prs"], list) and group["prs"]
         assert all(isinstance(number, int) and number > 0 for number in group["prs"])
+        assert len(group["prs"]) == len(set(group["prs"])), f"duplicate PR inside change group: {group['prs']}"
+        overlap = classified_prs.intersection(group["prs"])
+        assert not overlap, f"PR classified in multiple post-RC groups: {sorted(overlap)}"
+        classified_prs.update(group["prs"])
         assert group["classification"] in CLASSIFICATIONS
         assert group["area"] and group["summary"]
 
