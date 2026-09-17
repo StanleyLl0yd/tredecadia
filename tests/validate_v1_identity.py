@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
-"""Validate immutable RC1 history and the published RC2 v1 identity candidate."""
+"""Validate immutable RC1/RC2 history and the compatible v1 identity surface."""
 
 from __future__ import annotations
 
@@ -56,8 +56,8 @@ def main() -> None:
         "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
     ]
 
-    # RC2 changes only the explicitly reviewed weekday identity/schema surface
-    # and is bound to its exact published source/archive identity.
+    # RC2 changed only the explicitly reviewed weekday identity/schema surface
+    # and remains bound to its exact published source/archive identity.
     assert rc2["baselineVersion"] == 2
     release = rc2["release"]
     assert release == {
@@ -87,10 +87,30 @@ def main() -> None:
     assert months["pronunciation"] == rc2["pronunciation"]
     assert canonical_month_surface(months) == rc2["months"]
 
+    # The three v1.0 localization maps are part of the already-published v1
+    # identity and must remain byte-equivalent at the mapping level. Compatible
+    # later v1 minor releases may add reviewed display profiles, but may not
+    # mutate or remove these baseline maps.
     profiles = {profile["id"]: profile for profile in localizations["profiles"]}
-    assert set(profiles) == set(rc2["localizationMaps"])
+    baseline_profile_ids = set(rc2["localizationMaps"])
+    assert baseline_profile_ids <= set(profiles)
     for profile_id, syllable_map in rc2["localizationMaps"].items():
         assert profiles[profile_id]["syllableMap"] == syllable_map
+
+    extra_profile_ids = set(profiles) - baseline_profile_ids
+    if extra_profile_ids:
+        pack = load("rationale/additional-script-localization-candidates.json")
+        decisions = load("rationale/additional-script-localization-decisions.json")
+        candidate_by_id = {profile["id"]: profile for profile in pack["profiles"]}
+        decision_by_id = {entry["id"]: entry for entry in decisions["decisions"]}
+        assert extra_profile_ids == set(candidate_by_id) == {
+            "ka-Geor", "hy-Armn", "ar-Arab", "hi-Deva", "bn-Beng", "fa-Arab"
+        }
+        for profile_id in extra_profile_ids:
+            assert decision_by_id[profile_id]["decision"] == "accept-reviewed"
+            assert profiles[profile_id]["review"]["status"] == "reviewed"
+            assert profiles[profile_id]["syllableMap"] == candidate_by_id[profile_id]["syllableMap"]
+            assert profiles[profile_id]["aliases"] == candidate_by_id[profile_id]["aliases"]
 
     # Prove the RC2 correction did not drift any other v1 identity class.
     assert rc2["months"] == rc1["months"]
@@ -127,7 +147,7 @@ def main() -> None:
     ):
         assert_rejected(value)
 
-    print("Tredecadia RC1 history + published RC2 v1 identity validation: OK")
+    print("Tredecadia immutable v1 identity + compatible localization extension validation: OK")
 
 
 if __name__ == "__main__":
