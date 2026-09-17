@@ -1,5 +1,5 @@
 {
-  "manifestVersion": 2,
+  "manifestVersion": 3,
   "sourceVersion": "1.0.0-rc.2",
   "targetVersion": "1.0.0",
   "preconditions": {
@@ -64,6 +64,28 @@
       "docs/index.md",
       "CHANGELOG.md"
     ]
+  },
+  "publicStageMarkers": {
+    "README.md": {
+      "source": "> **Status: `1.0.0-rc.2` published; fresh RC2 observation window open.**",
+      "target": "> **Status: `1.0.0` stable release.**"
+    },
+    "ROADMAP.md": {
+      "source": "Status: **in progress — `v1.0.0-rc.2` published; fresh observation window open**",
+      "target": "Status: **complete — `v1.0.0` stable release**"
+    },
+    "CONTRIBUTING.md": {
+      "source": "Tredecadia is currently in the `1.0.0-rc.2` release-candidate cycle.",
+      "target": "Tredecadia is on the stable `1.0.0` release line."
+    },
+    "docs/index.md": {
+      "source": "> **Published release candidate `1.0.0-rc.2`; observation window open.**",
+      "target": "> **Stable release version: `1.0.0`.**"
+    },
+    "CHANGELOG.md": {
+      "source": "## 1.0.0-rc.2 — 2026-09-16",
+      "target": "## 1.0.0 —"
+    }
   },
   "unchangedSchemaContracts": [
     "registry/calendar.schema.json",
