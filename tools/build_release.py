@@ -29,6 +29,8 @@ INCLUDE_FILES = (
     "README.tr.md",
     "README.pl.md",
     "README.uk.md",
+    "README.ka.md",
+    "README.hy.md",
     "README.zh-CN.md",
     "README.zh-TW.md",
     "README.ja.md",
