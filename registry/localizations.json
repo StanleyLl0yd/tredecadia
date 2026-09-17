@@ -1,8 +1,8 @@
 {
   "$schema": "./localizations.schema.json",
   "schemaVersion": 1,
-  "specVersion": "1.0.0-rc.2",
-  "status": "draft",
+  "specVersion": "1.0.0",
+  "status": "stable",
   "profiles": [
     {
       "id": "ru-Cyrl",
@@ -14,7 +14,7 @@
       "caseTransform": "capitalize-first-codepoint",
       "reverseMapping": "unique-within-profile",
       "review": {
-        "status": "reviewed",
+        "status": "stable",
         "evidence": [
           {
             "kind": "expert-review",
@@ -66,7 +66,7 @@
       "caseTransform": "none",
       "reverseMapping": "unique-within-profile",
       "review": {
-        "status": "reviewed",
+        "status": "stable",
         "evidence": [
           {
             "kind": "standards-reference",
@@ -108,7 +108,7 @@
       "caseTransform": "none",
       "reverseMapping": "unique-within-profile",
       "review": {
-        "status": "reviewed",
+        "status": "stable",
         "evidence": [
           {
             "kind": "standards-reference",
