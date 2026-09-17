@@ -56,16 +56,34 @@ UNLOCALIZED_PROSE = (
 )
 
 
+def load(path: str) -> dict:
+    return json.loads((ROOT / path).read_text(encoding="utf-8"))
+
+
+def expected_profile_status(profile_id: str, version: str, plan: dict) -> str:
+    entries = {entry["id"]: entry for entry in plan["localizationProfiles"]}
+    entry = entries[profile_id]
+    if version == plan["sourceRc"]["version"]:
+        return entry["currentStatus"]
+    assert version == plan["targetVersion"], version
+    decision = entry["stableDecision"]
+    assert decision in {"accepted", "rejected"}, f"stable candidate has unresolved profile decision: {profile_id}"
+    policy = plan["profileDecisionPolicy"]
+    return policy["acceptedStatus"] if decision == "accepted" else policy["rejectedStatus"]
+
+
 def main() -> None:
     version = citation_version()
     root_readme = (ROOT / "README.md").read_text(encoding="utf-8")
     index = (ROOT / "README.languages.md").read_text(encoding="utf-8")
-    months = json.loads((ROOT / "registry/months.json").read_text(encoding="utf-8"))["months"]
-    calendar = json.loads((ROOT / "registry/calendar.json").read_text(encoding="utf-8"))
+    months = load("registry/months.json")["months"]
+    calendar = load("registry/calendar.json")
     weekdays = calendar["regularGrid"]["weekdays"]
-    localization_registry = json.loads((ROOT / "registry/localizations.json").read_text(encoding="utf-8"))
+    localization_registry = load("registry/localizations.json")
     profiles = {profile["id"]: profile for profile in localization_registry["profiles"]}
+    stable_plan = load("release/stable-plan.json")
 
+    assert version in {stable_plan["sourceRc"]["version"], stable_plan["targetVersion"]}
     assert "README.languages.md" in root_readme
     assert "README.md" in index
     assert [day["id"] for day in weekdays] == [f"W{i}" for i in range(1, 8)]
@@ -88,10 +106,9 @@ def main() -> None:
         assert "12025-07-11" in text, f"{path}: modern date example missing"
         assert "EQ" in text and "ED" in text, f"{path}: intercalary identifiers missing"
 
-        # Every localized introduction must expose the language-neutral RC2
-        # weekday identity in exact W1..W7 order. Localized weekday aliases
-        # remain a separate, unreviewed surface and must not replace these
-        # canonical forms.
+        # Every localized introduction must expose the language-neutral weekday
+        # identity in exact W1..W7 order. Localized weekday aliases remain a
+        # separate, unreviewed surface and must not replace canonical forms.
         assert weekday_cycle in text, f"{path}: canonical weekday cycle missing or out of order"
         for day in weekdays:
             assert day["id"] in text, f"{path}: missing canonical weekday ID {day['id']}"
@@ -109,8 +126,8 @@ def main() -> None:
 
         # Require one numbered month-table row for every canonical month and
         # require all three canonical identities on that same row. This also
-        # works for reviewed ru/ja/ko profiles, whose local aliases are shown
-        # before the canonical Latin forms in parentheses.
+        # works for ru/ja/ko profiles, whose local aliases are shown before the
+        # canonical Latin forms in parentheses.
         lines = text.splitlines()
         for month in months:
             prefix = f"| {month['number']:02d} |"
@@ -121,18 +138,21 @@ def main() -> None:
                 value = month[field]
                 assert value in row, f"{path}: month {month['number']:02d} row missing canonical {field} {value}"
 
-        # Where Tredecadia already has an independently reviewed local-script
-        # month profile, the corresponding reader-facing README must actually
-        # use it instead of showing only the English/Latin spellings. These
-        # profiles do not imply any reviewed weekday alias.
+        # Where Tredecadia has an independently reviewed local-script month
+        # profile, the corresponding README must use it. The expected maturity
+        # comes from the stable transition plan: reviewed in RC2, then exact
+        # accepted/rejected maturity in the stable candidate.
         profile_id = REVIEWED_PROFILE_BY_LOCALE.get(locale)
         if profile_id is not None:
             profile = profiles[profile_id]
-            assert profile["review"]["status"] == "reviewed", profile_id
+            expected_status = expected_profile_status(profile_id, version, stable_plan)
+            assert profile["review"]["status"] == expected_status, (
+                f"{profile_id}: expected {expected_status}, got {profile['review']['status']}"
+            )
             for alias in profile["aliases"]:
                 for field in ("full", "short6", "short4"):
                     value = alias[field]
-                    assert value in text, f"{path}: missing reviewed {profile_id} {field} alias {value}"
+                    assert value in text, f"{path}: missing {profile_id} {field} alias {value}"
 
         assert path in root_readme, f"README.md does not link {path}"
         assert path in index, f"README.languages.md does not link {path}"
