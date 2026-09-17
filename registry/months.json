@@ -1,8 +1,8 @@
 {
   "$schema": "./months.schema.json",
   "schemaVersion": 3,
-  "specVersion": "1.0.0-rc.2",
-  "status": "draft",
+  "specVersion": "1.0.0",
+  "status": "stable",
   "syllableInventory": ["MA", "MI", "MU", "NA", "NI", "NU", "SA", "SU", "TA", "YA", "KA", "ZU"],
   "pronunciation": {
     "identity": "ordered-segmental-syllables",
