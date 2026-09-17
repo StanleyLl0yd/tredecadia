@@ -56,23 +56,23 @@ Tredecadia از یک محور عدد صحیح پیوسته برای سال‌ه�
 
 ## ماه‌ها
 
-نام ماه‌ها شناسه‌های بین‌المللی ثابت‌اند. هنوز پروفایل بازبینی‌شده‌ای برای نوشتن آن‌ها با خط فارسی نداریم، بنابراین در این جدول عمداً **نوشتار لاتین معیار** حفظ شده است و املای فارسی تازه‌ای اختراع نمی‌کنیم.
+در `1.1.0-rc.1` نمایهٔ نمایش نام ماه‌ها به خط فارسی با وضعیت `reviewed` بخشی از رجیستری هنجاری است. در جدول زیر صورت فارسی نخست می‌آید و هویت لاتینِ معیار و تغییرناپذیر داخل پرانتز حفظ می‌شود.
 
 | # | نام کامل | کوتاه‌شدهٔ ۳هجایی (`Short-6`) | شکل گفتاری ۲هجایی (`Short-4`) |
 |---:|---|---|---|
-| 01 | Masanumika | Masanu | Masa |
-| 02 | Tasuzunumu | Tasuzu | Tasu |
-| 03 | Nazumasanu | Nazuma | Nazu |
-| 04 | Mikasumani | Mikasu | Mika |
-| 05 | Yanimuzunu | Yanimu | Yani |
-| 06 | Zumitanasu | Zumita | Zumi |
-| 07 | Muyasanumi | Muyasa | Muya |
-| 08 | Sunizusaka | Sunizu | Suni |
-| 09 | Numanamuta | Numana | Numa |
-| 10 | Kazunusuya | Kazunu | Kazu |
-| 11 | Yanazumasa | Yanazu | Yana |
-| 12 | Sanumikazu | Sanumi | Sanu |
-| 13 | Nimutazuna | Nimuta | Nimu |
+| 01 | مَسَنومیکَ (Masanumika) | مَسَنو (Masanu) | مَسَ (Masa) |
+| 02 | تَسوزونومو (Tasuzunumu) | تَسوزو (Tasuzu) | تَسو (Tasu) |
+| 03 | نَزومَسَنو (Nazumasanu) | نَزومَ (Nazuma) | نَزو (Nazu) |
+| 04 | میکَسومَنی (Mikasumani) | میکَسو (Mikasu) | میکَ (Mika) |
+| 05 | یَنیموزونو (Yanimuzunu) | یَنیمو (Yanimu) | یَنی (Yani) |
+| 06 | زومیتَنَسو (Zumitanasu) | زومیتَ (Zumita) | زومی (Zumi) |
+| 07 | مویَسَنومی (Muyasanumi) | مویَسَ (Muyasa) | مویَ (Muya) |
+| 08 | سونیزوسَکَ (Sunizusaka) | سونیزو (Sunizu) | سونی (Suni) |
+| 09 | نومَنَموتَ (Numanamuta) | نومَنَ (Numana) | نومَ (Numa) |
+| 10 | کَزونوسویَ (Kazunusuya) | کَزونو (Kazunu) | کَزو (Kazu) |
+| 11 | یَنَزومَسَ (Yanazumasa) | یَنَزو (Yanazu) | یَنَ (Yana) |
+| 12 | سَنومیکَزو (Sanumikazu) | سَنومی (Sanumi) | سَنو (Sanu) |
+| 13 | نیموتَزونَ (Nimutazuna) | نیموتَ (Nimuta) | نیمو (Nimu) |
 
 در گفت‌وگوی روزمره، وقتی از بافت جمله روشن است که دربارهٔ ماه صحبت می‌شود، شکل دوهجایی ترجیح داده می‌شود. تلفظ مرجع **برجستگی ملایمی روی هجای اول** دارد؛ جای تکیه بخشی از هویت نام نیست.
 

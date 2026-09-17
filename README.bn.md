@@ -56,23 +56,23 @@ Tredecadia বছর গণনার জন্য একটি ধারাব�
 
 ## মাস
 
-মাসের নামগুলো আন্তর্জাতিক স্থির পরিচয়। বাংলা লিপিতে এগুলোর জন্য এখনো স্বাধীনভাবে পর্যালোচিত কোনো লিখন-প্রোফাইল নেই, তাই এখানে ইচ্ছাকৃতভাবে **মানক লাতিন বানান** রাখা হয়েছে; নতুন বাংলা রূপ অনুমান করে বানানো হয়নি।
+`1.1.0-rc.1`-এ বাংলা মাস-প্রদর্শন প্রোফাইলটি `reviewed` অবস্থায় মানক রেজিস্ট্রির অংশ। নিচে বাংলা রূপটি আগে দেখানো হয়েছে এবং অপরিবর্তিত ক্যানোনিক্যাল লাতিন পরিচয় বন্ধনীর মধ্যে রাখা হয়েছে।
 
 | # | পূর্ণ নাম | ৩-সিলেবলের সংক্ষিপ্ত রূপ (`Short-6`) | ২-সিলেবলের কথ্য রূপ (`Short-4`) |
 |---:|---|---|---|
-| 01 | Masanumika | Masanu | Masa |
-| 02 | Tasuzunumu | Tasuzu | Tasu |
-| 03 | Nazumasanu | Nazuma | Nazu |
-| 04 | Mikasumani | Mikasu | Mika |
-| 05 | Yanimuzunu | Yanimu | Yani |
-| 06 | Zumitanasu | Zumita | Zumi |
-| 07 | Muyasanumi | Muyasa | Muya |
-| 08 | Sunizusaka | Sunizu | Suni |
-| 09 | Numanamuta | Numana | Numa |
-| 10 | Kazunusuya | Kazunu | Kazu |
-| 11 | Yanazumasa | Yanazu | Yana |
-| 12 | Sanumikazu | Sanumi | Sanu |
-| 13 | Nimutazuna | Nimuta | Nimu |
+| 01 | মাসানুমিকা (Masanumika) | মাসানু (Masanu) | মাসা (Masa) |
+| 02 | তাসুজুনুমু (Tasuzunumu) | তাসুজু (Tasuzu) | তাসু (Tasu) |
+| 03 | নাজুমাসানু (Nazumasanu) | নাজুমা (Nazuma) | নাজু (Nazu) |
+| 04 | মিকাসুমানি (Mikasumani) | মিকাসু (Mikasu) | মিকা (Mika) |
+| 05 | ইয়ানিমুজুনু (Yanimuzunu) | ইয়ানিমু (Yanimu) | ইয়ানি (Yani) |
+| 06 | জুমিতানাসু (Zumitanasu) | জুমিতা (Zumita) | জুমি (Zumi) |
+| 07 | মুইয়াসানুমি (Muyasanumi) | মুইয়াসা (Muyasa) | মুইয়া (Muya) |
+| 08 | সুনিজুসাকা (Sunizusaka) | সুনিজু (Sunizu) | সুনি (Suni) |
+| 09 | নুমানামুতা (Numanamuta) | নুমানা (Numana) | নুমা (Numa) |
+| 10 | কাজুনুসুইয়া (Kazunusuya) | কাজুনু (Kazunu) | কাজু (Kazu) |
+| 11 | ইয়ানাজুমাসা (Yanazumasa) | ইয়ানাজু (Yanazu) | ইয়ানা (Yana) |
+| 12 | সানুমিকাজু (Sanumikazu) | সানুমি (Sanumi) | সানু (Sanu) |
+| 13 | নিমুতাজুনা (Nimutazuna) | নিমুতা (Nimuta) | নিমু (Nimu) |
 
 কথোপকথনে, প্রসঙ্গ থেকে মাসের কথা বোঝা গেলে দুই-সিলেবলের রূপটি অগ্রাধিকার পায়। নির্দেশক উচ্চারণে **প্রথম সিলেবলে হালকা জোর** থাকে; এই জোর নামের পরিচয়ের অংশ নয়।
 

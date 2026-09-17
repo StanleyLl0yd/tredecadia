@@ -56,23 +56,23 @@ Tredecadia वर्ष-गणना के लिए एक ही निरं
 
 ## महीने
 
-महीनों के नाम अंतरराष्ट्रीय स्थिर पहचान हैं। देवनागरी में उनके लिए अभी कोई स्वतंत्र रूप से जाँचा गया लेखन-प्रोफ़ाइल नहीं है, इसलिए यहाँ जानबूझकर **मानक लैटिन वर्तनी** रखी गई है; कोई नया हिन्दी रूप मनमाने ढंग से नहीं बनाया गया है।
+`1.1.0-rc.1` में हिंदी-उन्मुख देवनागरी माह-प्रदर्शन प्रोफ़ाइल `reviewed` स्थिति के साथ मानक रजिस्ट्री का भाग है। नीचे स्थानीय लिपि पहले दी गई है और अपरिवर्तित कैनोनिकल लैटिन पहचान कोष्ठक में बनी रहती है।
 
 | # | पूरा नाम | 3-शब्दांशीय संक्षिप्त रूप (`Short-6`) | 2-शब्दांशीय बोलचाल रूप (`Short-4`) |
 |---:|---|---|---|
-| 01 | Masanumika | Masanu | Masa |
-| 02 | Tasuzunumu | Tasuzu | Tasu |
-| 03 | Nazumasanu | Nazuma | Nazu |
-| 04 | Mikasumani | Mikasu | Mika |
-| 05 | Yanimuzunu | Yanimu | Yani |
-| 06 | Zumitanasu | Zumita | Zumi |
-| 07 | Muyasanumi | Muyasa | Muya |
-| 08 | Sunizusaka | Sunizu | Suni |
-| 09 | Numanamuta | Numana | Numa |
-| 10 | Kazunusuya | Kazunu | Kazu |
-| 11 | Yanazumasa | Yanazu | Yana |
-| 12 | Sanumikazu | Sanumi | Sanu |
-| 13 | Nimutazuna | Nimuta | Nimu |
+| 01 | मासानुमिका (Masanumika) | मासानु (Masanu) | मासा (Masa) |
+| 02 | तासुज़ुनुमु (Tasuzunumu) | तासुज़ु (Tasuzu) | तासु (Tasu) |
+| 03 | नाज़ुमासानु (Nazumasanu) | नाज़ुमा (Nazuma) | नाज़ु (Nazu) |
+| 04 | मिकासुमानि (Mikasumani) | मिकासु (Mikasu) | मिका (Mika) |
+| 05 | यानिमुज़ुनु (Yanimuzunu) | यानिमु (Yanimu) | यानि (Yani) |
+| 06 | ज़ुमितानासु (Zumitanasu) | ज़ुमिता (Zumita) | ज़ुमि (Zumi) |
+| 07 | मुयासानुमि (Muyasanumi) | मुयासा (Muyasa) | मुया (Muya) |
+| 08 | सुनिज़ुसाका (Sunizusaka) | सुनिज़ु (Sunizu) | सुनि (Suni) |
+| 09 | नुमानामुता (Numanamuta) | नुमाना (Numana) | नुमा (Numa) |
+| 10 | काज़ुनुसुया (Kazunusuya) | काज़ुनु (Kazunu) | काज़ु (Kazu) |
+| 11 | यानाज़ुमासा (Yanazumasa) | यानाज़ु (Yanazu) | याना (Yana) |
+| 12 | सानुमिकाज़ु (Sanumikazu) | सानुमि (Sanumi) | सानु (Sanu) |
+| 13 | निमुताज़ुना (Nimutazuna) | निमुता (Nimuta) | निमु (Nimu) |
 
 बातचीत में, जब संदर्भ से स्पष्ट हो कि किसी महीने की बात हो रही है, दो-शब्दांशीय रूप को प्राथमिकता दी जाती है। संदर्भ उच्चारण में **पहले शब्दांश पर हल्का बल** रहता है; बलाघात नाम की पहचान का हिस्सा नहीं है।
 

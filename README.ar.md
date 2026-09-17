@@ -56,23 +56,23 @@ Tredecadia مشروع مفتوح لتقويم دائم يتكوّن من **13 ش
 
 ## أسماء الأشهر
 
-أسماء الأشهر معرّفات دولية ثابتة. لا يوجد حتى الآن ملف عربي مدقَّق لكتابتها بالحروف العربية، لذلك نحتفظ هنا **بالكتابة اللاتينية المعيارية** بدلاً من اختراع تهجئة عربية غير معتمدة.
+في `1.1.0-rc.1` أصبح ملف عرض أسماء الأشهر بالعربية المشكولة بالكامل جزءاً من السجل المعياري بحالة `reviewed`. يظهر الشكل العربي أولاً، وتبقى الهوية اللاتينية المعيارية غير المتغيرة بين قوسين.
 
 | # | الاسم الكامل | الصيغة المختصرة من 3 مقاطع (`Short-6`) | الصيغة الكلامية من مقطعين (`Short-4`) |
 |---:|---|---|---|
-| 01 | Masanumika | Masanu | Masa |
-| 02 | Tasuzunumu | Tasuzu | Tasu |
-| 03 | Nazumasanu | Nazuma | Nazu |
-| 04 | Mikasumani | Mikasu | Mika |
-| 05 | Yanimuzunu | Yanimu | Yani |
-| 06 | Zumitanasu | Zumita | Zumi |
-| 07 | Muyasanumi | Muyasa | Muya |
-| 08 | Sunizusaka | Sunizu | Suni |
-| 09 | Numanamuta | Numana | Numa |
-| 10 | Kazunusuya | Kazunu | Kazu |
-| 11 | Yanazumasa | Yanazu | Yana |
-| 12 | Sanumikazu | Sanumi | Sanu |
-| 13 | Nimutazuna | Nimuta | Nimu |
+| 01 | مَسَنُمِكَ (Masanumika) | مَسَنُ (Masanu) | مَسَ (Masa) |
+| 02 | تَسُزُنُمُ (Tasuzunumu) | تَسُزُ (Tasuzu) | تَسُ (Tasu) |
+| 03 | نَزُمَسَنُ (Nazumasanu) | نَزُمَ (Nazuma) | نَزُ (Nazu) |
+| 04 | مِكَسُمَنِ (Mikasumani) | مِكَسُ (Mikasu) | مِكَ (Mika) |
+| 05 | يَنِمُزُنُ (Yanimuzunu) | يَنِمُ (Yanimu) | يَنِ (Yani) |
+| 06 | زُمِتَنَسُ (Zumitanasu) | زُمِتَ (Zumita) | زُمِ (Zumi) |
+| 07 | مُيَسَنُمِ (Muyasanumi) | مُيَسَ (Muyasa) | مُيَ (Muya) |
+| 08 | سُنِزُسَكَ (Sunizusaka) | سُنِزُ (Sunizu) | سُنِ (Suni) |
+| 09 | نُمَنَمُتَ (Numanamuta) | نُمَنَ (Numana) | نُمَ (Numa) |
+| 10 | كَزُنُسُيَ (Kazunusuya) | كَزُنُ (Kazunu) | كَزُ (Kazu) |
+| 11 | يَنَزُمَسَ (Yanazumasa) | يَنَزُ (Yanazu) | يَنَ (Yana) |
+| 12 | سَنُمِكَزُ (Sanumikazu) | سَنُمِ (Sanumi) | سَنُ (Sanu) |
+| 13 | نِمُتَزُنَ (Nimutazuna) | نِمُتَ (Nimuta) | نِمُ (Nimu) |
 
 في الكلام اليومي تُفضَّل الصيغة ذات المقطعين عندما يكون واضحاً من السياق أننا نتحدث عن شهر. النطق المرجعي يعطي **بروزاً خفيفاً للمقطع الأول**؛ موضع النبر ليس جزءاً من هوية الاسم.
 

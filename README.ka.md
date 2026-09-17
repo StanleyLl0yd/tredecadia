@@ -56,23 +56,23 @@ Tredecadia წლებისთვის იყენებს ერთ უწ
 
 ## თვეები
 
-თვეების სახელები უცვლელი საერთაშორისო იდენტიფიკატორებია. ქართული დამწერლობისთვის მათი დამოუკიდებლად შემოწმებული პროფილი ჯერ არ არსებობს, ამიტომ აქ განზრახ შენარჩუნებულია **კანონიკური ლათინური მართლწერა** და არ იქმნება თვითნებური ქართული ფორმები.
+Tredecadia `1.1.0-rc.1`-ში ქართული Mkhedruli თვეების საჩვენებელი პროფილი უკვე ნორმატიულ რეესტრშია `reviewed` სტატუსით. ქვემოთ ადგილობრივი ფორმა ნაჩვენებია პირველként, ხოლო ფრჩხილებში რჩება უცვლელი კანონიკური ლათინური იდენტობა.
 
 | # | სრული სახელი | 3-მარცვლიანი მოკლე ფორმა (`Short-6`) | 2-მარცვლიანი სასაუბრო ფორმა (`Short-4`) |
 |---:|---|---|---|
-| 01 | Masanumika | Masanu | Masa |
-| 02 | Tasuzunumu | Tasuzu | Tasu |
-| 03 | Nazumasanu | Nazuma | Nazu |
-| 04 | Mikasumani | Mikasu | Mika |
-| 05 | Yanimuzunu | Yanimu | Yani |
-| 06 | Zumitanasu | Zumita | Zumi |
-| 07 | Muyasanumi | Muyasa | Muya |
-| 08 | Sunizusaka | Sunizu | Suni |
-| 09 | Numanamuta | Numana | Numa |
-| 10 | Kazunusuya | Kazunu | Kazu |
-| 11 | Yanazumasa | Yanazu | Yana |
-| 12 | Sanumikazu | Sanumi | Sanu |
-| 13 | Nimutazuna | Nimuta | Nimu |
+| 01 | მასანუმიკა (Masanumika) | მასანუ (Masanu) | მასა (Masa) |
+| 02 | ტასუზუნუმუ (Tasuzunumu) | ტასუზუ (Tasuzu) | ტასუ (Tasu) |
+| 03 | ნაზუმასანუ (Nazumasanu) | ნაზუმა (Nazuma) | ნაზუ (Nazu) |
+| 04 | მიკასუმანი (Mikasumani) | მიკასუ (Mikasu) | მიკა (Mika) |
+| 05 | იანიმუზუნუ (Yanimuzunu) | იანიმუ (Yanimu) | იანი (Yani) |
+| 06 | ზუმიტანასუ (Zumitanasu) | ზუმიტა (Zumita) | ზუმი (Zumi) |
+| 07 | მუიასანუმი (Muyasanumi) | მუიასა (Muyasa) | მუია (Muya) |
+| 08 | სუნიზუსაკა (Sunizusaka) | სუნიზუ (Sunizu) | სუნი (Suni) |
+| 09 | ნუმანამუტა (Numanamuta) | ნუმანა (Numana) | ნუმა (Numa) |
+| 10 | კაზუნუსუია (Kazunusuya) | კაზუნუ (Kazunu) | კაზუ (Kazu) |
+| 11 | იანაზუმასა (Yanazumasa) | იანაზუ (Yanazu) | იანა (Yana) |
+| 12 | სანუმიკაზუ (Sanumikazu) | სანუმი (Sanumi) | სანუ (Sanu) |
+| 13 | ნიმუტაზუნა (Nimutazuna) | ნიმუტა (Nimuta) | ნიმუ (Nimu) |
 
 საუბარში ორმარცვლიანი ფორმა სასურველია მაშინ, როცა კონტექსტიდან უკვე ნათელია, რომ თვეზეა საუბარი. საცნობარო წარმოთქმაში **პირველი მარცვალი მსუბუქად არის გამოკვეთილი**; მახვილი სახელის იდენტობის ნაწილი არ არის.
 
