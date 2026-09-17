@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "targetMinor": "1.1.0",
+  "candidatePack": "rationale/additional-script-localization-candidates.json",
+  "decisions": [
+    {
+      "id": "ka-Geor",
+      "decision": "accept-reviewed",
+      "nativeSpeakerUsabilityStudyClaimed": false,
+      "rationale": "The deterministic Mkhedruli syllable mapping is directly supported by Georgian State Language Department transcription guidance, including the relevant CV sequences and YA /ja/ -> ია, with ISO 9984:2026 as an independent script-standard reference."
+    },
+    {
+      "id": "hy-Armn",
+      "decision": "accept-reviewed",
+      "nativeSpeakerUsabilityStudyClaimed": false,
+      "rationale": "The deterministic mapping targets Eastern Armenian phonetic values and is supported by the Library of Congress Armenian romanization table plus ISO 9985:2026. Western Armenian is explicitly outside this profile."
+    },
+    {
+      "id": "ar-Arab",
+      "decision": "accept-reviewed",
+      "nativeSpeakerUsabilityStudyClaimed": false,
+      "rationale": "A fully vocalized Arabic display profile preserves canonical A/I/U distinctions mechanically through fatḥa, kasra and ḍamma. Full vocalization is intentionally more explicit than ordinary adult prose and is part of the profile definition."
+    },
+    {
+      "id": "hi-Deva",
+      "decision": "accept-reviewed",
+      "nativeSpeakerUsabilityStudyClaimed": false,
+      "rationale": "The Hindi-oriented Devanagari adaptation follows the Government of India principle of approximating standard pronunciation for international terms and explicitly documents vowel-quality/quantity approximation and nukta ज़ for /z/."
+    },
+    {
+      "id": "bn-Beng",
+      "decision": "defer",
+      "nativeSpeakerUsabilityStudyClaimed": false,
+      "rationale": "The candidate is mechanically reversible, but public authoritative material does not resolve the preferred standards-display treatment of initial canonical /ja/ and non-native /z/ strongly enough to claim an independently reviewed profile. Independent Bengali orthographic review is required."
+    },
+    {
+      "id": "fa-Arab",
+      "decision": "defer",
+      "nativeSpeakerUsabilityStudyClaimed": false,
+      "rationale": "Modern Iranian Persian short-vowel values do not align with canonical /a i u/ in the same way as Arabic. The current ی/و-based proposal is mechanically safe but needs independent Persian review of the preferred length/quality adaptation before reviewed promotion."
+    }
+  ]
+}
