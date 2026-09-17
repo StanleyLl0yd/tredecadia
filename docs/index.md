@@ -13,7 +13,7 @@ Tredecadia has thirteen equal 28-day months, four complete seven-day weeks per m
 
 This page is a navigational summary, not a second copy of the standard. Normative requirements remain in the repository specifications and machine-readable registries.
 
-[Read the project introduction in 20 languages](https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md) · [Published RC2](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2) · [Historical RC1](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
+[Read the project introduction in all available languages](https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md) · [Published RC2](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2) · [Historical RC1](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
 
 ## Calendar at a glance
 
