@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
-"""Validate the M5 additional-script localization candidate pack."""
+"""Validate the M5 additional-script localization candidate pack and review decisions."""
 
 from __future__ import annotations
 
@@ -12,6 +12,9 @@ ROOT = Path(__file__).resolve().parents[1]
 MONTHS = json.loads((ROOT / "registry/months.json").read_text(encoding="utf-8"))["months"]
 PACK = json.loads(
     (ROOT / "rationale/additional-script-localization-candidates.json").read_text(encoding="utf-8")
+)
+DECISIONS = json.loads(
+    (ROOT / "rationale/additional-script-localization-decisions.json").read_text(encoding="utf-8")
 )
 
 EXPECTED_IDS = {"ka-Geor", "hy-Armn", "ar-Arab", "hi-Deva", "bn-Beng", "fa-Arab"}
@@ -90,6 +93,27 @@ def main() -> None:
     assert {pid for pid, p in by_id.items() if p["proposedMaturity"] == "reviewed"} == REVIEWED
     assert {pid for pid, p in by_id.items() if p["proposedMaturity"] == "candidate"} == CANDIDATE
 
+    # Review decisions are deliberately stricter than technical validity: a
+    # mechanically reversible candidate is not automatically accepted.
+    assert DECISIONS["schemaVersion"] == 1
+    assert DECISIONS["targetMinor"] == PACK["targetMinor"]
+    assert DECISIONS["candidatePack"] == "rationale/additional-script-localization-candidates.json"
+    decisions = DECISIONS["decisions"]
+    assert [d["id"] for d in decisions] == [p["id"] for p in profiles]
+    decision_by_id = {d["id"]: d for d in decisions}
+    assert set(decision_by_id) == EXPECTED_IDS
+    assert {pid for pid, d in decision_by_id.items() if d["decision"] == "accept-reviewed"} == REVIEWED
+    assert {pid for pid, d in decision_by_id.items() if d["decision"] == "defer"} == CANDIDATE
+    for decision in decisions:
+        assert decision["nativeSpeakerUsabilityStudyClaimed"] is False
+        assert decision["rationale"].strip()
+        if decision["decision"] == "accept-reviewed":
+            assert by_id[decision["id"]]["proposedMaturity"] == "reviewed"
+        elif decision["decision"] == "defer":
+            assert by_id[decision["id"]]["proposedMaturity"] == "candidate"
+        else:
+            raise AssertionError(f"unknown decision for {decision['id']}: {decision['decision']}")
+
     assert by_id["ka-Geor"]["syllableMap"]["YA"] == "ია"
     assert by_id["hy-Armn"]["syllableMap"]["YA"] == "յա"
 
@@ -114,7 +138,7 @@ def main() -> None:
     assert fa["syllableMap"]["MU"] == "مو"
     assert "candidate only" in fa["notes"].lower()
 
-    print("Tredecadia additional-script localization candidate validation: OK")
+    print("Tredecadia additional-script localization candidate/decision validation: OK")
 
 
 if __name__ == "__main__":
