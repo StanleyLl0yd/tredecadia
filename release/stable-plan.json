@@ -18,10 +18,14 @@
   },
   "targetVersion": "1.0.0",
   "observation": {
-    "status": "open",
-    "stableDecision": "pending",
+    "status": "complete",
+    "stableDecision": "approved",
     "record": "release/rc-observation.json",
-    "evidence": []
+    "evidence": [
+      "RC2 observation completed after 2026-09-17T09:44:59Z with zero compatibility-critical findings and zero open reports",
+      "GitHub issue search found no Tredecadia RC feedback reports for v1.0.0-rc.2",
+      "main f76741c8c603236800ab0b9e5c917a9c5db8876e passed standard, CodeQL Python, CodeQL Actions, and branch-housekeeping checks"
+    ]
   },
   "registryPromotion": [
     {"path": "registry/calendar.json", "currentStatus": "draft", "targetStatus": "stable"},
@@ -57,6 +61,6 @@
   "archivePlan": "release/archive-plan.md",
   "publication": {
     "targetTag": "v1.0.0",
-    "allowed": false
+    "allowed": true
   }
 }
