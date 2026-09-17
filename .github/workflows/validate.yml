@@ -59,6 +59,8 @@ jobs:
         run: python tests/validate_registry.py
       - name: Validate localization profiles
         run: python tests/validate_localizations.py
+      - name: Validate additional-script localization candidates
+        run: python tests/validate_additional_script_localizations.py
       - name: Validate Short-4 conversational and UX invariants
         run: python tests/validate_short4_ux.py
       - name: Validate signed-year accessibility and presentation
