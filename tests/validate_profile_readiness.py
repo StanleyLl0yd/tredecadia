@@ -7,6 +7,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from release_state import citation_version
+
 ROOT = Path(__file__).resolve().parents[1]
 READINESS = ROOT / "release" / "profile-readiness.json"
 PLAN = ROOT / "release" / "stable-plan.json"
@@ -24,11 +26,25 @@ REQUIRED_CHECKS = {
 PROFILE_IDS = {"ru-Cyrl", "ja-Kana", "ko-Hang"}
 
 
+def expected_registry_profile_status(profile_id: str, version: str, plan: dict) -> str:
+    plan_entries = {entry["id"]: entry for entry in plan["localizationProfiles"]}
+    entry = plan_entries[profile_id]
+    if version == plan["sourceRc"]["version"]:
+        return entry["currentStatus"]
+    assert version == plan["targetVersion"], version
+    decision = entry["stableDecision"]
+    assert decision in {"accepted", "rejected"}, f"stable candidate has unresolved profile decision: {profile_id}"
+    policy = plan["profileDecisionPolicy"]
+    return policy["acceptedStatus"] if decision == "accepted" else policy["rejectedStatus"]
+
+
 def main() -> None:
     readiness = json.loads(READINESS.read_text(encoding="utf-8"))
     plan = json.loads(PLAN.read_text(encoding="utf-8"))
     localizations = json.loads(LOCALIZATIONS.read_text(encoding="utf-8"))
+    version = citation_version()
 
+    assert version in {plan["sourceRc"]["version"], plan["targetVersion"]}
     assert readiness["schemaVersion"] == 1
     assert set(readiness["requiredChecks"]) == REQUIRED_CHECKS
 
@@ -42,10 +58,14 @@ def main() -> None:
         plan_entry = plan_entries[profile_id]
         registry_entry = registry_entries[profile_id]
 
+        # The readiness packet records the status at which the stable decision
+        # was made. The live registry stays at that status in RC2, then moves
+        # to the exact accepted/rejected target maturity in the stable commit.
         assert packet["currentStatus"] == plan_entry["currentStatus"] == "reviewed"
-        # A decision authorizes what the future stable candidate should do; it
-        # does not mutate the RC2 registry before that atomic stable commit.
-        assert registry_entry["review"]["status"] == "reviewed"
+        expected_status = expected_registry_profile_status(profile_id, version, plan)
+        assert registry_entry["review"]["status"] == expected_status, (
+            f"{profile_id}: expected registry maturity {expected_status}, got {registry_entry['review']['status']}"
+        )
         assert packet["decision"] == plan_entry["stableDecision"]
         assert packet["decision"] in {"pending", "accepted", "rejected"}
         assert packet["readiness"] == "eligible-for-explicit-stable-decision"
