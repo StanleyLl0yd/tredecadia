@@ -62,6 +62,16 @@ def evaluate(as_of: datetime) -> dict:
     if open_reports:
         blockers.append({"code": "open-rc-reports", "detail": ", ".join(open_reports)})
 
+    critical_found = [
+        report["id"] for report in observation["reports"]
+        if report["compatibilityCritical"]
+    ]
+    if critical_found:
+        blockers.append({
+            "code": "compatibility-critical-defects-found",
+            "detail": "new RC required: " + ", ".join(critical_found),
+        })
+
     critical_open = [
         report["id"] for report in observation["reports"]
         if report["compatibilityCritical"] and report["status"] == "open"
