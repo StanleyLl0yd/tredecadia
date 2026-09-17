@@ -14,6 +14,20 @@ def load(path: str) -> dict:
     return json.loads((ROOT / path).read_text(encoding="utf-8"))
 
 
+def stable_publication_allowed(plan: dict, observation: dict) -> bool:
+    return (
+        observation["window"]["status"] == "complete"
+        and observation["summary"]["stableDecision"] == "approved"
+        and observation["summary"]["compatibilityCriticalDefectsFound"] == 0
+        and observation["summary"]["compatibilityCriticalDefectsOpen"] == 0
+        and observation["summary"]["openReports"] == 0
+        and all(
+            profile["stableDecision"] in {"accepted", "rejected"}
+            for profile in plan["localizationProfiles"]
+        )
+    )
+
+
 def main() -> None:
     manifest = load("release/rc2-transition.json")
     candidate = load(manifest["candidateRecord"])
@@ -63,7 +77,7 @@ def main() -> None:
 
     assert stable_plan["sourceRc"]["version"] == "1.0.0-rc.2"
     assert stable_plan["predecessorRc"]["version"] == "1.0.0-rc.1"
-    assert stable_plan["publication"]["allowed"] is False
+    assert stable_plan["publication"]["allowed"] is stable_publication_allowed(stable_plan, observation)
     assert observation["sourceRc"]["version"] == "1.0.0-rc.2"
     assert publish == {
         "version": "1.0.0-rc.2",
