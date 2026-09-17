@@ -29,15 +29,15 @@
     },
     {
       "id": "bn-Beng",
-      "decision": "defer",
+      "decision": "accept-reviewed",
       "nativeSpeakerUsabilityStudyClaimed": false,
-      "rationale": "The candidate is mechanically reversible, but public authoritative material does not resolve the preferred standards-display treatment of initial canonical /ja/ and non-native /z/ strongly enough to claim an independently reviewed profile. Independent Bengali orthographic review is required."
+      "rationale": "Government of Bangladesh dictionary evidence resolves both previous blockers: foreign initial y- is represented with ইয়া-/ইয়া-, while foreign z- is routinely adapted with জ (for example zebra → জেব্রা and zone → জোন). The profile therefore uses YA=ইয়া and ZU=জু, with the Bengali /z/→জ realization documented as a language-specific approximation rather than inventing জ়."
     },
     {
       "id": "fa-Arab",
-      "decision": "defer",
+      "decision": "accept-reviewed",
       "nativeSpeakerUsabilityStudyClaimed": false,
-      "rationale": "Modern Iranian Persian short-vowel values do not align with canonical /a i u/ in the same way as Arabic. The current ی/و-based proposal is mechanically safe but needs independent Persian review of the preferred length/quality adaptation before reviewed promotion."
+      "rationale": "ALA-LC and Unicode resolve the vowel-system blocker: modern Persian distinguishes short /e,o/ from /i,u/, and the regular written values for the latter are ی/و. The reviewed mapping therefore uses MI/NI/etc. with ی and MU/NU/etc. with و, explicitly accepting vowel-length approximation instead of misusing Persian kasra/damma as canonical /i,u/."
     }
   ]
 }
