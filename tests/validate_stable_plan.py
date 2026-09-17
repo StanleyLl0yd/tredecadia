@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
-"""Validate M4 stable-promotion state and the RC2 -> stable transition contract."""
+"""Validate historical M4 stable-promotion state and its RC2 -> 1.0 contract."""
 
 from __future__ import annotations
 
@@ -90,6 +90,7 @@ def main() -> None:
     baseline = load(plan["identityBaseline"])
     historical = load(plan["historicalIdentityBaseline"])
     current_release = load("release/publish.json")
+    published = load("release/published-releases.json")
     calendar = load("registry/calendar.json")
     months = load("registry/months.json")
     localizations = load("registry/localizations.json")
@@ -123,9 +124,10 @@ def main() -> None:
     assert plan["publication"]["targetTag"] == "v1.0.0"
 
     version = citation_version()
-    assert version in {plan["sourceRc"]["version"], plan["targetVersion"]}
-    assert current_release["version"] == version
+    current_release_version = current_release["version"]
+    assert current_release_version == version
     assert current_release["tag"] == f"v{version}"
+    historical_stage = version in {plan["sourceRc"]["version"], plan["targetVersion"]}
 
     registry_by_path = {
         "registry/calendar.json": calendar,
@@ -137,14 +139,20 @@ def main() -> None:
         assert entry["currentStatus"] == "draft"
         assert entry["targetStatus"] == "stable"
         registry = registry_by_path[entry["path"]]
-        assert registry["specVersion"] == version
-        expected_status = entry["currentStatus"] if version == plan["sourceRc"]["version"] else entry["targetStatus"]
-        assert registry["status"] == expected_status
+        if historical_stage:
+            assert registry["specVersion"] == version
+            expected_status = entry["currentStatus"] if version == plan["sourceRc"]["version"] else entry["targetStatus"]
+            assert registry["status"] == expected_status
+        else:
+            # Later compatible v1 releases have their own version/status state;
+            # M4 only constrains that its historical promotion contract remains intact.
+            assert registry["specVersion"] == version
+            assert registry["status"] in {"draft", "stable"}
 
     validate_observation(plan)
     decisions = validate_profile_decisions(plan)
     profiles = {profile["id"]: profile for profile in localizations["profiles"]}
-    assert set(profiles) == set(decisions)
+    assert set(decisions) <= set(profiles)
     for profile_id, entry in decisions.items():
         if version == plan["sourceRc"]["version"]:
             expected_status = entry["currentStatus"]
@@ -166,14 +174,23 @@ def main() -> None:
         assert current_release["prerelease"] is True
         assert current_release["notes"] == "release/notes/1.0.0-rc.2.md"
         assert "DRAFT — NOT AUTHORIZED FOR PUBLICATION" in notes
-    else:
+    elif version == plan["targetVersion"]:
         assert expected_allowed is True
         assert current_release["prerelease"] is False
         assert current_release["notes"] == plan["stableReleaseNotes"]
         assert "DRAFT — NOT AUTHORIZED FOR PUBLICATION" not in notes
+    else:
+        # Once v1.0.0 is historical, require its exact publication ledger record
+        # rather than forcing the live release metadata back to the old version.
+        stable = next(entry for entry in published["releases"] if entry["version"] == "1.0.0")
+        assert stable["tag"] == "v1.0.0"
+        assert stable["commit"] == "8c272bf6a48b1b84a4b2ca8c1db43c6ffb9f5ce3"
+        assert stable["archiveSha256"] == "2f14cc4fb2bcac2cfcce280ddbe948d4c65cab098ce23c1d385d220709f5c392"
+        assert expected_allowed is True
+        assert "DRAFT — NOT AUTHORIZED FOR PUBLICATION" not in notes
 
     synthetic_state_machine_checks(plan)
-    print("Tredecadia RC2-aware stable-promotion plan validation: OK")
+    print("Tredecadia historical RC2 -> v1.0 stable-promotion plan validation: OK")
 
 
 if __name__ == "__main__":
