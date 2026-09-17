@@ -1,0 +1,150 @@
+name: Stable promotion helper
+
+on:
+  push:
+    branches: [m4/stable-v1.0.0]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stable-promotion-helper
+  cancel-in-progress: true
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Apply mechanical stable transition
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json, re
+
+          def replace_once(path, old, new):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{path}: expected exactly one occurrence, found {count}: {old!r}')
+              p.write_text(text.replace(old, new), encoding='utf-8')
+
+          specs = [
+              'specification/calendar-standard.md',
+              'specification/conversion-standard.md',
+              'specification/date-notation.md',
+              'specification/month-naming-standard.md',
+              'specification/localization.md',
+              'specification/localization-profiles.md',
+              'specification/compatibility.md',
+          ]
+          for path in specs:
+              replace_once(path, 'Status: **1.0.0-rc.2**', 'Status: **1.0.0**')
+
+          readmes = ['README.md'] + [
+              'README.ru.md','README.es.md','README.pt-BR.md','README.fr.md','README.de.md',
+              'README.it.md','README.tr.md','README.pl.md','README.uk.md','README.ka.md','README.hy.md',
+              'README.zh-CN.md','README.zh-TW.md','README.ja.md','README.ko.md','README.ar.md','README.fa.md',
+              'README.hi.md','README.bn.md','README.id.md','README.vi.md',
+          ]
+          pattern = re.compile(r'^(> \*\*.*?`1\.0\.0-rc\.2`.*?\*\*)')
+          for path in readmes:
+              p = Path(path)
+              lines = p.read_text(encoding='utf-8').splitlines()
+              hits = []
+              for i, line in enumerate(lines):
+                  if line.startswith('> ') and '`1.0.0-rc.2`' in line:
+                      m = pattern.match(line)
+                      if not m:
+                          raise SystemExit(f'{path}: cannot isolate status blockquote')
+                      hits.append(i)
+                      lines[i] = m.group(1).replace('1.0.0-rc.2', '1.0.0')
+              if len(hits) != 1:
+                  raise SystemExit(f'{path}: expected one current-version blockquote, found {len(hits)}')
+              p.write_text('\n'.join(lines) + '\n', encoding='utf-8')
+
+          replace_once(
+              'CONTRIBUTING.md',
+              'Tredecadia is currently in the `1.0.0-rc.2` release-candidate cycle.',
+              'Tredecadia `1.0.0` is the stable v1 release line.',
+          )
+          replace_once(
+              'CONTRIBUTING.md',
+              'The machine-readable observation record is `release/rc-observation.json`. RC2 observation starts only after the actual `v1.0.0-rc.2` publication timestamp is recorded. Stable publication remains blocked while the observation period is open or a release-blocking report remains unresolved.',
+              'The machine-readable RC2 observation record is `release/rc-observation.json`. That observation completed after its required minimum interval with zero compatibility-critical findings and zero open reports; it remains part of the immutable evidence chain for stable `v1.0.0`.',
+          )
+          replace_once(
+              'CONTRIBUTING.md',
+              'Canonical month names, their order, syllable structure, and abbreviations are frozen for v1 RC testing and should not be changed casually. The RC2 weekday identities are also part of the compatibility-critical candidate surface: `W1..W7` map in order to `Mene, Noko, Kese, Zoyo, Sote, Yemo, Toze`. A proposal to change canonical month or weekday identity before final v1 must identify a concrete interoperability, safety, or substantial international-language problem and include evidence.',
+              'Canonical month names, their order, syllable structure, abbreviations, and the canonical weekday identities are frozen in stable v1.0.0. `W1..W7` map in order to `Mene, Noko, Kese, Zoyo, Sote, Yemo, Toze`. Any incompatible change to this identity now requires a new major version or a separately named profile under the compatibility policy.',
+          )
+
+          replace_once(
+              'ROADMAP.md',
+              'Tredecadia has published two immutable v1 release candidates. `v1.0.0-rc.2` carries the deliberate pre-stable compatibility correction that replaces the English weekday labels used by RC1 with internationally neutral canonical weekday identities. Final `v1.0.0` follows only after the fresh RC2 observation window is explicitly completed and approved.',
+              'Tredecadia completed the RC2 observation cleanly and approved the atomic stable `v1.0.0` promotion. RC1 and RC2 remain immutable historical releases; stable v1 preserves the published RC2 canonical calendar identity.',
+          )
+          replace_once(
+              'ROADMAP.md',
+              'Status: **in progress — `v1.0.0-rc.2` published; fresh observation window open**',
+              'Status: **in progress — RC2 observation complete; stable `v1.0.0` candidate approved**',
+          )
+          replace_once(
+              'ROADMAP.md',
+              'Current machine-enforced blockers are the RC2 observation/approval gate and stable publication authorization. The time gate cannot be bypassed.\n\nOnly after `2026-09-17T09:44:59Z`, and only if review remains clean:',
+              'The RC2 observation completed after the machine-enforced minimum interval with zero compatibility-critical findings and zero open reports. Stable publication is authorized; the remaining work is exact candidate verification and immutable publication.\n\nStable transition checklist:',
+          )
+          replace_once('ROADMAP.md', '- [ ] classify and resolve/defer all RC2 feedback; publish another RC instead of mutating RC2 if a compatibility-critical defect is found;', '- [x] classify and resolve/defer all RC2 feedback; no compatibility-critical defect was found;')
+          replace_once('ROADMAP.md', '- [ ] explicitly complete the RC2 observation and record the overall stable decision as approved or blocked;', '- [x] explicitly complete the RC2 observation and record the overall stable decision as approved;')
+
+          replace_once(
+              'docs/index.md',
+              '> **Published release candidate `1.0.0-rc.2`; observation window open.** RC2 was published from commit `b816d613618d51515d910e0d3bdb9d2f211b6d22` at `2026-09-16T09:44:59Z`. Stable `v1.0.0` remains blocked until the fresh one-full-day RC2 observation is explicitly completed and approved no earlier than `2026-09-17T09:44:59Z`.',
+              '> **Stable version: `1.0.0`.** The RC2 observation completed after its required minimum interval with zero compatibility-critical findings and zero open reports. Stable v1 preserves the published RC2 canonical identity and changes only release maturity/version metadata.',
+          )
+          replace_once(
+              'docs/index.md',
+              '[Read the project introduction in all available languages](https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md) · [Published RC2](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2) · [Historical RC1](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)',
+              '[Read the project introduction in all available languages](https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md) · [Stable v1.0.0](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0) · [Historical RC2](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2) · [Historical RC1](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)',
+          )
+          replace_once(
+              'docs/index.md',
+              'Release candidate `1.0.0-rc.2` has independently reviewed, non-stable **month** display profiles for:',
+              'Stable `1.0.0` includes independently reviewed **month** display profiles for:',
+          )
+          replace_once(
+              'docs/index.md',
+              'All three reviewed month profiles have now been explicitly **accepted for promotion in the future atomic stable `v1.0.0` commit**. Their RC2 registry status remains `reviewed` while the RC2 observation gate is open; acceptance does not mutate the published RC2 identity or prematurely make the registry stable.',
+              'All three reviewed month profiles were explicitly accepted during RC2 review and are promoted to **stable** maturity in `v1.0.0`. This maturity change does not alter their reviewed mappings or the published RC2 identity.',
+          )
+          replace_once(
+              'docs/index.md',
+              'Localized month spellings are aliases and never change canonical month numbers, Latin names, syllables, Short-6, or Short-4 identifiers. RC2 does not infer weekday aliases from those profiles because the weekday `E/O` syllables require separate review.',
+              'Localized month spellings are aliases and never change canonical month numbers, Latin names, syllables, Short-6, or Short-4 identifiers. Stable v1.0.0 does not infer weekday aliases from those profiles because the weekday `E/O` syllables require separate review.',
+          )
+
+          replace_once(
+              'CHANGELOG.md',
+              '## [Unreleased]\n\n### Added',
+              '## [Unreleased]\n\n_No changes yet._\n\n## 1.0.0 — 2026-09-17\n\nStable v1 release. It preserves the canonical calendar identity published in `v1.0.0-rc.2` and promotes the reviewed release surface to stable maturity after a clean RC2 observation.\n\n### Added',
+          )
+
+          Path('.github/workflows/stable-promote-helper.yml').unlink()
+          PY
+
+          git diff --check
+          git status --short
+      - name: Commit mechanical transition
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "M4: apply mechanical stable documentation transition"
+          git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_REF_NAME}"
