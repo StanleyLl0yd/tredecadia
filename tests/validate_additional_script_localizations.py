@@ -19,8 +19,8 @@ DECISIONS = json.loads(
 
 EXPECTED_IDS = {"ka-Geor", "hy-Armn", "ar-Arab", "hi-Deva", "bn-Beng", "fa-Arab"}
 INVENTORY = {"MA", "MI", "MU", "NA", "NI", "NU", "SA", "SU", "TA", "YA", "KA", "ZU"}
-REVIEWED = {"ka-Geor", "hy-Armn", "ar-Arab", "hi-Deva"}
-CANDIDATE = {"bn-Beng", "fa-Arab"}
+REVIEWED = EXPECTED_IDS
+CANDIDATE: set[str] = set()
 BIDI_CONTROLS = {
     "\u061c", "\u200e", "\u200f", "\u202a", "\u202b", "\u202c", "\u202d", "\u202e",
     "\u2066", "\u2067", "\u2068", "\u2069",
@@ -93,8 +93,6 @@ def main() -> None:
     assert {pid for pid, p in by_id.items() if p["proposedMaturity"] == "reviewed"} == REVIEWED
     assert {pid for pid, p in by_id.items() if p["proposedMaturity"] == "candidate"} == CANDIDATE
 
-    # Review decisions are deliberately stricter than technical validity: a
-    # mechanically reversible candidate is not automatically accepted.
     assert DECISIONS["schemaVersion"] == 1
     assert DECISIONS["targetMinor"] == PACK["targetMinor"]
     assert DECISIONS["candidatePack"] == "rationale/additional-script-localization-candidates.json"
@@ -130,13 +128,14 @@ def main() -> None:
 
     bn = by_id["bn-Beng"]
     assert bn["syllableMap"]["YA"] == "ইয়া"
-    assert bn["syllableMap"]["ZU"] == "জ়ু"
-    assert "candidate only" in bn["notes"].lower()
+    assert bn["syllableMap"]["ZU"] == "জু"
+    assert "language-specific approximation" in bn["notes"].lower()
 
     fa = by_id["fa-Arab"]
     assert fa["direction"] == "rtl"
+    assert fa["syllableMap"]["MI"] == "می"
     assert fa["syllableMap"]["MU"] == "مو"
-    assert "candidate only" in fa["notes"].lower()
+    assert "length approximation" in fa["notes"].lower()
 
     print("Tredecadia additional-script localization candidate/decision validation: OK")
 
