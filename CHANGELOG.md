@@ -6,6 +6,12 @@ The project follows Semantic Versioning for stable public releases where practic
 
 ## [Unreleased]
 
+_No changes yet._
+
+## 1.0.0 — 2026-09-17
+
+Stable v1 release. It preserves the canonical calendar identity published in `v1.0.0-rc.2` and promotes the reviewed release surface to stable maturity after a clean RC2 observation.
+
 ### Added
 
 - Executable M4 stable-promotion state machine, immutable release identity records, and atomic RC-to-stable transition manifests.

@@ -4,7 +4,7 @@
 
 Tredecadia é uma proposta aberta de calendário perpétuo com **13 meses de 28 dias**. Todos os meses têm exatamente quatro semanas, a mesma data cai sempre no mesmo dia da semana e os dias usados para ajustar o ano ficam fora dos meses e da semana de sete dias.
 
-> **Versão pública atual: `1.0.0-rc.2`.** Esta segunda candidata introduz nomes canônicos internacionalmente neutros para os dias da semana. A versão estável `v1.0.0` só poderá ser publicada depois de um período de observação específico do RC2 e de uma revisão final.
+> **Versão pública atual: `1.0.0`.**
 
 ## Como o calendário funciona
 

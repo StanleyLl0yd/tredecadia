@@ -7,6 +7,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from release_state import citation_version
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -40,6 +42,7 @@ def main() -> None:
     stable_plan = load("release/stable-plan.json")
     observation = load("release/rc-observation.json")
     publish = load("release/publish.json")
+    current_version = citation_version()
 
     assert manifest["manifestVersion"] == 1
     assert manifest["sourceRc"] == {
@@ -79,12 +82,22 @@ def main() -> None:
     assert stable_plan["predecessorRc"]["version"] == "1.0.0-rc.1"
     assert stable_plan["publication"]["allowed"] is stable_publication_allowed(stable_plan, observation)
     assert observation["sourceRc"]["version"] == "1.0.0-rc.2"
-    assert publish == {
-        "version": "1.0.0-rc.2",
-        "tag": "v1.0.0-rc.2",
-        "prerelease": True,
-        "notes": "release/notes/1.0.0-rc.2.md",
-    }
+    assert current_version in {"1.0.0-rc.2", "1.0.0"}
+    if current_version == "1.0.0-rc.2":
+        assert publish == {
+            "version": "1.0.0-rc.2",
+            "tag": "v1.0.0-rc.2",
+            "prerelease": True,
+            "notes": "release/notes/1.0.0-rc.2.md",
+        }
+    else:
+        assert stable_plan["publication"]["allowed"] is True
+        assert publish == {
+            "version": "1.0.0",
+            "tag": "v1.0.0",
+            "prerelease": False,
+            "notes": "release/notes/1.0.0.md",
+        }
 
     required = (
         manifest["requiredNormativeFiles"]

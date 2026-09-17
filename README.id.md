@@ -4,7 +4,7 @@
 
 Tredecadia adalah proyek terbuka untuk kalender abadi dengan **13 bulan, masing-masing 28 hari**. Setiap bulan tepat empat minggu, sehingga tanggal yang sama selalu berada pada posisi yang sama dalam siklus pekan. Hari tambahan untuk menyesuaikan panjang tahun ditempatkan di luar bulan dan di luar siklus pekan tujuh hari.
 
-> **Versi publik saat ini: `1.0.0-rc.2`.** Kandidat kedua ini memperkenalkan nama hari pekan kanonik yang dirancang agar netral secara internasional. Rilis stabil `v1.0.0` hanya dapat diterbitkan setelah masa observasi khusus RC2 dan verifikasi akhir.
+> **Versi publik saat ini: `1.0.0`.**
 
 ## Struktur dasar
 

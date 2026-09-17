@@ -1,5 +1,5 @@
 {
-  "specVersion": "1.0.0-rc.2",
+  "specVersion": "1.0.0",
   "calendar": {"monthsPerYear": 13, "daysPerMonth": 28, "regularDaysPerYear": 364, "weeksPerMonth": 4, "firstWeekday": "Mene", "lastWeekday": "Toze"},
   "naming": {
     "fullFrequencyVector": {"MA": 5, "MI": 5, "MU": 5, "NA": 5, "NI": 4, "NU": 8, "SA": 6, "SU": 5, "TA": 4, "YA": 4, "KA": 5, "ZU": 9},

@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0-rc.2",
-  "tag": "v1.0.0-rc.2",
-  "prerelease": true,
-  "notes": "release/notes/1.0.0-rc.2.md"
+  "version": "1.0.0",
+  "tag": "v1.0.0",
+  "prerelease": false,
+  "notes": "release/notes/1.0.0.md"
 }

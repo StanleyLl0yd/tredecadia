@@ -1,6 +1,6 @@
 # Tredecadia Localization Profiles
 
-Status: **1.0.0-rc.2**
+Status: **1.0.0**
 
 Canonical month identity is language-neutral and lives in `registry/months.json`. Canonical weekday identity lives in `registry/calendar.json`. Localized display aliases live separately from canonical identity and never replace month numbers, weekday IDs, canonical Latin names, or canonical syllable sequences.
 

@@ -4,7 +4,7 @@
 
 Tredecadia, **28 günlük 13 aydan** oluşan açık bir sürekli takvim projesidir. Her ay tam dört haftadır; aynı ay günü her yıl aynı haftanın gününe denk gelir. Yılı güneş döngüsüyle uyumlu tutan ek günler ise ayların ve yedi günlük haftanın dışında yer alır.
 
-> **Güncel herkese açık sürüm: `1.0.0-rc.2`.** Bu ikinci sürüm adayı, uluslararası açıdan tarafsız olacak şekilde tasarlanmış kanonik hafta günü adlarını getirir. Kararlı `v1.0.0`, yalnızca RC2'ye özgü gözlem döneminden ve son doğrulamadan sonra yayımlanabilir.
+> **Güncel herkese açık sürüm: `1.0.0`.**
 
 ## Temel yapı
 

@@ -1,6 +1,6 @@
 # Tredecadia–Gregorian Conversion Standard
 
-Status: **1.0.0-rc.2**
+Status: **1.0.0**
 
 This document defines the Tredecadia civil conversion profile against the proleptic Gregorian calendar.
 

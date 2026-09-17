@@ -1,6 +1,6 @@
 # Contributing
 
-Tredecadia is currently in the `1.0.0-rc.2` release-candidate cycle.
+Tredecadia `1.0.0` is the stable v1 release line.
 
 Contributions are welcome, especially for:
 
@@ -21,7 +21,7 @@ Please report the concrete observation rather than trying to decide release seve
 - **editorial issue** — wording, translation, navigation, or explanatory material needs improvement without changing behavior;
 - **non-blocking future work** — useful work that does not need to delay v1.0.0.
 
-The machine-readable observation record is `release/rc-observation.json`. RC2 observation starts only after the actual `v1.0.0-rc.2` publication timestamp is recorded. Stable publication remains blocked while the observation period is open or a release-blocking report remains unresolved.
+The machine-readable RC2 observation record is `release/rc-observation.json`. That observation completed after its required minimum interval with zero compatibility-critical findings and zero open reports; it remains part of the immutable evidence chain for stable `v1.0.0`.
 
 ## Before proposing a change
 
@@ -31,7 +31,7 @@ Please distinguish between:
 - **editorial** changes, which improve clarity without changing meaning;
 - **rationale/research** changes, which document why a design choice was made.
 
-Canonical month names, their order, syllable structure, and abbreviations are frozen for v1 RC testing and should not be changed casually. The RC2 weekday identities are also part of the compatibility-critical candidate surface: `W1..W7` map in order to `Mene, Noko, Kese, Zoyo, Sote, Yemo, Toze`. A proposal to change canonical month or weekday identity before final v1 must identify a concrete interoperability, safety, or substantial international-language problem and include evidence.
+Canonical month names, their order, syllable structure, abbreviations, and the canonical weekday identities are frozen in stable v1.0.0. `W1..W7` map in order to `Mene, Noko, Kese, Zoyo, Sote, Yemo, Toze`. Any incompatible change to this identity now requires a new major version or a separately named profile under the compatibility policy.
 
 Localized weekday aliases are **not** implied by existing month-localization profiles. Any proposed localized weekday spelling or pronunciation must be reviewed as a separate localization surface before it is presented as reviewed or stable.
 

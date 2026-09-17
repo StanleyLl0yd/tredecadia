@@ -9,11 +9,11 @@ title: Tredecadia
 
 Tredecadia has thirteen equal 28-day months, four complete seven-day weeks per month, an independent mathematical year coordinate, and internationally neutral canonical month and weekday names.
 
-> **Published release candidate `1.0.0-rc.2`; observation window open.** RC2 was published from commit `b816d613618d51515d910e0d3bdb9d2f211b6d22` at `2026-09-16T09:44:59Z`. Stable `v1.0.0` remains blocked until the fresh one-full-day RC2 observation is explicitly completed and approved no earlier than `2026-09-17T09:44:59Z`.
+> **Stable version: `1.0.0`.** The RC2 observation completed after its required minimum interval with zero compatibility-critical findings and zero open reports. Stable v1 preserves the published RC2 canonical identity and changes only release maturity/version metadata.
 
 This page is a navigational summary, not a second copy of the standard. Normative requirements remain in the repository specifications and machine-readable registries.
 
-[Read the project introduction in all available languages](https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md) · [Published RC2](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2) · [Historical RC1](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
+[Read the project introduction in all available languages](https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md) · [Stable v1.0.0](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0) · [Historical RC2](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2) · [Historical RC1](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
 
 ## Calendar at a glance
 
@@ -76,15 +76,15 @@ Canonical machine syntax is strict ASCII. Human-facing interfaces may display un
 
 ## Localization
 
-Release candidate `1.0.0-rc.2` has independently reviewed, non-stable **month** display profiles for:
+Stable `1.0.0` includes independently reviewed **month** display profiles for:
 
 - Russian Cyrillic (`ru-Cyrl`);
 - Japanese Katakana (`ja-Kana`);
 - Korean Hangul (`ko-Hang`).
 
-All three reviewed month profiles have now been explicitly **accepted for promotion in the future atomic stable `v1.0.0` commit**. Their RC2 registry status remains `reviewed` while the RC2 observation gate is open; acceptance does not mutate the published RC2 identity or prematurely make the registry stable.
+All three reviewed month profiles were explicitly accepted during RC2 review and are promoted to **stable** maturity in `v1.0.0`. This maturity change does not alter their reviewed mappings or the published RC2 identity.
 
-Localized month spellings are aliases and never change canonical month numbers, Latin names, syllables, Short-6, or Short-4 identifiers. RC2 does not infer weekday aliases from those profiles because the weekday `E/O` syllables require separate review.
+Localized month spellings are aliases and never change canonical month numbers, Latin names, syllables, Short-6, or Short-4 identifiers. Stable v1.0.0 does not infer weekday aliases from those profiles because the weekday `E/O` syllables require separate review.
 
 ## Published RC2 identity
 
