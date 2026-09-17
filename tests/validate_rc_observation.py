@@ -96,6 +96,12 @@ def main() -> None:
     assert summary["compatibilityCriticalDefectsOpen"] == critical_open
     assert summary["openReports"] == open_reports
     assert summary["stableDecision"] in {"pending", "approved", "blocked"}
+    # Finding a compatibility-critical defect invalidates this RC as the
+    # stable baseline even after the individual report is resolved. The only
+    # valid path is a new RC, so this observation must never approve stable.
+    assert not (critical_found and summary["stableDecision"] == "approved"), (
+        "an RC with compatibility-critical findings cannot be approved for stable; publish a new RC"
+    )
 
     classified_prs: set[int] = set()
     for group in observation["postRcChangeGroups"]:
