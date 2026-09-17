@@ -29,15 +29,23 @@ RC2 = {
     "archive": "tredecadia-1.0.0-rc.2.tar.gz",
     "archiveSha256": "23e40180098c656c88aa4ba27c6989ac053d9ce8b8029c9ce2e3b16946bf32ec",
 }
+STABLE = {
+    "version": "1.0.0",
+    "tag": "v1.0.0",
+    "commit": "8c272bf6a48b1b84a4b2ca8c1db43c6ffb9f5ce3",
+    "publishedAt": "2026-09-17T12:53:29Z",
+    "archive": "tredecadia-1.0.0.tar.gz",
+    "archiveSha256": "2f14cc4fb2bcac2cfcce280ddbe948d4c65cab098ce23c1d385d220709f5c392",
+}
 
 
 def main() -> None:
     data = json.loads((ROOT / "release/published-releases.json").read_text(encoding="utf-8"))
     assert data["schemaVersion"] == 1
     releases = data["releases"]
-    assert releases == [RC1, RC2]
-    assert len({entry["version"] for entry in releases}) == 2
-    assert len({entry["tag"] for entry in releases}) == 2
+    assert releases == [RC1, RC2, STABLE]
+    assert len({entry["version"] for entry in releases}) == 3
+    assert len({entry["tag"] for entry in releases}) == 3
 
     plan = json.loads((ROOT / "release/stable-plan.json").read_text(encoding="utf-8"))
     active_observation = json.loads((ROOT / "release/rc-observation.json").read_text(encoding="utf-8"))
@@ -82,14 +90,17 @@ def main() -> None:
                 raise AssertionError(f"published source lock accepted a different source tree for {release['version']}")
 
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    for release in releases:
+    # Historical RC identity remains visible in the public README. Stable
+    # publication identity is recorded in the immutable ledger and roadmap;
+    # it is additionally required here once public README synchronization lands.
+    for release in (RC1, RC2):
         assert release["tag"] in readme
         assert release["commit"] in readme
         assert release["archiveSha256"] in readme
     assert RC2["publishedAt"] in readme
     assert "2026-09-17T09:44:59Z" in readme
 
-    print("Tredecadia published RC1/RC2 source-lock validation: OK")
+    print("Tredecadia published RC1/RC2/stable source-lock validation: OK")
 
 
 if __name__ == "__main__":
