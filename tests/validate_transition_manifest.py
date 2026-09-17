@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
-"""Validate the complete atomic RC2 -> stable metadata transition manifest."""
+"""Validate the historical atomic RC2 -> stable v1.0 metadata transition manifest."""
 
 from __future__ import annotations
 
@@ -116,7 +116,12 @@ def validate_schema_freeze(manifest: dict) -> None:
         assert schema["properties"]["schemaVersion"]["const"] == SCHEMA_VERSIONS[path]
 
 
-def validate_source_reference_coverage(manifest: dict) -> None:
+def validate_source_reference_coverage(manifest: dict, version: str) -> None:
+    # Exhaustive source-reference classification was a transition-time gate.
+    # Once 1.0.0 is historical, later documentation may legitimately discuss
+    # RC2; the frozen manifest itself must not become a global ban on that text.
+    if version not in {manifest["sourceVersion"], manifest["targetVersion"]}:
+        return
     source = manifest["sourceVersion"]
     allowed = all_atomic_paths(manifest) | set(manifest["historicalSourceReferences"]) | {MANIFEST_PATH}
     unexpected = source_reference_paths(source) - allowed
@@ -127,22 +132,21 @@ def validate_current_stage(manifest: dict) -> None:
     source = manifest["sourceVersion"]
     target = manifest["targetVersion"]
     version = citation_version()
-    assert version in {source, target}
 
     atomic = manifest["atomicCandidateCommit"]
     publish = load(atomic["publicationTrigger"])
     stable_plan = load(manifest["preconditions"]["stablePlan"])
     profile_decisions = load(atomic["profileDecisionRecord"])
+    published = load("release/published-releases.json")
     notes = (ROOT / atomic["stableReleaseNotes"]).read_text(encoding="utf-8")
-
-    for path in atomic["versionedJson"]:
-        assert load(path)["specVersion"] == version, path
 
     packet_decisions = {entry["id"]: entry["decision"] for entry in profile_decisions["profiles"]}
     plan_decisions = {entry["id"]: entry["stableDecision"] for entry in stable_plan["localizationProfiles"]}
     assert packet_decisions == plan_decisions
 
     if version == source:
+        for path in atomic["versionedJson"]:
+            assert load(path)["specVersion"] == source, path
         assert publish == {"version": source, "tag": f"v{source}", "prerelease": True, "notes": f"release/notes/{source}.md"}
         for path in atomic["registryStatus"]:
             assert load(path)["status"] == "draft", path
@@ -150,14 +154,12 @@ def validate_current_stage(manifest: dict) -> None:
             assert f"Status: **{source}" in (ROOT / path).read_text(encoding="utf-8"), path
         for path in atomic["publicVersionDocuments"]:
             assert source in (ROOT / path).read_text(encoding="utf-8"), path
-        # The repository can legitimately remain on RC2 metadata after the
-        # observation is complete and the stable publication gate has opened.
-        # Stable-plan validation independently proves whether `allowed` is
-        # derived correctly from observation/profile decisions.
         assert all(decision in {"pending", "accepted", "rejected"} for decision in packet_decisions.values())
         assert "DRAFT — NOT AUTHORIZED FOR PUBLICATION" in notes
         assert isinstance(stable_plan["publication"]["allowed"], bool)
-    else:
+    elif version == target:
+        for path in atomic["versionedJson"]:
+            assert load(path)["specVersion"] == target, path
         assert stable_plan["publication"]["allowed"] is manifest["preconditions"]["publicationAllowed"] is True
         assert publish == {"version": target, "tag": f"v{target}", "prerelease": False, "notes": atomic["stableReleaseNotes"]}
         for path in atomic["registryStatus"]:
@@ -168,6 +170,17 @@ def validate_current_stage(manifest: dict) -> None:
             assert target in (ROOT / path).read_text(encoding="utf-8"), path
         assert all(decision in {"accepted", "rejected"} for decision in packet_decisions.values())
         assert "DRAFT — NOT AUTHORIZED FOR PUBLICATION" not in notes
+    else:
+        # Later v1 releases validate their own live metadata elsewhere. Here we
+        # prove the old transition reached its intended immutable publication.
+        assert stable_plan["publication"]["allowed"] is True
+        stable = next(entry for entry in published["releases"] if entry["version"] == target)
+        assert stable["tag"] == "v1.0.0"
+        assert stable["commit"] == "8c272bf6a48b1b84a4b2ca8c1db43c6ffb9f5ce3"
+        assert stable["archiveSha256"] == "2f14cc4fb2bcac2cfcce280ddbe948d4c65cab098ce23c1d385d220709f5c392"
+        assert publish["version"] == version
+        assert publish["tag"] == f"v{version}"
+        assert "DRAFT — NOT AUTHORIZED FOR PUBLICATION" not in notes
 
     baseline = load(manifest["preconditions"]["identityBaseline"])
     assert baseline["release"]["tag"] == f"v{source}"
@@ -177,11 +190,12 @@ def validate_current_stage(manifest: dict) -> None:
 
 def main() -> None:
     manifest = load(MANIFEST_PATH)
+    version = citation_version()
     validate_manifest_shape(manifest)
     validate_schema_freeze(manifest)
-    validate_source_reference_coverage(manifest)
+    validate_source_reference_coverage(manifest, version)
     validate_current_stage(manifest)
-    print("Tredecadia RC2 stable-transition manifest validation: OK")
+    print("Tredecadia historical RC2 -> v1.0 stable-transition manifest: OK")
 
 
 if __name__ == "__main__":
