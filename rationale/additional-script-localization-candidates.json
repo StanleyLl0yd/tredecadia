@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "targetMinor": "1.1.0",
+  "canonicalSource": "registry/months.json",
+  "profiles": [
+    {
+      "id": "ka-Geor",
+      "languageTag": "ka",
+      "script": "Geor",
+      "direction": "ltr",
+      "method": "phonemic-transcription",
+      "proposedMaturity": "reviewed",
+      "syllableMap": {"MA":"მა","MI":"მი","MU":"მუ","NA":"ნა","NI":"ნი","NU":"ნუ","SA":"სა","SU":"სუ","TA":"ტა","YA":"ია","KA":"კა","ZU":"ზუ"},
+      "aliases": [{"month":1,"full":"მასანუმიკა","short6":"მასანუ","short4":"მასა"},{"month":2,"full":"ტასუზუნუმუ","short6":"ტასუზუ","short4":"ტასუ"},{"month":3,"full":"ნაზუმასანუ","short6":"ნაზუმა","short4":"ნაზუ"},{"month":4,"full":"მიკასუმანი","short6":"მიკასუ","short4":"მიკა"},{"month":5,"full":"იანიმუზუნუ","short6":"იანიმუ","short4":"იანი"},{"month":6,"full":"ზუმიტანასუ","short6":"ზუმიტა","short4":"ზუმი"},{"month":7,"full":"მუიასანუმი","short6":"მუიასა","short4":"მუია"},{"month":8,"full":"სუნიზუსაკა","short6":"სუნიზუ","short4":"სუნი"},{"month":9,"full":"ნუმანამუტა","short6":"ნუმანა","short4":"ნუმა"},{"month":10,"full":"კაზუნუსუია","short6":"კაზუნუ","short4":"კაზუ"},{"month":11,"full":"იანაზუმასა","short6":"იანაზუ","short4":"იანა"},{"month":12,"full":"სანუმიკაზუ","short6":"სანუმი","short4":"სანუ"},{"month":13,"full":"ნიმუტაზუნა","short6":"ნიმუტა","short4":"ნიმუ"}],
+      "evidence": [
+        {"kind":"standards-reference","citation":"State Language Department of Georgia — English-to-Georgian converter based on established transcription/transliteration principles","url":"https://enadep.gov.ge/converter"},
+        {"kind":"standards-reference","citation":"ISO 9984:2026 — Information and documentation — Transliteration of Georgian characters into Latin characters","url":"https://www.iso.org/standard/87131.html"}
+      ],
+      "notes": "Mkhedruli display transcription. YA /ja/ is represented as ია. No native-speaker usability study is claimed."
+    },
+    {
+      "id": "hy-Armn",
+      "languageTag": "hy",
+      "script": "Armn",
+      "direction": "ltr",
+      "method": "phonemic-transcription",
+      "proposedMaturity": "reviewed",
+      "syllableMap": {"MA":"մա","MI":"մի","MU":"մու","NA":"նա","NI":"նի","NU":"նու","SA":"սա","SU":"սու","TA":"տա","YA":"յա","KA":"կա","ZU":"զու"},
+      "aliases": [{"month":1,"full":"մասանումիկա","short6":"մասանու","short4":"մասա"},{"month":2,"full":"տասուզունումու","short6":"տասուզու","short4":"տասու"},{"month":3,"full":"նազումասանու","short6":"նազումա","short4":"նազու"},{"month":4,"full":"միկասումանի","short6":"միկասու","short4":"միկա"},{"month":5,"full":"յանիմուզունու","short6":"յանիմու","short4":"յանի"},{"month":6,"full":"զումիտանասու","short6":"զումիտա","short4":"զումի"},{"month":7,"full":"մույասանումի","short6":"մույասա","short4":"մույա"},{"month":8,"full":"սունիզուսակա","short6":"սունիզու","short4":"սունի"},{"month":9,"full":"նումանամուտա","short6":"նումանա","short4":"նումա"},{"month":10,"full":"կազունուսույա","short6":"կազունու","short4":"կազու"},{"month":11,"full":"յանազումասա","short6":"յանազու","short4":"յանա"},{"month":12,"full":"սանումիկազու","short6":"սանումի","short4":"սանու"},{"month":13,"full":"նիմուտազունա","short6":"նիմուտա","short4":"նիմու"}],
+      "evidence": [
+        {"kind":"standards-reference","citation":"ISO 9985:2026 — Information and documentation — Transliteration of Armenian characters into Latin characters","url":"https://www.iso.org/standard/87132.html"},
+        {"kind":"orthographic-reference","citation":"Library of Congress Armenian Romanization Table — Classical and Eastern Armenian phonetic values","url":"https://www.loc.gov/catdir/cpso/romanization/romguide/Armenian-Transliteration-Table-Revised.pdf"}
+      ],
+      "notes": "Targets Eastern Armenian phonetic values. Western Armenian consonant realizations differ and are outside this profile. No native-speaker usability study is claimed."
+    },
+    {
+      "id": "ar-Arab",
+      "languageTag": "ar",
+      "script": "Arab",
+      "direction": "rtl",
+      "method": "phonemic-transcription",
+      "proposedMaturity": "reviewed",
+      "syllableMap": {"MA":"مَ","MI":"مِ","MU":"مُ","NA":"نَ","NI":"نِ","NU":"نُ","SA":"سَ","SU":"سُ","TA":"تَ","YA":"يَ","KA":"كَ","ZU":"زُ"},
+      "aliases": [{"month":1,"full":"مَسَنُمِكَ","short6":"مَسَنُ","short4":"مَسَ"},{"month":2,"full":"تَسُزُنُمُ","short6":"تَسُزُ","short4":"تَسُ"},{"month":3,"full":"نَزُمَسَنُ","short6":"نَزُمَ","short4":"نَزُ"},{"month":4,"full":"مِكَسُمَنِ","short6":"مِكَسُ","short4":"مِكَ"},{"month":5,"full":"يَنِمُزُنُ","short6":"يَنِمُ","short4":"يَنِ"},{"month":6,"full":"زُمِتَنَسُ","short6":"زُمِتَ","short4":"زُمِ"},{"month":7,"full":"مُيَسَنُمِ","short6":"مُيَسَ","short4":"مُيَ"},{"month":8,"full":"سُنِزُسَكَ","short6":"سُنِزُ","short4":"سُنِ"},{"month":9,"full":"نُمَنَمُتَ","short6":"نُمَنَ","short4":"نُمَ"},{"month":10,"full":"كَزُنُسُيَ","short6":"كَزُنُ","short4":"كَزُ"},{"month":11,"full":"يَنَزُمَسَ","short6":"يَنَزُ","short4":"يَنَ"},{"month":12,"full":"سَنُمِكَزُ","short6":"سَنُمِ","short4":"سَنُ"},{"month":13,"full":"نِمُتَزُنَ","short6":"نِمُتَ","short4":"نِمُ"}],
+      "evidence": [
+        {"kind":"orthographic-reference","citation":"Modern Standard Arabic short-vowel system: fatḥa=/a/, kasra=/i/, ḍamma=/u/ in fully vocalized text","url":"https://doi.org/10.1163/15700585-12341640"}
+      ],
+      "notes": "Intentionally fully vocalized Arabic. Omitting harakat would collapse canonical /a i u/ distinctions and is not this profile. No native-speaker usability study is claimed."
+    },
+    {
+      "id": "hi-Deva",
+      "languageTag": "hi",
+      "script": "Deva",
+      "direction": "ltr",
+      "method": "orthographic-adaptation",
+      "proposedMaturity": "reviewed",
+      "syllableMap": {"MA":"मा","MI":"मि","MU":"मु","NA":"ना","NI":"नि","NU":"नु","SA":"सा","SU":"सु","TA":"ता","YA":"या","KA":"का","ZU":"ज़ु"},
+      "aliases": [{"month":1,"full":"मासानुमिका","short6":"मासानु","short4":"मासा"},{"month":2,"full":"तासुज़ुनुमु","short6":"तासुज़ु","short4":"तासु"},{"month":3,"full":"नाज़ुमासानु","short6":"नाज़ुमा","short4":"नाज़ु"},{"month":4,"full":"मिकासुमानि","short6":"मिकासु","short4":"मिका"},{"month":5,"full":"यानिमुज़ुनु","short6":"यानिमु","short4":"यानि"},{"month":6,"full":"ज़ुमितानासु","short6":"ज़ुमिता","short4":"ज़ुमि"},{"month":7,"full":"मुयासानुमि","short6":"मुयासा","short4":"मुया"},{"month":8,"full":"सुनिज़ुसाका","short6":"सुनिज़ु","short4":"सुनि"},{"month":9,"full":"नुमानामुता","short6":"नुमाना","short4":"नुमा"},{"month":10,"full":"काज़ुनुसुया","short6":"काज़ुनु","short4":"काज़ु"},{"month":11,"full":"यानाज़ुमासा","short6":"यानाज़ु","short4":"याना"},{"month":12,"full":"सानुमिकाज़ु","short6":"सानुमि","short4":"सानु"},{"month":13,"full":"निमुताज़ुना","short6":"निमुता","short4":"निमु"}],
+      "evidence": [
+        {"kind":"standards-reference","citation":"Commission for Scientific and Technical Terminology principles: international terms in Devanagari should approximate standard pronunciation using existing Devanagari characters","url":"https://www.prl.res.in/~uso/shabdavli.pdf"}
+      ],
+      "notes": "Hindi-oriented Devanagari adaptation. आ represents canonical /a/ with a predictable Hindi length approximation; इ/उ signs likewise follow Hindi realization. ज़ preserves /z/ with nukta. No native-speaker usability study is claimed."
+    },
+    {
+      "id": "bn-Beng",
+      "languageTag": "bn",
+      "script": "Beng",
+      "direction": "ltr",
+      "method": "orthographic-adaptation",
+      "proposedMaturity": "candidate",
+      "syllableMap": {"MA":"মা","MI":"মি","MU":"মু","NA":"না","NI":"নি","NU":"নু","SA":"সা","SU":"সু","TA":"তা","YA":"ইয়া","KA":"কা","ZU":"জ়ু"},
+      "aliases": [{"month":1,"full":"মাসানুমিকা","short6":"মাসানু","short4":"মাসা"},{"month":2,"full":"তাসুজ়ুনুমু","short6":"তাসুজ়ু","short4":"তাসু"},{"month":3,"full":"নাজ়ুমাসানু","short6":"নাজ়ুমা","short4":"নাজ়ু"},{"month":4,"full":"মিকাসুমানি","short6":"মিকাসু","short4":"মিকা"},{"month":5,"full":"ইয়ানিমুজ়ুনু","short6":"ইয়ানিমু","short4":"ইয়ানি"},{"month":6,"full":"জ়ুমিতানাসু","short6":"জ়ুমিতা","short4":"জ়ুমি"},{"month":7,"full":"মুইয়াসানুমি","short6":"মুইয়াসা","short4":"মুইয়া"},{"month":8,"full":"সুনিজ়ুসাকা","short6":"সুনিজ়ু","short4":"সুনি"},{"month":9,"full":"নুমানামুতা","short6":"নুমানা","short4":"নুমা"},{"month":10,"full":"কাজ়ুনুসুইয়া","short6":"কাজ়ুনু","short4":"কাজ়ু"},{"month":11,"full":"ইয়ানাজ়ুমাসা","short6":"ইয়ানাজ়ু","short4":"ইয়ানা"},{"month":12,"full":"সানুমিকাজ়ু","short6":"সানুমি","short4":"সানু"},{"month":13,"full":"নিমুতাজ়ুনা","short6":"নিমুতা","short4":"নিমু"}],
+      "evidence": [
+        {"kind":"project-review","citation":"Candidate mapping review: modern Bengali জ় can represent /z/; initial glide /j/ requires orthographic adaptation rather than a one-grapheme syllable mapping"}
+      ],
+      "notes": "Candidate only. Initial YA uses ইয়া because Bengali semivocalic য় does not normally occur word-initially; ZU uses modern জ়ু for /zu/. Requires independent Bengali review before promotion."
+    },
+    {
+      "id": "fa-Arab",
+      "languageTag": "fa",
+      "script": "Arab",
+      "direction": "rtl",
+      "method": "orthographic-adaptation",
+      "proposedMaturity": "candidate",
+      "syllableMap": {"MA":"مَ","MI":"مِ","MU":"مو","NA":"نَ","NI":"نِ","NU":"نو","SA":"سَ","SU":"سو","TA":"تَ","YA":"یَ","KA":"کَ","ZU":"زو"},
+      "aliases": [{"month":1,"full":"مَسَنومِکَ","short6":"مَسَنو","short4":"مَسَ"},{"month":2,"full":"تَسوزونومو","short6":"تَسوزو","short4":"تَسو"},{"month":3,"full":"نَزومَسَنو","short6":"نَزومَ","short4":"نَزو"},{"month":4,"full":"مِکَسومَنِ","short6":"مِکَسو","short4":"مِکَ"},{"month":5,"full":"یَنِموزونو","short6":"یَنِمو","short4":"یَنِ"},{"month":6,"full":"زومِتَنَسو","short6":"زومِتَ","short4":"زومِ"},{"month":7,"full":"مویَسَنومِ","short6":"مویَسَ","short4":"مویَ"},{"month":8,"full":"سونِزوسَکَ","short6":"سونِزو","short4":"سونِ"},{"month":9,"full":"نومَنَموتَ","short6":"نومَنَ","short4":"نومَ"},{"month":10,"full":"کَزونوسویَ","short6":"کَزونو","short4":"کَزو"},{"month":11,"full":"یَنَزومَسَ","short6":"یَنَزو","short4":"یَنَ"},{"month":12,"full":"سَنومِکَزو","short6":"سَنومِ","short4":"سَنو"},{"month":13,"full":"نِموتَزونَ","short6":"نِموتَ","short4":"نِمو"}],
+      "evidence": [
+        {"kind":"project-review","citation":"Candidate mapping review: modern Iranian Persian uses Arabic-derived vowel marks with values differing from Arabic; /u/ is represented here with و and therefore carries a predictable length approximation"}
+      ],
+      "notes": "Candidate only. Persian short-vowel marks do not map to canonical /i,u/ as Arabic harakat do; this proposal uses Persian ی/و spellings with explicit approximation notes. Requires independent Persian review before promotion."
+    }
+  ]
+}
