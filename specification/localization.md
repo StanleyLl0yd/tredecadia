@@ -1,6 +1,6 @@
 # Tredecadia Localization
 
-Status: **1.0.0-rc.2**
+Status: **1.0.0**
 
 Localized spellings are display aliases. They do not replace canonical machine identifiers or canonical Latin identity.
 

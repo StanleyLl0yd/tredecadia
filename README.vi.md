@@ -4,7 +4,7 @@
 
 Tredecadia là một dự án mở về lịch vĩnh cửu gồm **13 tháng, mỗi tháng 28 ngày**. Mỗi tháng có đúng bốn tuần, nên cùng một ngày trong tháng luôn nằm ở cùng một vị trí trong chu kỳ tuần. Những ngày dùng để điều chỉnh độ dài năm được đặt ngoài tháng và ngoài chu kỳ tuần bảy ngày.
 
-> **Phiên bản công khai hiện tại: `1.0.0-rc.2`.** Ứng viên thứ hai đưa vào các tên ngày trong tuần chuẩn được thiết kế với mục tiêu trung lập quốc tế. Bản ổn định `v1.0.0` chỉ có thể được phát hành sau giai đoạn quan sát riêng cho RC2 và lần xác minh cuối.
+> **Phiên bản công khai hiện tại: `1.0.0`.**
 
 ## Cấu trúc cơ bản
 

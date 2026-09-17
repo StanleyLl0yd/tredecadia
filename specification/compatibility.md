@@ -1,8 +1,8 @@
 # Tredecadia Compatibility Policy
 
-Status: **1.0.0-rc.2 — v1 release-candidate policy**
+Status: **1.0.0 — stable v1 compatibility policy**
 
-This document defines which Tredecadia properties are intended to become compatibility-critical at the first stable `v1.0.0` release.
+This document defines the Tredecadia properties that are compatibility-critical in stable `v1.0.0` and later v1-compatible revisions.
 
 The words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY** are used in their ordinary standards-document sense.
 

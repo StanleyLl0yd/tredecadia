@@ -1,6 +1,6 @@
 # Roadmap
 
-Tredecadia has published two immutable v1 release candidates. `v1.0.0-rc.2` carries the deliberate pre-stable compatibility correction that replaces the English weekday labels used by RC1 with internationally neutral canonical weekday identities. Final `v1.0.0` follows only after the fresh RC2 observation window is explicitly completed and approved.
+Tredecadia completed the RC2 observation cleanly and approved the atomic stable `v1.0.0` promotion. RC1 and RC2 remain immutable historical releases; stable v1 preserves the published RC2 canonical calendar identity.
 
 ## M0 — Repository bootstrap
 
@@ -68,7 +68,7 @@ Historical RC1 archive SHA-256:
 
 ## M4 — RC2 correction and v1.0 publication
 
-Status: **in progress — `v1.0.0-rc.2` published; fresh observation window open**
+Status: **in progress — RC2 observation complete; stable `v1.0.0` candidate approved**
 
 ### RC2 compatibility correction
 
@@ -88,12 +88,12 @@ Status: **in progress — `v1.0.0-rc.2` published; fresh observation window open
 
 ### Stable v1.0 gate
 
-Current machine-enforced blockers are the RC2 observation/approval gate and stable publication authorization. The time gate cannot be bypassed.
+The RC2 observation completed after the machine-enforced minimum interval with zero compatibility-critical findings and zero open reports. Stable publication is authorized; the remaining work is exact candidate verification and immutable publication.
 
-Only after `2026-09-17T09:44:59Z`, and only if review remains clean:
+Stable transition checklist:
 
-- [ ] classify and resolve/defer all RC2 feedback; publish another RC instead of mutating RC2 if a compatibility-critical defect is found;
-- [ ] explicitly complete the RC2 observation and record the overall stable decision as approved or blocked;
+- [x] classify and resolve/defer all RC2 feedback; no compatibility-critical defect was found;
+- [x] explicitly complete the RC2 observation and record the overall stable decision as approved;
 - [ ] rerun the complete compatibility/conversion/localization/accessibility/schema/reference/release audit;
 - [ ] prove stable candidate identity equals the published RC2 identity;
 - [ ] promote the three accepted month-localization profiles and registries to stable in the atomic stable candidate;

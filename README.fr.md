@@ -4,7 +4,7 @@
 
 Tredecadia est un projet ouvert de calendrier perpétuel fondé sur **13 mois de 28 jours**. Chaque mois compte exactement quatre semaines, une même date tombe toujours le même jour de la semaine et les jours d’ajustement de l’année sont placés hors des mois et hors du cycle hebdomadaire.
 
-> **Version publique actuelle : `1.0.0-rc.2`.** Cette deuxième version candidate introduit des noms canoniques de jours de semaine conçus pour être internationalement neutres. La version stable `v1.0.0` ne pourra être publiée qu’après une période d’observation propre à RC2 et une vérification finale.
+> **Version publique actuelle : `1.0.0`.**
 
 ## Principe
 
