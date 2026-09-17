@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0-rc.1 — 2026-09-17
+
+- Add reviewed month-display profiles for Georgian Mkhedruli, Eastern Armenian, fully vocalized Arabic, Hindi-oriented Devanagari, Bengali, and Iranian Persian.
+- Preserve the three previously stable Russian, Japanese, and Korean profiles unchanged.
+- Preserve all v1 canonical month/weekday, era, date-syntax, and conversion identity.
+
+
 All notable changes to Tredecadia will be documented here.
 
 The project follows Semantic Versioning for stable public releases where practical.

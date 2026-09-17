@@ -1,5 +1,5 @@
 {
-  "specVersion": "1.0.0",
+  "specVersion": "1.1.0-rc.1",
   "policyVersion": 1,
   "preferredConversationalForm": "short4",
   "exactMatch": {
@@ -8,13 +8,28 @@
   },
   "knownClosePairs": {
     "characterLevenshtein1": [
-      ["Nazu", "Kazu"],
-      ["Yani", "Yana"]
+      [
+        "Nazu",
+        "Kazu"
+      ],
+      [
+        "Yani",
+        "Yana"
+      ]
     ],
     "syllableHamming1": [
-      ["Nazu", "Kazu"],
-      ["Yani", "Suni"],
-      ["Yani", "Yana"]
+      [
+        "Nazu",
+        "Kazu"
+      ],
+      [
+        "Yani",
+        "Suni"
+      ],
+      [
+        "Yani",
+        "Yana"
+      ]
     ]
   },
   "recognitionPolicy": {
@@ -25,10 +40,30 @@
     "machineStorageUsesCanonicalIdentity": true
   },
   "contextExamples": [
-    {"kind": "month-picker", "structuredMonthContext": true, "short4Safe": true},
-    {"kind": "calendar-header", "structuredMonthContext": true, "short4Safe": true},
-    {"kind": "date-chip", "structuredMonthContext": true, "short4Safe": true},
-    {"kind": "reminder-summary", "structuredMonthContext": true, "short4Safe": true},
-    {"kind": "unrestricted-prose", "structuredMonthContext": false, "short4Safe": false}
+    {
+      "kind": "month-picker",
+      "structuredMonthContext": true,
+      "short4Safe": true
+    },
+    {
+      "kind": "calendar-header",
+      "structuredMonthContext": true,
+      "short4Safe": true
+    },
+    {
+      "kind": "date-chip",
+      "structuredMonthContext": true,
+      "short4Safe": true
+    },
+    {
+      "kind": "reminder-summary",
+      "structuredMonthContext": true,
+      "short4Safe": true
+    },
+    {
+      "kind": "unrestricted-prose",
+      "structuredMonthContext": false,
+      "short4Safe": false
+    }
   ]
 }

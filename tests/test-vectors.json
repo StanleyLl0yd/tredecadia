@@ -1,20 +1,67 @@
 {
-  "specVersion": "1.0.0",
-  "calendar": {"monthsPerYear": 13, "daysPerMonth": 28, "regularDaysPerYear": 364, "weeksPerMonth": 4, "firstWeekday": "Mene", "lastWeekday": "Toze"},
+  "specVersion": "1.1.0-rc.1",
+  "calendar": {
+    "monthsPerYear": 13,
+    "daysPerMonth": 28,
+    "regularDaysPerYear": 364,
+    "weeksPerMonth": 4,
+    "firstWeekday": "Mene",
+    "lastWeekday": "Toze"
+  },
   "naming": {
-    "fullFrequencyVector": {"MA": 5, "MI": 5, "MU": 5, "NA": 5, "NI": 4, "NU": 8, "SA": 6, "SU": 5, "TA": 4, "YA": 4, "KA": 5, "ZU": 9},
+    "fullFrequencyVector": {
+      "MA": 5,
+      "MI": 5,
+      "MU": 5,
+      "NA": 5,
+      "NI": 4,
+      "NU": 8,
+      "SA": 6,
+      "SU": 5,
+      "TA": 4,
+      "YA": 4,
+      "KA": 5,
+      "ZU": 9
+    },
     "fullSumSquaredCounts": 379,
-    "fullSsd": {"numerator": 323, "denominator": 12},
-    "short6Ssd": {"numerator": 41, "denominator": 4},
-    "short4Ssd": {"numerator": 11, "denominator": 3},
-    "short6LevenshteinDistance2Pairs": [["Yanimu", "Yanazu"]],
-    "short4LevenshteinDistance1Pairs": [["Nazu", "Kazu"], ["Yani", "Yana"]]
+    "fullSsd": {
+      "numerator": 323,
+      "denominator": 12
+    },
+    "short6Ssd": {
+      "numerator": 41,
+      "denominator": 4
+    },
+    "short4Ssd": {
+      "numerator": 11,
+      "denominator": 3
+    },
+    "short6LevenshteinDistance2Pairs": [
+      [
+        "Yanimu",
+        "Yanazu"
+      ]
+    ],
+    "short4LevenshteinDistance1Pairs": [
+      [
+        "Nazu",
+        "Kazu"
+      ],
+      [
+        "Yani",
+        "Yana"
+      ]
+    ]
   },
   "cycle": {
     "minimumAdjacentFullHamming": 5,
     "minimumAdjacentShort6SyllableHamming": 3,
     "minimumAdjacentShort4SyllableHamming": 2,
     "maximumAdjacentSharedSyllables": 2,
-    "closePairCyclicDistances": {"Yanimu/Yanazu": 6, "Nazu/Kazu": 6, "Yani/Yana": 6}
+    "closePairCyclicDistances": {
+      "Yanimu/Yanazu": 6,
+      "Nazu/Kazu": 6,
+      "Yani/Yana": 6
+    }
   }
 }

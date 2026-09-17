@@ -1,34 +1,224 @@
 {
   "$schema": "./months.schema.json",
   "schemaVersion": 3,
-  "specVersion": "1.0.0",
-  "status": "stable",
-  "syllableInventory": ["MA", "MI", "MU", "NA", "NI", "NU", "SA", "SU", "TA", "YA", "KA", "ZU"],
+  "specVersion": "1.1.0-rc.1",
+  "status": "draft",
+  "syllableInventory": [
+    "MA",
+    "MI",
+    "MU",
+    "NA",
+    "NI",
+    "NU",
+    "SA",
+    "SU",
+    "TA",
+    "YA",
+    "KA",
+    "ZU"
+  ],
   "pronunciation": {
     "identity": "ordered-segmental-syllables",
     "stressIdentityCritical": false,
     "citationProminence": "weak-initial",
     "abbreviationsInheritCitationProminence": true,
     "syllableIpa": {
-      "MA": "ma", "MI": "mi", "MU": "mu",
-      "NA": "na", "NI": "ni", "NU": "nu",
-      "SA": "sa", "SU": "su", "TA": "ta",
-      "YA": "ja", "KA": "ka", "ZU": "zu"
+      "MA": "ma",
+      "MI": "mi",
+      "MU": "mu",
+      "NA": "na",
+      "NI": "ni",
+      "NU": "nu",
+      "SA": "sa",
+      "SU": "su",
+      "TA": "ta",
+      "YA": "ja",
+      "KA": "ka",
+      "ZU": "zu"
     }
   },
   "months": [
-    {"number": 1, "canonical": "Masanumika", "syllables": ["MA", "SA", "NU", "MI", "KA"], "citationIpa": "ˈma.sa.nu.mi.ka", "short6": "Masanu", "short4": "Masa"},
-    {"number": 2, "canonical": "Tasuzunumu", "syllables": ["TA", "SU", "ZU", "NU", "MU"], "citationIpa": "ˈta.su.zu.nu.mu", "short6": "Tasuzu", "short4": "Tasu"},
-    {"number": 3, "canonical": "Nazumasanu", "syllables": ["NA", "ZU", "MA", "SA", "NU"], "citationIpa": "ˈna.zu.ma.sa.nu", "short6": "Nazuma", "short4": "Nazu"},
-    {"number": 4, "canonical": "Mikasumani", "syllables": ["MI", "KA", "SU", "MA", "NI"], "citationIpa": "ˈmi.ka.su.ma.ni", "short6": "Mikasu", "short4": "Mika"},
-    {"number": 5, "canonical": "Yanimuzunu", "syllables": ["YA", "NI", "MU", "ZU", "NU"], "citationIpa": "ˈja.ni.mu.zu.nu", "short6": "Yanimu", "short4": "Yani"},
-    {"number": 6, "canonical": "Zumitanasu", "syllables": ["ZU", "MI", "TA", "NA", "SU"], "citationIpa": "ˈzu.mi.ta.na.su", "short6": "Zumita", "short4": "Zumi"},
-    {"number": 7, "canonical": "Muyasanumi", "syllables": ["MU", "YA", "SA", "NU", "MI"], "citationIpa": "ˈmu.ja.sa.nu.mi", "short6": "Muyasa", "short4": "Muya"},
-    {"number": 8, "canonical": "Sunizusaka", "syllables": ["SU", "NI", "ZU", "SA", "KA"], "citationIpa": "ˈsu.ni.zu.sa.ka", "short6": "Sunizu", "short4": "Suni"},
-    {"number": 9, "canonical": "Numanamuta", "syllables": ["NU", "MA", "NA", "MU", "TA"], "citationIpa": "ˈnu.ma.na.mu.ta", "short6": "Numana", "short4": "Numa"},
-    {"number": 10, "canonical": "Kazunusuya", "syllables": ["KA", "ZU", "NU", "SU", "YA"], "citationIpa": "ˈka.zu.nu.su.ja", "short6": "Kazunu", "short4": "Kazu"},
-    {"number": 11, "canonical": "Yanazumasa", "syllables": ["YA", "NA", "ZU", "MA", "SA"], "citationIpa": "ˈja.na.zu.ma.sa", "short6": "Yanazu", "short4": "Yana"},
-    {"number": 12, "canonical": "Sanumikazu", "syllables": ["SA", "NU", "MI", "KA", "ZU"], "citationIpa": "ˈsa.nu.mi.ka.zu", "short6": "Sanumi", "short4": "Sanu"},
-    {"number": 13, "canonical": "Nimutazuna", "syllables": ["NI", "MU", "TA", "ZU", "NA"], "citationIpa": "ˈni.mu.ta.zu.na", "short6": "Nimuta", "short4": "Nimu"}
+    {
+      "number": 1,
+      "canonical": "Masanumika",
+      "syllables": [
+        "MA",
+        "SA",
+        "NU",
+        "MI",
+        "KA"
+      ],
+      "citationIpa": "ˈma.sa.nu.mi.ka",
+      "short6": "Masanu",
+      "short4": "Masa"
+    },
+    {
+      "number": 2,
+      "canonical": "Tasuzunumu",
+      "syllables": [
+        "TA",
+        "SU",
+        "ZU",
+        "NU",
+        "MU"
+      ],
+      "citationIpa": "ˈta.su.zu.nu.mu",
+      "short6": "Tasuzu",
+      "short4": "Tasu"
+    },
+    {
+      "number": 3,
+      "canonical": "Nazumasanu",
+      "syllables": [
+        "NA",
+        "ZU",
+        "MA",
+        "SA",
+        "NU"
+      ],
+      "citationIpa": "ˈna.zu.ma.sa.nu",
+      "short6": "Nazuma",
+      "short4": "Nazu"
+    },
+    {
+      "number": 4,
+      "canonical": "Mikasumani",
+      "syllables": [
+        "MI",
+        "KA",
+        "SU",
+        "MA",
+        "NI"
+      ],
+      "citationIpa": "ˈmi.ka.su.ma.ni",
+      "short6": "Mikasu",
+      "short4": "Mika"
+    },
+    {
+      "number": 5,
+      "canonical": "Yanimuzunu",
+      "syllables": [
+        "YA",
+        "NI",
+        "MU",
+        "ZU",
+        "NU"
+      ],
+      "citationIpa": "ˈja.ni.mu.zu.nu",
+      "short6": "Yanimu",
+      "short4": "Yani"
+    },
+    {
+      "number": 6,
+      "canonical": "Zumitanasu",
+      "syllables": [
+        "ZU",
+        "MI",
+        "TA",
+        "NA",
+        "SU"
+      ],
+      "citationIpa": "ˈzu.mi.ta.na.su",
+      "short6": "Zumita",
+      "short4": "Zumi"
+    },
+    {
+      "number": 7,
+      "canonical": "Muyasanumi",
+      "syllables": [
+        "MU",
+        "YA",
+        "SA",
+        "NU",
+        "MI"
+      ],
+      "citationIpa": "ˈmu.ja.sa.nu.mi",
+      "short6": "Muyasa",
+      "short4": "Muya"
+    },
+    {
+      "number": 8,
+      "canonical": "Sunizusaka",
+      "syllables": [
+        "SU",
+        "NI",
+        "ZU",
+        "SA",
+        "KA"
+      ],
+      "citationIpa": "ˈsu.ni.zu.sa.ka",
+      "short6": "Sunizu",
+      "short4": "Suni"
+    },
+    {
+      "number": 9,
+      "canonical": "Numanamuta",
+      "syllables": [
+        "NU",
+        "MA",
+        "NA",
+        "MU",
+        "TA"
+      ],
+      "citationIpa": "ˈnu.ma.na.mu.ta",
+      "short6": "Numana",
+      "short4": "Numa"
+    },
+    {
+      "number": 10,
+      "canonical": "Kazunusuya",
+      "syllables": [
+        "KA",
+        "ZU",
+        "NU",
+        "SU",
+        "YA"
+      ],
+      "citationIpa": "ˈka.zu.nu.su.ja",
+      "short6": "Kazunu",
+      "short4": "Kazu"
+    },
+    {
+      "number": 11,
+      "canonical": "Yanazumasa",
+      "syllables": [
+        "YA",
+        "NA",
+        "ZU",
+        "MA",
+        "SA"
+      ],
+      "citationIpa": "ˈja.na.zu.ma.sa",
+      "short6": "Yanazu",
+      "short4": "Yana"
+    },
+    {
+      "number": 12,
+      "canonical": "Sanumikazu",
+      "syllables": [
+        "SA",
+        "NU",
+        "MI",
+        "KA",
+        "ZU"
+      ],
+      "citationIpa": "ˈsa.nu.mi.ka.zu",
+      "short6": "Sanumi",
+      "short4": "Sanu"
+    },
+    {
+      "number": 13,
+      "canonical": "Nimutazuna",
+      "syllables": [
+        "NI",
+        "MU",
+        "TA",
+        "ZU",
+        "NA"
+      ],
+      "citationIpa": "ˈni.mu.ta.zu.na",
+      "short6": "Nimuta",
+      "short4": "Nimu"
+    }
   ]
 }

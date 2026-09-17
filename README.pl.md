@@ -4,7 +4,7 @@
 
 Tredecadia to otwarty projekt kalendarza wiecznego z **13 miesiącami po 28 dni**. Każdy miesiąc ma dokładnie cztery pełne tygodnie, ta sama data zawsze przypada na ten sam dzień tygodnia, a dni korygujące długość roku znajdują się poza miesiącami i poza siedmiodniowym tygodniem.
 
-> **Aktualna wersja publiczna: `1.0.0`.**
+> **Aktualna wersja publiczna: `1.1.0-rc.1`.**
 
 ## Zasada działania
 

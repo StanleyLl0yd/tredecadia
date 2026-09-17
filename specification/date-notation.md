@@ -1,6 +1,6 @@
 # Tredecadia Date Notation
 
-Status: **1.0.0**
+Status: **1.1.0-rc.1 — release candidate**
 
 ## 1. Era
 

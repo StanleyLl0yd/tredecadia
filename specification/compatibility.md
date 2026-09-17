@@ -1,6 +1,6 @@
 # Tredecadia Compatibility Policy
 
-Status: **1.0.0 — stable v1 compatibility policy**
+Status: **1.1.0-rc.1 — release candidate**
 
 This document defines the Tredecadia properties that are compatibility-critical in stable `v1.0.0` and later v1-compatible revisions.
 

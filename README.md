@@ -4,10 +4,10 @@
 
 Tredecadia is an open 13 × 28 perennial calendar standard with equal months, stable weekdays, a continuous mathematical year coordinate, and internationally neutral month and weekday names.
 
-> **Status: `1.0.0` published; fresh RC2 observation window open.**
+> **Status: `1.1.0-rc.1` release candidate; stable `v1.0.0` remains published.**
 
-Published release: [`v1.0.0-rc.2`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2)  
-Historical published RC: [`v1.0.0-rc.1`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
+Stable release: [`v1.0.0`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0)  
+Historical RCs: [`v1.0.0-rc.2`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2) · [`v1.0.0-rc.1`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
 
 ## Core model
 

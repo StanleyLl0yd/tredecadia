@@ -15,6 +15,8 @@ LOC_DATA = json.loads((ROOT / "registry/localizations.json").read_text(encoding=
 LOC_SCHEMA = json.loads((ROOT / "registry/localizations.schema.json").read_text(encoding="utf-8"))
 MONTHS = MONTH_DATA["months"]
 INVENTORY = MONTH_DATA["syllableInventory"]
+LEGACY_STABLE_IDS = {"ru-Cyrl", "ja-Kana", "ko-Hang"}
+V11_REVIEWED_IDS = {"ka-Geor", "hy-Armn", "ar-Arab", "hi-Deva", "bn-Beng", "fa-Arab"}
 
 
 def apply_case(text: str, transform: str) -> str:
@@ -53,7 +55,7 @@ def main() -> None:
     assert profiles
     ids = [profile["id"] for profile in profiles]
     assert len(ids) == len(set(ids))
-    assert set(ids) == {"ru-Cyrl", "ja-Kana", "ko-Hang"}
+    assert set(ids) == LEGACY_STABLE_IDS | V11_REVIEWED_IDS
 
     canonical_by_number = {month["number"]: month for month in MONTHS}
     profile_by_id = {profile["id"]: profile for profile in profiles}
@@ -70,8 +72,8 @@ def main() -> None:
         assert review["status"] in {"candidate", "reviewed", "stable"}
         if review["status"] != "candidate":
             assert review["evidence"], f"{profile['id']} lacks review evidence"
-        if review["status"] == "stable":
-            assert LOC_DATA["status"] == "stable", "stable profile in draft registry"
+        if review["status"] == "stable" and LOC_DATA["status"] == "draft":
+            assert profile["id"] in LEGACY_STABLE_IDS, "new stable profile in draft registry"
 
         aliases = profile["aliases"]
         assert len(aliases) == 13
@@ -116,9 +118,17 @@ def main() -> None:
         "YA": "야", "KA": "카", "ZU": "주",
     }
 
-    # Prereleases deliberately keep reviewed profiles non-stable. At a stable
-    # release, exact accepted/rejected maturity is enforced by stable-plan CI.
-    if is_prerelease(version):
+    if version.startswith("1.1.0-rc."):
+        assert all(profile_by_id[i]["review"]["status"] == "stable" for i in LEGACY_STABLE_IDS)
+        assert all(profile_by_id[i]["review"]["status"] == "reviewed" for i in V11_REVIEWED_IDS)
+        candidate_pack = {p["id"]: p for p in json.loads((ROOT / "rationale/additional-script-localization-candidates.json").read_text(encoding="utf-8"))["profiles"]}
+        for pid in V11_REVIEWED_IDS:
+            registered = profile_by_id[pid]
+            candidate = candidate_pack[pid]
+            assert registered["syllableMap"] == candidate["syllableMap"]
+            assert registered["aliases"] == candidate["aliases"]
+            assert registered["notes"] == candidate["notes"]
+    elif is_prerelease(version):
         assert all(profile["review"]["status"] == "reviewed" for profile in profiles)
     else:
         assert all(profile["review"]["status"] in {"reviewed", "stable"} for profile in profiles)

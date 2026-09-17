@@ -9,7 +9,7 @@ title: Tredecadia
 
 Tredecadia has thirteen equal 28-day months, four complete seven-day weeks per month, an independent mathematical year coordinate, and internationally neutral canonical month and weekday names.
 
-> **Stable version: `1.0.0`.** The RC2 observation completed after its required minimum interval with zero compatibility-critical findings and zero open reports. Stable v1 preserves the published RC2 canonical identity and changes only release maturity/version metadata.
+> **Stable version: `1.1.0-rc.1`.** The RC2 observation completed after its required minimum interval with zero compatibility-critical findings and zero open reports. Stable v1 preserves the published RC2 canonical identity and changes only release maturity/version metadata.
 
 This page is a navigational summary, not a second copy of the standard. Normative requirements remain in the repository specifications and machine-readable registries.
 
