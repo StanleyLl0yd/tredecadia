@@ -61,6 +61,9 @@ def main() -> None:
     assert "specification/calendar-standard.md" in index
     assert "registry" in index
     assert "README.languages.md" in index, "Pages should expose the multilingual entry point"
+    # Locale counts change as translations are added. Keep the landing-page
+    # link count-free so it cannot silently become stale again.
+    assert "Read the project introduction in all available languages" in index
 
     assert "theme: jekyll-theme-minimal" in config
     assert "title: Tredecadia" in config
