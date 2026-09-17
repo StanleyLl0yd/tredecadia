@@ -150,12 +150,13 @@ def validate_current_stage(manifest: dict) -> None:
             assert f"Status: **{source}" in (ROOT / path).read_text(encoding="utf-8"), path
         for path in atomic["publicVersionDocuments"]:
             assert source in (ROOT / path).read_text(encoding="utf-8"), path
-        # Profile decisions may be resolved while RC2 observation is still
-        # open. Resolution does not promote registry maturity or authorize
-        # stable publication; those remain gated by the observation decision.
+        # The repository can legitimately remain on RC2 metadata after the
+        # observation is complete and the stable publication gate has opened.
+        # Stable-plan validation independently proves whether `allowed` is
+        # derived correctly from observation/profile decisions.
         assert all(decision in {"pending", "accepted", "rejected"} for decision in packet_decisions.values())
         assert "DRAFT — NOT AUTHORIZED FOR PUBLICATION" in notes
-        assert stable_plan["publication"]["allowed"] is False
+        assert isinstance(stable_plan["publication"]["allowed"], bool)
     else:
         assert stable_plan["publication"]["allowed"] is manifest["preconditions"]["publicationAllowed"] is True
         assert publish == {"version": target, "tag": f"v{target}", "prerelease": False, "notes": atomic["stableReleaseNotes"]}
