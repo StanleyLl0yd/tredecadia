@@ -1,6 +1,6 @@
 # Roadmap
 
-Tredecadia completed the RC2 observation cleanly and approved the atomic stable `v1.0.0` promotion. RC1 and RC2 remain immutable historical releases; stable v1 preserves the published RC2 canonical calendar identity.
+Tredecadia `v1.0.0` is published from the fully verified RC2 identity. RC1 and RC2 remain immutable historical releases; stable v1 preserves the published RC2 canonical calendar identity. The GitHub stable release and deterministic artifacts are recorded; only the optional external DOI/archive handoff remains from M4.
 
 ## M0 — Repository bootstrap
 
@@ -68,7 +68,7 @@ Historical RC1 archive SHA-256:
 
 ## M4 — RC2 correction and v1.0 publication
 
-Status: **in progress — RC2 observation complete; stable `v1.0.0` candidate fully verified**
+Status: **complete except external DOI/archive handoff — `v1.0.0` published and verified**
 
 ### RC2 compatibility correction
 
@@ -83,12 +83,12 @@ Status: **in progress — RC2 observation complete; stable `v1.0.0` candidate fu
 - [x] publish immutable `v1.0.0-rc.2` from source commit `b816d613618d51515d910e0d3bdb9d2f211b6d22`;
 - [x] verify the remote tag target and re-download/byte-compare the published release assets;
 - [x] record RC2 publication at `2026-09-16T09:44:59Z` with archive SHA-256 `23e40180098c656c88aa4ba27c6989ac053d9ce8b8029c9ce2e3b16946bf32ec` (#46);
-- [x] open a fresh minimum one-full-day RC2 observation window; earliest permitted completion is `2026-09-17T09:44:59Z`;
-- [x] accept the reviewed month-localization profiles `ru-Cyrl`, `ja-Kana`, and `ko-Hang` for promotion in the future atomic stable commit (#47); RC2 registry status itself remains reviewed/draft until then.
+- [x] complete the fresh minimum one-full-day RC2 observation window;
+- [x] accept the reviewed month-localization profiles `ru-Cyrl`, `ja-Kana`, and `ko-Hang` for stable promotion (#47).
 
 ### Stable v1.0 gate
 
-The RC2 observation completed after the machine-enforced minimum interval with zero compatibility-critical findings and zero open reports. Stable publication is authorized. The exact stable candidate has passed the complete repository validation and CodeQL checks; the remaining work is immutable publication and post-publication recording.
+The RC2 observation completed after the machine-enforced minimum interval with zero compatibility-critical findings and zero open reports. The atomic stable transition was published from exact source commit `8c272bf6a48b1b84a4b2ca8c1db43c6ffb9f5ce3`.
 
 Stable transition checklist:
 
@@ -98,6 +98,22 @@ Stable transition checklist:
 - [x] prove stable candidate identity equals the published RC2 identity apart from planned version/status/maturity metadata;
 - [x] prepare the three accepted month-localization profiles and registries for stable maturity in the atomic stable candidate;
 - [x] prepare and verify the complete atomic public-version transition from `1.0.0-rc.2` to `1.0.0`;
-- [ ] tag and publish `v1.0.0` only from a clean, fully verified `main` commit;
-- [ ] publish immutable stable release artifacts and checksums;
+- [x] tag and publish `v1.0.0` from exact clean source commit `8c272bf6a48b1b84a4b2ca8c1db43c6ffb9f5ce3`;
+- [x] publish and re-verify deterministic stable release artifacts; `tredecadia-1.0.0.tar.gz` SHA-256 is `2f14cc4fb2bcac2cfcce280ddbe948d4c65cab098ce23c1d385d220709f5c392`;
 - [ ] archive the stable release with a DOI-capable repository such as Zenodo and record final citation metadata.
+
+## M5 — additional-script month localization profiles
+
+Status: **in progress — six profiles cleared for future `v1.1.0` reviewed promotion**
+
+This milestone is a compatible minor-version localization expansion. It does not alter canonical month or weekday identity and does not rewrite the published `v1.0.0` registry.
+
+- [x] build executable candidate mappings for `ka-Geor`, `hy-Armn`, `ar-Arab`, `hi-Deva`, `bn-Beng`, and `fa-Arab` (#60);
+- [x] enforce deterministic Full / Short-6 / Short-4 derivation, uniqueness, reverse mapping, Unicode safety, and evidence rules;
+- [x] separate technical candidate validity from explicit review decisions (#62);
+- [x] resolve Bengali initial `/ja/` and `/z/` orthography using Government of Bangladesh dictionary evidence (#63);
+- [x] resolve Iranian Persian `/i,u/` spelling versus short `/e,o/` using ALA-LC and Unicode evidence (#63);
+- [x] clear all six profiles for `reviewed` maturity without claiming a native-speaker usability study;
+- [ ] promote the six accepted profiles into the normative `v1.1.0` localization registry;
+- [ ] update reader-facing localized documentation for the six newly normative profiles;
+- [ ] run the complete v1.1 compatibility/release audit and publish the compatible minor release.
