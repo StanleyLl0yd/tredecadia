@@ -24,10 +24,10 @@
   "reports": [],
   "postRcChangeGroups": [
     {
-      "prs": [46, 48, 53, 54, 56, 57],
+      "prs": [46, 48, 53, 54, 56, 57, 58],
       "classification": "compatible-correction",
       "area": "release-engineering-and-publication-record",
-      "summary": "Recorded the exact published RC2 source, timestamp, archive digest, live observation window, and post-publication change ledger; synchronized public release status, strengthened immutable RC1/RC2 source-lock validation, corrected stable-release groundwork to use RC2 as the direct identity baseline, hardened the stable gate so any compatibility-critical finding requires a new RC even after the individual report is resolved, and made release validators explicitly safe across the planned RC2-to-stable maturity transition."
+      "summary": "Recorded the exact published RC2 source, timestamp, archive digest, live observation window, and post-publication change ledger; synchronized public release status, strengthened immutable RC1/RC2 source-lock validation, corrected stable-release groundwork to use RC2 as the direct identity baseline, hardened the stable gate so any compatibility-critical finding requires a new RC even after the individual report is resolved, made release validators explicitly safe across the planned RC2-to-stable maturity transition, and explicitly completed the clean RC2 observation after the minimum interval."
     },
     {
       "prs": [47],
