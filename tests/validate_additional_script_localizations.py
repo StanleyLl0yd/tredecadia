@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import json
+import unicodedata
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,10 +18,20 @@ EXPECTED_IDS = {"ka-Geor", "hy-Armn", "ar-Arab", "hi-Deva", "bn-Beng", "fa-Arab"
 INVENTORY = {"MA", "MI", "MU", "NA", "NI", "NU", "SA", "SU", "TA", "YA", "KA", "ZU"}
 REVIEWED = {"ka-Geor", "hy-Armn", "ar-Arab", "hi-Deva"}
 CANDIDATE = {"bn-Beng", "fa-Arab"}
+BIDI_CONTROLS = {
+    "\u061c", "\u200e", "\u200f", "\u202a", "\u202b", "\u202c", "\u202d", "\u202e",
+    "\u2066", "\u2067", "\u2068", "\u2069",
+}
 
 
 def derive(profile: dict, syllables: list[str]) -> str:
     return "".join(profile["syllableMap"][syllable] for syllable in syllables)
+
+
+def assert_safe_unicode(text: str, context: str) -> None:
+    assert unicodedata.is_normalized("NFC", text), f"{context}: not NFC-normalized"
+    assert not any(ch in BIDI_CONTROLS for ch in text), f"{context}: contains bidi control"
+    assert "\u200b" not in text and "\ufeff" not in text, f"{context}: contains invisible separator"
 
 
 def main() -> None:
@@ -44,6 +55,8 @@ def main() -> None:
         assert set(profile["syllableMap"]) == INVENTORY
         assert all(profile["syllableMap"].values())
         assert len(set(profile["syllableMap"].values())) == 12, f"{pid}: syllable map not reversible"
+        for syllable, value in profile["syllableMap"].items():
+            assert_safe_unicode(value, f"{pid} syllable {syllable}")
 
         aliases = profile["aliases"]
         assert len(aliases) == 13
@@ -58,6 +71,8 @@ def main() -> None:
             assert alias["full"] == derive(profile, syllables), f"{pid} M{alias['month']:02d} full"
             assert alias["short6"] == derive(profile, syllables[:3]), f"{pid} M{alias['month']:02d} short6"
             assert alias["short4"] == derive(profile, syllables[:2]), f"{pid} M{alias['month']:02d} short4"
+            for key in ("full", "short6", "short4"):
+                assert_safe_unicode(alias[key], f"{pid} M{alias['month']:02d} {key}")
             full.append(alias["full"])
             short6.append(alias["short6"])
             short4.append(alias["short4"])
