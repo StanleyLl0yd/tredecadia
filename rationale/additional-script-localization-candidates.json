@@ -57,7 +57,7 @@
       "syllableMap": {"MA":"मा","MI":"मि","MU":"मु","NA":"ना","NI":"नि","NU":"नु","SA":"सा","SU":"सु","TA":"ता","YA":"या","KA":"का","ZU":"ज़ु"},
       "aliases": [{"month":1,"full":"मासानुमिका","short6":"मासानु","short4":"मासा"},{"month":2,"full":"तासुज़ुनुमु","short6":"तासुज़ु","short4":"तासु"},{"month":3,"full":"नाज़ुमासानु","short6":"नाज़ुमा","short4":"नाज़ु"},{"month":4,"full":"मिकासुमानि","short6":"मिकासु","short4":"मिका"},{"month":5,"full":"यानिमुज़ुनु","short6":"यानिमु","short4":"यानि"},{"month":6,"full":"ज़ुमितानासु","short6":"ज़ुमिता","short4":"ज़ुमि"},{"month":7,"full":"मुयासानुमि","short6":"मुयासा","short4":"मुया"},{"month":8,"full":"सुनिज़ुसाका","short6":"सुनिज़ु","short4":"सुनि"},{"month":9,"full":"नुमानामुता","short6":"नुमाना","short4":"नुमा"},{"month":10,"full":"काज़ुनुसुया","short6":"काज़ुनु","short4":"काज़ु"},{"month":11,"full":"यानाज़ुमासा","short6":"यानाज़ु","short4":"याना"},{"month":12,"full":"सानुमिकाज़ु","short6":"सानुमि","short4":"सानु"},{"month":13,"full":"निमुताज़ुना","short6":"निमुता","short4":"निमु"}],
       "evidence": [
-        {"kind":"standards-reference","citation":"Commission for Scientific and Technical Terminology principles: international terms in Devanagari should approximate standard pronunciation using existing Devanagari characters","url":"https://www.prl.res.in/~uso/shabdavli.pdf"}
+        {"kind":"standards-reference","citation":"Commission for Scientific and Technical Terminology principles: international terms in Devanagari should approximate standard pronunciation using existing Devanagari characters","url":"https://cstt.education.gov.in/principles-evolving-terminology"}
       ],
       "notes": "Hindi-oriented Devanagari adaptation. आ represents canonical /a/ with a predictable Hindi length approximation; इ/उ signs likewise follow Hindi realization. ज़ preserves /z/ with nukta. No native-speaker usability study is claimed."
     },
@@ -67,13 +67,15 @@
       "script": "Beng",
       "direction": "ltr",
       "method": "orthographic-adaptation",
-      "proposedMaturity": "candidate",
-      "syllableMap": {"MA":"মা","MI":"মি","MU":"মু","NA":"না","NI":"নি","NU":"নু","SA":"সা","SU":"সু","TA":"তা","YA":"ইয়া","KA":"কা","ZU":"জ়ু"},
-      "aliases": [{"month":1,"full":"মাসানুমিকা","short6":"মাসানু","short4":"মাসা"},{"month":2,"full":"তাসুজ়ুনুমু","short6":"তাসুজ়ু","short4":"তাসু"},{"month":3,"full":"নাজ়ুমাসানু","short6":"নাজ়ুমা","short4":"নাজ়ু"},{"month":4,"full":"মিকাসুমানি","short6":"মিকাসু","short4":"মিকা"},{"month":5,"full":"ইয়ানিমুজ়ুনু","short6":"ইয়ানিমু","short4":"ইয়ানি"},{"month":6,"full":"জ়ুমিতানাসু","short6":"জ়ুমিতা","short4":"জ়ুমি"},{"month":7,"full":"মুইয়াসানুমি","short6":"মুইয়াসা","short4":"মুইয়া"},{"month":8,"full":"সুনিজ়ুসাকা","short6":"সুনিজ়ু","short4":"সুনি"},{"month":9,"full":"নুমানামুতা","short6":"নুমানা","short4":"নুমা"},{"month":10,"full":"কাজ়ুনুসুইয়া","short6":"কাজ়ুনু","short4":"কাজ়ু"},{"month":11,"full":"ইয়ানাজ়ুমাসা","short6":"ইয়ানাজ়ু","short4":"ইয়ানা"},{"month":12,"full":"সানুমিকাজ়ু","short6":"সানুমি","short4":"সানু"},{"month":13,"full":"নিমুতাজ়ুনা","short6":"নিমুতা","short4":"নিমু"}],
+      "proposedMaturity": "reviewed",
+      "syllableMap": {"MA":"মা","MI":"মি","MU":"মু","NA":"না","NI":"নি","NU":"নু","SA":"সা","SU":"সু","TA":"তা","YA":"ইয়া","KA":"কা","ZU":"জু"},
+      "aliases": [{"month":1,"full":"মাসানুমিকা","short6":"মাসানু","short4":"মাসা"},{"month":2,"full":"তাসুজুনুমু","short6":"তাসুজু","short4":"তাসু"},{"month":3,"full":"নাজুমাসানু","short6":"নাজুমা","short4":"নাজু"},{"month":4,"full":"মিকাসুমানি","short6":"মিকাসু","short4":"মিকা"},{"month":5,"full":"ইয়ানিমুজুনু","short6":"ইয়ানিমু","short4":"ইয়ানি"},{"month":6,"full":"জুমিতানাসু","short6":"জুমিতা","short4":"জুমি"},{"month":7,"full":"মুইয়াসানুমি","short6":"মুইয়াসা","short4":"মুইয়া"},{"month":8,"full":"সুনিজুসাকা","short6":"সুনিজু","short4":"সুনি"},{"month":9,"full":"নুমানামুতা","short6":"নুমানা","short4":"নুমা"},{"month":10,"full":"কাজুনুসুইয়া","short6":"কাজুনু","short4":"কাজু"},{"month":11,"full":"ইয়ানাজুমাসা","short6":"ইয়ানাজু","short4":"ইয়ানা"},{"month":12,"full":"সানুমিকাজু","short6":"সানুমি","short4":"সানু"},{"month":13,"full":"নিমুতাজুনা","short6":"নিমুতা","short4":"নিমু"}],
       "evidence": [
-        {"kind":"project-review","citation":"Candidate mapping review: modern Bengali জ় can represent /z/; initial glide /j/ requires orthographic adaptation rather than a one-grapheme syllable mapping"}
+        {"kind":"orthographic-reference","citation":"Government of Bangladesh Accessible Dictionary — foreign initial y is written with Bengali ইয়া-/ইয়া- in entries such as yaba; supports YA as ইয়া","url":"https://accessibledictionary.gov.bd/english-to-bengali/?alp=Y"},
+        {"kind":"orthographic-reference","citation":"Government of Bangladesh Accessible Dictionary — foreign z is adapted with জ in entries such as zebra → জেব্রা and zone → জোন; supports ZU as জু rather than project-invented জ়ু","url":"https://accessibledictionary.gov.bd/english-to-bengali/?alp=Z"},
+        {"kind":"standards-reference","citation":"Library of Congress Bengali Romanization Table — Bengali vowel/consonant and semivowel inventory reference","url":"https://www.loc.gov/catdir/cpso/romanization/bengali.pdf"}
       ],
-      "notes": "Candidate only. Initial YA uses ইয়া because Bengali semivocalic য় does not normally occur word-initially; ZU uses modern জ়ু for /zu/. Requires independent Bengali review before promotion."
+      "notes": "Reviewed Bengali orthographic adaptation. YA uses ইয়া, attested for foreign initial y- in the Government of Bangladesh dictionary. ZU uses জু, matching official dictionary adaptation of foreign z with জ; Standard Bengali may realize this closer to /dʒu/, an explicit language-specific approximation of canonical /zu/. No native-speaker usability study is claimed."
     },
     {
       "id": "fa-Arab",
@@ -81,13 +83,15 @@
       "script": "Arab",
       "direction": "rtl",
       "method": "orthographic-adaptation",
-      "proposedMaturity": "candidate",
-      "syllableMap": {"MA":"مَ","MI":"مِ","MU":"مو","NA":"نَ","NI":"نِ","NU":"نو","SA":"سَ","SU":"سو","TA":"تَ","YA":"یَ","KA":"کَ","ZU":"زو"},
-      "aliases": [{"month":1,"full":"مَسَنومِکَ","short6":"مَسَنو","short4":"مَسَ"},{"month":2,"full":"تَسوزونومو","short6":"تَسوزو","short4":"تَسو"},{"month":3,"full":"نَزومَسَنو","short6":"نَزومَ","short4":"نَزو"},{"month":4,"full":"مِکَسومَنِ","short6":"مِکَسو","short4":"مِکَ"},{"month":5,"full":"یَنِموزونو","short6":"یَنِمو","short4":"یَنِ"},{"month":6,"full":"زومِتَنَسو","short6":"زومِتَ","short4":"زومِ"},{"month":7,"full":"مویَسَنومِ","short6":"مویَسَ","short4":"مویَ"},{"month":8,"full":"سونِزوسَکَ","short6":"سونِزو","short4":"سونِ"},{"month":9,"full":"نومَنَموتَ","short6":"نومَنَ","short4":"نومَ"},{"month":10,"full":"کَزونوسویَ","short6":"کَزونو","short4":"کَزو"},{"month":11,"full":"یَنَزومَسَ","short6":"یَنَزو","short4":"یَنَ"},{"month":12,"full":"سَنومِکَزو","short6":"سَنومِ","short4":"سَنو"},{"month":13,"full":"نِموتَزونَ","short6":"نِموتَ","short4":"نِمو"}],
+      "proposedMaturity": "reviewed",
+      "syllableMap": {"MA":"مَ","MI":"می","MU":"مو","NA":"نَ","NI":"نی","NU":"نو","SA":"سَ","SU":"سو","TA":"تَ","YA":"یَ","KA":"کَ","ZU":"زو"},
+      "aliases": [{"month":1,"full":"مَسَنومیکَ","short6":"مَسَنو","short4":"مَسَ"},{"month":2,"full":"تَسوزونومو","short6":"تَسوزو","short4":"تَسو"},{"month":3,"full":"نَزومَسَنو","short6":"نَزومَ","short4":"نَزو"},{"month":4,"full":"میکَسومَنی","short6":"میکَسو","short4":"میکَ"},{"month":5,"full":"یَنیموزونو","short6":"یَنیمو","short4":"یَنی"},{"month":6,"full":"زومیتَنَسو","short6":"زومیتَ","short4":"زومی"},{"month":7,"full":"مویَسَنومی","short6":"مویَسَ","short4":"مویَ"},{"month":8,"full":"سونیزوسَکَ","short6":"سونیزو","short4":"سونی"},{"month":9,"full":"نومَنَموتَ","short6":"نومَنَ","short4":"نومَ"},{"month":10,"full":"کَزونوسویَ","short6":"کَزونو","short4":"کَزو"},{"month":11,"full":"یَنَزومَسَ","short6":"یَنَزو","short4":"یَنَ"},{"month":12,"full":"سَنومیکَزو","short6":"سَنومی","short4":"سَنو"},{"month":13,"full":"نیموتَزونَ","short6":"نیموتَ","short4":"نیمو"}],
       "evidence": [
-        {"kind":"project-review","citation":"Candidate mapping review: modern Iranian Persian uses Arabic-derived vowel marks with values differing from Arabic; /u/ is represented here with و and therefore carries a predictable length approximation"}
+        {"kind":"standards-reference","citation":"Library of Congress Persian Romanization Table — Persian ی represents vowel ī and و represents vowel ū; supports canonical I/U through Persian vowel letters rather than short-vowel marks","url":"https://www.loc.gov/catdir/cpso/romanization/persian.pdf"},
+        {"kind":"standards-reference","citation":"Unicode Standard Arabic-script chapter — Persian contrasts /e/ with /i/ and /o/ with /u/, so Arabic kasra/damma cannot be treated as Persian /i,u/ without qualification","url":"https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-9/"},
+        {"kind":"orthographic-reference","citation":"Unicode CLDR Persian style guide — follows Persian Academy orthography and Iranian character standards","url":"https://cldr.unicode.org/translation/language-specific/persian"}
       ],
-      "notes": "Candidate only. Persian short-vowel marks do not map to canonical /i,u/ as Arabic harakat do; this proposal uses Persian ی/و spellings with explicit approximation notes. Requires independent Persian review before promotion."
+      "notes": "Reviewed Iranian Persian orthographic adaptation. Canonical /i,u/ use ی/و and therefore acquire the regular Persian long-vowel realization, an explicit length approximation; this avoids incorrectly treating Persian kasra/damma as /i,u/ rather than /e,o/. A uses explicit fatḥa and YA uses یَ. The fully explicit display spelling is more marked than ordinary unvocalized Persian prose. No native-speaker usability study is claimed."
     }
   ]
 }
