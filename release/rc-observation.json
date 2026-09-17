@@ -42,10 +42,10 @@
       "summary": "Hardened repository automation, dependency/security maintenance, release concurrency, and branch housekeeping, then removed the final superseded branch; no calendar, registry, conversion, or RC2 release semantics changed."
     },
     {
-      "prs": [51, 52],
+      "prs": [51, 52, 55],
       "classification": "editorial-issue",
       "area": "documentation-and-localization",
-      "summary": "Audited all reader-facing localized month and weekday tables, added Georgian and Armenian introductions without inventing unreviewed aliases, corrected language-specific wording, and strengthened multilingual README validation; canonical names and published RC2 identity remained unchanged."
+      "summary": "Audited all reader-facing localized month and weekday tables, added Georgian and Armenian introductions without inventing unreviewed aliases, corrected language-specific wording, removed a stale hard-coded Pages language count, and strengthened multilingual/public-page validation; canonical names and published RC2 identity remained unchanged."
     }
   ],
   "summary": {
