@@ -68,7 +68,7 @@ Historical RC1 archive SHA-256:
 
 ## M4 — RC2 correction and v1.0 publication
 
-Status: **in progress — RC2 observation complete; stable `v1.0.0` candidate approved**
+Status: **in progress — RC2 observation complete; stable `v1.0.0` candidate fully verified**
 
 ### RC2 compatibility correction
 
@@ -88,16 +88,16 @@ Status: **in progress — RC2 observation complete; stable `v1.0.0` candidate ap
 
 ### Stable v1.0 gate
 
-The RC2 observation completed after the machine-enforced minimum interval with zero compatibility-critical findings and zero open reports. Stable publication is authorized; the remaining work is exact candidate verification and immutable publication.
+The RC2 observation completed after the machine-enforced minimum interval with zero compatibility-critical findings and zero open reports. Stable publication is authorized. The exact stable candidate has passed the complete repository validation and CodeQL checks; the remaining work is immutable publication and post-publication recording.
 
 Stable transition checklist:
 
 - [x] classify and resolve/defer all RC2 feedback; no compatibility-critical defect was found;
 - [x] explicitly complete the RC2 observation and record the overall stable decision as approved;
-- [ ] rerun the complete compatibility/conversion/localization/accessibility/schema/reference/release audit;
-- [ ] prove stable candidate identity equals the published RC2 identity;
-- [ ] promote the three accepted month-localization profiles and registries to stable in the atomic stable candidate;
-- [ ] atomically transition public version metadata from `1.0.0-rc.2` to `1.0.0`;
+- [x] rerun the complete compatibility/conversion/localization/accessibility/schema/reference/release audit;
+- [x] prove stable candidate identity equals the published RC2 identity apart from planned version/status/maturity metadata;
+- [x] prepare the three accepted month-localization profiles and registries for stable maturity in the atomic stable candidate;
+- [x] prepare and verify the complete atomic public-version transition from `1.0.0-rc.2` to `1.0.0`;
 - [ ] tag and publish `v1.0.0` only from a clean, fully verified `main` commit;
 - [ ] publish immutable stable release artifacts and checksums;
 - [ ] archive the stable release with a DOI-capable repository such as Zenodo and record final citation metadata.
