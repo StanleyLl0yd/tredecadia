@@ -1,8 +1,8 @@
 {
   "$schema": "./calendar.schema.json",
   "schemaVersion": 2,
-  "specVersion": "1.0.0-rc.2",
-  "status": "draft",
+  "specVersion": "1.0.0",
+  "status": "stable",
   "profile": "tredecadia-civil",
   "era": {
     "name": "Tredecadia Era",
