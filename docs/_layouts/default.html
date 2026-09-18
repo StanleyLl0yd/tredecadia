@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ site.description | escape }}">
+    <link rel="stylesheet" href="{{ '/assets/calendar.css' | relative_url }}">
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <div class="site-brand-block">
+          <a class="site-brand" href="{{ '/' | relative_url }}">Tredecadia</a>
+          <p class="site-tagline" data-i18n="tagline">A 13 × 28 perennial calendar standard.</p>
+        </div>
+        <div class="site-actions">
+          <label class="language-picker" for="display-language">
+            <span data-i18n="displayLanguage">Display language</span>
+            <select id="display-language" aria-label="Display language"></select>
+          </label>
+          <a id="localized-doc-link" class="site-action-link" href="https://github.com/StanleyLl0yd/tredecadia/blob/main/README.md" data-i18n="documentation">Documentation</a>
+          <a class="site-action-link" href="https://github.com/StanleyLl0yd/tredecadia">GitHub</a>
+        </div>
+      </header>
+
+      <main class="site-main">
+        {{ content }}
+      </main>
+
+      <footer class="site-footer">
+        <span data-i18n="footerSource">The GitHub repository is the canonical source.</span>
+        <a href="https://github.com/StanleyLl0yd/tredecadia">StanleyLl0yd/tredecadia</a>
+      </footer>
+    </div>
+  </body>
+</html>
