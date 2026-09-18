@@ -130,9 +130,11 @@ def main() -> None:
         assert plan["observation"]["stableDecision"] == summary["stableDecision"]
 
     assert plan["observation"]["record"] == "release/rc-observation.json"
+    # The feedback form is a live intake surface and may advance to a later
+    # release candidate. Historical RC2 proof only requires that the generic
+    # compatibility-reporting fields remain available.
     for needle in (
         "name: Tredecadia RC feedback",
-        "v1.0.0-rc.2",
         "Calendar structure or date conversion",
         "Localization or writing system",
         "Accessibility or human presentation",

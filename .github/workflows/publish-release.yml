@@ -54,6 +54,7 @@ jobs:
             tests/validate_v11_observation.py \
             tests/validate_v11_stable_plan.py \
             tests/validate_v11_transition.py \
+            tests/validate_v11_stable_preflight.py \
             tests/validate_short4_ux.py \
             tests/validate_accessibility.py \
             tests/validate_conversion.py \
