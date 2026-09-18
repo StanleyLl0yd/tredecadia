@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.0-rc.1 — 2026-09-17
+## 1.1.0-rc.1 — 2026-09-18
 
 - Add reviewed month-display profiles for Georgian Mkhedruli, Eastern Armenian, fully vocalized Arabic, Hindi-oriented Devanagari, Bengali, and Iranian Persian.
 - Preserve the three previously stable Russian, Japanese, and Korean profiles unchanged.
