@@ -9,7 +9,7 @@ title: Tredecadia
 
 Tredecadia has thirteen equal 28-day months, four complete seven-day weeks per month, an independent mathematical year coordinate, and internationally neutral canonical month and weekday names.
 
-> **Stable version: `1.1.0-rc.1`.** The RC2 observation completed after its required minimum interval with zero compatibility-critical findings and zero open reports. Stable v1 preserves the published RC2 canonical identity and changes only release maturity/version metadata.
+> **Stable release: `1.0.0`. Current candidate: `1.1.0-rc.1`.** The candidate is a compatible minor localization expansion; the published v1 canonical calendar identity remains unchanged.
 
 This page is a navigational summary, not a second copy of the standard. Normative requirements remain in the repository specifications and machine-readable registries.
 
@@ -76,15 +76,15 @@ Canonical machine syntax is strict ASCII. Human-facing interfaces may display un
 
 ## Localization
 
-Stable `1.0.0` includes independently reviewed **month** display profiles for:
+Stable `1.0.0` includes three **stable month** display profiles:
 
 - Russian Cyrillic (`ru-Cyrl`);
 - Japanese Katakana (`ja-Kana`);
 - Korean Hangul (`ko-Hang`).
 
-All three reviewed month profiles were explicitly accepted during RC2 review and are promoted to **stable** maturity in `v1.0.0`. This maturity change does not alter their reviewed mappings or the published RC2 identity.
+The `1.1.0-rc.1` candidate adds six **reviewed month-only** profiles: Georgian Mkhedruli (`ka-Geor`), Eastern Armenian (`hy-Armn`), fully vocalized Arabic (`ar-Arab`), Hindi-oriented Devanagari (`hi-Deva`), Bengali (`bn-Beng`), and Iranian Persian (`fa-Arab`).
 
-Localized month spellings are aliases and never change canonical month numbers, Latin names, syllables, Short-6, or Short-4 identifiers. Stable v1.0.0 does not infer weekday aliases from those profiles because the weekday `E/O` syllables require separate review.
+Localized month spellings are aliases and never change canonical month numbers, Latin names, syllables, Short-6, or Short-4 identifiers. No weekday aliases are inferred from month profiles; the weekday `E/O` syllables require separate review.
 
 ## Published RC2 identity
 
