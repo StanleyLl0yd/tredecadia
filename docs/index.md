@@ -3,14 +3,6 @@ layout: default
 title: Tredecadia
 ---
 
-Tredecadia has thirteen equal 28-day months, four complete seven-day weeks per month, an independent mathematical year coordinate, and internationally neutral canonical month and weekday names.
-
-> **Stable release: `1.0.0`. Published prerelease: `1.1.0-rc.1`.** The prerelease is a compatible minor localization expansion under observation; the published v1 canonical calendar identity remains unchanged.
-
-This page is a navigational summary, not a second copy of the standard. Normative requirements remain in the repository specifications and machine-readable registries.
-
-[Read the project introduction in all available languages](https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md) · [v1.1.0-rc.1 prerelease](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.1.0-rc.1) · [Stable v1.0.0](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0) · [Historical RC2](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2) · [Historical RC1](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
-
 <h2 data-i18n="interactiveCalendar">Interactive calendar</h2>
 
 
