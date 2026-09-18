@@ -82,8 +82,9 @@ def main() -> None:
     assert "TredecadiaI18n" in i18n
     assert "navigator" not in i18n, "i18n data/module should stay environment-neutral"
     # Locale counts change as translations are added. Keep the landing-page
-    # link count-free so it cannot silently become stale again.
-    assert "Read the project introduction in all available languages" in index
+    # entry count-free and localizable so it cannot silently become stale or
+    # force an English phrase into non-English UI.
+    assert 'data-i18n="allLanguages"' in index
 
     assert "theme: jekyll-theme-minimal" in config
     assert "title: Tredecadia" in config
