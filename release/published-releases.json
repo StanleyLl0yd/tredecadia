@@ -24,6 +24,14 @@
       "publishedAt": "2026-09-17T12:53:29Z",
       "archive": "tredecadia-1.0.0.tar.gz",
       "archiveSha256": "2f14cc4fb2bcac2cfcce280ddbe948d4c65cab098ce23c1d385d220709f5c392"
+    },
+    {
+      "version": "1.1.0-rc.1",
+      "tag": "v1.1.0-rc.1",
+      "commit": "8d1b5a0c05eab8875e95b9896fd1c386edfe1220",
+      "publishedAt": "2026-09-18T08:01:59Z",
+      "archive": "tredecadia-1.1.0-rc.1.tar.gz",
+      "archiveSha256": "5b32dad3438572b67381ef5af05bf6fd915a2393fc69c8c132b7bef125ff876e"
     }
   ]
 }
