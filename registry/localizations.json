@@ -34,98 +34,25 @@
         ]
       },
       "syllableMap": {
-        "MA": "ма",
-        "MI": "ми",
-        "MU": "му",
-        "NA": "на",
-        "NI": "ни",
-        "NU": "ну",
-        "SA": "са",
-        "SU": "су",
-        "TA": "та",
-        "YA": "я",
-        "KA": "ка",
-        "ZU": "зу"
+        "MA": "ма", "MI": "ми", "MU": "му",
+        "NA": "на", "NI": "ни", "NU": "ну",
+        "SA": "са", "SU": "су", "TA": "та",
+        "YA": "я", "KA": "ка", "ZU": "зу"
       },
       "aliases": [
-        {
-          "month": 1,
-          "full": "Масанумика",
-          "short6": "Масану",
-          "short4": "Маса"
-        },
-        {
-          "month": 2,
-          "full": "Тасузунуму",
-          "short6": "Тасузу",
-          "short4": "Тасу"
-        },
-        {
-          "month": 3,
-          "full": "Назумасану",
-          "short6": "Назума",
-          "short4": "Назу"
-        },
-        {
-          "month": 4,
-          "full": "Микасумани",
-          "short6": "Микасу",
-          "short4": "Мика"
-        },
-        {
-          "month": 5,
-          "full": "Янимузуну",
-          "short6": "Яниму",
-          "short4": "Яни"
-        },
-        {
-          "month": 6,
-          "full": "Зумитанасу",
-          "short6": "Зумита",
-          "short4": "Зуми"
-        },
-        {
-          "month": 7,
-          "full": "Муясануми",
-          "short6": "Муяса",
-          "short4": "Муя"
-        },
-        {
-          "month": 8,
-          "full": "Сунизусака",
-          "short6": "Сунизу",
-          "short4": "Суни"
-        },
-        {
-          "month": 9,
-          "full": "Нуманамута",
-          "short6": "Нумана",
-          "short4": "Нума"
-        },
-        {
-          "month": 10,
-          "full": "Казунусуя",
-          "short6": "Казуну",
-          "short4": "Казу"
-        },
-        {
-          "month": 11,
-          "full": "Яназумаса",
-          "short6": "Яназу",
-          "short4": "Яна"
-        },
-        {
-          "month": 12,
-          "full": "Санумиказу",
-          "short6": "Сануми",
-          "short4": "Сану"
-        },
-        {
-          "month": 13,
-          "full": "Нимутазуна",
-          "short6": "Нимута",
-          "short4": "Ниму"
-        }
+        {"month": 1, "full": "Масанумика", "short6": "Масану", "short4": "Маса"},
+        {"month": 2, "full": "Тасузунуму", "short6": "Тасузу", "short4": "Тасу"},
+        {"month": 3, "full": "Назумасану", "short6": "Назума", "short4": "Назу"},
+        {"month": 4, "full": "Микасумани", "short6": "Микасу", "short4": "Мика"},
+        {"month": 5, "full": "Янимузуну", "short6": "Яниму", "short4": "Яни"},
+        {"month": 6, "full": "Зумитанасу", "short6": "Зумита", "short4": "Зуми"},
+        {"month": 7, "full": "Муясануми", "short6": "Муяса", "short4": "Муя"},
+        {"month": 8, "full": "Сунизусака", "short6": "Сунизу", "short4": "Суни"},
+        {"month": 9, "full": "Нуманамута", "short6": "Нумана", "short4": "Нума"},
+        {"month": 10, "full": "Казунусуя", "short6": "Казуну", "short4": "Казу"},
+        {"month": 11, "full": "Яназумаса", "short6": "Яназу", "short4": "Яна"},
+        {"month": 12, "full": "Санумиказу", "short6": "Сануми", "short4": "Сану"},
+        {"month": 13, "full": "Нимутазуна", "short6": "Нимута", "short4": "Ниму"}
       ],
       "notes": "References-reviewed Russian Cyrillic practical transcription. MI/NI written ми/ни normally palatalize the preceding Russian consonant (/mʲi, nʲi/); this is an explicit language-specific approximation of broad canonical /mi, ni/, not a change to Tredecadia identity. YA maps naturally to я for /ja/ after vowels or at word start."
     },
@@ -149,98 +76,25 @@
         ]
       },
       "syllableMap": {
-        "MA": "マ",
-        "MI": "ミ",
-        "MU": "ム",
-        "NA": "ナ",
-        "NI": "ニ",
-        "NU": "ヌ",
-        "SA": "サ",
-        "SU": "ス",
-        "TA": "タ",
-        "YA": "ヤ",
-        "KA": "カ",
-        "ZU": "ズ"
+        "MA": "マ", "MI": "ミ", "MU": "ム",
+        "NA": "ナ", "NI": "ニ", "NU": "ヌ",
+        "SA": "サ", "SU": "ス", "TA": "タ",
+        "YA": "ヤ", "KA": "カ", "ZU": "ズ"
       },
       "aliases": [
-        {
-          "month": 1,
-          "full": "マサヌミカ",
-          "short6": "マサヌ",
-          "short4": "マサ"
-        },
-        {
-          "month": 2,
-          "full": "タスズヌム",
-          "short6": "タスズ",
-          "short4": "タス"
-        },
-        {
-          "month": 3,
-          "full": "ナズマサヌ",
-          "short6": "ナズマ",
-          "short4": "ナズ"
-        },
-        {
-          "month": 4,
-          "full": "ミカスマニ",
-          "short6": "ミカス",
-          "short4": "ミカ"
-        },
-        {
-          "month": 5,
-          "full": "ヤニムズヌ",
-          "short6": "ヤニム",
-          "short4": "ヤニ"
-        },
-        {
-          "month": 6,
-          "full": "ズミタナス",
-          "short6": "ズミタ",
-          "short4": "ズミ"
-        },
-        {
-          "month": 7,
-          "full": "ムヤサヌミ",
-          "short6": "ムヤサ",
-          "short4": "ムヤ"
-        },
-        {
-          "month": 8,
-          "full": "スニズサカ",
-          "short6": "スニズ",
-          "short4": "スニ"
-        },
-        {
-          "month": 9,
-          "full": "ヌマナムタ",
-          "short6": "ヌマナ",
-          "short4": "ヌマ"
-        },
-        {
-          "month": 10,
-          "full": "カズヌスヤ",
-          "short6": "カズヌ",
-          "short4": "カズ"
-        },
-        {
-          "month": 11,
-          "full": "ヤナズマサ",
-          "short6": "ヤナズ",
-          "short4": "ヤナ"
-        },
-        {
-          "month": 12,
-          "full": "サヌミカズ",
-          "short6": "サヌミ",
-          "short4": "サヌ"
-        },
-        {
-          "month": 13,
-          "full": "ニムタズナ",
-          "short6": "ニムタ",
-          "short4": "ニム"
-        }
+        {"month": 1, "full": "マサヌミカ", "short6": "マサヌ", "short4": "マサ"},
+        {"month": 2, "full": "タスズヌム", "short6": "タスズ", "short4": "タス"},
+        {"month": 3, "full": "ナズマサヌ", "short6": "ナズマ", "short4": "ナズ"},
+        {"month": 4, "full": "ミカスマニ", "short6": "ミカス", "short4": "ミカ"},
+        {"month": 5, "full": "ヤニムズヌ", "short6": "ヤニム", "short4": "ヤニ"},
+        {"month": 6, "full": "ズミタナス", "short6": "ズミタ", "short4": "ズミ"},
+        {"month": 7, "full": "ムヤサヌミ", "short6": "ムヤサ", "short4": "ムヤ"},
+        {"month": 8, "full": "スニズサカ", "short6": "スニズ", "short4": "スニ"},
+        {"month": 9, "full": "ヌマナムタ", "short6": "ヌマナ", "short4": "ヌマ"},
+        {"month": 10, "full": "カズヌスヤ", "short6": "カズヌ", "short4": "カズ"},
+        {"month": 11, "full": "ヤナズマサ", "short6": "ヤナズ", "short4": "ヤナ"},
+        {"month": 12, "full": "サヌミカズ", "short6": "サヌミ", "short4": "サヌ"},
+        {"month": 13, "full": "ニムタズナ", "short6": "ニムタ", "short4": "ニム"}
       ],
       "notes": "Standards-reviewed Katakana display transcription. Japanese realization of canonical /u/ and /z/ remains an expected language-specific approximation; no native-speaker review is claimed by this evidence."
     },
@@ -264,98 +118,25 @@
         ]
       },
       "syllableMap": {
-        "MA": "마",
-        "MI": "미",
-        "MU": "무",
-        "NA": "나",
-        "NI": "니",
-        "NU": "누",
-        "SA": "사",
-        "SU": "수",
-        "TA": "타",
-        "YA": "야",
-        "KA": "카",
-        "ZU": "주"
+        "MA": "마", "MI": "미", "MU": "무",
+        "NA": "나", "NI": "니", "NU": "누",
+        "SA": "사", "SU": "수", "TA": "타",
+        "YA": "야", "KA": "카", "ZU": "주"
       },
       "aliases": [
-        {
-          "month": 1,
-          "full": "마사누미카",
-          "short6": "마사누",
-          "short4": "마사"
-        },
-        {
-          "month": 2,
-          "full": "타수주누무",
-          "short6": "타수주",
-          "short4": "타수"
-        },
-        {
-          "month": 3,
-          "full": "나주마사누",
-          "short6": "나주마",
-          "short4": "나주"
-        },
-        {
-          "month": 4,
-          "full": "미카수마니",
-          "short6": "미카수",
-          "short4": "미카"
-        },
-        {
-          "month": 5,
-          "full": "야니무주누",
-          "short6": "야니무",
-          "short4": "야니"
-        },
-        {
-          "month": 6,
-          "full": "주미타나수",
-          "short6": "주미타",
-          "short4": "주미"
-        },
-        {
-          "month": 7,
-          "full": "무야사누미",
-          "short6": "무야사",
-          "short4": "무야"
-        },
-        {
-          "month": 8,
-          "full": "수니주사카",
-          "short6": "수니주",
-          "short4": "수니"
-        },
-        {
-          "month": 9,
-          "full": "누마나무타",
-          "short6": "누마나",
-          "short4": "누마"
-        },
-        {
-          "month": 10,
-          "full": "카주누수야",
-          "short6": "카주누",
-          "short4": "카주"
-        },
-        {
-          "month": 11,
-          "full": "야나주마사",
-          "short6": "야나주",
-          "short4": "야나"
-        },
-        {
-          "month": 12,
-          "full": "사누미카주",
-          "short6": "사누미",
-          "short4": "사누"
-        },
-        {
-          "month": 13,
-          "full": "니무타주나",
-          "short6": "니무타",
-          "short4": "니무"
-        }
+        {"month": 1, "full": "마사누미카", "short6": "마사누", "short4": "마사"},
+        {"month": 2, "full": "타수주누무", "short6": "타수주", "short4": "타수"},
+        {"month": 3, "full": "나주마사누", "short6": "나주마", "short4": "나주"},
+        {"month": 4, "full": "미카수마니", "short6": "미카수", "short4": "미카"},
+        {"month": 5, "full": "야니무주누", "short6": "야니무", "short4": "야니"},
+        {"month": 6, "full": "주미타나수", "short6": "주미타", "short4": "주미"},
+        {"month": 7, "full": "무야사누미", "short6": "무야사", "short4": "무야"},
+        {"month": 8, "full": "수니주사카", "short6": "수니주", "short4": "수니"},
+        {"month": 9, "full": "누마나무타", "short6": "누마나", "short4": "누마"},
+        {"month": 10, "full": "카주누수야", "short6": "카주누", "short4": "카주"},
+        {"month": 11, "full": "야나주마사", "short6": "야나주", "short4": "야나"},
+        {"month": 12, "full": "사누미카주", "short6": "사누미", "short4": "사누"},
+        {"month": 13, "full": "니무타주나", "short6": "니무타", "short4": "니무"}
       ],
       "notes": "Standards-reviewed Hangul display transcription derived from the official IPA-to-Hangul table. Korean ㅈ is the prescribed foreign-word representation of source /z/ before a vowel and remains a localization approximation of canonical ZU /zu/."
     },
@@ -384,98 +165,25 @@
         ]
       },
       "syllableMap": {
-        "MA": "მა",
-        "MI": "მი",
-        "MU": "მუ",
-        "NA": "ნა",
-        "NI": "ნი",
-        "NU": "ნუ",
-        "SA": "სა",
-        "SU": "სუ",
-        "TA": "ტა",
-        "YA": "ია",
-        "KA": "კა",
-        "ZU": "ზუ"
+        "MA": "მა", "MI": "მი", "MU": "მუ",
+        "NA": "ნა", "NI": "ნი", "NU": "ნუ",
+        "SA": "სა", "SU": "სუ", "TA": "ტა",
+        "YA": "ია", "KA": "კა", "ZU": "ზუ"
       },
       "aliases": [
-        {
-          "month": 1,
-          "full": "მასანუმიკა",
-          "short6": "მასანუ",
-          "short4": "მასა"
-        },
-        {
-          "month": 2,
-          "full": "ტასუზუნუმუ",
-          "short6": "ტასუზუ",
-          "short4": "ტასუ"
-        },
-        {
-          "month": 3,
-          "full": "ნაზუმასანუ",
-          "short6": "ნაზუმა",
-          "short4": "ნაზუ"
-        },
-        {
-          "month": 4,
-          "full": "მიკასუმანი",
-          "short6": "მიკასუ",
-          "short4": "მიკა"
-        },
-        {
-          "month": 5,
-          "full": "იანიმუზუნუ",
-          "short6": "იანიმუ",
-          "short4": "იანი"
-        },
-        {
-          "month": 6,
-          "full": "ზუმიტანასუ",
-          "short6": "ზუმიტა",
-          "short4": "ზუმი"
-        },
-        {
-          "month": 7,
-          "full": "მუიასანუმი",
-          "short6": "მუიასა",
-          "short4": "მუია"
-        },
-        {
-          "month": 8,
-          "full": "სუნიზუსაკა",
-          "short6": "სუნიზუ",
-          "short4": "სუნი"
-        },
-        {
-          "month": 9,
-          "full": "ნუმანამუტა",
-          "short6": "ნუმანა",
-          "short4": "ნუმა"
-        },
-        {
-          "month": 10,
-          "full": "კაზუნუსუია",
-          "short6": "კაზუნუ",
-          "short4": "კაზუ"
-        },
-        {
-          "month": 11,
-          "full": "იანაზუმასა",
-          "short6": "იანაზუ",
-          "short4": "იანა"
-        },
-        {
-          "month": 12,
-          "full": "სანუმიკაზუ",
-          "short6": "სანუმი",
-          "short4": "სანუ"
-        },
-        {
-          "month": 13,
-          "full": "ნიმუტაზუნა",
-          "short6": "ნიმუტა",
-          "short4": "ნიმუ"
-        }
+        {"month": 1, "full": "მასანუმიკა", "short6": "მასანუ", "short4": "მასა"},
+        {"month": 2, "full": "ტასუზუნუმუ", "short6": "ტასუზუ", "short4": "ტასუ"},
+        {"month": 3, "full": "ნაზუმასანუ", "short6": "ნაზუმა", "short4": "ნაზუ"},
+        {"month": 4, "full": "მიკასუმანი", "short6": "მიკასუ", "short4": "მიკა"},
+        {"month": 5, "full": "იანიმუზუნუ", "short6": "იანიმუ", "short4": "იანი"},
+        {"month": 6, "full": "ზუმიტანასუ", "short6": "ზუმიტა", "short4": "ზუმი"},
+        {"month": 7, "full": "მუიასანუმი", "short6": "მუიასა", "short4": "მუია"},
+        {"month": 8, "full": "სუნიზუსაკა", "short6": "სუნიზუ", "short4": "სუნი"},
+        {"month": 9, "full": "ნუმანამუტა", "short6": "ნუმანა", "short4": "ნუმა"},
+        {"month": 10, "full": "კაზუნუსუია", "short6": "კაზუნუ", "short4": "კაზუ"},
+        {"month": 11, "full": "იანაზუმასა", "short6": "იანაზუ", "short4": "იანა"},
+        {"month": 12, "full": "სანუმიკაზუ", "short6": "სანუმი", "short4": "სანუ"},
+        {"month": 13, "full": "ნიმუტაზუნა", "short6": "ნიმუტა", "short4": "ნიმუ"}
       ],
       "notes": "Mkhedruli display transcription. YA /ja/ is represented as ია. No native-speaker usability study is claimed."
     },
@@ -504,98 +212,25 @@
         ]
       },
       "syllableMap": {
-        "MA": "մա",
-        "MI": "մի",
-        "MU": "մու",
-        "NA": "նա",
-        "NI": "նի",
-        "NU": "նու",
-        "SA": "սա",
-        "SU": "սու",
-        "TA": "տա",
-        "YA": "յա",
-        "KA": "կա",
-        "ZU": "զու"
+        "MA": "մա", "MI": "մի", "MU": "մու",
+        "NA": "նա", "NI": "նի", "NU": "նու",
+        "SA": "սա", "SU": "սու", "TA": "տա",
+        "YA": "յա", "KA": "կա", "ZU": "զու"
       },
       "aliases": [
-        {
-          "month": 1,
-          "full": "մասանումիկա",
-          "short6": "մասանու",
-          "short4": "մասա"
-        },
-        {
-          "month": 2,
-          "full": "տասուզունումու",
-          "short6": "տասուզու",
-          "short4": "տասու"
-        },
-        {
-          "month": 3,
-          "full": "նազումասանու",
-          "short6": "նազումա",
-          "short4": "նազու"
-        },
-        {
-          "month": 4,
-          "full": "միկասումանի",
-          "short6": "միկասու",
-          "short4": "միկա"
-        },
-        {
-          "month": 5,
-          "full": "յանիմուզունու",
-          "short6": "յանիմու",
-          "short4": "յանի"
-        },
-        {
-          "month": 6,
-          "full": "զումիտանասու",
-          "short6": "զումիտա",
-          "short4": "զումի"
-        },
-        {
-          "month": 7,
-          "full": "մույասանումի",
-          "short6": "մույասա",
-          "short4": "մույա"
-        },
-        {
-          "month": 8,
-          "full": "սունիզուսակա",
-          "short6": "սունիզու",
-          "short4": "սունի"
-        },
-        {
-          "month": 9,
-          "full": "նումանամուտա",
-          "short6": "նումանա",
-          "short4": "նումա"
-        },
-        {
-          "month": 10,
-          "full": "կազունուսույա",
-          "short6": "կազունու",
-          "short4": "կազու"
-        },
-        {
-          "month": 11,
-          "full": "յանազումասա",
-          "short6": "յանազու",
-          "short4": "յանա"
-        },
-        {
-          "month": 12,
-          "full": "սանումիկազու",
-          "short6": "սանումի",
-          "short4": "սանու"
-        },
-        {
-          "month": 13,
-          "full": "նիմուտազունա",
-          "short6": "նիմուտա",
-          "short4": "նիմու"
-        }
+        {"month": 1, "full": "մասանումիկա", "short6": "մասանու", "short4": "մասա"},
+        {"month": 2, "full": "տասուզունումու", "short6": "տասուզու", "short4": "տասու"},
+        {"month": 3, "full": "նազումասանու", "short6": "նազումա", "short4": "նազու"},
+        {"month": 4, "full": "միկասումանի", "short6": "միկասու", "short4": "միկա"},
+        {"month": 5, "full": "յանիմուզունու", "short6": "յանիմու", "short4": "յանի"},
+        {"month": 6, "full": "զումիտանասու", "short6": "զումիտա", "short4": "զումի"},
+        {"month": 7, "full": "մույասանումի", "short6": "մույասա", "short4": "մույա"},
+        {"month": 8, "full": "սունիզուսակա", "short6": "սունիզու", "short4": "սունի"},
+        {"month": 9, "full": "նումանամուտա", "short6": "նումանա", "short4": "նումա"},
+        {"month": 10, "full": "կազունուսույա", "short6": "կազունու", "short4": "կազու"},
+        {"month": 11, "full": "յանազումասա", "short6": "յանազու", "short4": "յանա"},
+        {"month": 12, "full": "սանումիկազու", "short6": "սանումի", "short4": "սանու"},
+        {"month": 13, "full": "նիմուտազունա", "short6": "նիմուտա", "short4": "նիմու"}
       ],
       "notes": "Targets Eastern Armenian phonetic values. Western Armenian consonant realizations differ and are outside this profile. No native-speaker usability study is claimed."
     },
@@ -619,98 +254,25 @@
         ]
       },
       "syllableMap": {
-        "MA": "مَ",
-        "MI": "مِ",
-        "MU": "مُ",
-        "NA": "نَ",
-        "NI": "نِ",
-        "NU": "نُ",
-        "SA": "سَ",
-        "SU": "سُ",
-        "TA": "تَ",
-        "YA": "يَ",
-        "KA": "كَ",
-        "ZU": "زُ"
+        "MA": "مَ", "MI": "مِ", "MU": "مُ",
+        "NA": "نَ", "NI": "نِ", "NU": "نُ",
+        "SA": "سَ", "SU": "سُ", "TA": "تَ",
+        "YA": "يَ", "KA": "كَ", "ZU": "زُ"
       },
       "aliases": [
-        {
-          "month": 1,
-          "full": "مَسَنُمِكَ",
-          "short6": "مَسَنُ",
-          "short4": "مَسَ"
-        },
-        {
-          "month": 2,
-          "full": "تَسُزُنُمُ",
-          "short6": "تَسُزُ",
-          "short4": "تَسُ"
-        },
-        {
-          "month": 3,
-          "full": "نَزُمَسَنُ",
-          "short6": "نَزُمَ",
-          "short4": "نَزُ"
-        },
-        {
-          "month": 4,
-          "full": "مِكَسُمَنِ",
-          "short6": "مِكَسُ",
-          "short4": "مِكَ"
-        },
-        {
-          "month": 5,
-          "full": "يَنِمُزُنُ",
-          "short6": "يَنِمُ",
-          "short4": "يَنِ"
-        },
-        {
-          "month": 6,
-          "full": "زُمِتَنَسُ",
-          "short6": "زُمِتَ",
-          "short4": "زُمِ"
-        },
-        {
-          "month": 7,
-          "full": "مُيَسَنُمِ",
-          "short6": "مُيَسَ",
-          "short4": "مُيَ"
-        },
-        {
-          "month": 8,
-          "full": "سُنِزُسَكَ",
-          "short6": "سُنِزُ",
-          "short4": "سُنِ"
-        },
-        {
-          "month": 9,
-          "full": "نُمَنَمُتَ",
-          "short6": "نُمَنَ",
-          "short4": "نُمَ"
-        },
-        {
-          "month": 10,
-          "full": "كَزُنُسُيَ",
-          "short6": "كَزُنُ",
-          "short4": "كَزُ"
-        },
-        {
-          "month": 11,
-          "full": "يَنَزُمَسَ",
-          "short6": "يَنَزُ",
-          "short4": "يَنَ"
-        },
-        {
-          "month": 12,
-          "full": "سَنُمِكَزُ",
-          "short6": "سَنُمِ",
-          "short4": "سَنُ"
-        },
-        {
-          "month": 13,
-          "full": "نِمُتَزُنَ",
-          "short6": "نِمُتَ",
-          "short4": "نِمُ"
-        }
+        {"month": 1, "full": "مَسَنُمِكَ", "short6": "مَسَنُ", "short4": "مَسَ"},
+        {"month": 2, "full": "تَسُزُنُمُ", "short6": "تَسُزُ", "short4": "تَسُ"},
+        {"month": 3, "full": "نَزُمَسَنُ", "short6": "نَزُمَ", "short4": "نَزُ"},
+        {"month": 4, "full": "مِكَسُمَنِ", "short6": "مِكَسُ", "short4": "مِكَ"},
+        {"month": 5, "full": "يَنِمُزُنُ", "short6": "يَنِمُ", "short4": "يَنِ"},
+        {"month": 6, "full": "زُمِتَنَسُ", "short6": "زُمِتَ", "short4": "زُمِ"},
+        {"month": 7, "full": "مُيَسَنُمِ", "short6": "مُيَسَ", "short4": "مُيَ"},
+        {"month": 8, "full": "سُنِزُسَكَ", "short6": "سُنِزُ", "short4": "سُنِ"},
+        {"month": 9, "full": "نُمَنَمُتَ", "short6": "نُمَنَ", "short4": "نُمَ"},
+        {"month": 10, "full": "كَزُنُسُيَ", "short6": "كَزُنُ", "short4": "كَزُ"},
+        {"month": 11, "full": "يَنَزُمَسَ", "short6": "يَنَزُ", "short4": "يَنَ"},
+        {"month": 12, "full": "سَنُمِكَزُ", "short6": "سَنُمِ", "short4": "سَنُ"},
+        {"month": 13, "full": "نِمُتَزُنَ", "short6": "نِمُتَ", "short4": "نِمُ"}
       ],
       "notes": "Intentionally fully vocalized Arabic. Omitting harakat would collapse canonical /a i u/ distinctions and is not this profile. No native-speaker usability study is claimed."
     },
@@ -734,98 +296,25 @@
         ]
       },
       "syllableMap": {
-        "MA": "मा",
-        "MI": "मि",
-        "MU": "मु",
-        "NA": "ना",
-        "NI": "नि",
-        "NU": "नु",
-        "SA": "सा",
-        "SU": "सु",
-        "TA": "ता",
-        "YA": "या",
-        "KA": "का",
-        "ZU": "ज़ु"
+        "MA": "मा", "MI": "मि", "MU": "मु",
+        "NA": "ना", "NI": "नि", "NU": "नु",
+        "SA": "सा", "SU": "सु", "TA": "ता",
+        "YA": "या", "KA": "का", "ZU": "ज़ु"
       },
       "aliases": [
-        {
-          "month": 1,
-          "full": "मासानुमिका",
-          "short6": "मासानु",
-          "short4": "मासा"
-        },
-        {
-          "month": 2,
-          "full": "तासुज़ुनुमु",
-          "short6": "तासुज़ु",
-          "short4": "तासु"
-        },
-        {
-          "month": 3,
-          "full": "नाज़ुमासानु",
-          "short6": "नाज़ुमा",
-          "short4": "नाज़ु"
-        },
-        {
-          "month": 4,
-          "full": "मिकासुमानि",
-          "short6": "मिकासु",
-          "short4": "मिका"
-        },
-        {
-          "month": 5,
-          "full": "यानिमुज़ुनु",
-          "short6": "यानिमु",
-          "short4": "यानि"
-        },
-        {
-          "month": 6,
-          "full": "ज़ुमितानासु",
-          "short6": "ज़ुमिता",
-          "short4": "ज़ुमि"
-        },
-        {
-          "month": 7,
-          "full": "मुयासानुमि",
-          "short6": "मुयासा",
-          "short4": "मुया"
-        },
-        {
-          "month": 8,
-          "full": "सुनिज़ुसाका",
-          "short6": "सुनिज़ु",
-          "short4": "सुनि"
-        },
-        {
-          "month": 9,
-          "full": "नुमानामुता",
-          "short6": "नुमाना",
-          "short4": "नुमा"
-        },
-        {
-          "month": 10,
-          "full": "काज़ुनुसुया",
-          "short6": "काज़ुनु",
-          "short4": "काज़ु"
-        },
-        {
-          "month": 11,
-          "full": "यानाज़ुमासा",
-          "short6": "यानाज़ु",
-          "short4": "याना"
-        },
-        {
-          "month": 12,
-          "full": "सानुमिकाज़ु",
-          "short6": "सानुमि",
-          "short4": "सानु"
-        },
-        {
-          "month": 13,
-          "full": "निमुताज़ुना",
-          "short6": "निमुता",
-          "short4": "निमु"
-        }
+        {"month": 1, "full": "मासानुमिका", "short6": "मासानु", "short4": "मासा"},
+        {"month": 2, "full": "तासुज़ुनुमु", "short6": "तासुज़ु", "short4": "तासु"},
+        {"month": 3, "full": "नाज़ुमासानु", "short6": "नाज़ुमा", "short4": "नाज़ु"},
+        {"month": 4, "full": "मिकासुमानि", "short6": "मिकासु", "short4": "मिका"},
+        {"month": 5, "full": "यानिमुज़ुनु", "short6": "यानिमु", "short4": "यानि"},
+        {"month": 6, "full": "ज़ुमितानासु", "short6": "ज़ुमिता", "short4": "ज़ुमि"},
+        {"month": 7, "full": "मुयासानुमि", "short6": "मुयासा", "short4": "मुया"},
+        {"month": 8, "full": "सुनिज़ुसाका", "short6": "सुनिज़ु", "short4": "सुनि"},
+        {"month": 9, "full": "नुमानामुता", "short6": "नुमाना", "short4": "नुमा"},
+        {"month": 10, "full": "काज़ुनुसुया", "short6": "काज़ुनु", "short4": "काज़ु"},
+        {"month": 11, "full": "यानाज़ुमासा", "short6": "यानाज़ु", "short4": "याना"},
+        {"month": 12, "full": "सानुमिकाज़ु", "short6": "सानुमि", "short4": "सानु"},
+        {"month": 13, "full": "निमुताज़ुना", "short6": "निमुता", "short4": "निमु"}
       ],
       "notes": "Hindi-oriented Devanagari adaptation. आ represents canonical /a/ with a predictable Hindi length approximation; इ/उ signs likewise follow Hindi realization. ज़ preserves /z/ with nukta. No native-speaker usability study is claimed."
     },
@@ -859,98 +348,25 @@
         ]
       },
       "syllableMap": {
-        "MA": "মা",
-        "MI": "মি",
-        "MU": "মু",
-        "NA": "না",
-        "NI": "নি",
-        "NU": "নু",
-        "SA": "সা",
-        "SU": "সু",
-        "TA": "তা",
-        "YA": "ইয়া",
-        "KA": "কা",
-        "ZU": "জু"
+        "MA": "মা", "MI": "মি", "MU": "মু",
+        "NA": "না", "NI": "নি", "NU": "নু",
+        "SA": "সা", "SU": "সু", "TA": "তা",
+        "YA": "ইয়া", "KA": "কা", "ZU": "জু"
       },
       "aliases": [
-        {
-          "month": 1,
-          "full": "মাসানুমিকা",
-          "short6": "মাসানু",
-          "short4": "মাসা"
-        },
-        {
-          "month": 2,
-          "full": "তাসুজুনুমু",
-          "short6": "তাসুজু",
-          "short4": "তাসু"
-        },
-        {
-          "month": 3,
-          "full": "নাজুমাসানু",
-          "short6": "নাজুমা",
-          "short4": "নাজু"
-        },
-        {
-          "month": 4,
-          "full": "মিকাসুমানি",
-          "short6": "মিকাসু",
-          "short4": "মিকা"
-        },
-        {
-          "month": 5,
-          "full": "ইয়ানিমুজুনু",
-          "short6": "ইয়ানিমু",
-          "short4": "ইয়ানি"
-        },
-        {
-          "month": 6,
-          "full": "জুমিতানাসু",
-          "short6": "জুমিতা",
-          "short4": "জুমি"
-        },
-        {
-          "month": 7,
-          "full": "মুইয়াসানুমি",
-          "short6": "মুইয়াসা",
-          "short4": "মুইয়া"
-        },
-        {
-          "month": 8,
-          "full": "সুনিজুসাকা",
-          "short6": "সুনিজু",
-          "short4": "সুনি"
-        },
-        {
-          "month": 9,
-          "full": "নুমানামুতা",
-          "short6": "নুমানা",
-          "short4": "নুমা"
-        },
-        {
-          "month": 10,
-          "full": "কাজুনুসুইয়া",
-          "short6": "কাজুনু",
-          "short4": "কাজু"
-        },
-        {
-          "month": 11,
-          "full": "ইয়ানাজুমাসা",
-          "short6": "ইয়ানাজু",
-          "short4": "ইয়ানা"
-        },
-        {
-          "month": 12,
-          "full": "সানুমিকাজু",
-          "short6": "সানুমি",
-          "short4": "সানু"
-        },
-        {
-          "month": 13,
-          "full": "নিমুতাজুনা",
-          "short6": "নিমুতা",
-          "short4": "নিমু"
-        }
+        {"month": 1, "full": "মাসানুমিকা", "short6": "মাসানু", "short4": "মাসা"},
+        {"month": 2, "full": "তাসুজুনুমু", "short6": "তাসুজু", "short4": "তাসু"},
+        {"month": 3, "full": "নাজুমাসানু", "short6": "নাজুমা", "short4": "নাজু"},
+        {"month": 4, "full": "মিকাসুমানি", "short6": "মিকাসু", "short4": "মিকা"},
+        {"month": 5, "full": "ইয়ানিমুজুনু", "short6": "ইয়ানিমু", "short4": "ইয়ানি"},
+        {"month": 6, "full": "জুমিতানাসু", "short6": "জুমিতা", "short4": "জুমি"},
+        {"month": 7, "full": "মুইয়াসানুমি", "short6": "মুইয়াসা", "short4": "মুইয়া"},
+        {"month": 8, "full": "সুনিজুসাকা", "short6": "সুনিজু", "short4": "সুনি"},
+        {"month": 9, "full": "নুমানামুতা", "short6": "নুমানা", "short4": "নুমা"},
+        {"month": 10, "full": "কাজুনুসুইয়া", "short6": "কাজুনু", "short4": "কাজু"},
+        {"month": 11, "full": "ইয়ানাজুমাসা", "short6": "ইয়ানাজু", "short4": "ইয়ানা"},
+        {"month": 12, "full": "সানুমিকাজু", "short6": "সানুমি", "short4": "সানু"},
+        {"month": 13, "full": "নিমুতাজুনা", "short6": "নিমুতা", "short4": "নিমু"}
       ],
       "notes": "Reviewed Bengali orthographic adaptation. YA uses ইয়া, attested for foreign initial y- in the Government of Bangladesh dictionary. ZU uses জু, matching official dictionary adaptation of foreign z with জ; Standard Bengali may realize this closer to /dʒu/, an explicit language-specific approximation of canonical /zu/. No native-speaker usability study is claimed."
     },
@@ -984,98 +400,25 @@
         ]
       },
       "syllableMap": {
-        "MA": "مَ",
-        "MI": "می",
-        "MU": "مو",
-        "NA": "نَ",
-        "NI": "نی",
-        "NU": "نو",
-        "SA": "سَ",
-        "SU": "سو",
-        "TA": "تَ",
-        "YA": "یَ",
-        "KA": "کَ",
-        "ZU": "زو"
+        "MA": "مَ", "MI": "می", "MU": "مو",
+        "NA": "نَ", "NI": "نی", "NU": "نو",
+        "SA": "سَ", "SU": "سو", "TA": "تَ",
+        "YA": "یَ", "KA": "کَ", "ZU": "زو"
       },
       "aliases": [
-        {
-          "month": 1,
-          "full": "مَسَنومیکَ",
-          "short6": "مَسَنو",
-          "short4": "مَسَ"
-        },
-        {
-          "month": 2,
-          "full": "تَسوزونومو",
-          "short6": "تَسوزو",
-          "short4": "تَسو"
-        },
-        {
-          "month": 3,
-          "full": "نَزومَسَنو",
-          "short6": "نَزومَ",
-          "short4": "نَزو"
-        },
-        {
-          "month": 4,
-          "full": "میکَسومَنی",
-          "short6": "میکَسو",
-          "short4": "میکَ"
-        },
-        {
-          "month": 5,
-          "full": "یَنیموزونو",
-          "short6": "یَنیمو",
-          "short4": "یَنی"
-        },
-        {
-          "month": 6,
-          "full": "زومیتَنَسو",
-          "short6": "زومیتَ",
-          "short4": "زومی"
-        },
-        {
-          "month": 7,
-          "full": "مویَسَنومی",
-          "short6": "مویَسَ",
-          "short4": "مویَ"
-        },
-        {
-          "month": 8,
-          "full": "سونیزوسَکَ",
-          "short6": "سونیزو",
-          "short4": "سونی"
-        },
-        {
-          "month": 9,
-          "full": "نومَنَموتَ",
-          "short6": "نومَنَ",
-          "short4": "نومَ"
-        },
-        {
-          "month": 10,
-          "full": "کَزونوسویَ",
-          "short6": "کَزونو",
-          "short4": "کَزو"
-        },
-        {
-          "month": 11,
-          "full": "یَنَزومَسَ",
-          "short6": "یَنَزو",
-          "short4": "یَنَ"
-        },
-        {
-          "month": 12,
-          "full": "سَنومیکَزو",
-          "short6": "سَنومی",
-          "short4": "سَنو"
-        },
-        {
-          "month": 13,
-          "full": "نیموتَزونَ",
-          "short6": "نیموتَ",
-          "short4": "نیمو"
-        }
+        {"month": 1, "full": "مَسَنومیکَ", "short6": "مَسَنو", "short4": "مَسَ"},
+        {"month": 2, "full": "تَسوزونومو", "short6": "تَسوزو", "short4": "تَسو"},
+        {"month": 3, "full": "نَزومَسَنو", "short6": "نَزومَ", "short4": "نَزو"},
+        {"month": 4, "full": "میکَسومَنی", "short6": "میکَسو", "short4": "میکَ"},
+        {"month": 5, "full": "یَنیموزونو", "short6": "یَنیمو", "short4": "یَنی"},
+        {"month": 6, "full": "زومیتَنَسو", "short6": "زومیتَ", "short4": "زومی"},
+        {"month": 7, "full": "مویَسَنومی", "short6": "مویَسَ", "short4": "مویَ"},
+        {"month": 8, "full": "سونیزوسَکَ", "short6": "سونیزو", "short4": "سونی"},
+        {"month": 9, "full": "نومَنَموتَ", "short6": "نومَنَ", "short4": "نومَ"},
+        {"month": 10, "full": "کَزونوسویَ", "short6": "کَزونو", "short4": "کَزو"},
+        {"month": 11, "full": "یَنَزومَسَ", "short6": "یَنَزو", "short4": "یَنَ"},
+        {"month": 12, "full": "سَنومیکَزو", "short6": "سَنومی", "short4": "سَنو"},
+        {"month": 13, "full": "نیموتَزونَ", "short6": "نیموتَ", "short4": "نیمو"}
       ],
       "notes": "Reviewed Iranian Persian orthographic adaptation. Canonical /i,u/ use ی/و and therefore acquire the regular Persian long-vowel realization, an explicit length approximation; this avoids incorrectly treating Persian kasra/damma as /i,u/ rather than /e,o/. A uses explicit fatḥa and YA uses یَ. The fully explicit display spelling is more marked than ordinary unvocalized Persian prose. No native-speaker usability study is claimed."
     }
