@@ -51,6 +51,8 @@ jobs:
         run: python tests/validate_readme_locales.py
       - name: Validate Pages deployment contract
         run: python tests/validate_pages.py
+      - name: Validate interactive web calendar
+        run: python tests/validate_web_calendar.py
       - name: Validate published JSON Schemas
         run: python tests/validate_schemas.py
       - name: Validate repository-local links
