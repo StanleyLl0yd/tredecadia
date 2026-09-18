@@ -90,6 +90,15 @@ assert.deepStrictEqual(
   {year: -9999, month: 3, day: 20}
 );
 
+assert.throws(
+  () => T.fromGregorian({year: T.MAX_ABS_YEAR + 1, month: 1, day: 1}),
+  /interactive converter range/
+);
+assert.throws(
+  () => T.parseTredecadia(String(T.MAX_ABS_YEAR + 1) + "-01-01"),
+  /interactive converter range/
+);
+
 console.log("Tredecadia browser engine vectors: OK");
 """
 
