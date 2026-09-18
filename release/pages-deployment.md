@@ -36,6 +36,8 @@ The deploy job itself returned that exact URL as the `github-pages` environment 
 
 ## Ongoing deployment
 
-The workflow remains manually triggered by design. This keeps documentation deployment explicit during the RC/stable transition. A future maintenance change may add automatic deployment from `main` after stable `v1.0.0` if desired; that would be operational policy, not a calendar-identity change.
+Pages is now configured for automatic deployment when `main` changes under `docs/**` or the Pages workflow itself. Manual `workflow_dispatch` remains available as an operational fallback. Pull requests do not deploy.
+
+This operational change allows the interactive calendar and documentation fixes to reach the public site immediately after a fully validated merge; it does not change Tredecadia calendar identity or release semantics.
 
 The GitHub repository remains the canonical source for normative specifications and registries.
