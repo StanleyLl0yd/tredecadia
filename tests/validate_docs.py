@@ -15,10 +15,16 @@ def main():
   i=m['number']; segmental='.'.join(IPA[s] for s in m['syllables'])
   row=f"| {i:02d} | {m['canonical']} | {m['short6']} | {m['short4']} |"
   once(r,row,'README')
-  once(site,row,'docs/index.md')
   once(n,f"| {i:02d} | {m['canonical']} | {'-'.join(m['syllables'])} | /{segmental}/ | [{m['citationIpa']}] | {m['short6']} | {m['short4']} |",'naming')
+ # Pages is a localized navigation/application layer, not a second static
+ # normative copy of the month/profile tables. Registry-to-browser consistency
+ # is enforced by validate_web_calendar.py.
+ assert 'id="page-summary"' in site
+ assert "'/assets/i18n.js' | relative_url" in site
+ assert "## Canonical months" not in site
+ assert "## Canonical weekdays" not in site
  for profile in LOC['profiles']:
-  assert profile['id'] in l and profile['id'] in lp and profile['id'] in site
+  assert profile['id'] in l and profile['id'] in lp
  docs='\n'.join(t(p) for p in ['README.md','ROADMAP.md','docs/index.md','specification/calendar-standard.md','specification/conversion-standard.md','specification/date-notation.md','specification/month-naming-standard.md','specification/localization.md','specification/localization-profiles.md','specification/compatibility.md','rationale/design.md','rationale/pronunciation.md','rationale/short4-ux.md','rationale/accessibility-years.md','rationale/localization-ja-kana.md','rationale/localization-ko-hang.md','rationale/localization-ru-cyrl.md','rationale/release-candidate-audit.md'])
  for stale in ['leap-year determination as an external parameter','does not yet define a mandatory epoch','symbolic forms are provisional','positive year numbers beginning with year `1`','Y-EQ is the final day associated with year']: assert stale not in docs
  for required in ['Tredecadia Era','year `0`','10000 BCE','Y - 9999','Y - 9998','astronomical','weak initial prominence','Short-4','candidate','reviewed','stable','ASCII decimal digits','Accessible semantic labels','Unicode MINUS SIGN','palatalization','compatibility-critical','release-candidate',version]: assert required in docs,required
