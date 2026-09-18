@@ -18,7 +18,7 @@ Siklus tujuh hari kanonik:
 
 `W1 Mene → W2 Noko → W3 Kese → W4 Zoyo → W5 Sote → W6 Yemo → W7 Toze`
 
-Nama-nama ini adalah pengenal kanonik Tredecadia, bukan terjemahan atau penggantian nama Senin sampai Minggu. RC2 belum menetapkan alias hari pekan yang dilokalkan dan ditinjau, sehingga bentuk Latin kanonik digunakan.
+Nama-nama ini adalah pengenal kanonik Tredecadia, bukan terjemahan atau penggantian nama Senin sampai Minggu. Alias hari pekan yang dilokalkan dan ditinjau belum ditetapkan, sehingga bentuk Latin kanonik digunakan.
 
 Tahun biasa:
 
