@@ -80,6 +80,11 @@ title: Tredecadia
   </noscript>
 </div>
 
+<div class="reference-note" lang="en">
+  <p>This page is a navigational summary, not a second copy of the standard. Normative requirements remain in the repository specifications and machine-readable registries.</p>
+  <p><a href="https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md">Read the project introduction in all available languages</a> · <a href="https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.1.0-rc.1">v1.1.0-rc.1 prerelease</a> · <a href="https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0">Stable v1.0.0</a></p>
+</div>
+
 ## Calendar at a glance
 
 - 13 regular months × 28 days = 364 regular days.
