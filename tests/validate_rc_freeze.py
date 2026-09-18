@@ -98,9 +98,15 @@ def main() -> None:
     assert months["pronunciation"] == rc2["pronunciation"] == rc1["pronunciation"]
 
     profiles = {profile["id"]: profile for profile in localizations["profiles"]}
-    assert set(profiles) == {"ru-Cyrl", "ja-Kana", "ko-Hang"}
+    baseline_profile_ids = {"ru-Cyrl", "ja-Kana", "ko-Hang"}
+
+    # Localization profiles are an explicitly compatible extension surface.
+    # Freeze the v1.0 baseline profiles and their mappings, but do not mistake
+    # the addition of reviewed profiles in a minor release for canonical drift.
+    assert baseline_profile_ids.issubset(profiles)
     assert all(profile["review"]["status"] in {"reviewed", "stable"} for profile in profiles.values())
     for profile_id, mapping in rc2["localizationMaps"].items():
+        assert profile_id in baseline_profile_ids
         assert profiles[profile_id]["syllableMap"] == mapping
     assert rc2["localizationMaps"] == rc1["localizationMaps"]
 
@@ -119,7 +125,7 @@ def main() -> None:
     ):
         assert phrase in compatibility, phrase
 
-    print("Tredecadia v1 RC2 compatibility freeze validation: OK")
+    print("Tredecadia v1 canonical compatibility freeze validation: OK")
 
 
 if __name__ == "__main__":
