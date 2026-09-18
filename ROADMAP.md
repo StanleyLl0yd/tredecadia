@@ -104,7 +104,7 @@ Stable transition checklist:
 
 ## M5 — additional-script month localization profiles
 
-Status: **in progress — `v1.1.0-rc.1` candidate under full compatibility/release audit**
+Status: **in progress — `v1.1.0-rc.1` published and verified; observation open**
 
 This milestone is a compatible minor-version localization expansion. It does not alter canonical month or weekday identity and does not rewrite the published `v1.0.0` registry.
 
@@ -116,4 +116,11 @@ This milestone is a compatible minor-version localization expansion. It does not
 - [x] clear all six profiles for `reviewed` maturity without claiming a native-speaker usability study;
 - [x] promote the six accepted profiles into the normative `v1.1.0-rc.1` localization registry at `reviewed` maturity;
 - [x] update reader-facing localized documentation for the six newly normative profiles;
-- [ ] run the complete v1.1 compatibility/release audit and publish the compatible minor release.
+- [x] run the complete v1.1 RC compatibility/release audit;
+- [x] publish immutable `v1.1.0-rc.1` from source commit `8d1b5a0c05eab8875e95b9896fd1c386edfe1220`;
+- [x] verify the remote tag and re-download/byte-compare the deterministic release assets; archive SHA-256 is `5b32dad3438572b67381ef5af05bf6fd915a2393fc69c8c132b7bef125ff876e`;
+- [ ] complete the minimum one-full-day v1.1 RC observation no earlier than `2026-09-19T08:01:59Z`;
+- [ ] classify all v1.1 RC feedback and require zero compatibility-critical findings/open reports for stable approval;
+- [ ] record an explicit accept/reject stable decision for each of the six reviewed profiles;
+- [ ] prepare and verify the atomic `1.1.0-rc.1` → `1.1.0` transition;
+- [ ] publish and re-verify stable `v1.1.0`.
