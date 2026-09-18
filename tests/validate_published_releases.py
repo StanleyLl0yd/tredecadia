@@ -98,7 +98,17 @@ def main() -> None:
         assert release["commit"] in readme
         assert release["archiveSha256"] in readme
     assert RC2["publishedAt"] in readme
-    assert "2026-09-17T09:44:59Z" in readme
+
+    # Observation timing is historical release evidence, not permanent
+    # reader-facing copy. Keep it locked in the observation record while the
+    # README is free to describe the current release line.
+    assert active_observation["window"]["notBefore"] == "2026-09-17T09:44:59Z"
+
+    # The current public README must still expose the immutable stable source
+    # and deterministic archive identity even while a later RC is active.
+    assert STABLE["tag"] in readme
+    assert STABLE["commit"] in readme
+    assert STABLE["archiveSha256"] in readme
 
     print("Tredecadia published RC1/RC2/stable source-lock validation: OK")
 
