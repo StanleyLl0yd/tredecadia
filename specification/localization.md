@@ -20,14 +20,23 @@ For canonical weekdays, a localized display/speech mapping MUST preserve the und
 
 ## Current release-candidate profiles
 
-Tredecadia `1.0.0-rc.2` includes three independently reviewed, non-stable **month display profiles**:
+Stable `v1.0.0` established three month display profiles at `stable` maturity:
 
-- `ru-Cyrl` — Russian Cyrillic — **reviewed** against Russian practical-transcription and orthographic references; `MI/NI` palatalization is explicitly documented as a Russian adaptation;
-- `ja-Kana` — Japanese Katakana — **reviewed** against the Japanese Agency for Cultural Affairs `外来語の表記` guidance;
-- `ko-Hang` — Korean Hangul — **reviewed** against the National Institute of Korean Language `외래어 표기법` IPA-to-Hangul rules.
+- `ru-Cyrl` — Russian Cyrillic; `MI/NI` palatalization is a documented Russian adaptation;
+- `ja-Kana` — Japanese Katakana; reviewed against the Japanese Agency for Cultural Affairs foreign-word orthography guidance;
+- `ko-Hang` — Korean Hangul; reviewed against the National Institute of Korean Language IPA-to-Hangul foreign-word rules.
 
-These reviews are evidence-based script/orthography reviews. They do not claim a separate usability study with a panel of native speakers. Evidence and approximation notes are recorded in `registry/localizations.json` and the corresponding rationale files.
+The compatible `1.1.0-rc.1` candidate carries those profiles forward unchanged and adds six independently reviewed month-only profiles at `reviewed` maturity:
 
-No profile is `stable` in `1.0.0-rc.2`; final stable promotion is reserved for an explicitly accepted `v1.0.0` release.
+- `ka-Geor` — Georgian Mkhedruli;
+- `hy-Armn` — Eastern Armenian;
+- `ar-Arab` — fully vocalized Arabic;
+- `hi-Deva` — Hindi-oriented Devanagari;
+- `bn-Beng` — Bengali;
+- `fa-Arab` — Iranian Persian.
+
+The six new profiles are evidence-reviewed but are not yet `stable`; stable maturity requires an explicit stable-release acceptance decision. No native-speaker usability study is claimed for them. Evidence, deterministic syllable maps, derived aliases, and documented approximations are recorded in `registry/localizations.json` and the M5 rationale/review records.
 
 Within each profile every registered Full, Short-6, and Short-4 month alias MUST map back to exactly one canonical month. Character-by-character reversibility to Latin is not required.
+
+No registered month profile automatically defines weekday aliases. Weekday aliases require a separate review surface covering `W1..W7` and the canonical weekday `E/O` syllables.
