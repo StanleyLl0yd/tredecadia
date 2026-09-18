@@ -122,11 +122,13 @@
       node.textContent = s(node.dataset.i18n);
     });
 
-    const docs = $("#localized-doc-link");
-    if (docs) {
-      docs.href = REPO_BLOB + I.readmePath(currentLocale);
-      docs.hreflang = currentLocale;
-    }
+    ["#localized-doc-link", "#summary-doc-link"].forEach((selector) => {
+      const docs = $(selector);
+      if (docs) {
+        docs.href = REPO_BLOB + I.readmePath(currentLocale);
+        docs.hreflang = currentLocale;
+      }
+    });
 
     const calendar = $("#interactive-calendar");
     if (calendar) calendar.setAttribute("aria-label", s("interactiveCalendar"));

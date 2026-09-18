@@ -64,24 +64,27 @@ def main() -> None:
 
     # The website is a navigation layer, never a second normative source.
     assert "navigational summary, not a second copy of the standard" in index
-    assert "The GitHub repository is the canonical source" in index
-    assert "specification/calendar-standard.md" in index
-    assert "registry" in index
+    assert 'id="page-summary"' in index
+    assert 'id="summary-doc-link"' in index
     assert "README.languages.md" in index, "Pages should expose the multilingual entry point"
+    assert "releases/tag/v1.0.0" in index
+    assert "releases/tag/v1.1.0-rc.1" in index
     assert 'id="interactive-calendar"' in index
     assert "'/assets/tredecadia-engine.js' | relative_url" in index
     assert "'/assets/i18n.js' | relative_url" in index
     assert "'/assets/calendar.js' | relative_url" in index
     assert "'/assets/calendar.css' | relative_url" in layout
     assert '<meta name="viewport"' in layout
+    assert 'document.documentElement.classList.add("js")' in layout
     assert 'class="site-shell"' in layout
     assert 'id="display-language"' in layout
     assert 'id="localized-doc-link"' in layout
     assert "TredecadiaI18n" in i18n
     assert "navigator" not in i18n, "i18n data/module should stay environment-neutral"
     # Locale counts change as translations are added. Keep the landing-page
-    # link count-free so it cannot silently become stale again.
-    assert "Read the project introduction in all available languages" in index
+    # entry count-free and localizable so it cannot silently become stale or
+    # force an English phrase into non-English UI.
+    assert 'data-i18n="allLanguages"' in index
 
     assert "theme: jekyll-theme-minimal" in config
     assert "title: Tredecadia" in config

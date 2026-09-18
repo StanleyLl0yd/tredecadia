@@ -159,6 +159,10 @@ def main() -> None:
         'id="calendar-year"',
         'id="gregorian-form"',
         'id="tredecadia-form"',
+        'id="page-summary"',
+        'id="summary-doc-link"',
+        'data-i18n="aboutTitle"',
+        'data-i18n="resourcesTitle"',
         "'/assets/tredecadia-engine.js' | relative_url",
         "'/assets/i18n.js' | relative_url",
         "'/assets/calendar.js' | relative_url",
@@ -204,6 +208,20 @@ def main() -> None:
     assert "TredecadiaI18n" in i18n
     assert "MONTH_PROFILES" in i18n
     assert "resolveLanguage" in i18n
+    assert "aboutTitle" in i18n
+    assert "aboutSummary" in i18n
+    assert "resourcesTitle" in i18n
+    assert "allLanguages" in i18n
+    assert "html.js:not(.tredecadia-interactive-ready) [data-i18n]" in css
+
+    for stale_heading in (
+        "## Calendar at a glance",
+        "## Canonical weekdays",
+        "## Canonical months",
+        "## Published RC2 identity",
+        "## Standard and data",
+    ):
+        assert stale_heading not in index, stale_heading
 
     # Keep runtime behavior dependency-free: no network data fetch is needed
     # to calculate dates, localize controls, or obtain month aliases.
