@@ -18,7 +18,7 @@ Cycle canonique de sept jours :
 
 `W1 Mene → W2 Noko → W3 Kese → W4 Zoyo → W5 Sote → W6 Yemo → W7 Toze`
 
-Ces noms sont des identifiants canoniques de Tredecadia, et non des traductions ni des renommages de lundi à dimanche. RC2 ne définit pas encore d’alias localisés révisés pour les jours de la semaine ; les formes latines canoniques sont donc conservées.
+Ces noms sont des identifiants canoniques de Tredecadia, et non des traductions ni des renommages de lundi à dimanche. Aucun alias localisé révisé n’est encore défini pour les jours de la semaine ; les formes latines canoniques sont donc conservées.
 
 Année ordinaire :
 
