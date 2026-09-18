@@ -115,7 +115,7 @@ The published compatible prerelease `v1.1.0-rc.1` adds six independently reviewe
 - Bengali (`bn-Beng`);
 - Iranian Persian (`fa-Arab`).
 
-Their aliases are presentation/localization data only: canonical month numbers, Latin names, syllable identities, Short-6 and Short-4 remain unchanged. Weekday aliases are still out of scope because the weekday `E/O` syllables require a separate evidence and review surface.
+Their aliases are presentation/localization data only: canonical month numbers, Latin names, syllable identities, Short-6 and Short-4 remain unchanged. All six reviewed profiles have now received explicit **stable acceptance decisions** for the future `v1.1.0` transition; that acceptance does not bypass the still-open RC observation. Weekday aliases remain out of scope because the weekday `E/O` syllables require a separate evidence and review surface.
 
 ## Specification
 
@@ -198,7 +198,7 @@ Published v1.1.0-rc.1 identity:
 - archive SHA-256: `5b32dad3438572b67381ef5af05bf6fd915a2393fc69c8c132b7bef125ff876e`;
 - earliest observation completion: `2026-09-19T08:01:59Z`.
 
-The guarded v1.1 RC publication workflow reran the complete conformance suite, verified the exact remote tag target, downloaded the published archive and checksum, and byte-compared both with the deterministic local build. Stable `v1.1.0` remains blocked until the RC observation completes cleanly and every reviewed profile receives an explicit stable accept/reject decision.
+The guarded v1.1 RC publication workflow reran the complete conformance suite, verified the exact remote tag target, downloaded the published archive and checksum, and byte-compared both with the deterministic local build. Stable `v1.1.0` remains blocked until the RC observation completes cleanly. All six reviewed profiles already have explicit stable acceptance decisions; the observation/time gate is now the remaining release authorization barrier.
 
 ## Licensing
 

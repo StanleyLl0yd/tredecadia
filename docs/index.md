@@ -82,7 +82,7 @@ Stable `1.0.0` includes three **stable month** display profiles:
 - Japanese Katakana (`ja-Kana`);
 - Korean Hangul (`ko-Hang`).
 
-The published `1.1.0-rc.1` prerelease adds six **reviewed month-only** profiles: Georgian Mkhedruli (`ka-Geor`), Eastern Armenian (`hy-Armn`), fully vocalized Arabic (`ar-Arab`), Hindi-oriented Devanagari (`hi-Deva`), Bengali (`bn-Beng`), and Iranian Persian (`fa-Arab`).
+The published `1.1.0-rc.1` prerelease adds six **reviewed month-only** profiles: Georgian Mkhedruli (`ka-Geor`), Eastern Armenian (`hy-Armn`), fully vocalized Arabic (`ar-Arab`), Hindi-oriented Devanagari (`hi-Deva`), Bengali (`bn-Beng`), and Iranian Persian (`fa-Arab`). All six now have explicit stable acceptance decisions for `v1.1.0`; observation remains an independent gate.
 
 Localized month spellings are aliases and never change canonical month numbers, Latin names, syllables, Short-6, or Short-4 identifiers. No weekday aliases are inferred from month profiles; the weekday `E/O` syllables require separate review.
 
@@ -104,7 +104,7 @@ The guarded publication workflow reran the full conformance suite, created the t
 - archive SHA-256: `5b32dad3438572b67381ef5af05bf6fd915a2393fc69c8c132b7bef125ff876e`
 - earliest observation completion: `2026-09-19T08:01:59Z`
 
-Stable `v1.1.0` remains gated on a clean RC observation and explicit decisions for all six reviewed profiles.
+Stable `v1.1.0` remains gated on a clean RC observation. The six stable profile decisions are already complete and CI-locked against the published RC identity.
 
 ## Standard and data
 
