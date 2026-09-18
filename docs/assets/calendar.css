@@ -259,6 +259,50 @@ blockquote {
   border-top: 1px solid var(--tc-border);
 }
 
+
+.page-summary {
+  width: 100%;
+  margin: 2rem 0 0;
+}
+
+.page-summary > h2:first-child {
+  margin-top: 0;
+}
+
+.summary-facts {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0.8rem 0 1.6rem;
+  padding-inline-start: 1.3rem;
+}
+
+.resource-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+
+.resource-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.4rem;
+  border: 1px solid var(--tc-border);
+  border-radius: 9px;
+  padding: 0.45rem 0.7rem;
+  background: var(--tc-bg);
+  text-decoration: none;
+}
+
+.resource-link:hover,
+.resource-link:focus-visible {
+  border-color: var(--tc-accent);
+}
+
+html.js:not(.tredecadia-interactive-ready) [data-i18n] {
+  visibility: hidden;
+}
+
 .site-footer {
   display: flex;
   flex-wrap: wrap;
