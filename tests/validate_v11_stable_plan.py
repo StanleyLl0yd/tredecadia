@@ -39,6 +39,7 @@ def main() -> None:
     publish = load("release/publish.json")
     localizations = load("registry/localizations.json")
     ledger = load("release/published-releases.json")
+    stable_decisions = load("rationale/v1.1-stable-profile-decisions.json")
     version = citation_version()
 
     assert plan["planVersion"] == 1
@@ -68,10 +69,20 @@ def main() -> None:
     }
     decisions = {item["id"]: item for item in plan["localizationProfiles"]}
     assert set(decisions) == CANDIDATES
-    for item in decisions.values():
+    recorded = {item["id"]: item for item in stable_decisions["decisions"]}
+    assert stable_decisions["schemaVersion"] == 1
+    assert stable_decisions["targetVersion"] == plan["targetVersion"]
+    assert stable_decisions["sourceRc"]["version"] == plan["sourceRc"]["version"]
+    assert stable_decisions["sourceRc"]["commit"] == plan["sourceRc"]["commit"]
+    assert set(recorded) == CANDIDATES
+    for profile_id, item in decisions.items():
         assert item["currentStatus"] == "reviewed"
         assert item["stableDecision"] in {"pending", "accepted", "rejected"}
-        assert isinstance(item["evidence"], list) and item["evidence"]
+        assert item["stableDecision"] == recorded[profile_id]["stableDecision"]
+        assert item["stableDecision"] == "accepted"
+        assert recorded[profile_id]["nativeSpeakerUsabilityStudyClaimed"] is False
+        assert isinstance(recorded[profile_id]["evidence"], list) and recorded[profile_id]["evidence"]
+        assert f"rationale/v1.1-stable-profile-decisions.json#{profile_id}" in item["evidence"]
 
     assert plan["observation"]["status"] == observation["window"]["status"]
     assert plan["observation"]["stableDecision"] == observation["summary"]["stableDecision"]
