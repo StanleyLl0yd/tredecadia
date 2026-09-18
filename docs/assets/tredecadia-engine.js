@@ -10,6 +10,7 @@
   "use strict";
 
   const TE_GREGORIAN_YEAR_OFFSET = 9999;
+  const MAX_ABS_YEAR = 1000000000000;
   const GREGORIAN_MONTH_LENGTHS = Object.freeze([31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]);
 
   const MONTHS = Object.freeze([
@@ -44,18 +45,25 @@
     }
   }
 
+  function assertYear(year, label) {
+    assertInteger(year, label);
+    if (Math.abs(year) > MAX_ABS_YEAR) {
+      throw new RangeError(label + " exceeds the interactive converter range");
+    }
+  }
+
   function gregorianIsLeap(year) {
-    assertInteger(year, "Gregorian year");
+    assertYear(year, "Gregorian year");
     return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
   }
 
   function tredecadiaIsLeap(year) {
-    assertInteger(year, "Tredecadia year");
+    assertYear(year, "Tredecadia year");
     return gregorianIsLeap(year - 9998);
   }
 
   function gregorianMonthLength(year, month) {
-    assertInteger(year, "Gregorian year");
+    assertYear(year, "Gregorian year");
     assertInteger(month, "Gregorian month");
     if (month < 1 || month > 12) {
       throw new RangeError("Gregorian month must be in 1..12");
@@ -68,7 +76,7 @@
 
   function validateGregorian(value) {
     const { year, month, day } = value;
-    assertInteger(year, "Gregorian year");
+    assertYear(year, "Gregorian year");
     assertInteger(month, "Gregorian month");
     assertInteger(day, "Gregorian day");
     const length = gregorianMonthLength(year, month);
@@ -79,7 +87,7 @@
   }
 
   function daysBeforeGregorianYear(year) {
-    assertInteger(year, "Gregorian year");
+    assertYear(year, "Gregorian year");
     const y = year - 1;
     return 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400);
   }
@@ -123,18 +131,18 @@
   }
 
   function formatYear(year) {
-    assertInteger(year, "Tredecadia year");
+    assertYear(year, "Tredecadia year");
     const magnitude = String(Math.abs(year)).padStart(5, "0");
     return year < 0 ? "-" + magnitude : magnitude;
   }
 
   function formatDisplayYear(year) {
-    assertInteger(year, "Tredecadia year");
+    assertYear(year, "Tredecadia year");
     return year < 0 ? "−" + Math.abs(year) : String(year);
   }
 
   function formatGregorianYear(year) {
-    assertInteger(year, "Gregorian year");
+    assertYear(year, "Gregorian year");
     const magnitude = String(Math.abs(year)).padStart(4, "0");
     return year < 0 ? "-" + magnitude : magnitude;
   }
@@ -145,7 +153,7 @@
   }
 
   function validateTredecadia(value) {
-    assertInteger(value.year, "Tredecadia year");
+    assertYear(value.year, "Tredecadia year");
     if (value.special != null) {
       if (value.special !== "EQ" && value.special !== "ED") {
         throw new RangeError("special date must be EQ or ED");
@@ -193,7 +201,7 @@
 
     const yearField = match[1];
     const year = Number(yearField);
-    assertInteger(year, "Tredecadia year");
+    assertYear(year, "Tredecadia year");
     if (formatYear(year) !== yearField) {
       throw new RangeError("Tredecadia year field is not canonical.");
     }
@@ -255,6 +263,7 @@
 
   return Object.freeze({
     TE_GREGORIAN_YEAR_OFFSET,
+    MAX_ABS_YEAR,
     MONTHS,
     WEEKDAYS,
     gregorianIsLeap,
