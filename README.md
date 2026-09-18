@@ -4,8 +4,9 @@
 
 Tredecadia is an open 13 × 28 perennial calendar standard with equal months, stable weekdays, a continuous mathematical year coordinate, and internationally neutral month and weekday names.
 
-> **Status: `1.1.0-rc.1` release candidate; stable `v1.0.0` remains published.**
+> **Status: `v1.1.0-rc.1` published prerelease; stable `v1.0.0` remains the current stable release.**
 
+Current prerelease: [`v1.1.0-rc.1`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.1.0-rc.1)  
 Stable release: [`v1.0.0`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0)  
 Historical RCs: [`v1.0.0-rc.2`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2) · [`v1.0.0-rc.1`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
 
@@ -105,7 +106,7 @@ Stable `v1.0.0` contains three **stable** month display profiles:
 - Japanese Katakana (`ja-Kana`);
 - Korean Hangul (`ko-Hang`).
 
-The compatible `v1.1.0-rc.1` candidate adds six independently reviewed **month-only** display profiles at `reviewed` maturity:
+The published compatible prerelease `v1.1.0-rc.1` adds six independently reviewed **month-only** display profiles at `reviewed` maturity:
 
 - Georgian Mkhedruli (`ka-Geor`);
 - Eastern Armenian (`hy-Armn`);
@@ -189,6 +190,16 @@ The guarded RC2 publication workflow reran the complete release conformance suit
 
 The RC2 observation completed after its required one-full-day interval with no compatibility-critical findings or open reports. Stable `v1.0.0` was subsequently published from source commit `8c272bf6a48b1b84a4b2ca8c1db43c6ffb9f5ce3`; its deterministic archive SHA-256 is `2f14cc4fb2bcac2cfcce280ddbe948d4c65cab098ce23c1d385d220709f5c392`.
 
+Published v1.1.0-rc.1 identity:
+
+- source commit: `8d1b5a0c05eab8875e95b9896fd1c386edfe1220`;
+- published at: `2026-09-18T08:01:59Z`;
+- archive: `tredecadia-1.1.0-rc.1.tar.gz`;
+- archive SHA-256: `5b32dad3438572b67381ef5af05bf6fd915a2393fc69c8c132b7bef125ff876e`;
+- earliest observation completion: `2026-09-19T08:01:59Z`.
+
+The guarded v1.1 RC publication workflow reran the complete conformance suite, verified the exact remote tag target, downloaded the published archive and checksum, and byte-compared both with the deterministic local build. Stable `v1.1.0` remains blocked until the RC observation completes cleanly and every reviewed profile receives an explicit stable accept/reject decision.
+
 ## Licensing
 
 Documentation, specifications, machine-readable registries, and test vectors are licensed under **CC BY 4.0**. Source code, scripts, and CI/workflow code are licensed under the **MIT License** unless a file states otherwise. See [`LICENSE.md`](LICENSE.md).
@@ -197,4 +208,4 @@ The licenses do not grant trademark rights in the Tredecadia name or branding.
 
 ## Versioning
 
-The current stable release is **`1.0.0`**. The working release candidate is **`1.1.0-rc.1`**, a compatible minor localization expansion. Published tags and artifacts remain immutable; incompatible changes to the canonical v1 identity require an explicitly versioned compatibility process rather than rewriting an existing release.
+The current stable release is **`1.0.0`**. The published prerelease is **`1.1.0-rc.1`**, a compatible minor localization expansion under observation. Published tags and artifacts remain immutable; incompatible changes to the canonical v1 identity require an explicitly versioned compatibility process rather than rewriting an existing release.
