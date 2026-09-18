@@ -195,8 +195,12 @@ def main() -> None:
     assert "@media (prefers-reduced-motion: reduce)" in css
     assert ".site-shell" in css
     assert ".calendar-scroll" in css
+    assert ".wrapper" not in css, "Pages must not rely on jekyll-theme-minimal two-column geometry"
+    assert "float:" not in css, "site layout should not reintroduce float-based theme columns"
     assert 'id="display-language"' in layout
     assert 'class="site-shell"' in layout
+    assert 'class="site-header"' in layout
+    assert 'class="site-main"' in layout
     assert "TredecadiaI18n" in i18n
     assert "MONTH_PROFILES" in i18n
     assert "resolveLanguage" in i18n
