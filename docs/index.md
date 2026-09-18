@@ -3,6 +3,8 @@ layout: default
 title: Tredecadia
 ---
 
+<link rel="stylesheet" href="{{ '/assets/calendar.css' | relative_url }}">
+
 # Tredecadia
 
 **A 13 × 28 perennial calendar standard.**
@@ -14,6 +16,80 @@ Tredecadia has thirteen equal 28-day months, four complete seven-day weeks per m
 This page is a navigational summary, not a second copy of the standard. Normative requirements remain in the repository specifications and machine-readable registries.
 
 [Read the project introduction in all available languages](https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md) · [v1.1.0-rc.1 prerelease](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.1.0-rc.1) · [Stable v1.0.0](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0) · [Historical RC2](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2) · [Historical RC1](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
+
+## Interactive calendar
+
+<div id="interactive-calendar" class="calendar-shell" aria-label="Interactive Tredecadia calendar">
+  <div class="calendar-hero">
+    <div class="today-card">
+      <p class="eyebrow">Today in Tredecadia</p>
+      <div id="today-te" class="today-te" aria-live="polite">Loading…</div>
+      <p id="today-description" class="today-description"></p>
+      <p id="today-gregorian" class="today-gregorian"></p>
+    </div>
+    <div id="selected-date" class="selected-card" aria-live="polite">
+      <p class="eyebrow">Selected date</p>
+      <h3 id="selected-te">—</h3>
+      <p id="selected-description"></p>
+      <p><strong id="selected-weekday"></strong></p>
+      <p>Gregorian <strong id="selected-gregorian">—</strong></p>
+    </div>
+  </div>
+
+  <div class="calendar-toolbar" aria-label="Calendar navigation">
+    <button id="calendar-prev" type="button" aria-label="Previous Tredecadia month">← Previous</button>
+    <button id="calendar-today" type="button">Today</button>
+    <label class="month-control">Month
+      <select id="calendar-month" aria-label="Tredecadia month"></select>
+    </label>
+    <label class="year-control">TE year
+      <input id="calendar-year" type="text" inputmode="numeric" autocomplete="off" aria-label="Tredecadia year">
+    </label>
+    <button id="calendar-next" type="button" aria-label="Next Tredecadia month">Next →</button>
+  </div>
+
+  <div class="calendar-title-row">
+    <h2 id="calendar-title">Tredecadia month</h2>
+    <p id="calendar-subtitle"></p>
+  </div>
+
+  <div id="calendar-grid" class="calendar-grid" role="group" aria-label="28-day Tredecadia month"></div>
+  <div id="intercalary-days" class="intercalary-days" aria-label="Intercalary days"></div>
+
+  <div class="converter-grid">
+    <div class="converter-card">
+      <p class="eyebrow">Gregorian → Tredecadia</p>
+      <h3>Convert a civil date</h3>
+      <form id="gregorian-form">
+        <label>Gregorian date
+          <input id="gregorian-input" type="text" inputmode="numeric" autocomplete="off" placeholder="2026-09-18" aria-describedby="gregorian-help">
+        </label>
+        <button type="submit">Convert</button>
+      </form>
+      <div id="gregorian-help" class="calendar-note">Astronomical year numbering is supported, including year 0 and negative years.</div>
+      <div id="gregorian-result" class="converter-result" aria-live="polite"></div>
+    </div>
+
+    <div class="converter-card">
+      <p class="eyebrow">Tredecadia → Gregorian</p>
+      <h3>Convert a canonical TE date</h3>
+      <form id="tredecadia-form">
+        <label>Tredecadia date
+          <input id="tredecadia-input" type="text" inputmode="numeric" autocomplete="off" placeholder="12025-07-14" aria-describedby="tredecadia-help">
+        </label>
+        <button type="submit">Convert</button>
+      </form>
+      <div id="tredecadia-help" class="calendar-note">Use canonical forms such as <code>12025-07-14</code>, <code>00000-EQ</code>, or <code>09998-ED</code>.</div>
+      <div id="tredecadia-result" class="converter-result" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <p class="calendar-note">The widget is a convenience implementation. The specifications and machine-readable registries remain normative. “Today” uses the browser’s local civil date.</p>
+
+  <noscript>
+    <p class="calendar-error">JavaScript is disabled, so the interactive calendar is unavailable. The static specification and canonical tables remain available below.</p>
+  </noscript>
+</div>
 
 ## Calendar at a glance
 
@@ -120,3 +196,7 @@ The GitHub repository is the canonical source:
 - [Python reference implementation](https://github.com/StanleyLl0yd/tredecadia/tree/main/reference/python)
 
 Tredecadia specifications, registries, and published test vectors are CC BY 4.0. Reference/source code is MIT licensed unless a file states otherwise.
+
+
+<script src="{{ '/assets/tredecadia-engine.js' | relative_url }}"></script>
+<script src="{{ '/assets/calendar.js' | relative_url }}" defer></script>
