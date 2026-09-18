@@ -34,12 +34,15 @@ def main() -> None:
     for permission in ("contents: read", "pages: write", "id-token: write"):
         assert permission in workflow, f"missing Pages permission: {permission}"
 
-    # Deployment remains explicit during the RC/stable transition even though
-    # the one-time repository Pages setting has now been enabled successfully.
+    # Pages is live, so main-branch website changes deploy automatically.
+    # Manual dispatch remains available as an operational fallback.
     assert "workflow_dispatch:" in workflow
-    assert "pages_enabled:" in workflow
-    assert "if: ${{ inputs.pages_enabled }}" in workflow
-    assert "\n  push:\n" not in workflow
+    assert "\n  push:\n" in workflow
+    assert "branches: [main]" in workflow
+    assert '"docs/**"' in workflow
+    assert '".github/workflows/pages.yml"' in workflow
+    assert "pages_enabled:" not in workflow
+    assert "if: ${{ inputs.pages_enabled }}" not in workflow
 
     assert "environment:" in workflow and "name: github-pages" in workflow
     assert "source: ./docs" in workflow
@@ -61,6 +64,10 @@ def main() -> None:
     assert "specification/calendar-standard.md" in index
     assert "registry" in index
     assert "README.languages.md" in index, "Pages should expose the multilingual entry point"
+    assert 'id="interactive-calendar"' in index
+    assert "'/assets/tredecadia-engine.js' | relative_url" in index
+    assert "'/assets/calendar.js' | relative_url" in index
+    assert "'/assets/calendar.css' | relative_url" in index
     # Locale counts change as translations are added. Keep the landing-page
     # link count-free so it cannot silently become stale again.
     assert "Read the project introduction in all available languages" in index
