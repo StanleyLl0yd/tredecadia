@@ -61,6 +61,10 @@ jobs:
         run: python tests/validate_localizations.py
       - name: Validate additional-script localization candidates
         run: python tests/validate_additional_script_localizations.py
+      - name: Validate v1.1 RC observation gate
+        run: python tests/validate_v11_observation.py
+      - name: Validate v1.1 stable-promotion gate
+        run: python tests/validate_v11_stable_plan.py
       - name: Validate Short-4 conversational and UX invariants
         run: python tests/validate_short4_ux.py
       - name: Validate signed-year accessibility and presentation
