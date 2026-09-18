@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "sourceRc": {
+    "version": "1.1.0-rc.1",
+    "tag": "v1.1.0-rc.1",
+    "publicationStatus": "published",
+    "commit": "8d1b5a0c05eab8875e95b9896fd1c386edfe1220",
+    "publishedAt": "2026-09-18T08:01:59Z",
+    "archive": "tredecadia-1.1.0-rc.1.tar.gz",
+    "archiveSha256": "5b32dad3438572b67381ef5af05bf6fd915a2393fc69c8c132b7bef125ff876e"
+  },
+  "stableTarget": "1.1.0",
+  "window": {
+    "status": "open",
+    "minimumDays": 1,
+    "notBefore": "2026-09-19T08:01:59Z",
+    "completedAt": null
+  },
+  "classifications": [
+    "compatibility-critical-defect",
+    "compatible-correction",
+    "editorial-issue",
+    "non-blocking-future-work"
+  ],
+  "scope": {
+    "stableBaselineProfiles": [
+      "ru-Cyrl",
+      "ja-Kana",
+      "ko-Hang"
+    ],
+    "reviewedCandidateProfiles": [
+      "ka-Geor",
+      "hy-Armn",
+      "ar-Arab",
+      "hi-Deva",
+      "bn-Beng",
+      "fa-Arab"
+    ],
+    "weekdayAliasesIncluded": false,
+    "canonicalIdentityChanged": false
+  },
+  "reports": [],
+  "summary": {
+    "compatibilityCriticalDefectsFound": 0,
+    "compatibilityCriticalDefectsOpen": 0,
+    "openReports": 0,
+    "stableDecision": "pending"
+  }
+}
