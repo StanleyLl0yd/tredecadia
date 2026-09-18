@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OBS = ROOT / "release" / "v1.1-rc1-observation.json"
+FEEDBACK_FORM = ROOT / ".github" / "ISSUE_TEMPLATE" / "rc-feedback.yml"
 
 BASELINE = {"ru-Cyrl", "ja-Kana", "ko-Hang"}
 CANDIDATES = {"ka-Geor", "hy-Armn", "ar-Arab", "hi-Deva", "bn-Beng", "fa-Arab"}
@@ -37,6 +38,7 @@ def main() -> None:
     ledger = load("release/published-releases.json")
     localizations = load("registry/localizations.json")
     publish = load("release/publish.json")
+    form = FEEDBACK_FORM.read_text(encoding="utf-8")
 
     assert observation["schemaVersion"] == 1
     source = observation["sourceRc"]
@@ -115,6 +117,21 @@ def main() -> None:
         "prerelease": True,
         "notes": "release/notes/1.1.0-rc.1.md",
     }
+
+    for needle in (
+        "name: Tredecadia RC feedback",
+        "v1.1.0-rc.1",
+        "stable `v1.1.0` decision",
+        "M5 review",
+        "Calendar structure or date conversion",
+        "Localization or writing system",
+        "Accessibility or human presentation",
+        "Packaging or release artifacts",
+        "Documentation or translation",
+    ):
+        assert needle in form, f"active RC feedback form missing {needle!r}"
+    assert "value: v1.1.0-rc.1" in form
+    assert "v1.0.0-rc.2" not in form
 
     print("Tredecadia v1.1.0-rc.1 observation validation: OK")
 
