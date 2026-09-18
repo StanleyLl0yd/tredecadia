@@ -1667,8 +1667,8 @@
     const normalized = normalizeTag(tag);
     if (!normalized) return null;
 
-    if (normalized === "zh-hant" || normalized.startsWith("zh-tw") || normalized.startsWith("zh-hk") || normalized.startsWith("zh-mo")) return "zh-TW";
-    if (normalized === "zh-hans" || normalized.startsWith("zh-cn") || normalized.startsWith("zh-sg") || normalized === "zh") return "zh-CN";
+    if (normalized.startsWith("zh-hant") || normalized.startsWith("zh-tw") || normalized.startsWith("zh-hk") || normalized.startsWith("zh-mo")) return "zh-TW";
+    if (normalized.startsWith("zh-hans") || normalized.startsWith("zh-cn") || normalized.startsWith("zh-sg") || normalized === "zh") return "zh-CN";
     if (normalized.startsWith("pt")) return "pt-BR";
 
     const primary = normalized.split("-")[0];
