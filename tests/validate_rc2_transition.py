@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
-"""Validate the explicit RC1 -> RC2 weekday compatibility transition."""
+"""Validate the historical RC1 -> RC2 weekday compatibility transition."""
 
 from __future__ import annotations
 
@@ -42,6 +42,7 @@ def main() -> None:
     stable_plan = load("release/stable-plan.json")
     observation = load("release/rc-observation.json")
     publish = load("release/publish.json")
+    published = load("release/published-releases.json")
     current_version = citation_version()
 
     assert manifest["manifestVersion"] == 1
@@ -82,7 +83,11 @@ def main() -> None:
     assert stable_plan["predecessorRc"]["version"] == "1.0.0-rc.1"
     assert stable_plan["publication"]["allowed"] is stable_publication_allowed(stable_plan, observation)
     assert observation["sourceRc"]["version"] == "1.0.0-rc.2"
-    assert current_version in {"1.0.0-rc.2", "1.0.0"}
+
+    # While the original transition was active, publication metadata had to
+    # match RC2 or stable 1.0 exactly. Later compatible v1 releases keep this
+    # file as a historical proof and instead demonstrate that stable 1.0 was
+    # actually published from the planned target before moving forward.
     if current_version == "1.0.0-rc.2":
         assert publish == {
             "version": "1.0.0-rc.2",
@@ -90,7 +95,7 @@ def main() -> None:
             "prerelease": True,
             "notes": "release/notes/1.0.0-rc.2.md",
         }
-    else:
+    elif current_version == "1.0.0":
         assert stable_plan["publication"]["allowed"] is True
         assert publish == {
             "version": "1.0.0",
@@ -98,6 +103,19 @@ def main() -> None:
             "prerelease": False,
             "notes": "release/notes/1.0.0.md",
         }
+    else:
+        stable = next(entry for entry in published["releases"] if entry["version"] == "1.0.0")
+        assert stable == {
+            "version": "1.0.0",
+            "tag": "v1.0.0",
+            "commit": "8c272bf6a48b1b84a4b2ca8c1db43c6ffb9f5ce3",
+            "publishedAt": "2026-09-17T12:53:29Z",
+            "archive": "tredecadia-1.0.0.tar.gz",
+            "archiveSha256": "2f14cc4fb2bcac2cfcce280ddbe948d4c65cab098ce23c1d385d220709f5c392",
+        }
+        assert stable_plan["publication"]["allowed"] is True
+        assert publish["version"] == current_version
+        assert publish["tag"] == f"v{current_version}"
 
     required = (
         manifest["requiredNormativeFiles"]
@@ -126,7 +144,7 @@ def main() -> None:
     assert len(manifest["publicationSequence"]) == 6
     assert "one-full-day" in manifest["publicationSequence"][4]
 
-    print("Tredecadia applied RC1 -> RC2 weekday transition: OK")
+    print("Tredecadia historical RC1 -> RC2 weekday transition: OK")
 
 
 if __name__ == "__main__":

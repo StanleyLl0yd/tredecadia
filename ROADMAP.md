@@ -104,7 +104,7 @@ Stable transition checklist:
 
 ## M5 — additional-script month localization profiles
 
-Status: **in progress — six profiles cleared for future `v1.1.0` reviewed promotion**
+Status: **in progress — `v1.1.0-rc.1` candidate under full compatibility/release audit**
 
 This milestone is a compatible minor-version localization expansion. It does not alter canonical month or weekday identity and does not rewrite the published `v1.0.0` registry.
 
@@ -114,6 +114,6 @@ This milestone is a compatible minor-version localization expansion. It does not
 - [x] resolve Bengali initial `/ja/` and `/z/` orthography using Government of Bangladesh dictionary evidence (#63);
 - [x] resolve Iranian Persian `/i,u/` spelling versus short `/e,o/` using ALA-LC and Unicode evidence (#63);
 - [x] clear all six profiles for `reviewed` maturity without claiming a native-speaker usability study;
-- [ ] promote the six accepted profiles into the normative `v1.1.0` localization registry;
-- [ ] update reader-facing localized documentation for the six newly normative profiles;
+- [x] promote the six accepted profiles into the normative `v1.1.0-rc.1` localization registry at `reviewed` maturity;
+- [x] update reader-facing localized documentation for the six newly normative profiles;
 - [ ] run the complete v1.1 compatibility/release audit and publish the compatible minor release.

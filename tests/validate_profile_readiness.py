@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
-"""Validate evidence packets for explicit v1 localization-profile decisions."""
+"""Validate evidence packets for the original v1.0 localization-profile decisions."""
 
 from __future__ import annotations
 
@@ -31,9 +31,10 @@ def expected_registry_profile_status(profile_id: str, version: str, plan: dict) 
     entry = plan_entries[profile_id]
     if version == plan["sourceRc"]["version"]:
         return entry["currentStatus"]
-    assert version == plan["targetVersion"], version
+    # At stable v1.0 and every later compatible v1 release, the already-made
+    # v1.0 decision remains in force. A later minor must not demote it.
     decision = entry["stableDecision"]
-    assert decision in {"accepted", "rejected"}, f"stable candidate has unresolved profile decision: {profile_id}"
+    assert decision in {"accepted", "rejected"}, f"stable decision unresolved: {profile_id}"
     policy = plan["profileDecisionPolicy"]
     return policy["acceptedStatus"] if decision == "accepted" else policy["rejectedStatus"]
 
@@ -44,23 +45,23 @@ def main() -> None:
     localizations = json.loads(LOCALIZATIONS.read_text(encoding="utf-8"))
     version = citation_version()
 
-    assert version in {plan["sourceRc"]["version"], plan["targetVersion"]}
     assert readiness["schemaVersion"] == 1
     assert set(readiness["requiredChecks"]) == REQUIRED_CHECKS
 
     packets = {entry["id"]: entry for entry in readiness["profiles"]}
     plan_entries = {entry["id"]: entry for entry in plan["localizationProfiles"]}
     registry_entries = {entry["id"]: entry for entry in localizations["profiles"]}
-    assert set(packets) == set(plan_entries) == set(registry_entries) == PROFILE_IDS
+    assert set(packets) == set(plan_entries) == PROFILE_IDS
+    assert PROFILE_IDS <= set(registry_entries)
 
     for profile_id in sorted(PROFILE_IDS):
         packet = packets[profile_id]
         plan_entry = plan_entries[profile_id]
         registry_entry = registry_entries[profile_id]
 
-        # The readiness packet records the status at which the stable decision
-        # was made. The live registry stays at that status in RC2, then moves
-        # to the exact accepted/rejected target maturity in the stable commit.
+        # The readiness packet records the maturity at which the v1.0 stable
+        # decision was made. RC2 retains it as reviewed; stable v1.0 and later
+        # compatible releases retain the exact accepted/rejected outcome.
         assert packet["currentStatus"] == plan_entry["currentStatus"] == "reviewed"
         expected_status = expected_registry_profile_status(profile_id, version, plan)
         assert registry_entry["review"]["status"] == expected_status, (
@@ -88,12 +89,12 @@ def main() -> None:
             assert isinstance(decision_evidence, list) and len(decision_evidence) >= 3
             assert all(isinstance(item, str) and item.strip() for item in decision_evidence)
 
-    # Stable publication still requires an explicit accept/reject decision for
-    # every profile; mere readiness must never imply automatic promotion.
+    # Stable publication at the time of M4 still required explicit decisions;
+    # the historical plan must never claim authorization with a pending one.
     if any(packet["decision"] == "pending" for packet in packets.values()):
         assert plan["publication"]["allowed"] is False
 
-    print("Tredecadia localization profile readiness validation: OK")
+    print("Tredecadia v1.0 localization profile readiness history: OK")
 
 
 if __name__ == "__main__":

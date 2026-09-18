@@ -27,7 +27,11 @@ def main():
  assert all('localizations' not in m for m in MONTHS)
  statuses=[p['review']['status'] for p in LOC['profiles']]
  assert all(status in {'reviewed','stable'} for status in statuses)
- if is_prerelease(version): assert all(status=='reviewed' for status in statuses)
+ # A later prerelease must not demote profiles that were already published as
+ # stable in an earlier compatible release. Exact profile maturity is checked
+ # by the localization validators; documentation consistency only forbids
+ # candidate/unreviewed normative profiles here.
+ if is_prerelease(version): assert 'candidate' not in statuses
  u=t('LICENSE.md').lower(); c=t('LICENSES/CC-BY-4.0.md').lower(); assert all(x in u and x in c for x in ['documentation','machine-readable registries','test vectors']) and 'source code' in u
  print('Tredecadia documentation consistency: OK')
 if __name__=='__main__': main()

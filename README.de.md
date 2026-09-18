@@ -4,7 +4,7 @@
 
 Tredecadia ist ein offener Entwurf für einen immerwährenden Kalender mit **13 Monaten zu je 28 Tagen**. Jeder Monat besteht aus genau vier vollständigen Wochen, ein bestimmtes Monatsdatum fällt immer auf denselben Wochentag, und die zusätzlichen Ausgleichstage des Jahres liegen außerhalb von Monaten und Wochenzyklus.
 
-> **Aktuelle öffentliche Version: `1.0.0`.**
+> **Aktuelle öffentliche Version: `1.1.0-rc.1`.**
 
 ## Grundidee
 

@@ -50,6 +50,7 @@ jobs:
             tests/validate_links.py \
             tests/validate_registry.py \
             tests/validate_localizations.py \
+            tests/validate_additional_script_localizations.py \
             tests/validate_short4_ux.py \
             tests/validate_accessibility.py \
             tests/validate_conversion.py \

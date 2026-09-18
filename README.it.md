@@ -4,7 +4,7 @@
 
 Tredecadia è un progetto aperto per un calendario perpetuo di **13 mesi da 28 giorni**. Ogni mese contiene esattamente quattro settimane, la stessa data cade sempre nello stesso giorno della settimana e i giorni usati per riallineare l’anno restano fuori sia dai mesi sia dal ciclo settimanale.
 
-> **Versione pubblica attuale: `1.0.0`.**
+> **Versione pubblica attuale: `1.1.0-rc.1`.**
 
 ## Come funziona
 

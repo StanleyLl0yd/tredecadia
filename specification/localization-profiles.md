@@ -1,6 +1,6 @@
 # Tredecadia Localization Profiles
 
-Status: **1.0.0**
+Status: **1.1.0-rc.1 — release candidate**
 
 Canonical month identity is language-neutral and lives in `registry/months.json`. Canonical weekday identity lives in `registry/calendar.json`. Localized display aliases live separately from canonical identity and never replace month numbers, weekday IDs, canonical Latin names, or canonical syllable sequences.
 
@@ -22,7 +22,7 @@ Every registered alias MUST resolve to exactly one canonical identity within its
 
 `reviewed` requires recorded independent evidence such as competent language/script review or a directly applicable orthographic or transcription reference. Material sound approximations MUST be documented.
 
-`stable` means the reviewed profile was explicitly accepted into a stable Tredecadia release. A profile MUST NOT be `stable` while the localization registry itself is `draft`.
+`stable` means the reviewed profile was explicitly accepted into a stable Tredecadia release. A profile first introduced by a draft/release-candidate registry MUST NOT be marked `stable` before explicit stable acceptance. Profiles already stable in an earlier compatible release retain `stable` maturity while a later minor release candidate is evaluated.
 
 ## Promotion
 
@@ -39,3 +39,8 @@ Evidence may establish a profile at `reviewed` without claiming that it has unde
 - `ko-Hang`: `reviewed` using the Korean National Institute's official IPA-to-Hangul foreign-word rules.
 
 All three remain non-stable throughout the release-candidate phase. Promotion to `stable` is a deliberate final `v1.0.0` release action. RC2 does not add localized weekday aliases.
+
+
+## 1.1.0-rc.1 additional-script profiles
+
+The compatible v1.1 release candidate carries forward the stable `ru-Cyrl`, `ja-Kana`, and `ko-Hang` profiles unchanged and adds six month-only profiles at `reviewed` maturity: `ka-Geor`, `hy-Armn`, `ar-Arab`, `hi-Deva`, `bn-Beng`, and `fa-Arab`. Their mappings and review evidence are recorded in `registry/localizations.json` and the M5 rationale ledger. No native-speaker usability study is claimed for these six profiles. Weekday aliases remain out of scope.
