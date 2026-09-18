@@ -121,6 +121,7 @@ This milestone is a compatible minor-version localization expansion. It does not
 - [x] verify the remote tag and re-download/byte-compare the deterministic release assets; archive SHA-256 is `5b32dad3438572b67381ef5af05bf6fd915a2393fc69c8c132b7bef125ff876e`;
 - [ ] complete the minimum one-full-day v1.1 RC observation no earlier than `2026-09-19T08:01:59Z`;
 - [ ] classify all v1.1 RC feedback and require zero compatibility-critical findings/open reports for stable approval;
-- [ ] record an explicit accept/reject stable decision for each of the six reviewed profiles;
-- [ ] prepare and verify the atomic `1.1.0-rc.1` → `1.1.0` transition;
+- [x] record an explicit stable acceptance decision for each of the six reviewed profiles, without waiving the independent RC observation gate;
+- [x] define and CI-enforce the atomic `1.1.0-rc.1` → `1.1.0` transition contract against an immutable RC identity snapshot;
+- [ ] apply and verify the atomic `1.1.0-rc.1` → `1.1.0` transition after observation approval;
 - [ ] publish and re-verify stable `v1.1.0`.
