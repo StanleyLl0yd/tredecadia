@@ -53,7 +53,7 @@ This page is a navigational summary, not a second copy of the standard. Normativ
     <p id="calendar-subtitle"></p>
   </div>
 
-  <div id="calendar-grid" class="calendar-grid" role="grid" aria-label="28-day Tredecadia month"></div>
+  <div id="calendar-grid" class="calendar-grid" role="group" aria-label="28-day Tredecadia month"></div>
   <div id="intercalary-days" class="intercalary-days" aria-label="Intercalary days"></div>
 
   <div class="converter-grid">
