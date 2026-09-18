@@ -99,15 +99,22 @@ Canonical identities and localized aliases are intentionally separate. `registry
 
 Localization profiles progress through `candidate` → `reviewed` → `stable`; generated mappings cannot skip independent review.
 
-`1.0.0-rc.2` contains three **reviewed, non-stable month profiles**:
+Stable `v1.0.0` contains three **stable** month display profiles:
 
-- Russian Cyrillic (`ru-Cyrl`) — reviewed against independent Russian practical-transcription and orthographic references; `ми/ни` palatalization is explicitly documented as a localization approximation;
-- Japanese Katakana (`ja-Kana`) — reviewed against Japan's official foreign-word orthographic guidance;
-- Korean Hangul (`ko-Hang`) — reviewed against Korea's official IPA-to-Hangul foreign-word rules.
+- Russian Cyrillic (`ru-Cyrl`);
+- Japanese Katakana (`ja-Kana`);
+- Korean Hangul (`ko-Hang`).
 
-All three reviewed month profiles have been explicitly **accepted for promotion in the future atomic stable `v1.0.0` commit**. They remain `reviewed` in the RC2 registry while the observation gate is open; the acceptance decision does not mutate the published RC2 identity and does not by itself authorize stable publication.
+The compatible `v1.1.0-rc.1` candidate adds six independently reviewed **month-only** display profiles at `reviewed` maturity:
 
-These reviewed profiles do **not** automatically define weekday aliases: the RC2 weekday vowel inventory introduces `E/O`, so local-script weekday mappings require their own evidence/review rather than being inferred from the month profiles.
+- Georgian Mkhedruli (`ka-Geor`);
+- Eastern Armenian (`hy-Armn`);
+- fully vocalized Arabic (`ar-Arab`);
+- Hindi-oriented Devanagari (`hi-Deva`);
+- Bengali (`bn-Beng`);
+- Iranian Persian (`fa-Arab`).
+
+Their aliases are presentation/localization data only: canonical month numbers, Latin names, syllable identities, Short-6 and Short-4 remain unchanged. Weekday aliases are still out of scope because the weekday `E/O` syllables require a separate evidence and review surface.
 
 ## Specification
 
@@ -180,7 +187,7 @@ Published RC2 identity:
 
 The guarded RC2 publication workflow reran the complete release conformance suite, built deterministic assets, refused pre-existing tags/releases, verified that the remote tag targets the exact source commit, downloaded the published archive and `SHA256SUMS` again, and byte-compared both with the locally generated assets. `release/published-releases.json` and `release/rc2-identity.json` now lock that source/archive identity.
 
-The fresh RC2 observation window began at the actual publication timestamp. Its minimum one-full-day interval ends at `2026-09-17T09:44:59Z`; elapsed time alone does not approve stable publication — the observation must then be explicitly completed and the overall stable decision recorded.
+The RC2 observation completed after its required one-full-day interval with no compatibility-critical findings or open reports. Stable `v1.0.0` was subsequently published from source commit `8c272bf6a48b1b84a4b2ca8c1db43c6ffb9f5ce3`; its deterministic archive SHA-256 is `2f14cc4fb2bcac2cfcce280ddbe948d4c65cab098ce23c1d385d220709f5c392`.
 
 ## Licensing
 
@@ -190,4 +197,4 @@ The licenses do not grant trademark rights in the Tredecadia name or branding.
 
 ## Versioning
 
-The current published release candidate is **`1.0.0-rc.2`**. The compatibility-critical v1 surface is frozen for RC2 testing. Any further incompatible correction before stable v1.0.0 requires another explicitly versioned release candidate; published RC tags and artifacts are never rewritten.
+The current stable release is **`1.0.0`**. The working release candidate is **`1.1.0-rc.1`**, a compatible minor localization expansion. Published tags and artifacts remain immutable; incompatible changes to the canonical v1 identity require an explicitly versioned compatibility process rather than rewriting an existing release.
