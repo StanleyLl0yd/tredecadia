@@ -1,16 +1,12 @@
 name: Deploy Pages
 
-# The repository must first be configured once at:
-# Settings → Pages → Build and deployment → Source → GitHub Actions.
-# Until that external repository setting exists, keep deployment manual so
-# ordinary documentation changes do not create knowingly red workflow runs.
 on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - ".github/workflows/pages.yml"
   workflow_dispatch:
-    inputs:
-      pages_enabled:
-        description: "Confirm GitHub Pages source is configured as GitHub Actions"
-        required: true
-        type: boolean
 
 permissions:
   contents: read
@@ -23,7 +19,6 @@ concurrency:
 
 jobs:
   build:
-    if: ${{ inputs.pages_enabled }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
