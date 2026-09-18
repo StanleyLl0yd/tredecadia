@@ -1,0 +1,109 @@
+{
+  "planVersion": 1,
+  "sourceRc": {
+    "version": "1.1.0-rc.1",
+    "tag": "v1.1.0-rc.1",
+    "publicationStatus": "published",
+    "commit": "8d1b5a0c05eab8875e95b9896fd1c386edfe1220",
+    "publishedAt": "2026-09-18T08:01:59Z",
+    "archive": "tredecadia-1.1.0-rc.1.tar.gz",
+    "archiveSha256": "5b32dad3438572b67381ef5af05bf6fd915a2393fc69c8c132b7bef125ff876e"
+  },
+  "stableBaseline": {
+    "version": "1.0.0",
+    "tag": "v1.0.0",
+    "commit": "8c272bf6a48b1b84a4b2ca8c1db43c6ffb9f5ce3",
+    "archiveSha256": "2f14cc4fb2bcac2cfcce280ddbe948d4c65cab098ce23c1d385d220709f5c392"
+  },
+  "targetVersion": "1.1.0",
+  "identityPolicy": "canonical-v1-unchanged",
+  "observation": {
+    "status": "open",
+    "stableDecision": "pending",
+    "record": "release/v1.1-rc1-observation.json",
+    "evidence": []
+  },
+  "profileDecisionPolicy": {
+    "publicationRequiresNoPending": true,
+    "acceptedStatus": "stable",
+    "rejectedStatus": "reviewed"
+  },
+  "localizationProfiles": [
+    {
+      "id": "ka-Geor",
+      "currentStatus": "reviewed",
+      "stableDecision": "pending",
+      "evidence": [
+        "rationale/additional-script-localization-decisions.json#ka-Geor",
+        "rationale/additional-script-localization-methodology.md"
+      ]
+    },
+    {
+      "id": "hy-Armn",
+      "currentStatus": "reviewed",
+      "stableDecision": "pending",
+      "evidence": [
+        "rationale/additional-script-localization-decisions.json#hy-Armn",
+        "rationale/additional-script-localization-methodology.md"
+      ]
+    },
+    {
+      "id": "ar-Arab",
+      "currentStatus": "reviewed",
+      "stableDecision": "pending",
+      "evidence": [
+        "rationale/additional-script-localization-decisions.json#ar-Arab",
+        "rationale/additional-script-localization-methodology.md"
+      ]
+    },
+    {
+      "id": "hi-Deva",
+      "currentStatus": "reviewed",
+      "stableDecision": "pending",
+      "evidence": [
+        "rationale/additional-script-localization-decisions.json#hi-Deva",
+        "rationale/additional-script-localization-methodology.md"
+      ]
+    },
+    {
+      "id": "bn-Beng",
+      "currentStatus": "reviewed",
+      "stableDecision": "pending",
+      "evidence": [
+        "rationale/additional-script-localization-decisions.json#bn-Beng",
+        "rationale/additional-script-localization-methodology.md"
+      ]
+    },
+    {
+      "id": "fa-Arab",
+      "currentStatus": "reviewed",
+      "stableDecision": "pending",
+      "evidence": [
+        "rationale/additional-script-localization-decisions.json#fa-Arab",
+        "rationale/additional-script-localization-methodology.md"
+      ]
+    }
+  ],
+  "registryPromotion": [
+    {
+      "path": "registry/calendar.json",
+      "currentStatus": "draft",
+      "targetStatus": "stable"
+    },
+    {
+      "path": "registry/months.json",
+      "currentStatus": "draft",
+      "targetStatus": "stable"
+    },
+    {
+      "path": "registry/localizations.json",
+      "currentStatus": "draft",
+      "targetStatus": "stable"
+    }
+  ],
+  "publication": {
+    "targetTag": "v1.1.0",
+    "allowed": false
+  },
+  "stableReleaseNotes": "release/notes/1.1.0.md"
+}
