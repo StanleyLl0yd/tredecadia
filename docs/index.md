@@ -80,117 +80,25 @@ title: Tredecadia
   </noscript>
 </div>
 
-<div class="reference-note" lang="en">
-  <p>This page is a navigational summary, not a second copy of the standard. Normative requirements remain in the repository specifications and machine-readable registries.</p>
-  <p><a href="https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md">Read the project introduction in all available languages</a> · <a href="https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.1.0-rc.1">v1.1.0-rc.1 prerelease</a> · <a href="https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0">Stable v1.0.0</a></p>
-</div>
+<section id="page-summary" class="page-summary">
+  <h2 data-i18n="aboutTitle">About Tredecadia</h2>
+  <p data-i18n="aboutSummary">This page is a navigational summary, not a second copy of the standard. Normative requirements remain in the repository specifications and machine-readable registries.</p>
+  <ul class="summary-facts">
+    <li data-i18n="factStructure">13 equal months × 28 days = 364 regular days; every month contains four complete seven-day weeks.</li>
+    <li data-i18n="factIntercalary">EQ — Equinox / New Year Day — opens each year outside the month/week cycle; leap years also contain ED — Earth Day.</li>
+    <li data-i18n="factEra">Tredecadia Era (TE) is a single integer year axis with a real year 0.</li>
+    <li data-i18n="factWeekdays">Mene, Noko, Kese, Zoyo, Sote, Yemo and Toze are canonical language-neutral weekday identities.</li>
+  </ul>
 
-## Calendar at a glance
-
-- 13 regular months × 28 days = 364 regular days.
-- Every month starts `W1` / **Mene** and ends `W7` / **Toze**.
-- `EQ` — **Equinox / New Year Day** — opens each year outside the month/week cycle.
-- In a leap year, `ED` — **Earth Day** — follows month 13 day 28 and precedes the next year's `EQ`.
-- Tredecadia Era (`TE`) is one integer year axis with a real year `0`.
-- `TE 00000-EQ` is conventionally anchored to astronomical proleptic-Gregorian `-9999-03-20` (**10000 BCE — Before Common Era —** in historical notation).
-
-Ordinary boundary:
-
-`Y-EQ → Y-01-01 → … → Y-13-28 → (Y+1)-EQ`
-
-Leap boundary:
-
-`Y-EQ → Y-01-01 → … → Y-13-28 → Y-ED → (Y+1)-EQ`
-
-## Canonical weekdays
-
-| Position | ID | Name |
-|---:|---|---|
-| 1 | `W1` | Mene |
-| 2 | `W2` | Noko |
-| 3 | `W3` | Kese |
-| 4 | `W4` | Zoyo |
-| 5 | `W5` | Sote |
-| 6 | `W6` | Yemo |
-| 7 | `W7` | Toze |
-
-The weekday cycle is structural; it is not inherited from the Gregorian weekday label of a converted civil date. RC2 replaces the English weekday strings used by RC1 with these neutral canonical identities before stable v1.0.0.
-
-## Canonical months
-
-| # | Full name | Short-6 | Short-4 |
-|---:|---|---|---|
-| 01 | Masanumika | Masanu | Masa |
-| 02 | Tasuzunumu | Tasuzu | Tasu |
-| 03 | Nazumasanu | Nazuma | Nazu |
-| 04 | Mikasumani | Mikasu | Mika |
-| 05 | Yanimuzunu | Yanimu | Yani |
-| 06 | Zumitanasu | Zumita | Zumi |
-| 07 | Muyasanumi | Muyasa | Muya |
-| 08 | Sunizusaka | Sunizu | Suni |
-| 09 | Numanamuta | Numana | Numa |
-| 10 | Kazunusuya | Kazunu | Kazu |
-| 11 | Yanazumasa | Yanazu | Yana |
-| 12 | Sanumikazu | Sanumi | Sanu |
-| 13 | Nimutazuna | Nimuta | Nimu |
-
-Short-4 is the preferred conversational compact form when the Tredecadia month context is already clear. Short-6 provides additional redundancy for written/display use.
-
-## Example
-
-Gregorian `2026-09-15` maps to:
-
-**TE `12025-07-11` — day 11 of Muyasanumi, `W4` / Zoyo.**
-
-Canonical machine syntax is strict ASCII. Human-facing interfaces may display unpadded year values such as `1 TE` or a typographic negative value such as `−1 TE`; those are presentation forms, not alternate machine identifiers.
-
-## Localization
-
-Stable `1.0.0` includes three **stable month** display profiles:
-
-- Russian Cyrillic (`ru-Cyrl`);
-- Japanese Katakana (`ja-Kana`);
-- Korean Hangul (`ko-Hang`).
-
-The published `1.1.0-rc.1` prerelease adds six **reviewed month-only** profiles: Georgian Mkhedruli (`ka-Geor`), Eastern Armenian (`hy-Armn`), fully vocalized Arabic (`ar-Arab`), Hindi-oriented Devanagari (`hi-Deva`), Bengali (`bn-Beng`), and Iranian Persian (`fa-Arab`). All six now have explicit stable acceptance decisions for `v1.1.0`; observation remains an independent gate.
-
-Localized month spellings are aliases and never change canonical month numbers, Latin names, syllables, Short-6, or Short-4 identifiers. No weekday aliases are inferred from month profiles; the weekday `E/O` syllables require separate review.
-
-## Published RC2 identity
-
-- tag: `v1.0.0-rc.2`
-- source commit: `b816d613618d51515d910e0d3bdb9d2f211b6d22`
-- published: `2026-09-16T09:44:59Z`
-- archive SHA-256: `23e40180098c656c88aa4ba27c6989ac053d9ce8b8029c9ce2e3b16946bf32ec`
-- earliest observation completion: `2026-09-17T09:44:59Z`
-
-The guarded publication workflow reran the full conformance suite, created the tag/release, verified the remote tag target, downloaded the published archive and checksum again, and byte-compared them with the locally generated deterministic assets.
-
-## Published v1.1.0-rc.1 identity
-
-- tag: `v1.1.0-rc.1`
-- source commit: `8d1b5a0c05eab8875e95b9896fd1c386edfe1220`
-- published: `2026-09-18T08:01:59Z`
-- archive SHA-256: `5b32dad3438572b67381ef5af05bf6fd915a2393fc69c8c132b7bef125ff876e`
-- earliest observation completion: `2026-09-19T08:01:59Z`
-
-Stable `v1.1.0` remains gated on a clean RC observation. The six stable profile decisions are already complete and CI-locked against the published RC identity.
-
-## Standard and data
-
-The GitHub repository is the canonical source:
-
-- [Calendar Standard](https://github.com/StanleyLl0yd/tredecadia/blob/main/specification/calendar-standard.md)
-- [Conversion Standard](https://github.com/StanleyLl0yd/tredecadia/blob/main/specification/conversion-standard.md)
-- [Month Naming Standard](https://github.com/StanleyLl0yd/tredecadia/blob/main/specification/month-naming-standard.md)
-- [Date Notation](https://github.com/StanleyLl0yd/tredecadia/blob/main/specification/date-notation.md)
-- [Localization](https://github.com/StanleyLl0yd/tredecadia/blob/main/specification/localization.md)
-- [Compatibility Policy](https://github.com/StanleyLl0yd/tredecadia/blob/main/specification/compatibility.md)
-- [Machine-readable registries](https://github.com/StanleyLl0yd/tredecadia/tree/main/registry)
-- [Python reference implementation](https://github.com/StanleyLl0yd/tredecadia/tree/main/reference/python)
-
-Tredecadia specifications, registries, and published test vectors are CC BY 4.0. Reference/source code is MIT licensed unless a file states otherwise.
-
+  <h2 data-i18n="resourcesTitle">Standard and resources</h2>
+  <p data-i18n="resourcesSummary">Open the full project documentation in the selected language, or inspect the published releases.</p>
+  <div class="resource-links">
+    <a id="summary-doc-link" class="resource-link" href="https://github.com/StanleyLl0yd/tredecadia/blob/main/README.md" data-i18n="documentation">Documentation</a>
+    <a class="resource-link" href="https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md" data-i18n="allLanguages">All languages</a>
+    <a class="resource-link" href="https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0" data-i18n="stableRelease">Stable v1.0.0</a>
+    <a class="resource-link" href="https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.1.0-rc.1" data-i18n="prerelease">v1.1.0-rc.1 prerelease</a>
+  </div>
+</section>
 
 <script src="{{ '/assets/tredecadia-engine.js' | relative_url }}"></script>
 <script src="{{ '/assets/i18n.js' | relative_url }}"></script>
