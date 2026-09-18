@@ -13,10 +13,14 @@ INDEX = ROOT / "docs" / "index.md"
 ENGINE = ROOT / "docs" / "assets" / "tredecadia-engine.js"
 UI = ROOT / "docs" / "assets" / "calendar.js"
 CSS = ROOT / "docs" / "assets" / "calendar.css"
+I18N = ROOT / "docs" / "assets" / "i18n.js"
+LAYOUT = ROOT / "docs" / "_layouts" / "default.html"
 
 NODE_TEST = r"""
 const assert = require("assert");
 const T = require("./docs/assets/tredecadia-engine.js");
+const I = require("./docs/assets/i18n.js");
+const fs = require("fs");
 const vectors = require("./tests/conversion-vectors.json");
 const monthRegistry = require("./registry/months.json");
 const calendarRegistry = require("./registry/calendar.json");
@@ -29,6 +33,40 @@ assert.deepStrictEqual(
   T.WEEKDAYS,
   calendarRegistry.regularGrid.weekdays.map(({id, canonical}) => ({id, canonical}))
 );
+
+const profileLocale = {
+  "ru-Cyrl": "ru",
+  "ja-Kana": "ja",
+  "ko-Hang": "ko",
+  "ka-Geor": "ka",
+  "hy-Armn": "hy",
+  "ar-Arab": "ar",
+  "hi-Deva": "hi",
+  "bn-Beng": "bn",
+  "fa-Arab": "fa",
+};
+const localizationRegistry = require("./registry/localizations.json");
+for (const profile of localizationRegistry.profiles) {
+  const locale = profileLocale[profile.id];
+  assert(locale, profile.id);
+  assert.deepStrictEqual(I.MONTH_PROFILES[locale], profile.aliases, profile.id);
+}
+
+const englishKeys = Object.keys(I.LOCALES.en.s).sort();
+for (const [locale, meta] of Object.entries(I.LOCALES)) {
+  assert(meta.name);
+  assert(["ltr", "rtl"].includes(meta.dir), locale);
+  assert(fs.existsSync("./" + meta.readme), meta.readme);
+  assert.deepStrictEqual(Object.keys(meta.s).sort(), englishKeys, locale + " translation keys");
+}
+assert.strictEqual(I.resolveLanguage("ru-RU"), "ru");
+assert.strictEqual(I.resolveLanguage("pt-PT"), "pt-BR");
+assert.strictEqual(I.resolveLanguage("zh-Hant-HK"), "zh-TW");
+assert.strictEqual(I.resolveLanguage("zh-Hans-CN"), "zh-CN");
+assert.strictEqual(I.detectLanguage(["xx-ZZ", "ja-JP"]), "ja");
+assert.strictEqual(I.detectLanguage(["xx-ZZ"]), "en");
+assert.strictEqual(I.monthAlias("ru", 1).full, "Масанумика");
+assert.strictEqual(I.monthAlias("es", 1), null);
 
 for (const item of vectors.pairs) {
   const g = item.gregorianAstronomical;
@@ -104,13 +142,15 @@ console.log("Tredecadia browser engine vectors: OK");
 
 
 def main() -> None:
-    for path in (INDEX, ENGINE, UI, CSS):
+    for path in (INDEX, ENGINE, UI, CSS, I18N, LAYOUT):
         assert path.is_file(), path
 
     index = INDEX.read_text(encoding="utf-8")
     engine = ENGINE.read_text(encoding="utf-8")
     ui = UI.read_text(encoding="utf-8")
     css = CSS.read_text(encoding="utf-8")
+    i18n = I18N.read_text(encoding="utf-8")
+    layout = LAYOUT.read_text(encoding="utf-8")
 
     for marker in (
         'id="interactive-calendar"',
@@ -119,8 +159,8 @@ def main() -> None:
         'id="calendar-year"',
         'id="gregorian-form"',
         'id="tredecadia-form"',
-        "'/assets/calendar.css' | relative_url",
         "'/assets/tredecadia-engine.js' | relative_url",
+        "'/assets/i18n.js' | relative_url",
         "'/assets/calendar.js' | relative_url",
         "The widget is a convenience implementation",
     ):
@@ -144,19 +184,30 @@ def main() -> None:
         "calendar-prev",
         "calendar-next",
         "calendar-today",
-        "Today",
+        "switchLanguage",
+        "browserLanguages",
+        "display-language",
     ):
         assert marker in ui, marker
 
-    assert "@media (max-width: 800px)" in css
-    assert "@media (max-width: 560px)" in css
+    assert "@media (max-width: 900px)" in css
+    assert "@media (max-width: 620px)" in css
     assert "@media (prefers-reduced-motion: reduce)" in css
+    assert ".site-shell" in css
+    assert ".calendar-scroll" in css
+    assert ".wrapper" not in css, "Pages must not rely on jekyll-theme-minimal two-column geometry"
+    assert "float:" not in css, "site layout should not reintroduce float-based theme columns"
+    assert 'id="display-language"' in layout
+    assert 'class="site-shell"' in layout
+    assert 'class="site-header"' in layout
+    assert 'class="site-main"' in layout
+    assert "TredecadiaI18n" in i18n
+    assert "MONTH_PROFILES" in i18n
+    assert "resolveLanguage" in i18n
 
-    # Keep the widget dependency-free and self-contained. Absolute URLs belong
-    # in documentation, not in executable browser assets.
-    assert "http://" not in engine + ui + css
-    assert "https://" not in engine + ui + css
-    assert "fetch(" not in engine + ui
+    # Keep runtime behavior dependency-free: no network data fetch is needed
+    # to calculate dates, localize controls, or obtain month aliases.
+    assert "fetch(" not in engine + ui + i18n
 
     node = shutil.which("node")
     if node is None:

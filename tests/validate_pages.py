@@ -9,6 +9,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = ROOT / ".github" / "workflows" / "pages.yml"
 INDEX = ROOT / "docs" / "index.md"
+LAYOUT = ROOT / "docs" / "_layouts" / "default.html"
+I18N = ROOT / "docs" / "assets" / "i18n.js"
 CONFIG = ROOT / "docs" / "_config.yml"
 DEPLOYMENT_NOTE = ROOT / "release" / "pages-deployment.md"
 
@@ -24,6 +26,8 @@ EXPECTED_ACTIONS = {
 def main() -> None:
     workflow = WORKFLOW.read_text(encoding="utf-8")
     index = INDEX.read_text(encoding="utf-8")
+    layout = LAYOUT.read_text(encoding="utf-8")
+    i18n = I18N.read_text(encoding="utf-8")
     config = CONFIG.read_text(encoding="utf-8")
     deployment_note = DEPLOYMENT_NOTE.read_text(encoding="utf-8")
 
@@ -66,8 +70,15 @@ def main() -> None:
     assert "README.languages.md" in index, "Pages should expose the multilingual entry point"
     assert 'id="interactive-calendar"' in index
     assert "'/assets/tredecadia-engine.js' | relative_url" in index
+    assert "'/assets/i18n.js' | relative_url" in index
     assert "'/assets/calendar.js' | relative_url" in index
-    assert "'/assets/calendar.css' | relative_url" in index
+    assert "'/assets/calendar.css' | relative_url" in layout
+    assert '<meta name="viewport"' in layout
+    assert 'class="site-shell"' in layout
+    assert 'id="display-language"' in layout
+    assert 'id="localized-doc-link"' in layout
+    assert "TredecadiaI18n" in i18n
+    assert "navigator" not in i18n, "i18n data/module should stay environment-neutral"
     # Locale counts change as translations are added. Keep the landing-page
     # link count-free so it cannot silently become stale again.
     assert "Read the project introduction in all available languages" in index
