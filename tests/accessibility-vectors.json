@@ -2,36 +2,12 @@
   "specVersion": "1.1.0-rc.1",
   "policy": "signed-year-accessibility-v1",
   "displayYears": [
-    {
-      "year": 0,
-      "canonical": "00000",
-      "human": "0"
-    },
-    {
-      "year": 1,
-      "canonical": "00001",
-      "human": "1"
-    },
-    {
-      "year": 9999,
-      "canonical": "09999",
-      "human": "9999"
-    },
-    {
-      "year": 12025,
-      "canonical": "12025",
-      "human": "12025"
-    },
-    {
-      "year": -1,
-      "canonical": "-00001",
-      "human": "−1"
-    },
-    {
-      "year": -10000,
-      "canonical": "-10000",
-      "human": "−10000"
-    }
+    {"year": 0, "canonical": "00000", "human": "0"},
+    {"year": 1, "canonical": "00001", "human": "1"},
+    {"year": 9999, "canonical": "09999", "human": "9999"},
+    {"year": 12025, "canonical": "12025", "human": "12025"},
+    {"year": -1, "canonical": "-00001", "human": "−1"},
+    {"year": -10000, "canonical": "-10000", "human": "−10000"}
   ],
   "semanticLabels": [
     {
