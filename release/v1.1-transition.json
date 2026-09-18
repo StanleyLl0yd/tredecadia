@@ -1,0 +1,51 @@
+{
+  "manifestVersion": 1,
+  "sourceIdentity": "release/v1.1-rc1-identity.json",
+  "sourceVersion": "1.1.0-rc.1",
+  "targetVersion": "1.1.0",
+  "compatibilityClass": "compatible-minor-localization-promotion",
+  "stablePlan": "release/v1.1-stable-plan.json",
+  "observation": "release/v1.1-rc1-observation.json",
+  "profileDecisions": "rationale/v1.1-stable-profile-decisions.json",
+  "allowedRegistryChanges": {
+    "registry/calendar.json": [
+      "specVersion",
+      "status"
+    ],
+    "registry/months.json": [
+      "specVersion",
+      "status"
+    ],
+    "registry/localizations.json": [
+      "specVersion",
+      "status",
+      "profiles[].review.status for accepted profiles only"
+    ]
+  },
+  "acceptedProfiles": [
+    "ka-Geor",
+    "hy-Armn",
+    "ar-Arab",
+    "hi-Deva",
+    "bn-Beng",
+    "fa-Arab"
+  ],
+  "rejectedProfiles": [],
+  "unchangedSchemaVersions": {
+    "calendar": 2,
+    "months": 3,
+    "localizations": 1
+  },
+  "forbiddenIdentityChanges": [
+    "calendar profile/era/grid/weekdays/epoch/civilAnchor/leapRule/intercalary",
+    "month inventory/pronunciation/numbers/order/canonical names/syllables/Short-6/Short-4",
+    "localization profile IDs/languages/scripts/directions/methods/maps/aliases/evidence/notes",
+    "date grammar and conversion semantics",
+    "weekday aliases"
+  ],
+  "targetPublication": {
+    "tag": "v1.1.0",
+    "prerelease": false,
+    "notes": "release/notes/1.1.0.md"
+  }
+}
