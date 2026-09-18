@@ -32,55 +32,61 @@
     {
       "id": "ka-Geor",
       "currentStatus": "reviewed",
-      "stableDecision": "pending",
+      "stableDecision": "accepted",
       "evidence": [
         "rationale/additional-script-localization-decisions.json#ka-Geor",
-        "rationale/additional-script-localization-methodology.md"
+        "rationale/additional-script-localization-methodology.md",
+        "rationale/v1.1-stable-profile-decisions.json#ka-Geor"
       ]
     },
     {
       "id": "hy-Armn",
       "currentStatus": "reviewed",
-      "stableDecision": "pending",
+      "stableDecision": "accepted",
       "evidence": [
         "rationale/additional-script-localization-decisions.json#hy-Armn",
-        "rationale/additional-script-localization-methodology.md"
+        "rationale/additional-script-localization-methodology.md",
+        "rationale/v1.1-stable-profile-decisions.json#hy-Armn"
       ]
     },
     {
       "id": "ar-Arab",
       "currentStatus": "reviewed",
-      "stableDecision": "pending",
+      "stableDecision": "accepted",
       "evidence": [
         "rationale/additional-script-localization-decisions.json#ar-Arab",
-        "rationale/additional-script-localization-methodology.md"
+        "rationale/additional-script-localization-methodology.md",
+        "rationale/v1.1-stable-profile-decisions.json#ar-Arab"
       ]
     },
     {
       "id": "hi-Deva",
       "currentStatus": "reviewed",
-      "stableDecision": "pending",
+      "stableDecision": "accepted",
       "evidence": [
         "rationale/additional-script-localization-decisions.json#hi-Deva",
-        "rationale/additional-script-localization-methodology.md"
+        "rationale/additional-script-localization-methodology.md",
+        "rationale/v1.1-stable-profile-decisions.json#hi-Deva"
       ]
     },
     {
       "id": "bn-Beng",
       "currentStatus": "reviewed",
-      "stableDecision": "pending",
+      "stableDecision": "accepted",
       "evidence": [
         "rationale/additional-script-localization-decisions.json#bn-Beng",
-        "rationale/additional-script-localization-methodology.md"
+        "rationale/additional-script-localization-methodology.md",
+        "rationale/v1.1-stable-profile-decisions.json#bn-Beng"
       ]
     },
     {
       "id": "fa-Arab",
       "currentStatus": "reviewed",
-      "stableDecision": "pending",
+      "stableDecision": "accepted",
       "evidence": [
         "rationale/additional-script-localization-decisions.json#fa-Arab",
-        "rationale/additional-script-localization-methodology.md"
+        "rationale/additional-script-localization-methodology.md",
+        "rationale/v1.1-stable-profile-decisions.json#fa-Arab"
       ]
     }
   ],
