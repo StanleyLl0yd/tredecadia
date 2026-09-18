@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "targetVersion": "1.1.0",
+  "sourceRc": {
+    "version": "1.1.0-rc.1",
+    "commit": "8d1b5a0c05eab8875e95b9896fd1c386edfe1220",
+    "archiveSha256": "5b32dad3438572b67381ef5af05bf6fd915a2393fc69c8c132b7bef125ff876e"
+  },
+  "decisionPolicy": {
+    "decision": "accepted",
+    "effect": "promote-reviewed-profile-to-stable-in-v1.1.0",
+    "nativeSpeakerUsabilityStudyRequired": false,
+    "cleanRcObservationStillRequired": true
+  },
+  "decisions": [
+    {
+      "id": "ka-Geor",
+      "stableDecision": "accepted",
+      "nativeSpeakerUsabilityStudyClaimed": false,
+      "rationale": "Reviewed Mkhedruli mapping is deterministic, reversible within the profile, independently grounded in Georgian State Language Department transcription guidance and the current ISO Georgian transliteration standard, with YA=/ja/ represented explicitly as ია.",
+      "evidence": [
+        "rationale/additional-script-localization-decisions.json#ka-Geor",
+        "https://enadep.gov.ge/converter",
+        "https://www.iso.org/standard/87131.html"
+      ]
+    },
+    {
+      "id": "hy-Armn",
+      "stableDecision": "accepted",
+      "nativeSpeakerUsabilityStudyClaimed": false,
+      "rationale": "Reviewed Eastern Armenian mapping is deterministic and profile-scoped, with Eastern phonetic targeting explicitly documented and independent ISO/Library of Congress evidence. Western Armenian remains outside the profile.",
+      "evidence": [
+        "rationale/additional-script-localization-decisions.json#hy-Armn",
+        "https://www.iso.org/standard/87132.html",
+        "https://www.loc.gov/catdir/cpso/romanization/romguide/Armenian-Transliteration-Table-Revised.pdf"
+      ]
+    },
+    {
+      "id": "ar-Arab",
+      "stableDecision": "accepted",
+      "nativeSpeakerUsabilityStudyClaimed": false,
+      "rationale": "The profile is intentionally fully vocalized; explicit fatḥa/kasra/ḍamma keeps the canonical A/I/U distinctions visible and deterministic. The marked fully-vocalized style is part of the profile contract rather than ordinary prose guidance.",
+      "evidence": [
+        "rationale/additional-script-localization-decisions.json#ar-Arab",
+        "https://www.unicode.org/Public/18.0.0/charts/nameslist/0600/"
+      ]
+    },
+    {
+      "id": "hi-Deva",
+      "stableDecision": "accepted",
+      "nativeSpeakerUsabilityStudyClaimed": false,
+      "rationale": "Hindi-oriented Devanagari follows the Government of India principle of maximum practical approximation to source pronunciation, documents vowel realization differences, and preserves /z/ using nukta ज़.",
+      "evidence": [
+        "rationale/additional-script-localization-decisions.json#hi-Deva",
+        "https://cstt.education.gov.in/principles-evolving-terminology"
+      ]
+    },
+    {
+      "id": "bn-Beng",
+      "stableDecision": "accepted",
+      "nativeSpeakerUsabilityStudyClaimed": false,
+      "rationale": "Government of Bangladesh dictionary evidence resolves the former YA/ZU blockers: foreign y- is represented with ইয়া/ইয়া and foreign z with জ. The /z/→জ realization is explicitly treated as a Bengali approximation.",
+      "evidence": [
+        "rationale/additional-script-localization-decisions.json#bn-Beng",
+        "https://accessibledictionary.gov.bd/english-to-bengali/?alp=Y",
+        "https://accessibledictionary.gov.bd/english-to-bengali/?alp=Z"
+      ]
+    },
+    {
+      "id": "fa-Arab",
+      "stableDecision": "accepted",
+      "nativeSpeakerUsabilityStudyClaimed": false,
+      "rationale": "Persian I/U are represented with ی/و, matching documented Persian vowel-letter practice and avoiding the earlier erroneous assumption that short kasra/damma encode Persian /i,u/. Length differences remain explicit approximations.",
+      "evidence": [
+        "rationale/additional-script-localization-decisions.json#fa-Arab",
+        "https://www.loc.gov/catdir/cpso/romanization/persian.pdf",
+        "https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-9/"
+      ]
+    }
+  ]
+}
