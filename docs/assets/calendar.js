@@ -3,11 +3,15 @@
   "use strict";
 
   const T = window.Tredecadia;
-  if (!T) {
-    throw new Error("Tredecadia engine failed to load");
+  const I = window.TredecadiaI18n;
+  if (!T || !I) {
+    throw new Error("Tredecadia browser modules failed to load");
   }
 
   const $ = (selector) => document.querySelector(selector);
+  const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+  const REPO_BLOB = "https://github.com/StanleyLl0yd/tredecadia/blob/main/";
+
   const todayGregorian = (() => {
     const now = new Date();
     return { year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() };
@@ -17,13 +21,68 @@
   let selectedYear = todayTredecadia.year;
   let selectedMonth = todayTredecadia.month || (todayTredecadia.special === "ED" ? 13 : 1);
   let selectedDay = todayTredecadia.day || 1;
+  let languagePreference = loadLanguagePreference();
+  let currentLocale = effectiveLocale();
+
+  function safeStorageGet(key) {
+    try {
+      return window.localStorage.getItem(key);
+    } catch (_error) {
+      return null;
+    }
+  }
+
+  function safeStorageSet(key, value) {
+    try {
+      window.localStorage.setItem(key, value);
+    } catch (_error) {
+      // Storage can be disabled by browser privacy settings. The current
+      // session still works; only persistence is unavailable.
+    }
+  }
+
+  function loadLanguagePreference() {
+    const saved = safeStorageGet(I.STORAGE_KEY);
+    return saved && (saved === "auto" || I.LOCALES[saved]) ? saved : "auto";
+  }
+
+  function browserLanguages() {
+    if (Array.isArray(navigator.languages) && navigator.languages.length) {
+      return navigator.languages;
+    }
+    return [navigator.language || "en"];
+  }
+
+  function effectiveLocale() {
+    return languagePreference === "auto"
+      ? I.detectLanguage(browserLanguages())
+      : languagePreference;
+  }
+
+  function s(key) {
+    return I.string(currentLocale, key);
+  }
+
+  function formatTemplate(template, values) {
+    return String(template).replace(/{([a-zA-Z0-9_]+)}/g, (_match, key) =>
+      Object.prototype.hasOwnProperty.call(values, key) ? String(values[key]) : "{" + key + "}"
+    );
+  }
 
   function monthRecord(month) {
     return T.MONTHS[month - 1];
   }
 
-  function sameGregorian(a, b) {
-    return a.year === b.year && a.month === b.month && a.day === b.day;
+  function monthDisplay(monthNumber) {
+    const canonical = monthRecord(monthNumber);
+    const alias = I.monthAlias(currentLocale, monthNumber);
+    return {
+      canonical,
+      full: alias ? alias.full : canonical.canonical,
+      short6: alias ? alias.short6 : canonical.short6,
+      short4: alias ? alias.short4 : canonical.short4,
+      localized: Boolean(alias),
+    };
   }
 
   function sameTredecadia(a, b) {
@@ -36,14 +95,17 @@
 
   function describeTredecadia(value) {
     if (value.special === "EQ") {
-      return "Equinox / New Year Day";
+      return s("eqName");
     }
     if (value.special === "ED") {
-      return "Earth Day";
+      return s("edName");
     }
-    const month = monthRecord(value.month);
+    const month = monthDisplay(value.month);
     const weekday = T.weekdayForDay(value.day);
-    return month.canonical + " · " + weekday.id + " / " + weekday.canonical;
+    const monthText = month.localized
+      ? month.full + " (" + month.canonical.canonical + ")"
+      : month.full;
+    return monthText + " · " + weekday.id + " / " + weekday.canonical;
   }
 
   function setText(id, value) {
@@ -51,21 +113,87 @@
     if (node) node.textContent = value;
   }
 
+  function applyStaticTranslations() {
+    document.documentElement.lang = currentLocale;
+    document.documentElement.dir = I.LOCALES[currentLocale].dir;
+    document.body.classList.toggle("is-rtl", I.LOCALES[currentLocale].dir === "rtl");
+
+    $$("[data-i18n]").forEach((node) => {
+      node.textContent = s(node.dataset.i18n);
+    });
+
+    const docs = $("#localized-doc-link");
+    if (docs) {
+      docs.href = REPO_BLOB + I.readmePath(currentLocale);
+      docs.hreflang = currentLocale;
+    }
+
+    const calendar = $("#interactive-calendar");
+    if (calendar) calendar.setAttribute("aria-label", s("interactiveCalendar"));
+
+    const toolbar = $(".calendar-toolbar");
+    if (toolbar) toolbar.setAttribute("aria-label", s("interactiveCalendar"));
+
+    const grid = $("#calendar-grid");
+    if (grid) grid.setAttribute("aria-label", s("tredecadiaMonth"));
+
+    const intercalary = $("#intercalary-days");
+    if (intercalary) intercalary.setAttribute("aria-label", s("outsideWeekdayCycle"));
+
+    const prev = $("#calendar-prev");
+    if (prev) prev.setAttribute("aria-label", s("previous"));
+    const next = $("#calendar-next");
+    if (next) next.setAttribute("aria-label", s("next"));
+    const year = $("#calendar-year");
+    if (year) year.setAttribute("aria-label", s("teYear"));
+    const month = $("#calendar-month");
+    if (month) month.setAttribute("aria-label", s("month"));
+  }
+
+  function populateLanguageSelect() {
+    const select = $("#display-language");
+    if (!select) return;
+
+    select.innerHTML = "";
+
+    const auto = document.createElement("option");
+    auto.value = "auto";
+    auto.textContent = s("autoSystem");
+    select.appendChild(auto);
+
+    Object.entries(I.LOCALES).forEach(([code, meta]) => {
+      const option = document.createElement("option");
+      option.value = code;
+      option.textContent = meta.name;
+      option.lang = code;
+      option.dir = meta.dir;
+      select.appendChild(option);
+    });
+
+    select.value = languagePreference;
+  }
+
   function renderToday() {
     setText("today-te", T.formatTredecadia(todayTredecadia));
     setText("today-description", describeTredecadia(todayTredecadia));
-    setText("today-gregorian", "Gregorian " + T.formatGregorian(todayGregorian));
+    setText("today-gregorian", s("gregorian") + " " + T.formatGregorian(todayGregorian));
   }
 
   function populateMonthSelect() {
     const select = $("#calendar-month");
     select.innerHTML = "";
     T.MONTHS.forEach((month) => {
+      const display = monthDisplay(month.number);
       const option = document.createElement("option");
       option.value = String(month.number);
-      option.textContent = String(month.number).padStart(2, "0") + " · " + month.canonical;
+      option.textContent =
+        String(month.number).padStart(2, "0") +
+        " · " +
+        display.full +
+        (display.localized ? " — " + month.canonical : "");
       select.appendChild(option);
     });
+    select.value = String(selectedMonth);
   }
 
   function updateSelectedDetail(value) {
@@ -76,10 +204,10 @@
 
     if (!value.special) {
       const weekday = T.weekdayForDay(value.day);
-      detail += " · day " + value.day + " / 28";
+      detail += " · " + formatTemplate(s("dayOf"), { day: value.day });
       setText("selected-weekday", weekday.id + " · " + weekday.canonical);
     } else {
-      setText("selected-weekday", "Outside the weekday cycle");
+      setText("selected-weekday", s("outsideWeekdayCycle"));
     }
 
     setText("selected-te", te);
@@ -92,7 +220,14 @@
     const button = document.createElement("button");
     button.type = "button";
     button.className = "special-day " + className;
-    button.innerHTML = "<strong>" + label + "</strong><span>" + T.formatGregorian(T.toGregorian(value)) + "</span>";
+
+    const strong = document.createElement("strong");
+    strong.textContent = label;
+    const span = document.createElement("span");
+    span.className = "canonical-date";
+    span.textContent = T.formatGregorian(T.toGregorian(value));
+    button.append(strong, span);
+
     button.addEventListener("click", () => updateSelectedDetail(value));
     return button;
   }
@@ -101,26 +236,39 @@
     const container = $("#intercalary-days");
     container.innerHTML = "";
     container.appendChild(
-      specialButton("EQ · Equinox / New Year Day", { year: selectedYear, special: "EQ" }, "eq")
+      specialButton("EQ · " + s("eqName"), { year: selectedYear, special: "EQ" }, "eq")
     );
+
     if (T.tredecadiaIsLeap(selectedYear)) {
       container.appendChild(
-        specialButton("ED · Earth Day", { year: selectedYear, special: "ED" }, "ed")
+        specialButton("ED · " + s("edName"), { year: selectedYear, special: "ED" }, "ed")
       );
     } else {
       const ordinary = document.createElement("div");
       ordinary.className = "special-day muted";
-      ordinary.innerHTML = "<strong>No Earth Day</strong><span>ordinary Tredecadia year</span>";
+      const strong = document.createElement("strong");
+      strong.textContent = s("noEarthDay");
+      const span = document.createElement("span");
+      span.textContent = s("ordinaryYear");
+      ordinary.append(strong, span);
       container.appendChild(ordinary);
     }
   }
 
   function renderCalendar() {
-    const month = monthRecord(selectedMonth);
+    const display = monthDisplay(selectedMonth);
     $("#calendar-year").value = String(selectedYear);
     $("#calendar-month").value = String(selectedMonth);
-    setText("calendar-title", String(selectedMonth).padStart(2, "0") + " · " + month.canonical);
-    setText("calendar-subtitle", "TE " + T.formatDisplayYear(selectedYear) + " · " + month.short6 + " · " + month.short4);
+
+    setText(
+      "calendar-title",
+      String(selectedMonth).padStart(2, "0") + " · " + display.full
+    );
+
+    const subtitleParts = ["TE " + T.formatDisplayYear(selectedYear)];
+    if (display.localized) subtitleParts.push(display.canonical.canonical);
+    subtitleParts.push(display.short6, display.short4);
+    setText("calendar-subtitle", subtitleParts.join(" · "));
 
     const grid = $("#calendar-grid");
     grid.innerHTML = "";
@@ -128,7 +276,12 @@
     T.WEEKDAYS.forEach((weekday) => {
       const head = document.createElement("div");
       head.className = "weekday-head";
-      head.innerHTML = "<strong>" + weekday.canonical + "</strong><span>" + weekday.id + "</span>";
+      head.dir = "ltr";
+      const strong = document.createElement("strong");
+      strong.textContent = weekday.canonical;
+      const span = document.createElement("span");
+      span.textContent = weekday.id;
+      head.append(strong, span);
       grid.appendChild(head);
     });
 
@@ -139,17 +292,34 @@
       button.type = "button";
       button.className = "calendar-day";
       button.dataset.day = String(day);
+      button.dir = "ltr";
       button.setAttribute(
         "aria-label",
-        T.formatTredecadia(value) + ", " + T.weekdayForDay(day).canonical + ", Gregorian " + T.formatGregorian(gregorian)
+        T.formatTredecadia(value) +
+          ", " +
+          T.weekdayForDay(day).canonical +
+          ", " +
+          s("gregorian") +
+          " " +
+          T.formatGregorian(gregorian)
       );
-      button.innerHTML =
-        "<span class=\"day-number\">" + String(day).padStart(2, "0") + "</span>" +
-        "<span class=\"gregorian-mini\">G " + compactGregorian(gregorian) + "</span>";
+
+      const number = document.createElement("span");
+      number.className = "day-number";
+      number.textContent = String(day).padStart(2, "0");
+      const mini = document.createElement("span");
+      mini.className = "gregorian-mini";
+      mini.textContent = "G " + compactGregorian(gregorian);
+      button.append(number, mini);
 
       if (!todayTredecadia.special && sameTredecadia(value, todayTredecadia)) {
         button.classList.add("is-today");
-        button.title = "Today";
+        button.title = s("today");
+        const badge = document.createElement("span");
+        badge.className = "today-badge";
+        badge.textContent = s("today");
+        badge.dir = I.LOCALES[currentLocale].dir;
+        button.appendChild(badge);
       }
       if (day === selectedDay) {
         button.classList.add("is-selected");
@@ -168,7 +338,7 @@
   }
 
   function stepMonth(delta) {
-    let index = (selectedYear * 13 + (selectedMonth - 1)) + delta;
+    const index = selectedYear * 13 + (selectedMonth - 1) + delta;
     selectedYear = Math.floor(index / 13);
     selectedMonth = ((index % 13) + 13) % 13 + 1;
     selectedDay = Math.min(selectedDay, 28);
@@ -179,6 +349,7 @@
     selectedYear = todayTredecadia.year;
     selectedMonth = todayTredecadia.month || (todayTredecadia.special === "ED" ? 13 : 1);
     selectedDay = todayTredecadia.day || 1;
+    populateMonthSelect();
     renderCalendar();
     updateSelectedDetail(todayTredecadia);
   }
@@ -188,10 +359,33 @@
     node.classList.toggle("is-error", Boolean(isError));
     node.innerHTML = "";
     const strong = document.createElement("strong");
+    strong.className = "canonical-date";
     strong.textContent = primary;
     const span = document.createElement("span");
     span.textContent = secondary || "";
     node.append(strong, span);
+  }
+
+  function renderGregorianConversion() {
+    const input = $("#gregorian-input");
+    try {
+      const gregorian = T.parseGregorian(input.value.trim());
+      const te = T.fromGregorian(gregorian);
+      showResult("#gregorian-result", T.formatTredecadia(te), describeTredecadia(te), false);
+    } catch (error) {
+      showResult("#gregorian-result", s("invalidGregorian"), error.message, true);
+    }
+  }
+
+  function renderTredecadiaConversion() {
+    const input = $("#tredecadia-input");
+    try {
+      const te = T.parseTredecadia(input.value.trim());
+      const gregorian = T.toGregorian(te);
+      showResult("#tredecadia-result", T.formatGregorian(gregorian), describeTredecadia(te), false);
+    } catch (error) {
+      showResult("#tredecadia-result", s("invalidTredecadia"), error.message, true);
+    }
   }
 
   function bindConverters() {
@@ -203,28 +397,44 @@
 
     $("#gregorian-form").addEventListener("submit", (event) => {
       event.preventDefault();
-      try {
-        const gregorian = T.parseGregorian(gInput.value.trim());
-        const te = T.fromGregorian(gregorian);
-        showResult("#gregorian-result", T.formatTredecadia(te), describeTredecadia(te), false);
-      } catch (error) {
-        showResult("#gregorian-result", "Invalid Gregorian date", error.message, true);
-      }
+      renderGregorianConversion();
     });
 
     $("#tredecadia-form").addEventListener("submit", (event) => {
       event.preventDefault();
-      try {
-        const te = T.parseTredecadia(tInput.value.trim());
-        const gregorian = T.toGregorian(te);
-        showResult("#tredecadia-result", T.formatGregorian(gregorian), describeTredecadia(te), false);
-      } catch (error) {
-        showResult("#tredecadia-result", "Invalid Tredecadia date", error.message, true);
-      }
+      renderTredecadiaConversion();
     });
 
-    $("#gregorian-form").requestSubmit();
-    $("#tredecadia-form").requestSubmit();
+    renderGregorianConversion();
+    renderTredecadiaConversion();
+  }
+
+  function switchLanguage(preference, persist) {
+    languagePreference = preference && (preference === "auto" || I.LOCALES[preference])
+      ? preference
+      : "auto";
+    if (persist) safeStorageSet(I.STORAGE_KEY, languagePreference);
+
+    currentLocale = effectiveLocale();
+    applyStaticTranslations();
+    populateLanguageSelect();
+    populateMonthSelect();
+    renderToday();
+    renderCalendar();
+    renderGregorianConversion();
+    renderTredecadiaConversion();
+  }
+
+  function bindLanguageSelector() {
+    const select = $("#display-language");
+    if (!select) return;
+    select.addEventListener("change", (event) => {
+      switchLanguage(event.target.value, true);
+    });
+
+    window.addEventListener("languagechange", () => {
+      if (languagePreference === "auto") switchLanguage("auto", false);
+    });
   }
 
   function bindControls() {
@@ -240,8 +450,8 @@
 
     $("#calendar-year").addEventListener("change", (event) => {
       const value = Number(event.target.value.trim());
-      if (!Number.isSafeInteger(value)) {
-        event.target.setCustomValidity("Enter an integer Tredecadia year.");
+      if (!Number.isSafeInteger(value) || Math.abs(value) > T.MAX_ABS_YEAR) {
+        event.target.setCustomValidity(s("enterIntegerYear"));
         event.target.reportValidity();
         event.target.value = String(selectedYear);
         return;
@@ -269,10 +479,13 @@
 
   function init() {
     selfCheck();
-    renderToday();
+    applyStaticTranslations();
+    populateLanguageSelect();
     populateMonthSelect();
+    bindLanguageSelector();
     bindControls();
     bindConverters();
+    renderToday();
     renderCalendar();
     document.documentElement.classList.add("tredecadia-interactive-ready");
   }
@@ -286,7 +499,8 @@
       root.classList.add("calendar-failed");
       const message = document.createElement("p");
       message.className = "calendar-error";
-      message.textContent = "Interactive calendar could not start. The static Tredecadia specification below is still available.";
+      message.textContent =
+        "Interactive calendar could not start. The static Tredecadia specification below is still available.";
       root.prepend(message);
     }
   }
