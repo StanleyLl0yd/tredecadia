@@ -373,7 +373,7 @@
       const te = T.fromGregorian(gregorian);
       showResult("#gregorian-result", T.formatTredecadia(te), describeTredecadia(te), false);
     } catch (error) {
-      showResult("#gregorian-result", s("invalidGregorian"), error.message, true);
+      showResult("#gregorian-result", s("invalidGregorian"), "", true);
     }
   }
 
@@ -384,7 +384,7 @@
       const gregorian = T.toGregorian(te);
       showResult("#tredecadia-result", T.formatGregorian(gregorian), describeTredecadia(te), false);
     } catch (error) {
-      showResult("#tredecadia-result", s("invalidTredecadia"), error.message, true);
+      showResult("#tredecadia-result", s("invalidTredecadia"), "", true);
     }
   }
 
