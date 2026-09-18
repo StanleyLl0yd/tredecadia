@@ -61,6 +61,10 @@ def main() -> None:
     assert "id-token: write" in pages
     assert "persist-credentials: false" in pages
     assert "workflow_dispatch:" in pages
+    assert "\n  push:\n" in pages
+    assert "branches: [main]" in pages
+    assert '"docs/**"' in pages
+    assert "pull_request:" not in pages
 
     housekeeping = workflow_texts["branch-housekeeping.yml"]
     assert "contents: write" in housekeeping
