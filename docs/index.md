@@ -95,7 +95,7 @@ title: Tredecadia
   <div class="resource-links">
     <a id="summary-doc-link" class="resource-link" href="https://github.com/StanleyLl0yd/tredecadia/blob/main/README.md" data-i18n="documentation">Documentation</a>
     <a class="resource-link" href="https://github.com/StanleyLl0yd/tredecadia/blob/main/README.languages.md" data-i18n="allLanguages">All languages</a>
-    <a class="resource-link" href="https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0" data-i18n="stableRelease">Stable v1.0.0</a>
+    <a class="resource-link" href="https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.1.0" data-i18n="stableRelease">Stable v1.1.0</a>
     <a class="resource-link" href="https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.1.0-rc.1" data-i18n="prerelease">v1.1.0-rc.1 prerelease</a>
   </div>
 </section>

@@ -1,6 +1,6 @@
 # Tredecadia Localization Profiles
 
-Status: **1.1.0-rc.1 — release candidate**
+Status: **1.1.0 — stable**
 
 Canonical month identity is language-neutral and lives in `registry/months.json`. Canonical weekday identity lives in `registry/calendar.json`. Localized display aliases live separately from canonical identity and never replace month numbers, weekday IDs, canonical Latin names, or canonical syllable sequences.
 
@@ -41,6 +41,6 @@ Evidence may establish a profile at `reviewed` without claiming that it has unde
 All three remain non-stable throughout the release-candidate phase. Promotion to `stable` is a deliberate final `v1.0.0` release action. RC2 does not add localized weekday aliases.
 
 
-## 1.1.0-rc.1 additional-script profiles
+## 1.1.0 stable additional-script profiles
 
-The compatible v1.1 release candidate carries forward the stable `ru-Cyrl`, `ja-Kana`, and `ko-Hang` profiles unchanged and adds six month-only profiles at `reviewed` maturity: `ka-Geor`, `hy-Armn`, `ar-Arab`, `hi-Deva`, `bn-Beng`, and `fa-Arab`. Their mappings and review evidence are recorded in `registry/localizations.json` and the M5 rationale ledger. No native-speaker usability study is claimed for these six profiles. Weekday aliases remain out of scope.
+Stable v1.1 carries forward the stable `ru-Cyrl`, `ja-Kana`, and `ko-Hang` profiles unchanged and promotes six independently reviewed month-only profiles to `stable` maturity: `ka-Geor`, `hy-Armn`, `ar-Arab`, `hi-Deva`, `bn-Beng`, and `fa-Arab`. Their mappings and review evidence are recorded in `registry/localizations.json` and the M5 rationale ledger. No native-speaker usability study is claimed for these six profiles. Weekday aliases remain out of scope.
