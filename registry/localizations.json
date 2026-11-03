@@ -1,8 +1,8 @@
 {
   "$schema": "./localizations.schema.json",
   "schemaVersion": 1,
-  "specVersion": "1.1.0-rc.1",
-  "status": "draft",
+  "specVersion": "1.1.0",
+  "status": "stable",
   "profiles": [
     {
       "id": "ru-Cyrl",
@@ -150,7 +150,7 @@
       "caseTransform": "none",
       "reverseMapping": "unique-within-profile",
       "review": {
-        "status": "reviewed",
+        "status": "stable",
         "evidence": [
           {
             "kind": "standards-reference",
@@ -197,7 +197,7 @@
       "caseTransform": "none",
       "reverseMapping": "unique-within-profile",
       "review": {
-        "status": "reviewed",
+        "status": "stable",
         "evidence": [
           {
             "kind": "standards-reference",
@@ -244,7 +244,7 @@
       "caseTransform": "none",
       "reverseMapping": "unique-within-profile",
       "review": {
-        "status": "reviewed",
+        "status": "stable",
         "evidence": [
           {
             "kind": "orthographic-reference",
@@ -286,7 +286,7 @@
       "caseTransform": "none",
       "reverseMapping": "unique-within-profile",
       "review": {
-        "status": "reviewed",
+        "status": "stable",
         "evidence": [
           {
             "kind": "standards-reference",
@@ -328,7 +328,7 @@
       "caseTransform": "none",
       "reverseMapping": "unique-within-profile",
       "review": {
-        "status": "reviewed",
+        "status": "stable",
         "evidence": [
           {
             "kind": "orthographic-reference",
@@ -380,7 +380,7 @@
       "caseTransform": "none",
       "reverseMapping": "unique-within-profile",
       "review": {
-        "status": "reviewed",
+        "status": "stable",
         "evidence": [
           {
             "kind": "standards-reference",
