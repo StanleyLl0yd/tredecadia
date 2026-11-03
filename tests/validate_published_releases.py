@@ -46,14 +46,23 @@ V11_RC1 = {
     "archiveSha256": "5b32dad3438572b67381ef5af05bf6fd915a2393fc69c8c132b7bef125ff876e",
 }
 
+V11_STABLE = {
+    "version": "1.1.0",
+    "tag": "v1.1.0",
+    "commit": "d6f64bdf7a0fadee8335a327532d2e0d51ab301c",
+    "publishedAt": "2026-11-03T12:38:01Z",
+    "archive": "tredecadia-1.1.0.tar.gz",
+    "archiveSha256": "2d83f2b777ae0a711bb27a0c38830aa9fa6c91ad516bcacbe980213450f189da"
+}
+
 
 def main() -> None:
     data = json.loads((ROOT / "release/published-releases.json").read_text(encoding="utf-8"))
     assert data["schemaVersion"] == 1
     releases = data["releases"]
-    assert releases == [RC1, RC2, STABLE, V11_RC1]
-    assert len({entry["version"] for entry in releases}) == 4
-    assert len({entry["tag"] for entry in releases}) == 4
+    assert releases == [RC1, RC2, STABLE, V11_RC1, V11_STABLE]
+    assert len({entry["version"] for entry in releases}) == 5
+    assert len({entry["tag"] for entry in releases}) == 5
 
     plan = json.loads((ROOT / "release/stable-plan.json").read_text(encoding="utf-8"))
     active_observation = json.loads((ROOT / "release/rc-observation.json").read_text(encoding="utf-8"))
@@ -125,6 +134,12 @@ def main() -> None:
     assert V11_RC1["commit"] in readme
     assert V11_RC1["archiveSha256"] in readme
     assert V11_RC1["publishedAt"] in readme
+
+    # The published stable v1.1 release is likewise immutable and cited.
+    assert V11_STABLE["tag"] in readme
+    assert V11_STABLE["commit"] in readme
+    assert V11_STABLE["publishedAt"] in readme
+    assert V11_STABLE["archiveSha256"] in readme
 
     print("Tredecadia published release source-lock validation: OK")
 
