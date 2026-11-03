@@ -128,6 +128,8 @@ def main() -> None:
             assert registered["syllableMap"] == candidate["syllableMap"]
             assert registered["aliases"] == candidate["aliases"]
             assert registered["notes"] == candidate["notes"]
+    elif version == "1.1.0":
+        assert all(profile["review"]["status"] == "stable" for profile in profiles)
     elif is_prerelease(version):
         assert all(profile["review"]["status"] == "reviewed" for profile in profiles)
     else:

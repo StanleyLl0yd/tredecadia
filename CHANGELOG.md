@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0 — 2026-11-03
+
+- Promote the six reviewed Georgian, Armenian, Arabic, Hindi, Bengali, and Persian month-display profiles to stable maturity after an approved, clean RC observation.
+- Preserve previously stable Russian, Japanese, and Korean month profiles and the complete canonical v1 calendar identity.
+- Finalize stable release metadata, documentation, and deterministic GitHub release packaging; no new weekday aliases.
+
 ## 1.1.0-rc.1 — 2026-09-18
 
 - Add reviewed month-display profiles for Georgian Mkhedruli, Eastern Armenian, fully vocalized Arabic, Hindi-oriented Devanagari, Bengali, and Iranian Persian.

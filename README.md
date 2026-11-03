@@ -4,11 +4,11 @@
 
 Tredecadia is an open 13 × 28 perennial calendar standard with equal months, stable weekdays, a continuous mathematical year coordinate, and internationally neutral month and weekday names.
 
-> **Status: `v1.1.0-rc.1` published prerelease; stable `v1.0.0` remains the current stable release.**
+> **Status: stable `v1.1.0`, with nine stable month-display localization profiles.**
 
-Current prerelease: [`v1.1.0-rc.1`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.1.0-rc.1)  
-Stable release: [`v1.0.0`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0)  
-Historical RCs: [`v1.0.0-rc.2`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2) · [`v1.0.0-rc.1`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
+Stable release: [`v1.1.0`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.1.0)  
+Previous stable: [`v1.0.0`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0)  
+Historical RCs: [`v1.1.0-rc.1`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.1.0-rc.1) · [`v1.0.0-rc.2`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.2) · [`v1.0.0-rc.1`](https://github.com/StanleyLl0yd/tredecadia/releases/tag/v1.0.0-rc.1)
 
 ## Core model
 
@@ -96,17 +96,17 @@ Localized speech may adapt stress, rhythm, and predictable allophony to the targ
 
 ## Localization profiles
 
-Canonical identities and localized aliases are intentionally separate. `registry/months.json` contains language-neutral canonical month identity; `registry/localizations.json` currently contains reviewed month display aliases.
+Canonical identities and localized aliases are intentionally separate. `registry/months.json` contains language-neutral canonical month identity; `registry/localizations.json` contains independently reviewed and accepted stable month display aliases.
 
 Localization profiles progress through `candidate` → `reviewed` → `stable`; generated mappings cannot skip independent review.
 
-Stable `v1.0.0` contains three **stable** month display profiles:
+Stable `v1.0.0` introduced three **stable** month display profiles:
 
 - Russian Cyrillic (`ru-Cyrl`);
 - Japanese Katakana (`ja-Kana`);
 - Korean Hangul (`ko-Hang`).
 
-The published compatible prerelease `v1.1.0-rc.1` adds six independently reviewed **month-only** display profiles at `reviewed` maturity:
+Stable `v1.1.0` promotes six additional independently reviewed **month-only** display profiles to `stable` maturity:
 
 - Georgian Mkhedruli (`ka-Geor`);
 - Eastern Armenian (`hy-Armn`);
@@ -115,7 +115,7 @@ The published compatible prerelease `v1.1.0-rc.1` adds six independently reviewe
 - Bengali (`bn-Beng`);
 - Iranian Persian (`fa-Arab`).
 
-Their aliases are presentation/localization data only: canonical month numbers, Latin names, syllable identities, Short-6 and Short-4 remain unchanged. All six reviewed profiles have now received explicit **stable acceptance decisions** for the future `v1.1.0` transition; that acceptance does not bypass the still-open RC observation. Weekday aliases remain out of scope because the weekday `E/O` syllables require a separate evidence and review surface.
+Their aliases are presentation/localization data only: canonical month numbers, Latin names, syllable identities, Short-6 and Short-4 remain unchanged. All six profiles passed explicit stable acceptance and clean RC observation; their reviewed mappings are unchanged. Weekday aliases remain out of scope because the weekday `E/O` syllables require a separate evidence and review surface.
 
 ## Specification
 
@@ -198,7 +198,7 @@ Published v1.1.0-rc.1 identity:
 - archive SHA-256: `5b32dad3438572b67381ef5af05bf6fd915a2393fc69c8c132b7bef125ff876e`;
 - earliest observation completion: `2026-09-19T08:01:59Z`.
 
-The guarded v1.1 RC publication workflow reran the complete conformance suite, verified the exact remote tag target, downloaded the published archive and checksum, and byte-compared both with the deterministic local build. Stable `v1.1.0` remains blocked until the RC observation completes cleanly. All six reviewed profiles already have explicit stable acceptance decisions; the observation/time gate is now the remaining release authorization barrier.
+The guarded v1.1 RC publication workflow reran the complete conformance suite, verified the exact remote tag target, downloaded the published archive and checksum, and byte-compared both with the deterministic local build. The v1.1 RC observation completed on 2026-11-03 after the required minimum interval, with zero recorded compatibility-critical findings and zero open RC feedback reports. All six additional profiles were explicitly accepted for stable maturity; the stable release uses the same canonical calendar identity.
 
 ## Licensing
 
@@ -208,4 +208,4 @@ The licenses do not grant trademark rights in the Tredecadia name or branding.
 
 ## Versioning
 
-The current stable release is **`1.0.0`**. The published prerelease is **`1.1.0-rc.1`**, a compatible minor localization expansion under observation. Published tags and artifacts remain immutable; incompatible changes to the canonical v1 identity require an explicitly versioned compatibility process rather than rewriting an existing release.
+The current stable release is **`1.1.0`**, a compatible minor localization expansion from **`1.0.0`**. Published tags and artifacts remain immutable; incompatible changes to the canonical v1 identity require an explicitly versioned compatibility process rather than rewriting an existing release.

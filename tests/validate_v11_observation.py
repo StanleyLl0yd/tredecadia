@@ -8,6 +8,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+from release_state import citation_version
+
 ROOT = Path(__file__).resolve().parents[1]
 OBS = ROOT / "release" / "v1.1-rc1-observation.json"
 FEEDBACK_FORM = ROOT / ".github" / "ISSUE_TEMPLATE" / "rc-feedback.yml"
@@ -108,14 +110,17 @@ def main() -> None:
     assert set(profiles) == BASELINE | CANDIDATES
     for profile_id in BASELINE:
         assert profiles[profile_id]["review"]["status"] == "stable"
+    version = citation_version()
+    assert version in {"1.1.0-rc.1", "1.1.0"}
+    expected_status = "stable" if version == "1.1.0" else "reviewed"
     for profile_id in CANDIDATES:
-        assert profiles[profile_id]["review"]["status"] == "reviewed"
+        assert profiles[profile_id]["review"]["status"] == expected_status
 
     assert publish == {
-        "version": "1.1.0-rc.1",
-        "tag": "v1.1.0-rc.1",
-        "prerelease": True,
-        "notes": "release/notes/1.1.0-rc.1.md",
+        "version": version,
+        "tag": f"v{version}",
+        "prerelease": version != "1.1.0",
+        "notes": f"release/notes/{version}.md",
     }
 
     for needle in (

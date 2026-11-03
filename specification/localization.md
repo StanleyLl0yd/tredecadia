@@ -1,6 +1,6 @@
 # Tredecadia Localization
 
-Status: **1.1.0-rc.1 — release candidate**
+Status: **1.1.0 — stable**
 
 Localized spellings are display aliases. They do not replace canonical machine identifiers or canonical Latin identity.
 
@@ -18,7 +18,7 @@ A profile SHOULD document material approximations when its language or script ca
 
 For canonical weekdays, a localized display/speech mapping MUST preserve the underlying `W1..W7` position and unique reverse mapping. A month-profile syllable map MUST NOT be assumed to cover weekday `E/O` syllables unless the profile explicitly reviews and registers those values.
 
-## Current release-candidate profiles
+## Current stable month-display profiles
 
 Stable `v1.0.0` established three month display profiles at `stable` maturity:
 
@@ -26,7 +26,7 @@ Stable `v1.0.0` established three month display profiles at `stable` maturity:
 - `ja-Kana` — Japanese Katakana; reviewed against the Japanese Agency for Cultural Affairs foreign-word orthography guidance;
 - `ko-Hang` — Korean Hangul; reviewed against the National Institute of Korean Language IPA-to-Hangul foreign-word rules.
 
-The compatible `1.1.0-rc.1` candidate carries those profiles forward unchanged and adds six independently reviewed month-only profiles at `reviewed` maturity:
+Stable `1.1.0` carries those three profiles forward unchanged and promotes six independently reviewed month-only profiles to `stable` maturity:
 
 - `ka-Geor` — Georgian Mkhedruli;
 - `hy-Armn` — Eastern Armenian;
@@ -35,7 +35,7 @@ The compatible `1.1.0-rc.1` candidate carries those profiles forward unchanged a
 - `bn-Beng` — Bengali;
 - `fa-Arab` — Iranian Persian.
 
-The six new profiles are evidence-reviewed but are not yet `stable`; stable maturity requires an explicit stable-release acceptance decision. No native-speaker usability study is claimed for them. Evidence, deterministic syllable maps, derived aliases, and documented approximations are recorded in `registry/localizations.json` and the M5 rationale/review records.
+The six additional profiles received explicit stable-release acceptance decisions after a clean RC observation; no native-speaker usability study is claimed for them. Evidence, deterministic syllable maps, derived aliases, and documented approximations are recorded in `registry/localizations.json` and the M5 rationale/review records.
 
 Within each profile every registered Full, Short-6, and Short-4 month alias MUST map back to exactly one canonical month. Character-by-character reversibility to Latin is not required.
 

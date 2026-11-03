@@ -1,6 +1,6 @@
 # Contributing
 
-Tredecadia `1.0.0` is the current stable release. The published `1.1.0-rc.1` prerelease is under M5 observation as a compatible localization-only minor update.
+Tredecadia `1.1.0` is the current stable release. The published `1.1.0-rc.1` remains an immutable historical prerelease of the compatible localization-only update.
 
 Contributions are welcome, especially for:
 
@@ -12,7 +12,7 @@ Contributions are welcome, especially for:
 
 ## RC feedback
 
-For findings against the published release candidate, use the **Tredecadia RC feedback** issue form. Reports may concern correctness, interoperability, localization, accessibility, packaging, the reference implementation, or documentation.
+For findings against the historical published release candidate, use the **Tredecadia RC feedback** issue form; for new stable-release findings, open a regular issue. Reports may concern correctness, interoperability, localization, accessibility, packaging, the reference implementation, or documentation.
 
 Please report the concrete observation rather than trying to decide release severity yourself. During the active M5 observation every report is classified against the frozen v1 identity as one of:
 
@@ -21,7 +21,7 @@ Please report the concrete observation rather than trying to decide release seve
 - **editorial issue** — wording, translation, navigation, or explanatory material needs improvement without changing behavior;
 - **non-blocking future work** — useful work that does not need to delay stable v1.1.0.
 
-The active machine-readable v1.1 observation record is `release/v1.1-rc1-observation.json`; its source is the immutable published `v1.1.0-rc.1`. The earlier RC2 record remains at `release/rc-observation.json` as historical evidence for stable `v1.0.0`.
+The completed machine-readable v1.1 observation record is `release/v1.1-rc1-observation.json`; its source is the immutable published `v1.1.0-rc.1`. The earlier RC2 record remains at `release/rc-observation.json` as historical evidence for stable `v1.0.0`.
 
 ## Before proposing a change
 
@@ -41,4 +41,4 @@ Calendar-conversion changes are also cross-cutting: a change to the epoch, leap 
 
 Keep pull requests focused. When changing machine-readable registry data, update the corresponding specification and test vectors in the same pull request. When changing duplicated canonical tables in documentation, keep them synchronized with the corresponding registry; CI checks this automatically.
 
-The compatibility policy in `specification/compatibility.md` defines the v1 boundary. Because stable `v1.0.0` already exists, an incompatible canonical calendar-identity change requires a new major version or separately named profile. If the current v1.1 RC observation finds a compatibility-critical defect in its proposed compatible surface, publish another explicitly versioned v1.1 RC rather than mutating the published prerelease or silently promoting it to stable.
+The compatibility policy in `specification/compatibility.md` defines the v1 boundary. Because stable `v1.0.0` already exists, an incompatible canonical calendar-identity change requires a new major version or separately named profile. The completed v1.1 RC observation reported zero compatibility-critical defects. Any subsequently discovered incompatibility must follow the versioned compatibility policy, not rewrite an immutable published release.

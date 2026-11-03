@@ -10,6 +10,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
+sys.path.insert(0, str(ROOT / "tests"))
+
+from release_state import citation_version  # noqa: E402
 
 import v11_stable_preflight as preflight  # noqa: E402
 
@@ -31,18 +34,29 @@ def main() -> None:
     assert "pending-localization-decisions" not in before_codes
     assert "localization-decision-mismatch" not in before_codes
     assert "minimum-observation-time-not-reached" in before_codes
-    assert "rc-observation-open" in before_codes
-    assert "stable-decision-not-approved" in before_codes
-    assert "publication-gate-closed" in before_codes
-
     after_minimum = preflight.evaluate(preflight.parse_utc("2026-09-19T08:02:00Z"))
     after_codes = codes(after_minimum)
     assert after_minimum["ready"] is False
     assert "minimum-observation-time-not-reached" not in after_codes
-    assert "rc-observation-open" in after_codes
-    assert "stable-decision-not-approved" in after_codes
-    assert "publication-gate-closed" in after_codes
     assert "pending-localization-decisions" not in after_codes
+
+    if citation_version() == "1.1.0-rc.1":
+        assert "rc-observation-open" in before_codes
+        assert "stable-decision-not-approved" in before_codes
+        assert "publication-gate-closed" in before_codes
+        assert "rc-observation-open" in after_codes
+        assert "stable-decision-not-approved" in after_codes
+        assert "publication-gate-closed" in after_codes
+    else:
+        assert citation_version() == "1.1.0"
+        assert "observation-not-yet-completed-as-of" in before_codes
+        assert "observation-not-yet-completed-as-of" in after_codes
+        assert "rc-observation-open" not in after_codes
+        assert "stable-decision-not-approved" not in after_codes
+        assert "publication-gate-closed" not in after_codes
+        approved = preflight.evaluate(preflight.parse_utc("2026-11-03T12:30:00Z"))
+        assert approved["ready"] is True
+        assert approved["blockers"] == []
 
     # The preflight is reproducible and always reports an offset-aware UTC
     # timestamp regardless of the caller's offset.

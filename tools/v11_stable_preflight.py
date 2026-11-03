@@ -56,6 +56,11 @@ def evaluate(as_of: datetime) -> dict:
             "code": "rc-observation-open",
             "detail": f"RC observation status is {window['status']}",
         })
+    elif as_of < parse_utc(window["completedAt"]):
+        blockers.append({
+            "code": "observation-not-yet-completed-as-of",
+            "detail": f"observation completed at {window['completedAt']}",
+        })
 
     open_reports = [report["id"] for report in observation["reports"] if report["status"] == "open"]
     if open_reports:
