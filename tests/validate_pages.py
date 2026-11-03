@@ -67,8 +67,8 @@ def main() -> None:
     assert 'id="page-summary"' in index
     assert 'id="summary-doc-link"' in index
     assert "README.languages.md" in index, "Pages should expose the multilingual entry point"
-    assert "releases/tag/v1.0.0" in index
-    assert "releases/tag/v1.1.0-rc.1" in index
+    assert 'releases/tag/v1.1.0" data-i18n="stableRelease"' in index
+    assert 'releases/tag/v1.1.0-rc.1" data-i18n="prerelease"' in index
     assert 'id="interactive-calendar"' in index
     assert "'/assets/tredecadia-engine.js' | relative_url" in index
     assert "'/assets/i18n.js' | relative_url" in index
