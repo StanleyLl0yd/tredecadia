@@ -108,7 +108,8 @@ def main() -> None:
         }
         for profile_id in extra_profile_ids:
             assert decision_by_id[profile_id]["decision"] == "accept-reviewed"
-            assert profiles[profile_id]["review"]["status"] == "reviewed"
+            expected_maturity = "stable" if localizations["specVersion"] == "1.1.0" else "reviewed"
+            assert profiles[profile_id]["review"]["status"] == expected_maturity
             assert profiles[profile_id]["syllableMap"] == candidate_by_id[profile_id]["syllableMap"]
             assert profiles[profile_id]["aliases"] == candidate_by_id[profile_id]["aliases"]
 
