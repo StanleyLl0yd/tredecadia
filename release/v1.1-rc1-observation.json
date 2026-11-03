@@ -11,10 +11,10 @@
   },
   "stableTarget": "1.1.0",
   "window": {
-    "status": "open",
+    "status": "complete",
     "minimumDays": 1,
     "notBefore": "2026-09-19T08:01:59Z",
-    "completedAt": null
+    "completedAt": "2026-11-03T12:29:17Z"
   },
   "classifications": [
     "compatibility-critical-defect",
@@ -44,6 +44,6 @@
     "compatibilityCriticalDefectsFound": 0,
     "compatibilityCriticalDefectsOpen": 0,
     "openReports": 0,
-    "stableDecision": "pending"
+    "stableDecision": "approved"
   }
 }
