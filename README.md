@@ -200,6 +200,15 @@ Published v1.1.0-rc.1 identity:
 
 The guarded v1.1 RC publication workflow reran the complete conformance suite, verified the exact remote tag target, downloaded the published archive and checksum, and byte-compared both with the deterministic local build. The v1.1 RC observation completed on 2026-11-03 after the required minimum interval, with zero recorded compatibility-critical findings and zero open RC feedback reports. All six additional profiles were explicitly accepted for stable maturity; the stable release uses the same canonical calendar identity.
 
+Published stable v1.1.0 identity:
+
+- source commit: `d6f64bdf7a0fadee8335a327532d2e0d51ab301c`;
+- published at: `2026-11-03T12:38:01Z`;
+- archive: `tredecadia-1.1.0.tar.gz`;
+- archive SHA-256: `2d83f2b777ae0a711bb27a0c38830aa9fa6c91ad516bcacbe980213450f189da`.
+
+The guarded stable publication workflow passed its release conformance gates, tagged the exact protected-main commit, and re-downloaded and byte-compared the published archive and checksum with the deterministic local build. The release registry locks this version, source commit, and archive digest from reuse.
+
 ## Licensing
 
 Documentation, specifications, machine-readable registries, and test vectors are licensed under **CC BY 4.0**. Source code, scripts, and CI/workflow code are licensed under the **MIT License** unless a file states otherwise. See [`LICENSE.md`](LICENSE.md).

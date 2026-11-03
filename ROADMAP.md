@@ -104,7 +104,7 @@ Stable transition checklist:
 
 ## M5 — additional-script month localization profiles
 
-Status: **stable `v1.1.0` approved for publication; guarded release pending**
+Status: **complete — stable `v1.1.0` published and verified**
 
 This milestone is a compatible minor-version localization expansion. It does not alter canonical month or weekday identity and does not rewrite the published `v1.0.0` registry.
 
@@ -124,4 +124,4 @@ This milestone is a compatible minor-version localization expansion. It does not
 - [x] record an explicit stable acceptance decision for each of the six reviewed profiles, without waiving the independent RC observation gate;
 - [x] define and CI-enforce the atomic `1.1.0-rc.1` → `1.1.0` transition contract against an immutable RC identity snapshot;
 - [x] prepare the atomic `1.1.0-rc.1` → `1.1.0` transition and enforce its identity/metadata invariants in CI;
-- [ ] publish and re-verify stable `v1.1.0`.
+- [x] publish stable `v1.1.0` from exact protected main `d6f64bdf7a0fadee8335a327532d2e0d51ab301c`; GitHub Actions #41637284104 SUCCESS, archive SHA-256 `2d83f2b777ae0a711bb27a0c38830aa9fa6c91ad516bcacbe980213450f189da`, remote tag and assets verified.
